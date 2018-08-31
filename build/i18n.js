@@ -36,63 +36,63 @@ import conf from './conf';
  * @return {!Promise} A promise object.
  */
 function extractForLanguage(langKey) {
-  let deferred = q.defer();
+    let deferred = q.defer();
 
-  let translationBundle = path.join(conf.paths.base, `i18n/messages-${langKey}.xtb`);
-  let codeSource = path.join(conf.paths.serve, '**.js');
-  let messagesSource = path.join(conf.paths.messagesForExtraction, '**.js');
-  let command = `java -jar ${conf.paths.xtbgenerator} --lang ${langKey}` +
-      ` --xtb_output_file ${translationBundle} --js ${codeSource} --js ${messagesSource}`;
-  if (fileExists.sync(translationBundle)) {
-    command = `${command} --translations_file ${translationBundle}`;
-  }
-
-  childProcess.exec(command, function(err, stdout, stderr) {
-    if (err) {
-      gulpUtil.log(stdout);
-      gulpUtil.log(stderr);
-      deferred.reject(new Error(err));
+    let translationBundle = path.join(conf.paths.base, `i18n/messages-${langKey}.xtb`);
+    let codeSource = path.join(conf.paths.serve, '**.js');
+    let messagesSource = path.join(conf.paths.messagesForExtraction, '**.js');
+    let command = `java -jar ${conf.paths.xtbgenerator} --lang ${langKey}` +
+        ` --xtb_output_file ${translationBundle} --js ${codeSource} --js ${messagesSource}`;
+    if (fileExists.sync(translationBundle)) {
+        command = `${command} --translations_file ${translationBundle}`;
     }
-    deferred.resolve();
-  });
 
-  return deferred.promise;
+    childProcess.exec(command, function(err, stdout, stderr) {
+        if (err) {
+            gulpUtil.log(stdout);
+            gulpUtil.log(stderr);
+            deferred.reject(new Error(err));
+        }
+        deferred.resolve();
+    });
+
+    return deferred.promise;
 }
 
 gulp.task('generate-xtbs', [
-  'extract-translations',
-  'remove-unused-translations',
-  'remove-duplicated-translations',
-  'sort-translations',
-  'set-prod-node-env',
+    'extract-translations',
+    'remove-unused-translations',
+    'remove-duplicated-translations',
+    'sort-translations',
+    'set-prod-node-env',
 ]);
 
 let prevMsgs = {};
 
 gulp.task('buildExistingI18nCache', function() {
-  return gulp.src('i18n/messages-en.xtb').pipe(cheerio((doc) => {
-    doc('translation').each((i, translation) => {
-      let key = translation.attribs.key;
-      let index = key.lastIndexOf('_');
-      if (index !== -1) {
-        let lastpart = key.substring(index + 1);
-        if (/^[0-9]+$/.test(lastpart)) {
-          let indexSuffix = Number(lastpart);
-          let filePrefix = key.substring(0, index);
-          if (!prevMsgs[filePrefix]) {
-            prevMsgs[filePrefix] = [];
-          }
-          prevMsgs[filePrefix].push({
-            index: indexSuffix,
-            key: key,
-            text: doc(translation).text(),
-            desc: translation.attribs.desc,
-            used: false,
-          });
-        }
-      }
-    });
-  }));
+    return gulp.src('i18n/messages-en.xtb').pipe(cheerio((doc) => {
+        doc('translation').each((i, translation) => {
+            let key = translation.attribs.key;
+            let index = key.lastIndexOf('_');
+            if (index !== -1) {
+                let lastpart = key.substring(index + 1);
+                if (/^[0-9]+$/.test(lastpart)) {
+                    let indexSuffix = Number(lastpart);
+                    let filePrefix = key.substring(0, index);
+                    if (!prevMsgs[filePrefix]) {
+                        prevMsgs[filePrefix] = [];
+                    }
+                    prevMsgs[filePrefix].push({
+                        index: indexSuffix,
+                        key: key,
+                        text: doc(translation).text(),
+                        desc: translation.attribs.desc,
+                        used: false,
+                    });
+                }
+            }
+        });
+    }));
 });
 
 /**
@@ -103,17 +103,17 @@ gulp.task('buildExistingI18nCache', function() {
 gulp.task(
     'extract-translations', ['scripts', 'angular-templates', 'clean-messages-for-extraction'],
     function() {
-      let promises = conf.translations.map((translation) => extractForLanguage(translation.key));
-      return q.all(promises);
+        let promises = conf.translations.map((translation) => extractForLanguage(translation.key));
+        return q.all(promises);
     });
 
 /**
  * Task to sort translations.
  */
 gulp.task('sort-translations', ['remove-duplicated-translations'], function() {
-  return gulp.src('i18n/messages-*.xtb')
-      .pipe(xslt('build/sort-translations.xslt'))
-      .pipe(gulp.dest('i18n'));
+    return gulp.src('i18n/messages-*.xtb')
+        .pipe(xslt('build/sort-translations.xslt'))
+        .pipe(gulp.dest('i18n'));
 });
 
 /**
@@ -122,9 +122,9 @@ gulp.task('sort-translations', ['remove-duplicated-translations'], function() {
  * order is required.
  */
 gulp.task('remove-duplicated-translations', ['extract-translations'], function() {
-  return gulp.src('i18n/messages-*.xtb')
-      .pipe(xslt('build/remove-duplicated-translations.xslt'))
-      .pipe(gulp.dest('i18n'));
+    return gulp.src('i18n/messages-*.xtb')
+        .pipe(xslt('build/remove-duplicated-translations.xslt'))
+        .pipe(gulp.dest('i18n'));
 });
 
 /**
@@ -132,12 +132,13 @@ gulp.task('remove-duplicated-translations', ['extract-translations'], function()
  * invoked as a part of 'remove-unused-translations'.
  */
 gulp.task('find-translations-used-in-js', function() {
-  let jsSource = path.join(conf.paths.frontendSrc, '**/*.js');
-  return gulp.src(jsSource).pipe(freplace(/MSG_\w*/g, function(match) {
-    // Mark every message found in JavaScript files as used, it will allow deletion of unused
-    // messages afterwards.
-    translationsManager.addUsed(match);
-  }));
+    let jsSource = path.join(conf.paths.frontendSrc, '**/*.js');
+    return gulp.src(jsSource).pipe(freplace(/MSG_\w*/g, function(match) {
+        // Mark every message found in JavaScript files as used, it will allow deletion of unused
+        // messages afterwards.
+        console.log(match);
+        translationsManager.addUsed(match);
+    }));
 });
 
 /**
@@ -147,27 +148,27 @@ gulp.task('find-translations-used-in-js', function() {
 gulp.task(
     'remove-unused-translations', ['angular-templates', 'find-translations-used-in-js'],
     function() {
-      // Get translations used in JavaScript and HTML files. These will not be removed.
-      let used = translationsManager.getUsed();
+        // Get translations used in JavaScript and HTML files. These will not be removed.
+        let used = translationsManager.getUsed();
 
-      return gulp.src('i18n/messages-*.xtb')
-          .pipe(cheerio((doc) => {
-            let unused = new Set();
+        return gulp.src('i18n/messages-*.xtb')
+            .pipe(cheerio((doc) => {
+                let unused = new Set();
 
-            // Find translations to remove.
-            doc('translation').each((i, translation) => {
-              let key = translation.attribs.key;
-              if (!used.has(key)) {
-                unused.add(key);
-              }
-            });
+                // Find translations to remove.
+                doc('translation').each((i, translation) => {
+                    let key = translation.attribs.key;
+                    if (!used.has(key)) {
+                        unused.add(key);
+                    }
+                });
 
-            // Remove unused translations.
-            unused.forEach((r) => {
-              doc(`translation[key=${r}]`).remove();
-            });
-          }))
-          .pipe(gulp.dest('i18n/'));
+                // Remove unused translations.
+                unused.forEach((r) => {
+                    doc(`translation[key=${r}]`).remove();
+                });
+            }))
+            .pipe(gulp.dest('i18n/'));
     });
 
 /**
@@ -178,35 +179,35 @@ gulp.task(
  */
 export let translationsManager = (function() {
 
-  /**
-   * Set of translations marked as used.
-   *
-   * @type {Set}
-   */
-  let used = new Set();
+    /**
+     * Set of translations marked as used.
+     *
+     * @type {Set}
+     */
+    let used = new Set();
 
-  /**
-   * Function used to mark translations as used.
-   *
-   * @param {string} key
-   */
-  function addUsed(key) {
-    used.add(key);
-  }
+    /**
+     * Function used to mark translations as used.
+     *
+     * @param {string} key
+     */
+    function addUsed(key) {
+        used.add(key);
+    }
 
-  /**
-   * Function used to get used translations.
-   *
-   * @return {Set}
-   */
-  function getUsed() {
-    return used;
-  }
+    /**
+     * Function used to get used translations.
+     *
+     * @return {Set}
+     */
+    function getUsed() {
+        return used;
+    }
 
-  return {
-    addUsed: addUsed,
-    getUsed: getUsed,
-  };
+    return {
+        addUsed: addUsed,
+        getUsed: getUsed,
+    };
 })();
 
 // Regex to match [[Foo | Bar]] or [[Foo]] i18n placeholders.
@@ -218,86 +219,88 @@ export let translationsManager = (function() {
 const I18N_REGEX = /\[\[([^|]*?)(?:\|(.*?))?\]\]/g;
 
 export function processI18nMessages(file, minifiedHtml) {
-  let content = jsesc(minifiedHtml);
-  let pureHtmlContent = `${content}`;
-  let filePath = path.relative(file.base, file.path);
-  let messageVarPrefix = filePath.toUpperCase().split('/').join('_').replace('.HTML', '');
-  let used = new Set();
+    let content = jsesc(minifiedHtml);
+    let pureHtmlContent = `${content}`;
+    let filePath = path.relative(file.base, file.path);
+    let messageVarPrefix = filePath.toUpperCase().split('/').join('_').replace('.HTML', '');
+    let used = new Set();
 
-  /**
-   * Finds all i18n messages inside a template and returns its text, description and original
-   * string.
-   * @param {string} htmlContent
-   * @return {!Array<{text: string, desc: string, original: string}>}
-   */
-  function findI18nMessages(htmlContent) {
-    let matches = htmlContent.match(I18N_REGEX);
-    if (matches) {
-      return matches.map((match) => {
-        let exec = regexpClone(I18N_REGEX).exec(match);
-        // Default to no description when it is not provided.
-        let desc = (exec[2] || '(no description provided)').trim();
-        // replace {{$variableName}} with {{ $variableName}} to avoid {$ getting recognised as
-        // google.getMsg format
-        let text = exec[1].replace('{$', '{ $');
-        let varName = undefined;
-        if (prevMsgs[`MSG_${messageVarPrefix}`]) {
-          for (let msg of prevMsgs[`MSG_${messageVarPrefix}`]) {
-            if (msg.text === text && msg.desc === desc && !msg.used) {
-              varName = msg.key;
-              msg.used = true;
-              used.add(msg.index);
-              break;
-            }
-          }
+    /**
+     * Finds all i18n messages inside a template and returns its text, description and original
+     * string.
+     * @param {string} htmlContent
+     * @return {!Array<{text: string, desc: string, original: string}>}
+     */
+    function findI18nMessages(htmlContent) {
+        let matches = htmlContent.match(I18N_REGEX);
+        // console.log(matches);
+        if (matches) {
+            return matches.map((match) => {
+                let exec = regexpClone(I18N_REGEX).exec(match);
+                // Default to no description when it is not provided.
+                let desc = (exec[2] || '(no description provided)').trim();
+                // replace {{$variableName}} with {{ $variableName}} to avoid {$ getting recognised as
+                // google.getMsg format
+                let text = exec[1].replace('{$', '{ $');
+                let varName = undefined;
+                if (prevMsgs[`MSG_${messageVarPrefix}`]) {
+                    for (let msg of prevMsgs[`MSG_${messageVarPrefix}`]) {
+                        if (msg.text === text && msg.desc === desc && !msg.used) {
+                            varName = msg.key;
+                            msg.used = true;
+                            used.add(msg.index);
+                            break;
+                        }
+                    }
+                }
+                return { text: text, desc: desc, original: match, varName: varName };
+            });
         }
-        return {text: text, desc: desc, original: match, varName: varName};
-      });
+        return [];
     }
-    return [];
-  }
 
-  let i18nMessages = findI18nMessages(content);
+    let i18nMessages = findI18nMessages(content);
 
-  /**
-   * @param {number} index
-   * @return {string}
-   */
-  function createMessageVarName() {
-    for (let i = 0;; i++) {
-      if (!used.has(i)) {
-        used.add(i);
-        return `MSG_${messageVarPrefix}_${i}`;
-      }
+    /**
+     * @param {number} index
+     * @return {string}
+     */
+    function createMessageVarName() {
+        for (let i = 0;; i++) {
+            if (!used.has(i)) {
+                used.add(i);
+                return `MSG_${messageVarPrefix}_${i}`;
+            }
+        }
     }
-  }
 
-  i18nMessages.forEach((message) => {
-    message.varName = message.varName || createMessageVarName();
-    // Replace i18n messages with english messages for testing and MSG_ vars invocations
-    // for compiler passses.
-    content = content.replace(message.original, `' + ${message.varName} + '`);
-    pureHtmlContent = pureHtmlContent.replace(message.original, message.text);
+    i18nMessages.forEach((message) => {
+        message.varName = message.varName || createMessageVarName();
+        // Replace i18n messages with english messages for testing and MSG_ vars invocations
+        // for compiler passses.
+        content = content.replace(message.original, `' + ${message.varName} + '`);
+        pureHtmlContent = pureHtmlContent.replace(message.original, message.text);
 
-    // Mark every message found in this HTML file as used, it will allow deletion of unused messages
-    // afterwards.
-    translationsManager.addUsed(message.varName);
-  });
+        // Mark every message found in this HTML file as used, it will allow deletion of unused messages
+        // afterwards.
+        translationsManager.addUsed(message.varName);
+        // console.log(message.test, messsage.varName);
+    });
 
-  let messageVariables = i18nMessages.map((message) => {
-    return `/** @desc ${message.desc} */\n` +
-        `var ${message.varName} = goog.getMsg('${message.text}');\n`;
-  });
+    let messageVariables = i18nMessages.map((message) => {
+        return `/** @desc ${message.desc} */\n` +
+            `var ${message.varName} = goog.getMsg('${message.text}');\n`;
+    });
 
-  file.messages = messageVariables.join('\n');
-  // Eval pure HTML content, because it has been jsescaped previously. This is safe to eval since
-  // it was escaped by jsecs previously.
-  file.pureHtmlContent = eval(`'${pureHtmlContent}'`);
-  file.moduleContent = `` +
-      `import module from '/index_module';\n\n${file.messages}\n` +
-      `module.run(['$templateCache', ($templateCache) => {\n` +
-      `    $templateCache.put('${filePath}', '${content}');\n` +
-      `}]);\n`;
+    file.messages = messageVariables.join('\n');
+    // Eval pure HTML content, because it has been jsescaped previously. This is safe to eval since
+    // it was escaped by jsecs previously.
+    file.pureHtmlContent = eval(`'${pureHtmlContent}'`);
+    file.moduleContent = `` +
+        `import module from 'index_module';\n\n${file.messages}\n` +
+        `module.run(['$templateCache', ($templateCache) => {\n` +
+        `    $templateCache.put('${filePath}', '${content}');\n` +
+        `}]);\n`;
 
-  return minifiedHtml;
+    return minifiedHtml;
 }
