@@ -1,5 +1,5 @@
 <!--
-Copyright 2017 The Kubernetes Authors.
+Copyright 2015 Google Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,63 +19,52 @@ limitations under the License.
 <!-- TODO(bryk): Add ng-strict-di setting for production builds. -->
 
 <head>
-  <meta charset="utf-8">
-  <title ng-controller="kdTitle as $ctrl"
-         ng-bind="$ctrl.title()"></title>
-  <link rel="icon"
-        type="image/png"
-        href="assets/images/kubernetes-logo.png" />
-  <meta name="viewport"
-        content="width=device-width">
+    <meta charset="utf-8">
 
-  <!-- build:css static/vendor.css -->
-  <!-- bower:css -->
-  <!-- Application CSS dependencies are populated here (dev build) and compiled
+    <title ng-controller="kdTitle as $ctrl" ng-bind="$ctrl.title()"></title>
+    <link rel="icon" href="assets/images/_favicon.ico" />
+    <meta name="viewport" content="width=device-width">
+
+    <!-- build:css static/vendor.css -->
+    <!-- bower:css -->
+    <!-- Bower CSS dependencies are populated here (dev build) and compiled
          into vendor.css (prod build). -->
-  <!-- endbower -->
-  <!-- endbuild -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
-  <!-- build:css static/app.css -->
-  <!-- inject:css -->
-  <!-- Application CSS files are populated here (dev build) and compiled
-       into app.css (prod build). -->
-  <!-- endinject -->
-  <!-- endbuild -->
+    <!-- build:css static/app.css -->
+    <!-- inject:css -->
+    <!-- Application css files are populated here (dev build) and compiled
+         into app.css (prod build). -->
+    <!-- endinject -->
+    <!-- endbuild -->
 </head>
 
-<body ng-controller="kdMain as $ctrl">
-  <!--[if lt IE 10]>
+<body>
+    <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser.
       Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your
       experience.</p>
     <![endif]-->
-
-  <kd-login layout="column"
-            layout-fill
-            ng-if="$ctrl.isLoginState()">
-  </kd-login>
-  <kd-chrome layout="column"
-             layout-fill
-             ng-if="!$ctrl.isLoginState()">
+    <div ui-view="main" style="width:100%;height:100%;"></div>
+    <!-- <kd-chrome layout="column" layout-fill> -->
     <!-- Application content is inserted here. -->
-  </kd-chrome>
-
-  <!-- build:js static/vendor.js -->
-  <!-- bower:js -->
-  <!-- Application JS dependencies are populated here (dev build) and compiled
+    <!-- </kd-chrome> -->
+    <!-- build:js static/vendor.js -->
+    <!-- bower:js -->
+    <!-- Bower JS dependencies are populated here (dev build) and compiled
          into vendor.js (prod build). -->
-  <!-- endbower -->
-  <!-- endbuild -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
-  <!-- Script with configuration generated at backend. -->
-  <script src="api/appConfig.json"></script>
+    <!-- Script with configuration generated at backend. -->
+    <script src="api/appConfig.json"></script>
 
-  <!-- build:js static/app.js -->
-  <!-- inject:js -->
-  <!-- Application JS files are populated here (dev build) and compiled
-       into app.js (prod build). -->
-  <!-- endinject -->
-  <!-- endbuild -->
+    <!-- build:js static/app.js -->
+    <!-- inject:js -->
+    <!-- Application JS files are populated here. -->
+    <!-- endinject -->
+    <!-- endbuild -->
 
 </body>
 

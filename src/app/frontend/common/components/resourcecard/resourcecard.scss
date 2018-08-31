@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,11 +52,14 @@ kd-resource-card {
 .kd-resource-card {
   box-sizing: border-box;
   min-height: $cell-base-size - $baseline-grid;
-  padding-bottom: $baseline-grid / 2;
+  padding-bottom: 0;
 }
 
 .kd-resource-card-columns-container {
   justify-content: flex-start;
+  &:hover{
+    background:#E5F7F3;
+  }
 }
 
 .kd-resource-card-columns-slot {

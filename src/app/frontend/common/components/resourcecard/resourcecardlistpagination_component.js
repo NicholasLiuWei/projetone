@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,47 +17,76 @@
  */
 export class ResourceCardListPaginationController {
   /**
-   * @param {!../../dataselect/service.DataSelectService} kdDataSelectService
-   * @param {!../../errorhandling/dialog.ErrorDialog} errorDialog
+   * @param {!../../pagination/pagination_service.PaginationService} kdPaginationService
+   * @param {!../../../chrome/chrome_state.StateParams|!../../resource/resourcedetail.StateParams}
+   *     $stateParams
+   * @param {!../../errorhandling/errordialog_service.ErrorDialog} errorDialog
+   * @param {!angular.Scope} $scope
    * @ngInject
    */
-  constructor(kdDataSelectService, kdSettingsService, errorDialog) {
-    /**
-     * @export {!./resourcecardlist_component.ResourceCardListController} -
-     * Initialized from require just before $onInit is called.
-     */
+  constructor(kdPaginationService, $stateParams, errorDialog, $scope) {
+    /** @export {!./resourcecardlist_component.ResourceCardListController} -
+     * Initialized from require just before $onInit is called. */
     this.resourceCardListCtrl;
-    /** @private {!../../dataselect/service.DataSelectService} */
-    this.dataSelectService_ = kdDataSelectService;
-
-    this.settingsService_ = kdSettingsService;
-
-    /** @private {!../../errorhandling/dialog.ErrorDialog} */
+    /** @export {string} - Unique pagination id. Used together with id on <dir-paginate>
+     directive. Initialized from binding. */
+    this.paginationId;
+    /** @export {!angular.$resource} Initialized from binding. */
+    this.listResource;
+    /** @export {{listMeta: !backendApi.ListMeta}} Initialized from binding. */
+    this.list;
+    /** @private {!../../pagination/pagination_service.PaginationService} */
+    this.paginationService_ = kdPaginationService;
+    /** @private
+     * {!../../../chrome/chrome_state.StateParams|!../../resource/resourcedetail.StateParams} */
+    this.stateParams_ = $stateParams;
+    /** @export {number} */
+    this.rowsLimit;
+    /** @export {!Array<number>} */
+    this.rowsLimitOptions = this.paginationService_.getRowsLimitOptions();
+    /** @export {boolean} - Indicates whether pagination should be server sided of frontend only. */
+    this.serverSided = true;
+    /** @private {!../../errorhandling/errordialog_service.ErrorDialog} */
     this.errorDialog_ = errorDialog;
+    /** @private {!angular.Scope} */
+    this.scope_ = $scope;
     /** @export */
     this.i18n = i18n;
-    /** @export {string} - Unique data select id. Initialized from resource card list controller. */
-    this.selectId;
   }
 
-  /** @export **/
+  /**
+   * @export
+   */
   $onInit() {
-    this.selectId = this.resourceCardListCtrl.selectId;
-
-    if (this.shouldEnablePagination() &&
-        (this.resourceCardListCtrl.list === undefined ||
-         this.resourceCardListCtrl.listResource === undefined)) {
-      throw new Error('List and list resource have to be set on list card.');
+    if (this.paginationId === undefined || this.paginationId.length === 0) {
+      throw new Error('Pagination id has to be set.');
     }
 
-    if (!this.dataSelectService_.isRegistered(this.selectId)) {
-      this.dataSelectService_.registerInstance(this.selectId);
+    if (this.listResource === undefined) {
+      this.serverSided = false;
     }
+
+    if (!this.paginationService_.isRegistered(this.paginationId)) {
+      this.paginationService_.registerInstance(this.paginationId);
+    }
+
+    this.rowsLimit = this.paginationService_.getRowsLimit(this.paginationId);
+    this.registerStateChangeListener(this.scope_);
   }
 
-  /** @export */
-  shouldEnablePagination() {
-    return this.selectId !== undefined && this.selectId.length > 0;
+  /**
+   * @param {!angular.Scope} scope
+   */
+  registerStateChangeListener(scope) {
+    scope.$on('$stateChangeStart', () => this.paginationService_.resetRowsLimit());
+  }
+
+  /**
+   * Updates number of rows to display on associated resource list.
+   * @export
+   */
+  onRowsLimitUpdate() {
+    this.paginationService_.setRowsLimit(this.rowsLimit, this.paginationId);
   }
 
   /**
@@ -68,9 +97,7 @@ export class ResourceCardListPaginationController {
    * @export
    */
   shouldShowPagination() {
-    return this.resourceCardListCtrl.list.listMeta.totalItems >
-        this.settingsService_.getItemsPerPage() &&
-        this.shouldEnablePagination();
+    return this.list.listMeta.totalItems > this.paginationService_.getMinRowsLimit();
   }
 
   /**
@@ -80,20 +107,20 @@ export class ResourceCardListPaginationController {
    * @export
    */
   pageChanged(newPageNumber) {
-    let dataSelectQuery =
-        this.dataSelectService_.newDataSelectQueryBuilder().setPage(newPageNumber).build();
-
-    let promise = this.dataSelectService_.paginate(
-        this.resourceCardListCtrl.listResource, this.selectId, dataSelectQuery);
+    let namespace = this.stateParams_.objectNamespace || this.stateParams_.namespace;
+    let query = this.paginationService_.getResourceQuery(
+        this.paginationService_.getRowsLimit(this.paginationId), newPageNumber, namespace,
+        this.stateParams_.objectName);
 
     this.resourceCardListCtrl.setPending(true);
 
-    promise
-        .then((list) => {
-          this.resourceCardListCtrl.list = list;
+    this.listResource.get(
+        query,
+        (list) => {
+          this.list = list;
           this.resourceCardListCtrl.setPending(false);
-        })
-        .catch((err) => {
+        },
+        (err) => {
           this.errorDialog_.open(this.i18n.MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR, err.data);
           this.resourceCardListCtrl.setPending(false);
         });
@@ -104,6 +131,13 @@ export class ResourceCardListPaginationController {
  * Resource card list pagination component. Provides pagination component that displays
  * pagination on the given list of items.
  *
+ * Bindings:
+ *  - paginationId (required): Should always be set in order to differentiate between other
+ *    pagination components on the same page.
+ *  - list (required): List of resources that should be paginated.
+ *  - listResource (optional): Angular resource used to get paginated list of objects from the
+ *    server. If listResource is undefined, then only frontend pagination will be provided.
+ *
  * @type {!angular.Component}
  */
 export const resourceCardListPaginationComponent = {
@@ -112,8 +146,11 @@ export const resourceCardListPaginationComponent = {
   transclude: true,
   require: {
     'resourceCardListCtrl': '^kdResourceCardList',
-    // Make sure that pagination can be only placed in a footer
-    'resourceCardListFooter': '^^kdResourceCardListFooter',
+  },
+  bindings: {
+    'paginationId': '@',
+    'listResource': '<',
+    'list': '=',
   },
 };
 

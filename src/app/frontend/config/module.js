@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import chromeModule from '../chrome/module';
-import configMapModule from '../configmap/module';
-import persistentVolumeClaimModule from '../persistentvolumeclaim/module';
-import secretModule from '../secret/module';
+import chromeModule from 'chrome/chrome_module';
+import configMapModule from 'configmaplist/configmaplist_module';
+import secretModule from 'secretlist/module';
 
 import stateConfig from './stateconfig';
 
@@ -32,7 +31,6 @@ export default angular
           chromeModule.name,
           configMapModule.name,
           secretModule.name,
-          persistentVolumeClaimModule.name,
         ])
     .config(stateConfig)
     .factory('kdConfigResource', resource);

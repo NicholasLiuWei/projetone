@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,7 +46,9 @@ export class ResourceCardColumnsController {
    */
   addAndSizeColumn(columnElement) {
     if (!this.initialized_) {
-      throw new Error('Resource card columns component must be initialized before adding columns');
+      throw new Error(
+          'Resource card columns component must be initialized before adding' +
+          'columns');
     }
     this.resourceCardListCtrl.sizeBodyColumn(columnElement, this.numColumnsAdded_);
     this.numColumnsAdded_ += 1;

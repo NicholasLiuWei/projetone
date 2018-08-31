@@ -22,6 +22,10 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"net/http/httputil"
+	"net/url"
+	"os/exec"
+	// "strings"
 	"os"
 	"time"
 
@@ -151,6 +155,10 @@ func main() {
 	http.Handle("/api/sockjs/", handler.CreateAttachHandler("/api/sockjs"))
 	http.Handle("/metrics", prometheus.Handler())
 
+	//helm request
+	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
+
+	initApp()
 	// Listen for http or https
 	if servingCerts != nil {
 		log.Printf("Serving securely on HTTPS port: %d", args.Holder.GetPort())
@@ -167,6 +175,43 @@ func main() {
 		go func() { log.Fatal(http.ListenAndServe(addr, nil)) }()
 	}
 	select {}
+}
+
+
+func NewReverseProxy(target string) *httputil.ReverseProxy {
+	return httputil.NewSingleHostReverseProxy(&url.URL{
+		Scheme: "http",
+		Host:   target,
+	})
+}
+
+func Handle(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// log.Println("request:", r.RemoteAddr, "want", r.RequestURI)
+		// r.RequestURI = strings.Replace(r.RequestURI, "/helm", "", -1)
+		log.Println("request:", r.RemoteAddr, "want", r.RequestURI)
+		//Many webservers are configured to not serve pages if a request doesn’t appear from the same host.
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "X-Requested-With")
+		p.ServeHTTP(w, r)
+		log.Println("response ok")
+	}
+}
+
+func initApp() {
+	appcom := "nohup /appmanager >/logs/appmanager-" + "`date +%Y%m%d%H%M%S`" + ".log 2>&1 &"
+	cmd := exec.Command("/bin/bash", "-c",appcom);
+	err := cmd.Run()
+	if err != nil{
+		fmt.Println("appmanager err:",err.Error())
+		return
+	}
+	appcom = "nohup /monitor >/logs/monitor-" + "`date +%Y%m%d%H%M%S`" + ".log 2>&1 &"
+	cmd = exec.Command("/bin/bash", "-c",appcom);
+	err = cmd.Run()
+	if err != nil{
+		fmt.Println("monitor err:",err.Error())
+	}
 }
 
 func initAuthManager(clientManager clientapi.ClientManager) authApi.AuthManager {

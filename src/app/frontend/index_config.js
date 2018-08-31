@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,17 +17,17 @@
  * @ngInject
  */
 export default function config($mdThemingProvider) {
-  // Create a color palette that uses Kubernetes colors.
-  let kubernetesColorPaletteName = 'kubernetesColorPalette';
-  let kubernetesAccentPaletteName = 'kubernetesAccentPallete';
-  let kubernetesColorPalette = $mdThemingProvider.extendPalette('blue', {
-    '500': '326de6',
-  });
+    // Create a color palette that uses Kubernetes colors.
+    let kubernetesColorPaletteName = 'kubernetesColorPalette';
+    let kubernetesAccentPaletteName = 'kubernetesAccentPallete';
+    let kubernetesColorPalette = $mdThemingProvider.extendPalette('blue', {
+        '500': '#3DC2A1',
+    });
 
-  // Use the palette as default one.
-  $mdThemingProvider.definePalette(kubernetesColorPaletteName, kubernetesColorPalette);
-  $mdThemingProvider.definePalette(kubernetesAccentPaletteName, kubernetesColorPalette);
-  $mdThemingProvider.theme('default')
-      .primaryPalette(kubernetesColorPaletteName)
-      .accentPalette(kubernetesAccentPaletteName);
+    // Use the palette as default one.
+    $mdThemingProvider.definePalette(kubernetesColorPaletteName, kubernetesColorPalette);
+    $mdThemingProvider.definePalette(kubernetesAccentPaletteName, kubernetesColorPalette);
+    $mdThemingProvider.theme('default')
+        .primaryPalette(kubernetesColorPaletteName)
+        .accentPalette(kubernetesAccentPaletteName);
 }

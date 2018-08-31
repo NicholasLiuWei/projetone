@@ -1,5 +1,5 @@
 <!--
-Copyright 2017 The Kubernetes Authors.
+Copyright 2015 Google Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,75 +13,63 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
+<div class="kd-nav" layout="column">
+    <div>
+        <img src="assets/images/_logo-black.png" />
+    </div>
+    <div class="user">
+        <div class="usertitle">用户名称</div>
+        <div class="username">管理员</div>
+    </div>
+    <!-- <kd-namespace-select></kd-namespace-select> -->
+    <!-- <div class="kd-nav-group"> -->
+    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.home}}" icon="dashboard" ng-if="$ctrl.setNavitem('home')">[[Dashboard|Dashboard menu item in the nav.]]</kd-nav-item>
+    <!-- <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.admin}}" ng-if="$ctrl.setNavitem('admin')" icon="person">[[Admin|Admin menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.namespace}}"  ng-if="$ctrl.setNavitem('namespace')" icon="dns">[[Namespaces|Namespaces menu item in the nav.]]</kd-nav-item> -->
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.node}}" ng-if="$ctrl.setNavitem('node')" icon="desktop_windows">[[Nodes|Nodes menu item in the nav.]]</kd-nav-item>
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.persistentVolume}}"  ng-if="$ctrl.setNavitem('persistentVolume')" icon="person">[[Persistent Volumes|Persistent Volumes menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.storageClass}}"  ng-if="$ctrl.setNavitem('storageClass')" icon="add">[[Storage Classes|Storage Classes menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.repository}}"  ng-if="$ctrl.setNavitem('repository')">[[Repositories|Repositories menu item in the nav.]]</kd-nav-item> -->
 
-<md-sidenav md-is-locked-open="$ctrl.isVisible()"
-            class="kd-nav"
-            layout="column">
+    <!-- </div> -->
+    <!--   <div class="kd-nav-group-divider"></div>
+  <kd-namespace-select></kd-namespace-select> -->
+    <!--
+  TODO(bryk): Uncomment when this is implemented.
   <div class="kd-nav-group">
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.cluster}}">[[Cluster|Cluster group menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.namespace}}">[[Namespaces|Namespaces menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.node}}">[[Nodes|Nodes menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.persistentVolume}}">[[Persistent Volumes|Persistent Volumes menu entry.]]</kd-nav-item>
-    <!-- Enabled dynamically if there rbacs are enabled in the cluster. -->
-    <kd-role-nav states="$ctrl.states"></kd-role-nav>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.storageClass}}">[[Storage Classes|Storage Classes menu entry.]]</kd-nav-item>
+    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.overview}}">Overview</kd-nav-item>
   </div>
-  <div class="kd-nav-group-divider"></div>
-  <kd-namespace-select></kd-namespace-select>
-  <div class="kd-nav-group">
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.overview}}">[[Overview|All objects group menu entry.]]</kd-nav-item>
-  </div>
-  <div class="kd-nav-group">
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.workload}}">[[Workloads|Workloads group menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.cronJob}}">[[Cron Jobs|Cron Jobs menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.daemonSet}}">[[Daemon Sets|Daemon Sets menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.deployment}}">[[Deployments|Deployments menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.job}}">[[Jobs|Jobs menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.pod}}">[[Pods|Pods menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.replicaSet}}">[[Replica Sets|Replica Sets entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.replicationController}}">[[Replication Controllers|Replication Controllers menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.statefulSet}}">[[Stateful Sets|Stateful Sets menu entry.]]</kd-nav-item>
-  </div>
-  <div class="kd-nav-group">
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.discovery}}">[[Discovery and Load Balancing|Discovery and Load Balancing group menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.ingress}}">[[Ingresses|Ingresses menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.service}}">[[Services|Services menu entry.]]</kd-nav-item>
-  </div>
-  <div class="kd-nav-group">
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.config}}">[[Config and Storage|Config and Storage group menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.configMap}}">[[Config Maps|Config Maps menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.persistentVolumeClaim}}">[[Persistent Volume Claims|Persistent Volume Claims menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-item"
-                 state="{{::$ctrl.states.secret}}">[[Secrets|Secrets menu entry.]]</kd-nav-item>
-  </div>
-
-  <div class="kd-nav-group-divider"></div>
-
-  <div class="kd-nav-group">
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.settings}}">[[Settings|Settings page menu entry.]]</kd-nav-item>
-    <kd-nav-item class="kd-nav-group-item"
-                 state="{{::$ctrl.states.about}}">[[About|About page menu entry.]]</kd-nav-item>
-  </div>
-</md-sidenav>
+  -->
+    <!-- <div class="kd-nav-group"> -->
+    <!-- <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.workload}}"  ng-if="$ctrl.setNavitem('workload')">[[Workloads|Workloads menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.deployment}}"  ng-if="$ctrl.setNavitem('deployment')" icon="shop_two">[[Deployments|Deployments menu item in the nav.]]</kd-nav-item> -->
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.release}}" ng-if="$ctrl.setNavitem('release')" icon="shop_two">[[Release|Release menu item in the nav.]]</kd-nav-item>
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.replicaSet}}"  ng-if="$ctrl.setNavitem('replicaSet')">[[Replica Sets|Replica Sets menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.replicationController}}"  ng-if="$ctrl.setNavitem('replicationController')">[[Replication Controllers|Replication Controllers menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.daemonSet}}"  ng-if="$ctrl.setNavitem('daemonSet')">[[Daemon Sets|Daemon Sets menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.statefulSet}}"  ng-if="$ctrl.setNavitem('statefulSet')">[[Stateful Sets|Stateful Sets menu item in the nav.]]</kd-nav-item> -->
+    <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.job}}"  ng-if="$ctrl.setNavitem('job')">[[Jobs|Jobs menu item in the nav.]]</kd-nav-item> -->
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.pod}}" ng-if="$ctrl.setNavitem('pod')" icon="view_compact">[[Pods|Pods menu item in the nav.]]</kd-nav-item>
+    <!-- </div> -->
+    <!--   <div class="kd-nav-group">
+    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.serviceDiscovery}}"  ng-if="$ctrl.setNavitem('serviceDiscovery')">[[Services and discovery|Services and discovery menu item in the nav.]]</kd-nav-item>
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.service}}"  ng-if="$ctrl.setNavitem('service')">[[Services|Services menu item in the nav.]]</kd-nav-item>
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.ingress}}"  ng-if="$ctrl.setNavitem('ingress')">[[Ingresses|Ingresses item in the nav.]]</kd-nav-item>
+  </div> -->
+    <!--   <div class="kd-nav-group">
+    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.strage}}"  ng-if="$ctrl.setNavitem('strage')">[[Storage|Storage item in the nav.]]</kd-nav-item>
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.persistentVolumeClaim}}"  ng-if="$ctrl.setNavitem('persistentVolumeClaim')">[[Persistent Volume Claims|Persistent Volume Claims item in the nav.]]</kd-nav-item>
+  </div> -->
+    <div class="kd-nav-group">
+        <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.appStore}}" ng-if="$ctrl.setNavitem('appStore')" icon="apps">[[AppStore|AppStore menu entry.]]</kd-nav-item>
+        <kd-nav-item class="kd-nav-item" style="margin-left: 20px;" state="{{::$ctrl.states.repository}}" ng-if="$ctrl.setNavitem('repository')">[[Repositories|Repositories menu entry.]]</kd-nav-item>
+    </div>
+    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.storage}}" ng-if="$ctrl.setNavitem('storage')" icon="storage">[[存储|storage menu entry.]]</kd-nav-item>
+    <!--   <div class="kd-nav-group">
+    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.config}}"  ng-if="$ctrl.setNavitem('config')">[[Config|Config item in the nav.]]</kd-nav-item>
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.secret}}"  ng-if="$ctrl.setNavitem('secret')">[[Secrets|Secrets item in the nav.]]</kd-nav-item>
+    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.configMap}}"  ng-if="$ctrl.setNavitem('configMap')">[[Config Maps|Config Maps item in the nav.]]</kd-nav-item>
+  </div> -->
+    <!-- Enabled dynamically if there are third party resources registered in the system -->
+    <!--   <kd-third-party-resource-nav states="$ctrl.states"></kd-third-party-resource-nav> -->
+</div>

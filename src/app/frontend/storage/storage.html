@@ -1,0 +1,208 @@
+<kd-content-card ng-if="!$ctrl.shouldShowZeroState()" class="zoom">
+    <kd-content>
+        <div class="overview">
+            <div class="ovH" style="font-weight: bold;">
+                存储概览
+            </div>
+            <div class="ovItem">
+                <div class="ovItemH">
+                    总量
+                </div>
+                <div class="ovItemCon" layout="row" layout-align="space-around center">
+                    <img src="assets/images/dashboard-server.png" alt="">
+                    <span class="bandwidth-indicator">
+						<span class="value">{{$ctrl.storage[0].CephIn.Stat.Kb*1024  | kdMemory}}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="ovItem">
+                <div class="ovItemH">
+                    已用
+                </div>
+                <div class="ovItemCon" layout="row" layout-align="space-around center">
+                    <img src="assets/images/dashboard-ops.png" alt="">
+                    <span class="bandwidth-indicator">
+						<span class="value">{{$ctrl.storage[0].CephIn.Stat.Kb_used*1024 | kdMemory}}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="ovItem">
+                <div class="ovItemH">
+                    可用
+                </div>
+                <div class="ovItemCon" layout="row" layout-align="space-around center">
+                    <img src="assets/images/dashboard-osd.png" alt="">
+                    <span class="bandwidth-indicator">
+						<span class="value">{{$ctrl.storage[0].CephIn.Stat.Kb_avail*1024 | kdMemory}}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="ovItem">
+                <div class="ovItemH">
+                    HDD(机械硬盘)
+                </div>
+                <div class="ovItemCon" layout="row" layout-align="space-around center">
+                    <img src="assets/images/dashboard-phydisk.png" alt="">
+                    <span class="bandwidth-indicator">
+						<span class="value">{{$ctrl.hddCount}}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="ovItem">
+                <div class="ovItemH">
+                    固态硬盘
+                </div>
+                <div class="ovItemCon" layout="row" layout-align="space-around center">
+                    <img src="assets/images/dashboard-pool.png" alt="">
+                    <span class="bandwidth-indicator">
+						<span class="value">{{$ctrl.ssdCount}}</span>
+                    </span>
+                </div>
+            </div>
+            <!-- 			<div class="totalmes">
+				<div class="totalStorage">
+					<div>1TB</div>
+					<div>[[配额|配额]]</div>
+				</div>
+				<div class="totalStorage">
+					<div>1TB</div>
+					<div>[[可用|可用]]</div>
+				</div>
+			</div>
+			<div class="totalmes">
+				<div class="usedStorage">
+					<div>500GB</div>
+					<div>[[使用|使用]]</div>
+				</div>
+				<div class="usedStorage">
+					<div>50%</div>
+					<div>[[占比|占比]]</div>
+				</div>
+			</div>
+			<div class="totalmes">
+				<div class="diskType">
+					<div>6</div>
+					<div>[[SSD(固态硬盘)|SSD(固态硬盘)]]</div>
+				</div>
+				<div class="diskType">
+					<div>18</div>
+					<div>[[HDD(机械硬盘)|HDD(机械硬盘]]</div>
+				</div>
+			</div>
+			<div class="totalmes">
+				<div class="warning">
+					<div style="float:left;overflow: hidden;width:30%;">
+						<div class="warningCount">0</div>
+						<div class="warnmes">[[警告|the warning title of panel page health card ]]</div>
+					</div>
+					<div class="warnings">[[暂无警告| no waning mes]]</div>
+				</div>
+			</div> -->
+        </div>
+        <div class="mcdetail">
+            <kd-resource-card-list selectable="false" with-statuses="true">
+                <kd-resource-card-list-header style="font-weight: bold;">
+                    [[磁盘|磁盘页面磁盘列表标题]]
+                </kd-resource-card-list-header>
+                <kd-resource-card-header-columns>
+                    <kd-resource-card-header-column size="large" grow="nogrow">
+                        名称
+                    </kd-resource-card-header-column>
+                    <!-- 					<kd-resource-card-header-column size="large" grow="nogrow">
+						容量
+					</kd-resource-card-header-column> -->
+                    <kd-resource-card-header-column size="large" grow="4">
+                        <div class="statusDesc">
+                            磁盘容量
+                            <span>正常</span>
+                            <span>
+							    <md-icon class="material-icons" style="color:#FF9900">
+							      	warning
+							    </md-icon>告警</span>
+                            <span>拔出</span>
+                            <span>
+							    <md-icon class="material-icons" style="color:#CC3333">
+							      	highlight_off
+							    </md-icon>错误</span>
+                        </div>
+                    </kd-resource-card-header-column>
+                </kd-resource-card-header-columns>
+
+                <kd-resource-card omit-meta="true" ng-repeat="sto in $ctrl.storage">
+                    <kd-resource-card-status layout="row">
+                        <md-icon class="material-icons kd-error" ng-if="::sto.Good=='ERROR'">
+                            error
+                        </md-icon>
+                        <md-tooltip ng-if="::sto.Good=='ERROR'">
+                            机器故障
+                        </md-tooltip>
+                        <md-icon class="material-icons kd-success" ng-if="::sto.Good=='OK'">
+                            check_circle
+                        </md-icon>
+                    </kd-resource-card-status>
+                    <kd-resource-card-columns>
+                        <kd-resource-card-column>
+                            {{sto.Hostname}}
+                        </kd-resource-card-column>
+                        <!-- 						<kd-resource-card-column>
+					    	<div class="progress">
+					    		<span ng-style='{"width":sto.CephIn.Kb_used/sto.CephIn.Kb+"%"}' ng-class="$ctrl.getColor(sto.CephIn.Kb_used/sto.CephIn.Kb)">
+					    		</span>
+					    		<div class="barText">{{sto.CephIn.Kb_used | kdMemory}} /
+					        {{sto.CephIn.Kb | kdMemory}} ( {{(sto.CephIn.Kb_used/sto.CephIn.Kb) | number : 2}}% )</div>
+					    	</div>
+						</kd-resource-card-column> -->
+                        <kd-resource-card-column>
+                            <div class="storageBox" style="overflow: hidden;">
+                                <div class="storageDetail" ng-repeat="disk in sto.DiskIn">
+                                    <div ng-if="sto.Good=='OK'">
+                                        <span ng-if="disk.Good=='OK'||disk.Good=='PLUGOUT'" class="status" ng-class="{green:disk.Good=='OK',red:disk.Good=='PLUGOUT'}">
+											<md-tooltip ng-if="disk.Good=='OK'">
+												正常
+											</md-tooltip>
+											<md-tooltip ng-if="disk.Good=='PLUGOUT'">
+												拔出
+											</md-tooltip>
+										</span>
+                                        <!-- 										<span class="warns" ng-if="disk.Good=='WARNING'">
+										    <md-icon class="material-icons">
+										      	warning
+										    </md-icon>
+											<md-tooltip>
+												告警
+											</md-tooltip>
+										</span> -->
+                                        <span class="green status" ng-if="disk.Good=='WARNING'">
+											<md-tooltip>
+												正常
+											</md-tooltip>
+										</span>
+                                        <span class="plugout" ng-if="disk.Good=='ERROR'">
+										    <md-icon class="material-icons">
+										      	highlight_off
+										    </md-icon>
+											<md-tooltip>
+												错误
+											</md-tooltip>
+										</span>
+                                    </div>
+                                    <div ng-if="sto.Good!='OK'">
+                                        <span class="status hui"></span>
+                                        <md-tooltip>
+                                            机器故障
+                                        </md-tooltip>
+                                    </div>
+                                    <span ng-if="true" class="isSSD">disk.Type</span>
+                                    <md-tooltip>
+                                        {{disk.Type}}&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;{{disk.Name}}
+                                    </md-tooltip>
+                                </div>
+                            </div>
+                        </kd-resource-card-column>
+                    </kd-resource-card-columns>
+                </kd-resource-card>
+            </kd-resource-card-list>
+        </div>
+    </kd-content>
+</kd-content-card>
+<kd-zero-state ng-if="$ctrl.shouldShowZeroState()"></kd-zero-state>

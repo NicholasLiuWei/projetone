@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateUrl as defaultStateUrl} from './overview/state';
+import { stateUrl as defaultStateUrl } from './login/state';
+// import { chromeController } from './chrome/chrome_component';
 
 /**
  * Global route configuration for the application.
@@ -21,6 +22,16 @@ import {stateUrl as defaultStateUrl} from './overview/state';
  * @ngInject
  */
 export default function routeConfig($urlRouterProvider) {
-  // When no state is matched by an URL, redirect to default one.
-  $urlRouterProvider.otherwise(defaultStateUrl);
+    // When no state is matched by an URL, redirect to default one.
+    $urlRouterProvider.otherwise(defaultStateUrl);
+    // $stateProvider.state('mains', {
+    //     url: '/',
+    //     views: {
+    //         'main': {
+    //             controller: chromeController,
+    //             controllerAs: '$ctrl',
+    //             templateUrl: 'chrome/chrome.html',
+    //         },
+    //     },
+    // });
 }

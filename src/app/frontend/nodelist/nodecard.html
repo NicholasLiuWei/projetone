@@ -1,0 +1,160 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- <kd-resource-card omit-meta="true">
+  <kd-resource-card-status layout="row">
+    <md-icon class="material-icons kd-error" ng-if="::$ctrl.isInNotReadyState()">
+      error
+    </md-icon>
+    <md-icon class="material-icons" ng-if="::$ctrl.isInUnknownState()">
+      help
+    </md-icon>
+    <md-icon class="material-icons kd-success" ng-if="::$ctrl.isInReadyState()">
+      check_circle
+    </md-icon>
+  </kd-resource-card-status>
+  <kd-resource-card-columns>
+    <kd-resource-card-column>
+      <div>
+        <a ng-click="$ctrl.toggleRight()" class="kd-middle-ellipsised-link" style="cursor: pointer;">
+          <kd-middle-ellipsis display-string="{{$ctrl.node.objectMeta.name}}">
+          </kd-middle-ellipsis>
+        </a>
+      </div>
+    </kd-resource-card-column>
+    <kd-resource-card-column>
+      {{$ctrl.node.addresses[0].address}}
+    </kd-resource-card-column>
+    <kd-resource-card-column>
+      {{$ctrl.isReady()}}
+    </kd-resource-card-column>
+    <kd-resource-card-column>
+      {{::$ctrl.node.objectMeta.creationTimestamp | relativeTime}}
+      <md-tooltip>
+        {{::$ctrl.getCreatedAtTooltip($ctrl.node.objectMeta.creationTimestamp)}}
+      </md-tooltip>
+    </kd-resource-card-column>
+    <kd-resource-card-column>
+      {{::$ctrl.node.nodeInfo.osImage}}
+      <md-tooltip>
+        {{::$ctrl.node.nodeInfo.kernelVersion}}
+      </md-tooltip>
+    </kd-resource-card-column>
+  </kd-resource-card-columns>
+</kd-resource-card> -->
+<div class="nodeitem" ng-click="$ctrl.getDetail()">
+    <div class="nodestatusbox" layout="row">
+        <div class="img">
+            <img src="assets/images/server.png" alt="">
+        </div>
+        <div class="namebox">
+            <div class="name">{{$ctrl.node.objectMeta.name}}</div>
+            <div class="nodetatus" layout="row">
+                <div class="statuscir" ng-style="{background:$ctrl.isReady()==2?'#FF9F00':'#00DEAC'}">
+                    <md-tooltip ng-if="$ctrl.isReady()==2">[[30分钟以上未自行恢复，请立即联系厂商解决| node ]]</md-tooltip>
+                </div>
+                <div class="statusdesc">{{$ctrl.statusCodes[$ctrl.isReady()]}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="nodetime">[[运行时长|nodecard Age]] : {{$ctrl.node.objectMeta.creationTimestamp | relativeTime}}</div>
+    <div class="nodeip">IP : {{$ctrl.node.addresses[0].address}}</div>
+    <div class="nodeip">[[OS版本|nodecard OS version]] : {{$ctrl.node.nodeInfo.osImage}}</div>
+    <!-- <div flex class="nidetail" ng-show="$ctrl.index==$ctrl.nodeCardListCtrl.current" layout="row">
+        <div flex="40" style="border-right:1px solid #ccc;overflow:scroll;" layout-margin>
+            <div flex class="summary" layout="row">
+                <div flex="20" layout="row" layout-align="center center">
+                    <md-icon class="material-icons" ng-style="{color:false?'red':'#00CD00','font-size':'60px',height:'60px',width:'60px'}">desktop_windows</md-icon>
+                </div>
+                <div flex="15" layout="row">
+                    <div flex style="height:50%;border-bottom:2px solid #ccc;"></div>
+                    <div flex style="height:84%;margin-top:10%;border:2px solid #ccc; border-right:0;"></div>
+                </div>
+                <div flex="65" layout="column" layout-align="space-between none">
+                    <div layout="row">
+                        <div style="margin:0 20px;">名称:</div>
+                        <div>node1</div>
+                    </div>
+                    <div layout="row" layout-align="start">
+                        <div style="margin-left:20px;">状态:</div>
+                        <div style="margin:0 20px;">
+                            <span style="display:inline-block;margin-top:4px;width:12px;height:12px;border-radius:6px" ng-style="{background:'#00CD00'}"></span>
+                        </div>
+                        <div ng-style="{color:'#00CD00'}">运行中</div>
+                    </div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle" style="margin-left:30px;">CPU</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row" style="margin:10px 0;">
+                    <div flex="15" style="text-align:right;color:#666;">核数</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">16核</div>
+                </div>
+                <div flex layout="row" style="margin:10px 0;">
+                    <div flex="15" style="text-align:right;color:#666;">型号</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">phytium FT1500a</div>
+                </div>
+                <div flex layout="row" style="margin:10px 0;">
+                    <div flex="15" style="text-align:right;color:#666;">特性</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">fp asimd evtstrm aes pmull sha1 sha2 crc32</div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle" style="margin-left:30px;">内存</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row" style="margin:10px 0;">
+                    <div flex="15" style="text-align:right;color:#666;">总共</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{33718870016 | kdMemory}}</div>
+                </div>
+                <div flex layout="row" style="margin:10px 0;">
+                    <div flex="15" style="text-align:right;color:#666;">可用</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{33718870016 | kdMemory}}</div>
+                </div>
+                <div flex layout="row" style="margin:10px 0;">
+                    <div flex="15" style="text-align:right;color:#666;">分页大小</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{2097152 | kdMemory}}</div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle" style="margin-left:30px;">硬盘</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row" style="margin:10px 0;" ng-repeat="disk in $ctrl.nodes.Disk">
+                    <div flex="15" style="text-align:right;color:#666;">{{disk.Name}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{disk.BusType}} &nbsp;&nbsp;&nbsp;&nbsp; {{disk.SizeBytes | kdMemory}}</div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle" style="margin-left:30px;">网卡</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row" style="margin:10px 0;" ng-repeat="nic in $ctrl.nodes.Nic">
+                    <div flex="15" style="text-align:right;color:#666;">{{nic.Name}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{nic.Driver}} &nbsp;&nbsp;&nbsp;&nbsp; {{nic.MacAddress}}</div>
+                </div>
+            </div>
+        </div>
+        <div flex="60" layout-margin>
+            <div flex>
+                <div flex class="nidetailtitle">CPU监控</div>
+                <div flex class="nidetailCPU"></div>
+            </div>
+            <div flex>
+                <div flex class="nidetailtitle">内存监控</div>
+                <div flex class="nidetailMem"></div>
+            </div>
+            <div flex>
+                <div flex class="nidetailtitle">网络I/O</div>
+                <div flex class="nidetailNet"></div>
+            </div>
+        </div>
+    </div> -->
+</div>

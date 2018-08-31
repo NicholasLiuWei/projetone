@@ -1,0 +1,248 @@
+.overview {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 236px;
+    .ovH {
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        height: 56px;
+        line-height: 27px;
+        font-size: 20px;
+        font-weight: 400;
+        color: #666;
+        padding: 14px 22px;
+        margin-bottom: 20px;
+    }
+    @media screen and (max-width: 1400px) {
+        .ovItem {
+            width: 18%;
+            .ovItemCon {
+                padding: 20px 0px;
+                .bandwidth-indicator {
+                    .value {
+                        font-size: 22px;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 1400px) {
+        .ovItem {
+            width: 14%;
+            .ovItemCon {
+                padding: 20px 20px;
+                .bandwidth-indicator {
+                    .value {
+                        font-size: 26px;
+                    }
+                }
+            }
+        }
+    }
+    .ovItem {
+        margin: 0 1%;
+        float: left;
+        height: 152px;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+        .ovItemH {
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(0, 0, 0, .12);
+            box-shadow: 0 1px 0 0 hsla(0, 0%, 100%, .12);
+            height: 44px;
+            font-size: 16px;
+            color: #666;
+            padding: 14px 22px;
+        }
+        .ovItemCon {
+            box-sizing: border-box;
+            line-height: 48px;
+            img {
+                padding-bottom: 20px;
+                vertical-align: middle;
+            }
+            .bandwidth-indicator {
+                color: #84b61d;
+                .value {
+                    padding-left: 5px;
+                }
+                .unit {
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+    .totalmes {
+        width: 23%;
+        margin: 0 1%;
+        float: left;
+        height: 100px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        color: #63869e;
+        .totalStorage,
+        .usedStorage,
+        .diskType {
+            width: 46%;
+            margin: 5px 2%;
+            height: 88px;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+            &:nth-child(1) {
+                border-right: 1px solid #ccc;
+            }
+            & div:nth-child(1) {
+                height: 58px;
+                line-height: 58px;
+                font-size: 30px;
+            }
+            & div:nth-child(2) {
+                color: #000;
+            }
+        }
+        .warning {
+            height: 100%;
+            text-align: center;
+            color: #000;
+            .warningCount {
+                width: 100%;
+                height: 58px;
+                margin-top: 5px;
+                line-height: 58px;
+                font-size: 40px;
+                color: red;
+            }
+            .warnmes {
+                width: 100%;
+                height: 30px;
+                margin-bottom: 5px;
+            }
+            .warnings {
+                width: 70%;
+                text-align: left;
+                border-left: 1px solid #ccc;
+                box-sizing: border-box;
+                padding-left: 20px;
+                height: 88px;
+                margin: 5px 0;
+                float: right;
+                line-height: 44px;
+            }
+        }
+    }
+}
+
+.mcdetail {
+    width: 100%;
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    .storageDetail {
+        border: 1px solid black;
+        background: url(../assets/images/storage3.png);
+        background-size: 100% 100%;
+        margin-right: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        float: left;
+        width: 135px;
+        height: 35px;
+        box-sizing: border-box;
+        position: relative;
+        .status {
+            width: 12px;
+            height: 12px;
+            border-radius: 12px;
+            position: absolute;
+            bottom: 30%;
+            left: 10px;
+            z-index: 5;
+        }
+        .green {
+            background: green;
+        }
+        .red {
+            background: red;
+            -webkit-animation: twinkling 1.5s infinite ease-in-out;
+        }
+        .hui {
+            background: #ccc;
+        }
+        .plugout,
+        .warns {
+            width: 24px;
+            height: 24px;
+            overflow: hidden;
+            position: absolute;
+            bottom: 30%;
+            left: 5px;
+            z-index: 5;
+        }
+        .warns {
+            bottom: 20%;
+            .material-icons {
+                color: #FF9900;
+            }
+        }
+        .plugout {
+            bottom: 20%;
+            .material-icons {
+                color: #CC3333;
+            }
+        }
+        .isSSD {
+            position: absolute;
+            bottom: 0;
+            left: 5px;
+            display: none;
+        }
+        @-webkit-keyframes twinkling {
+            /*透明度由0到1*/
+            0% {
+                opacity: 0.2;
+                /*透明度为0*/
+            }
+            100% {
+                opacity: 1;
+                /*透明度为1*/
+            }
+        }
+    }
+}
+
+.statusDesc {
+    span {
+        margin: 0 20px;
+    }
+    & span:nth-child(1):before {
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 12px;
+        background: green;
+    }
+    & span:nth-child(2):before {
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 12px;
+    }
+    & span:nth-child(3):before {
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 12px;
+        background: red;
+        -webkit-animation: twinkling 1.5s infinite ease-in-out;
+    }
+    & span:nth-child(4):before {
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 12px;
+    }
+}

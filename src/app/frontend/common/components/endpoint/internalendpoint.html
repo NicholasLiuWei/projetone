@@ -1,5 +1,5 @@
 <!--
-Copyright 2017 The Kubernetes Authors.
+Copyright 2015 Google Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,11 +17,13 @@ limitations under the License.
 <div>
   <div ng-repeat="port in ::$ctrl.endpoint.ports">
     <div>
-      <kd-middle-ellipsis display-string="{{::$ctrl.endpoint.host}}:{{::port.port}} {{::port.protocol}}">
+      <kd-middle-ellipsis
+              display-string="{{::$ctrl.endpoint.host}}:{{::port.port}} {{::port.protocol}}">
       </kd-middle-ellipsis>
     </div>
     <div>
-      <kd-middle-ellipsis display-string="{{::$ctrl.endpoint.host}}:{{::port.nodePort}} {{::port.protocol}}">
+      <kd-middle-ellipsis
+              display-string="{{::$ctrl.endpoint.host}}:{{::port.nodePort}} {{::port.protocol}}">
       </kd-middle-ellipsis>
     </div>
   </div>

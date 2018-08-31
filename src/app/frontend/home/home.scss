@@ -1,0 +1,196 @@
+.totalview{
+  overflow:hidden;
+	.ditem{
+    width:20%;
+		height:400px;
+    float:left;
+    box-sizing:border-box;
+    border:1px solid rgba(0, 0, 0, 0.12);
+    .network{
+      overflow:hidden;
+      > div{
+        width:100%;
+        height:180px;
+        overflow:hidden;
+      }
+    }
+		.chartBox{
+      width:100%;
+			height:360px;
+      .statusMes{
+        width:100%;
+        height:240px;
+        table{
+          width:100%;
+        }
+        .notHealth{
+          color:red;
+        }
+        .Health{
+          color:green;
+        }
+        .material-icons{
+          font-size:42px;
+        }
+        md-icon{
+          width:42px;
+          height:42px;
+          min-height:42px;
+          min-width:42px;
+        }
+         td{
+          border:1px solid #ccc;
+          height:77px;
+          text-align:center;
+          .healthmes{
+            &:nth-child(1){
+              width:60%;
+            }
+            &:nth-child(2){
+              width:40%;
+            }
+            float:left;
+            height:100%;
+            line-height:77px;
+            text-aligin:center;
+            overflow:hidden;
+          }
+        }
+      }
+      .warning{
+        height:120px;
+        text-align:center;
+        .warningCount{
+          height: 50px;
+          line-height:50px;
+          font-size: 40px;
+          color: red;
+        }
+      }
+      .Network{
+        width:80%;
+        overflow:hidden;
+        box-sizing:border-box;
+        margin:10px 10%;
+        border:1px solid #ccc;
+        height:160px;
+        .material-icons{
+          font-size:36px;
+        }
+        md-icon{
+          width:36px;
+          height:36px;
+          min-height:36px;
+          min-width:36px;
+        }
+        .nodeStatus{
+          width:100%;
+          height:36px;
+          padding:20px 0;
+          .healthIcon{
+            width:50%;
+            height:100%;
+            float:left;
+            text-align:center;
+          }
+          .notHealth{
+            color:red;
+          }
+          .Health{
+            color:green;
+          }
+        }
+        .networkIcon{
+          width:50%;
+          height:36px;
+          padding:20px 0;
+          text-align:center;
+          float:left;
+        }
+        .networkRate{
+          width:50%;
+          height:36px;
+          font-size:20px;
+          line-height:36px;
+          padding:20px 0;
+          text-align:center;
+          float:left;
+        }
+      }
+		}
+    .chartTitle{
+      width:100%;
+      height:40px;
+      line-height:40px;
+      text-indent:2em;
+      font-size:16px;
+      background:#e9ecf1;
+      color:#333;
+      border-bottom:1px solid rgba(0, 0, 0, 0.12);
+      box-sizing:border-box;
+    }
+	}
+}
+.poddialog{
+	position:fixed;
+	top:200px;
+	width: calc(80% - 240px);
+	height:600px;
+	left: calc(10% + 240px);
+	z-index:100;
+	background:whitesmoke;
+}
+$color: #ebebeb;
+.progress {
+  height: 20px;
+  background: #ebebeb;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-radius: 10px;
+  position:relative;
+  .green{
+  		background:#85c440;
+  }
+  .orange{
+  		background:#f2b63c;
+  }
+  .littlered{
+  		background:#db3a27;
+  }
+  .red{
+  		background:red;
+  }
+  .barText{
+    padding: 0 8px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #404040;
+    color: rgba(black, .7);
+    text-shadow: 0 1px rgba(white, .4);
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    text-align:center;
+  }
+  > span {
+    $color: #ccc;
+    position: relative;
+	transition: width 2s;
+	-moz-transition: width 2s; /* Firefox 4 */
+	-webkit-transition: width 2s; /* Safari 和 Chrome */
+	-o-transition: width 2s; /* Opera */
+    float: left;
+    margin: 0 -1px;
+    min-width: 30px;
+    height: 18px;
+    line-height: 16px;
+    text-align: right;
+    background: $color;
+    border: 1px solid;
+    border-color: darken($color, 5%) darken($color, 10%) darken($color, 18%);
+    border-radius: 10px;
+  }
+}

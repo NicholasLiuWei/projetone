@@ -1,0 +1,131 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- <kd-resource-card type-meta="$ctrl.typeMeta" object-meta="$ctrl.release">
+    <kd-resource-card-status layout="row">
+        <md-icon class="material-icons kd-error" ng-if="::$ctrl.hasWarnings()">
+            error
+            <md-tooltip md-direction="right">
+                {{::$ctrl.i18n.MSG_RELEASE_LIST_PODS_ERRORS_TOOLTIP}}
+            </md-tooltip>
+        </md-icon>
+        <md-icon class="material-icons" ng-if="::$ctrl.isPending()">
+            timelapse
+            <md-tooltip md-direction="right">
+                {{::$ctrl.i18n.MSG_RELEASE_LIST_PODS_PENDING_TOOLTIP}}
+            </md-tooltip>
+        </md-icon>
+        <md-icon class="material-icons kd-success" ng-if="::$ctrl.isSuccess()">
+            check_circle
+        </md-icon>
+    </kd-resource-card-status>
+    <kd-resource-card-columns>
+        <kd-resource-card-column>
+            <a ng-click="$ctrl.toggleRight()" style="cursor: pointer;">
+                <kd-middle-ellipsis display-string="{{$ctrl.release.name}}">
+                </kd-middle-ellipsis>
+            </a>
+        </kd-resource-card-column>
+        <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
+            <div>
+                <kd-middle-ellipsis display-string="{{::$ctrl.release.namespace}}">
+                </kd-middle-ellipsis>
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div>
+                <kd-middle-ellipsis display-string="{{::$ctrl.release.chart.metadata.name}}:{{::$ctrl.release.chart.metadata.version}}">
+                </kd-middle-ellipsis>
+            </div>
+        </kd-resource-card-column>
+            <kd-resource-card-column>
+      <div>
+        <a ng-href="http://{{$ctrl.release.name}}-{{::$ctrl.release.chart.metadata.name}}.k8s.com" class="kd-middle-ellipsised-link" target="blank">
+          <kd-middle-ellipsis display-string="{{$ctrl.release.name}}-{{::$ctrl.release.chart.metadata.name}}.k8s.com">
+        </kd-middle-ellipsis>
+        </a>
+      </div>
+    </kd-resource-card-column>
+        <kd-resource-card-column>
+            {{::$ctrl.getReleaseStatus()}}
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            {{::$ctrl.getReleaseRelativeTime() | relativeTime}}
+            <md-tooltip>
+                {{::$ctrl.getCreatedAtTooltip($ctrl.getReleaseRelativeTime())}}
+            </md-tooltip>
+        </kd-resource-card-column>
+        <kd-resource-card-column class="kd-row-layout-column kd-icon-column">
+            <kd-resource-card-menu>
+                <kd-resource-card-delete-menu-item resource-kind-name="{{::$ctrl.i18n.MSG_RELEASE_LIST_RELEASE_LABEL}}">
+                </kd-resource-card-delete-menu-item>
+            </kd-resource-card-menu>
+        </kd-resource-card-column>
+    </kd-resource-card-columns>
+    <kd-resource-card-footer ng-if="::$ctrl.hasWarnings()">
+        <div ng-repeat="warning in ::$ctrl.release.pods.warnings">
+            <span class="kd-error">{{::warning.type=='Error'?warning.message:''}}</span>
+        </div>
+    </kd-resource-card-footer>
+</kd-resource-card> -->
+<!-- <div class="listbox"> -->
+<div layout="row" class="listitem" ng-click="$ctrl.toggleRight()">
+    <div class="litemimg">
+        <img ng-src="{{$ctrl.release.chart.metadata.icon}}" alt="">
+    </div>
+    <div class="ritemmes">
+        <div class="istatus" layout="row">
+            <div class="statuscir" ng-style="{background:$ctrl.release.info.status.code==9?'#FF9F00':'#00DEAC'}">
+                <md-tooltip ng-if="$ctrl.release.info.status.code==9">[[30分钟以上未自行恢复，请立即联系厂商解决| newhome ]]</md-tooltip>
+            </div>
+            <div class="statusdesc">{{$ctrl.getReleaseStatus()}}</div>
+        </div>
+        <div class="releasename">{{$ctrl.release.name}}</div>
+        <div class="releasetime">[[运行时长| release Age]]:{{$ctrl.release.info.last_deployed.seconds * 1000 | relativeTime}}</div>
+        <div class="releasedel">
+            <md-menu>
+                <md-button ng-click="$mdMenu.open($event);$ctrl.isStatefulRelease()" class="md-icon-button">
+                    <md-icon md-font-library="material-icons">settings</md-icon>
+                    <md-tooltip>[[Actions|Tooltip "Actions", which appears when you hover over the menu icon on any resource card.]]</md-tooltip>
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.remove()">
+                            <md-icon>delete_forever</md-icon>
+                            {{$ctrl.i18n.MSG_RELEASE_DELETE}}
+                            <!-- <md-tooltip>[[删除|release Delete]]{{$ctrl.release.name}}</md-tooltip> -->
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.update()" ng-disabled="!$ctrl.stateful">
+                            <md-icon>edit</md-icon>
+                            {{$ctrl.i18n.MSG_RELEASE_EDIT}}
+                            <!-- <md-tooltip>[[更新|release Update]]{{$ctrl.release.name}}</md-tooltip> -->
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.updateImage()">
+                            <md-icon>edit</md-icon>
+                            {{$ctrl.i18n.MSG_RELEASE_EDIT_IMAGE}}
+                            <!-- <md-tooltip>[[更新|release Update]]{{$ctrl.release.name}}</md-tooltip> -->
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </div>
+</div>
+<!-- </div> -->

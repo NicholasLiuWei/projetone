@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,45 +18,49 @@
  * @final
  */
 export class DeleteResourceController {
-  /**
-   * @param {!md.$dialog} $mdDialog
-   * @param {!angular.$resource} $resource
-   * @param {string} resourceKindName
-   * @param {string} resourceUrl
-   * @param {!backendApi.ObjectMeta} objectMeta
-   * @ngInject
-   */
-  constructor($mdDialog, $resource, resourceKindName, resourceUrl, objectMeta) {
-    /** @private {string} */
-    this.resourceUrl = resourceUrl;
+    /**
+     * @param {!md.$dialog} $mdDialog
+     * @param {!angular.$resource} $resource
+     * @param {string} resourceKindName
+     * @param {string} resourceUrl
+     * @param {!backendApi.ObjectMeta} objectMeta
+     * @ngInject
+     */
+    constructor($mdDialog, $resource, resourceKindName, resourceUrl, objectMeta) {
+        /** @private {string} */
+        this.resourceUrl = resourceUrl;
 
-    /** @export {!backendApi.ObjectMeta} */
-    this.objectMeta = objectMeta;
+        /** @export {!backendApi.ObjectMeta} */
+        this.objectMeta = objectMeta;
 
-    /** @private {!md.$dialog} */
-    this.mdDialog_ = $mdDialog;
+        /** @private {!md.$dialog} */
+        this.mdDialog_ = $mdDialog;
 
-    /** @private {!angular.$resource} */
-    this.resource_ = $resource;
+        /** @private {!angular.$resource} */
+        this.resource_ = $resource;
 
-    /** @export */
-    this.resourceKindName = resourceKindName;
-  }
+        /** @export */
+        this.resourceKindName = resourceKindName;
 
-  /**
-   * @export
-   */
-  remove() {
-    let resource = this.resource_(this.resourceUrl);
-    resource.remove(this.mdDialog_.hide, this.mdDialog_.cancel);
-  }
+        /** @export */
+        this.loading = false;
+    }
 
-  /**
-   * Cancels and closes the dialog.
-   *
-   * @export
-   */
-  cancel() {
-    this.mdDialog_.cancel();
-  }
+    /**
+     * @export
+     */
+    remove() {
+        this.loading = true;
+        let resource = this.resource_(this.resourceUrl);
+        resource.remove(this.mdDialog_.hide, this.mdDialog_.cancel);
+    }
+
+    /**
+     * Cancels and closes the dialog.
+     *
+     * @export
+     */
+    cancel() {
+        this.mdDialog_.cancel();
+    }
 }

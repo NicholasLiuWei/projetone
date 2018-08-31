@@ -1,72 +1,134 @@
-// Copyright 2017 The Kubernetes Authors.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*// login*/
 
-@import './../variables';
-
-kd-login {
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: 12 * $baseline-grid;
+.login {
+    background: #FFFFFF;
 }
 
-.kd-login-card {
-  margin: auto;
-  width: 50%;
+.my-login-form {
+    width: 362px;
+    height: 448px;
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 3px 7px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 6px;
+    padding: 0;
+    margin: 10% auto 0;
+}
 
-  h1 {
-    background-color: $primary;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    color: $content-background;
-    margin: -1px;
-  }
 
-  kd-content {
+/*// login header img*/
+
+.login-img {
+    padding: 55px 0 42px 0;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    background-image: linear-gradient(0deg, #38B9A5 0, #3DC2A1 53%, #30C996 100%);
+}
+
+.login-img h2 {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 108px;
+    line-height: 108px;
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+}
+
+.login-img h2 img {
+    vertical-align: middle;
+    width: 165px;
+    height: 49px;
+}
+
+
+/*// login content text*/
+
+.login-text {
+    padding: 36px 0 0 0;
+    margin: 0 auto;
+    height: 160px;
+    width: 278px;
+    box-sizing: border-box;
+}
+
+
+/*// form*/
+
+.login-text form {
+    width: 278px;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+
+/*// input + icon*/
+
+.login-text .login-user {
+    position: relative;
+    width: 278px;
+    height: 30px;
+    margin: 0 0 20px 0;
+    padding: 0;
     display: block;
-    padding: 3 * $baseline-grid;
-  }
 }
 
-.kd-login-card-content {
-  padding: 0 2 * $baseline-grid;
+
+/*// input*/
+
+.login-user input {
+    width: 276px;
+    height: 30px;
+    line-height: 16px;
+    padding: 5px 0 5px 50px;
+    border: 1px solid rgb(204, 204, 204);
+    outline: none;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px inset;
+    background: #fff;
+    box-sizing: border-box;
 }
 
-.kd-login-error {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2 * $baseline-grid;
 
-  .kd-warnings-container {
-    width: 50%;
-  }
+/*// icon*/
+
+.login-user strong {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 36px;
+    height: 20px;
+    border-right: 1px solid rgb(204, 204, 204);
+    background: url("/assets/images/signin-user-icon.png") no-repeat center;
 }
 
-.kd-option-container {
-  padding-top: $baseline-grid / 2;
-
-  md-input-container {
-    margin: (2.5 * $baseline-grid) (3.25 * $baseline-grid);
-  }
+.login-user .password-icon {
+    background: url("/assets/images/signin-pass-icon.png") no-repeat center;
 }
 
-.kd-login-option {
-  margin-bottom: $baseline-grid;
+
+/*// login btn*/
+
+.login-btn {
+    padding: 24px 30px 10px 30px;
+    text-align: center;
+    border-top: 1px solid rgb(229, 229, 229);
+    margin: 0;
 }
 
-.kd-login-option-desc {
-  font-size: $body-font-size-base;
-  margin: 0 (3.75 * $baseline-grid) (2 * $baseline-grid);
+.login-btn .btn {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    margin: 0 0 8px 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-image: linear-gradient(0deg, #38B9A5 0, #3DC2A1 53%, #30C996 100%);
+    position: relative;
+    top: 0;
+    display: block;
 }

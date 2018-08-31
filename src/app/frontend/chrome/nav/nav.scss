@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,58 +11,92 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 @import '../../variables';
+.logo {
+    width: 110px;
+    height: 33px;
+    margin: 34px auto 44px;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.user {
+    width: 100%;
+    padding-left: 24px;
+    box-sizing: border-box;
+    .usertitle {
+        width: 100%;
+        height: 16px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+    .username {
+        margin: 8px 0;
+        padding: 2px;
+        padding-left: 10px;
+        font-size: 14px;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        height: 33px;
+        line-height: 33px;
+        box-sizing: border-box;
+    }
+}
+
+.splitline {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #4CB19C;
+}
 
 .kd-nav {
-  background-color: transparent;
-  font-size: $body-font-size-base;
-  height: 100%;
-  padding-top: $baseline-grid;
-  white-space: nowrap;
-  width: $nav-width;
-
-  &.md-closed {
-    // Remove "!important" when https://github.com/angular/material/issues/9425 is fixed
-    &.md-locked-open-add-active {
-      min-width: $nav-width !important;
-      width: $nav-width !important;
+    color: #4CB19C;
+    height: 100%;
+    padding-top: 27px;
+    white-space: nowrap;
+    width: 273px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 7px 0 rgba(33, 45, 48, 0.12);
+    &.md-closed {
+        // Remove "!important" when https://github.com/angular/material/issues/9425 is fixed
+        &.md-locked-open-add-active {
+            min-width: $nav-width !important;
+            width: $nav-width !important;
+        }
     }
-  }
-
-  // Next rule is to only show the scrollbar on hover, but always enable scrolling.
-  &:not(:hover) {
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
+    // Next rule is to only show the scrollbar on hover, but always enable scrolling.
+    &:not(:hover) {
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
     }
-  }
-
-  // Children of kd-nav should not shrink to prevent layout issues on IE.
-  &>* {
-    flex-shrink: 0;
-  }
+    // Children of kd-nav should not shrink to prevent layout issues on IE. 
+    &>* {
+        flex-shrink: 0;
+    }
 }
 
 kd-nav,
 .kd-nav {
-  overflow: hidden;
-  overflow-y: auto;
-
-  // Next rule is to only show the scrollbar on hover, but always enable scrolling.
-  &:not(:hover) {
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
+    overflow: hidden;
+    overflow-y: auto;
+    // Next rule is to only show the scrollbar on hover, but always enable scrolling.
+    &:not(:hover) {
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
     }
-  }
 }
 
 .kd-nav-group {
-  margin-right: $baseline-grid;
+    margin-right: 0;
 }
 
 .kd-nav-group-divider {
-  border-top: 1px solid $border;
-  margin-bottom: 2 * $baseline-grid;
-  margin-right: 1 * $baseline-grid;
-  margin-top: $baseline-grid;
+    border-top: 1px solid $border;
+    margin-bottom: 2 * $baseline-grid;
+    margin-right: 0 * $baseline-grid;
+    margin-top: $baseline-grid;
 }

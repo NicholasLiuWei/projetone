@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,102 +16,115 @@
  * @fileoverview Entry point module to the application. Loads and configures other modules needed
  * to bootstrap the application.
  */
-import aboutModule from './about/module';
-import chromeModule from './chrome/module';
-import clusterModule from './cluster/module';
-import authModule from './common/auth/module';
-import csrfTokenModule from './common/csrftoken/module';
-import scalingModule from './common/scaling/module';
-import settingsServiceModule from './common/settings/module';
-import configModule from './config/module';
-import configMapModule from './configmap/module';
-import cronJobModule from './cronjob/module';
-import daemonSetModule from './daemonset/module';
-import deployModule from './deploy/module';
-import deploymentModule from './deployment/module';
-import discoveryModule from './discovery/module';
-import errorModule from './error/module';
-import horizontalPodAutoscalerModule from './horizontalpodautoscaler/module';
-import indexConfig from './index_config';
-import {Controller} from './index_controller';
-import routeConfig from './index_route';
-import ingressModule from './ingress/module';
-import jobModule from './job/module';
+import adminModule from './admin/module';
 import loginModule from './login/module';
-import logsModule from './logs/module';
-import namespaceModule from './namespace/module';
-import nodeModule from './node/module';
-import overviewModule from './overview/module';
-import persistentVolumeModule from './persistentvolume/module';
-import persistentVolumeClaimModule from './persistentvolumeclaim/module';
-import podModule from './pod/module';
-import replicaSetModule from './replicaset/module';
-import replicationControllerModule from './replicationcontroller/module';
-import resourceLimitModule from './resourcelimit/module';
-import resourceQuotaModule from './resourcequota/module';
-import roleModule from './role/module';
-import searchModule from './search/module';
-import secretModule from './secret/module';
-import serviceModule from './service/module';
-import settingsModule from './settings/module';
-import shellModule from './shell/module';
-import statefulSetModule from './statefulset/module';
-import storageClassModule from './storageclass/module';
-import {TitleController} from './title_controller';
-import workloadsModule from './workloads/module';
+import passwordModule from './password/module';
+import chromeModule from './chrome/chrome_module';
+import csrfTokenModule from './common/csrftoken/csrftoken_module';
+import configModule from './config/module';
+import configMapDetailModule from './configmapdetail/configmapdetail_module';
+import configMapListModule from './configmaplist/configmaplist_module';
+import deployModule from './deploy/deploy_module';
+import deploymentListModule from './deploymentlist/deploymentlist_module';
+import errorModule from './error/error_module';
+import indexConfig from './index_config';
+import routeConfig from './index_route';
+import ingressDetailModule from './ingressdetail/module';
+import ingressListModule from './ingresslist/module';
+import jobDetailModule from './jobdetail/jobdetail_module';
+import jobListModule from './joblist/joblist_module';
+import logsModule from './logs/logs_module';
+import namespaceDetailModule from './namespacedetail/namespacedetail_module';
+import namespaceListModule from './namespacelist/namespacelist_module';
+import nodeListModule from './nodelist/nodelist_module';
+import persistentVolumeClaimDetailModule from './persistentvolumeclaimdetail/persistentvolumeclaimdetail_module';
+import persistentVolumeClaimListModule from './persistentvolumeclaimlist/persistentvolumeclaimlist_module';
+import persistentVolumeDetailModule from './persistentvolumedetail/persistentvolumedetail_module';
+import persistentVolumeListModule from './persistentvolumelist/persistentvolumelist_module';
+import podDetailModule from './poddetail/poddetail_module';
+import replicaSetListModule from './replicasetlist/replicasetlist_module';
+import replicationControllerDetailModule from './replicationcontrollerdetail/replicationcontrollerdetail_module';
+import replicationControllerListModule from './replicationcontrollerlist/replicationcontrollerlist_module';
+import resourceQuotaDetailModule from './resourcequotadetail/resourcequotadetail_module';
+import secretDetailModule from './secretdetail/module';
+import secretListModule from './secretlist/module';
+import serviceDetailModule from './servicedetail/servicedetail_module';
+import serviceListModule from './servicelist/servicelist_module';
+import servicesanddiscoveryModule from './servicesanddiscovery/module';
+import statefulSetListModule from './statefulsetlist/statefulsetlist_module';
+import storageClassDetailModule from './storageclassdetail/module';
+import storageClassListModule from './storageclasslist/module';
+import thirdPartyResourceDetailModule from './thirdpartyresourcedetail/detail_module';
+import thirdPartyResourceListModule from './thirdpartyresourcelist/list_module';
+import { TitleController } from './title_controller';
+import workloadsModule from './workloads/workloads_module';
+import repositorylistModule from './repositorylist/repositorylist_module';
+import repositorydetailModule from './repositorydetail/repositorydetail_module';
+import appStoreModule from './appStore/module';
+// import homeModule from './home/module';
+import newhomeModule from './newhome/module';
+import releaseModule from './releaselist/releaselist_module';
+// import storageModule from './storage/module';
 
 export default angular
     .module(
-        'kubernetesDashboard',
-        [
-          'ngAnimate',
-          'ngAria',
-          'ngMaterial',
-          'ngMessages',
-          'ngResource',
-          'ngSanitize',
-          'ui.router',
-          aboutModule.name,
-          settingsModule.name,
-          settingsServiceModule.name,
-          authModule.name,
-          overviewModule.name,
-          chromeModule.name,
-          daemonSetModule.name,
-          deployModule.name,
-          errorModule.name,
-          jobModule.name,
-          cronJobModule.name,
-          loginModule.name,
-          logsModule.name,
-          shellModule.name,
-          replicationControllerModule.name,
-          replicaSetModule.name,
-          namespaceModule.name,
-          nodeModule.name,
-          deploymentModule.name,
-          horizontalPodAutoscalerModule.name,
-          workloadsModule.name,
-          searchModule.name,
-          clusterModule.name,
-          serviceModule.name,
-          podModule.name,
-          persistentVolumeModule.name,
-          statefulSetModule.name,
-          persistentVolumeClaimModule.name,
-          resourceQuotaModule.name,
-          resourceLimitModule.name,
-          configMapModule.name,
-          secretModule.name,
-          ingressModule.name,
-          discoveryModule.name,
-          configModule.name,
-          csrfTokenModule.name,
-          storageClassModule.name,
-          roleModule.name,
-          scalingModule.name,
+        'kubernetesDashboard', [
+            'ngAnimate',
+            'ngAria',
+            'ngMaterial',
+            'ngMessages',
+            'ngResource',
+            'ngCookies',
+            'ngSanitize',
+            'ui.router',
+            'toastr',
+            chromeModule.name,
+            loginModule.name,
+            passwordModule.name,
+            deployModule.name,
+            errorModule.name,
+            jobListModule.name,
+            jobDetailModule.name,
+            logsModule.name,
+            replicationControllerDetailModule.name,
+            replicationControllerListModule.name,
+            replicaSetListModule.name,
+            namespaceDetailModule.name,
+            namespaceListModule.name,
+            nodeListModule.name,
+            deploymentListModule.name,
+            workloadsModule.name,
+            adminModule.name,
+            serviceDetailModule.name,
+            serviceListModule.name,
+            podDetailModule.name,
+            persistentVolumeDetailModule.name,
+            persistentVolumeListModule.name,
+            statefulSetListModule.name,
+            persistentVolumeClaimDetailModule.name,
+            persistentVolumeClaimListModule.name,
+            resourceQuotaDetailModule.name,
+            configMapListModule.name,
+            configMapDetailModule.name,
+            secretListModule.name,
+            secretDetailModule.name,
+            ingressListModule.name,
+            ingressDetailModule.name,
+            servicesanddiscoveryModule.name,
+            configModule.name,
+            csrfTokenModule.name,
+            storageClassListModule.name,
+            storageClassDetailModule.name,
+            thirdPartyResourceListModule.name,
+            thirdPartyResourceDetailModule.name,
+            repositorylistModule.name,
+            repositorydetailModule.name,
+            appStoreModule.name,
+            releaseModule.name,
+            // homeModule.name,
+            // storageModule.name,
+            newhomeModule.name,
         ])
     .config(indexConfig)
     .config(routeConfig)
-    .controller('kdTitle', TitleController)
-    .controller('kdMain', Controller);
+    .controller('kdTitle', TitleController);

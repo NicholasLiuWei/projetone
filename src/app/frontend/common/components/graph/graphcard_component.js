@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,54 +16,51 @@
  * @final
  */
 export class GraphCardController {
-  /** @ngInject */
-  constructor() {
-    /** @export {!Array<!backendApi.Metric>} - Initialized from binding */
-    this.metrics;
+    /** @ngInject */
+    constructor() {
+        /** @export {!Array<!backendApi.Metric>} - Initialized from binding */
+        this.metrics;
 
-    /** @export {string} - Initialized from binding */
-    this.graphTitle;
+        /** @export {string} - Initialized from binding */
+        this.graphTitle;
+
+        /** @export {string|undefined} - Comma separated list of metric names. Initialized from binding */
+        this.selectedMetricNames;
+
+        /** @export {!Array<!backendApi.Metric>}  */
+        this.selectedMetrics;
+    }
+
+    $onInit() {
+        this.selectedMetrics = this.getSelectedMetrics();
+    }
 
     /**
-     * @export {string|undefined} - Comma separated list of metric names. Initialized from binding
+     * Filters metrics by selectedMetricNames. If selectedMetricNames is undefined returns all metrics.
+     *
+     * @private
+     * @return {!Array<!backendApi.Metric>}
      */
-    this.selectedMetricNames;
-
-    /** @export {!Array<!backendApi.Metric>}  */
-    this.selectedMetrics;
-  }
-
-  $onInit() {
-    this.selectedMetrics = this.getSelectedMetrics();
-  }
-
-  /**
-   * Filters metrics by selectedMetricNames. If selectedMetricNames is undefined returns all
-   * metrics.
-   *
-   * @private
-   * @return {!Array<!backendApi.Metric>}
-   */
-  getSelectedMetrics() {
-    if (typeof this.selectedMetricNames === 'undefined') {
-      return this.metrics;
+    getSelectedMetrics() {
+        if (typeof this.selectedMetricNames === 'undefined') {
+            return this.metrics;
+        }
+        let selectedMetricNameList = this.selectedMetricNames.split(',');
+        return this.metrics &&
+            this.metrics.filter((metric) => selectedMetricNameList.indexOf(metric.metricName) !== -1);
     }
-    let selectedMetricNameList = this.selectedMetricNames.split(',');
-    return this.metrics &&
-        this.metrics.filter((metric) => selectedMetricNameList.indexOf(metric.metricName) !== -1);
-  }
 
-  /**
-   * Hide graphs until all given metrics do not have 2 or more data points.
-   *
-   * @export
-   * @return {boolean}
-   */
-  shouldShowGraph() {
-    return this.metrics !== null && this.metrics.length > 0 &&
-        this.metrics.filter((metric) => metric.dataPoints.length > 1).length ===
-        this.metrics.length;
-  }
+    /**
+     * Hide graphs until all given metrics do not have 2 or more data points.
+     *
+     * @export
+     * @return {boolean}
+     */
+    shouldShowGraph() {
+        return this.metrics !== null && this.metrics.length > 0 &&
+            this.metrics.filter((metric) => metric.dataPoints.length > 1).length ===
+            this.metrics.length;
+    }
 }
 
 /**
@@ -72,12 +69,13 @@ export class GraphCardController {
  * @type {!angular.Component}
  */
 export const graphCardComponent = {
-  controller: GraphCardController,
-  bindings: {
-    'metrics': '<',
-    'graphTitle': '@',
-    'graphInfo': '@',
-    'selectedMetricNames': '<',
-  },
-  templateUrl: 'common/components/graph/graphcard.html',
+    controller: GraphCardController,
+    bindings: {
+        'metrics': '<',
+        'graphTitle': '@',
+        'graphInfo': '@',
+        'selectedMetricNames': '<',
+        'max': '=',
+    },
+    templateUrl: 'common/components/graph/graphcard.html',
 };

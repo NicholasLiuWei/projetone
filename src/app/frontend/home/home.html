@@ -1,0 +1,471 @@
+<div style="position: relative;" id="homebox">
+	<div class="kd-content-card-content" style="margin: 20px;">
+		<div class="kd-content">
+			<div style="font-size:20px; font-weight:400px; border-bottom:1px solid rgba(0, 0, 0, 0.12);height: 56px;line-height: 56px;padding-left: 16px;">[[资源使用率|title of panel page resource card]]</div>
+			<div class="totalview">
+				<div class="ditem">
+					<div class="chartTitle">[[CPU占比| title of panel page cpu count card ]]</div>
+					<div class="chartBox cpu"></div>
+				</div>
+				<div class="ditem">
+					<div class="chartTitle">[[内存占比| title of panel page memory count card]]</div>
+					<div class="chartBox memory"></div>
+				</div>
+				<div class="ditem">
+					<div class="chartTitle">[[存储占比| title of panel page filesystem count card]]</div>
+					<div class="chartBox filesystem"></div>
+				</div>
+				<div class="ditem">
+					<div class="chartTitle">[[网络| title of panel page network card]]</div>
+					<div class="chartBox network">
+						<div class="rxRate"></div>
+						<div class="txRate"></div>
+					</div>
+				</div>
+				<div class="ditem">
+					<div class="chartTitle">[[健康状态| title of panel page release card]]</div>
+					<div class="chartBox appstoress">
+						<div class="statusMes">
+						<table style="border-collapse: collapse;">
+							<tr>
+								<td width="20%">
+								    <md-icon class="material-icons">
+								      	desktop_windows
+								    </md-icon>
+								</td>
+								<td style="font-size:20px;" width="60%">
+									<div class="healthmes">[[服务器| label for nodes in panel page]]</div>
+									<div class="healthmes" style="color:#63869e;font-size:30px;font-weight: bold;">{{$ctrl.nodelist.length}}</div>
+								</td>
+								<td width="20%">
+<!-- 								    <md-icon class="material-icons Health">
+								      	check_circle
+								    </md-icon> -->
+								    <md-icon ng-if="$ctrl.NodeHealth" class="material-icons Health">
+								      	check_circle
+								    </md-icon>
+								    <md-icon ng-if="!$ctrl.NodeHealth" class="material-icons notHealth">
+								      	warning
+								    </md-icon>
+								</td>
+							</tr>
+							<tr>
+								<td width="20%">
+								    <md-icon class="material-icons">
+								      	shop_two
+								    </md-icon>
+								</td>
+								<td style="font-size:20px;" width="60%">
+									<div class="healthmes">[[应用| lable for release in panel page]]</div>
+									<div class="healthmes" style="color:#63869e;font-size:30px;font-weight: bold;">
+										{{$ctrl.deployment.length}}
+									</div>
+								</td>
+								<td width="20%">
+								    <md-icon class="material-icons Health">
+								      	check_circle
+								    </md-icon>
+<!-- 								    <md-icon ng-if="$ctrl.ReleaseHealth" class="material-icons Health">
+								      	check_circle
+								    </md-icon>
+								    <md-icon ng-if="!$ctrl.ReleaseHealth" class="material-icons notHealth">
+								      	warning
+								    </md-icon> -->
+								</td>
+							</tr>
+							<tr>
+								<td width="20%">
+								    <md-icon class="material-icons">
+								      	view_compact
+								    </md-icon>
+								</td>
+								<td style="font-size:20px;" width="60%">
+									<div class="healthmes">[[容器| lable for release in panel page]]</div>
+									<div class="healthmes" style="color:#63869e;font-size:30px;font-weight: bold;">{{$ctrl.podcount}}</div>
+								</td>
+								<td width="20%">
+								    <md-icon class="material-icons Health">
+								      	check_circle
+								    </md-icon>
+								</td>
+							</tr>
+<!-- 							<tr>
+								<td width="20%">
+								    <md-icon class="material-icons">
+								      	desktop_windows
+								    </md-icon>
+								</td>
+								<td style="font-size:20px;" width="60%">
+									<div class="healthmes">[[存储| label for filesystem in panel page]]</div>
+									<div class="healthmes" style="color:#63869e;font-size:30px;font-weight: bold;">{{$ctrl.nodelist.length}}</div>
+								</td>
+								<td width="20%">
+								    <md-icon ng-if="$ctrl.FSHealth" class="material-icons Health">
+								      	check_circle
+								    </md-icon>
+								    <md-icon ng-if="!$ctrl.FSHealth" class="material-icons notHealth">
+								      	warning
+								    </md-icon>
+								</td>
+							</tr> -->
+						</table>
+						</div>
+						<div class="warning">
+							<div class="warningCount">0</div>
+							<div>[[警告|the warning title of panel page health card ]]</div>
+							<div style="font-size:18px;font-weight:bold;">[[暂无警告| no waning mes]]</div>
+						</div>
+<!-- 						<div class="Network">
+							<div class="networkIcon">
+							    <md-icon class="material-icons">
+							      	desktop_windows
+							    </md-icon>
+							</div>
+							<div class="networkRate">
+								{{$ctrl.nodelist.length}} [[服务器| label for nodes in panel page]]
+							</div>
+							<div class="nodeStatus">
+								<div class="healthIcon">
+								    <md-icon ng-class="$ctrl.ReleaseHealth" class="material-icons">
+								      	check_circle
+								    </md-icon>
+								</div>
+								<div class="healthIcon">
+								    <md-icon ng-class="$ctrl.ReleaseNotHealth" class="material-icons">
+								      	warning
+								    </md-icon>
+								</div>
+							</div>
+						</div>
+						<div class="Network">
+							<div class="networkIcon">
+							    <md-icon class="material-icons">
+							      	shop_two
+							    </md-icon>
+							</div>
+							<div class="networkRate">
+								{{$ctrl.deployment.length}}[[应用| lable for release in panel page]]
+							</div>
+							<div class="nodeStatus">
+								<div class="healthIcon">
+								    <md-icon ng-class="$ctrl.NodeHealth" class="material-icons">
+								      	check_circle
+								    </md-icon>
+								</div>
+								<div class="healthIcon">
+								    <md-icon ng-class="$ctrl.NodeNotHealth" class="material-icons">
+								      	warning
+								    </md-icon>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<kd-content-card>
+		<kd-content>
+			<kd-resource-card-list>
+			  <kd-resource-card-list-header>
+			    [[nodes|Label 'nodes' for the node table on the panel page.]]
+			  </kd-resource-card-list-header>
+			  <kd-resource-card-header-columns>
+			    <kd-resource-card-header-column size="medium">
+			      [[node|Label 'node' for the node  table header on the panel page.]]
+			    </kd-resource-card-header-column>
+			    <kd-resource-card-header-column size="medium">
+			      [[CPU requests (cores)|Label 'CPU requests (cores)' for the allocated resources table header on the node details page.]]
+			    </kd-resource-card-header-column>
+<!-- 			    <kd-resource-card-header-column size="medium">%</kd-resource-card-header-column> -->
+			    <kd-resource-card-header-column size="medium">
+			      [[CPU limits (cores)|Label 'CPU limits (cores)' for the allocated resources table header on the node details page.]]
+			    </kd-resource-card-header-column>
+<!-- 			    <kd-resource-card-header-column size="medium">%</kd-resource-card-header-column> -->
+			    <kd-resource-card-header-column size="medium">
+			      [[Memory requests (bytes)|Label 'Memory requests (bytes)' for the allocated resources table header on the node details page.]]
+			    </kd-resource-card-header-column>
+			    <!-- <kd-resource-card-header-column size="medium">%</kd-resource-card-header-column> -->
+			    <kd-resource-card-header-column size="medium">
+			      [[Memory limits (bytes)|Label 'Memory limits (bytes)' for the allocated resources table header on the node details page.]]
+			    </kd-resource-card-header-column>
+			    <!-- <kd-resource-card-header-column size="medium">%</kd-resource-card-header-column> -->
+			    <kd-resource-card-header-column size="medium">
+			      [[Pods|Label 'Pods' for the allocated resources table header on the node details page.]]
+			    </kd-resource-card-header-column>
+			    <!-- <kd-resource-card-header-column size="medium">%</kd-resource-card-header-column> -->
+			  </kd-resource-card-header-columns>
+			  <div ng-repeat="nodes in $ctrl.nodelist">
+			  <kd-resource-card omit-meta="true">
+			    <kd-resource-card-columns>
+			      <kd-resource-card-column>
+			        <div>{{nodes.objectMeta.name}}</div>
+			      </kd-resource-card-column>
+			      <kd-resource-card-column>
+			        <div class="progress">
+			        	<span ng-style='{"width":nodes.allocatedResources.cpuRequestsFraction+"%"}' ng-class="$ctrl.getColor(nodes.allocatedResources.cpuRequestsFraction)">
+			        	</span>
+		        		<div class="barText">{{nodes.allocatedResources.cpuRequests | kdCores}} /
+			          {{nodes.allocatedResources.cpuCapacity | kdCores}} ( {{nodes.allocatedResources.cpuRequestsFraction | number : 2}}% )</div>
+			        </div>
+			      </kd-resource-card-column>
+			    <kd-resource-card-column>
+			      <div class="progress">
+			      	<span ng-style='{"width":nodes.allocatedResources.cpuLimitsFraction+"%"}' ng-class="$ctrl.getColor(nodes.allocatedResources.cpuLimitsFraction)">
+			      	</span>
+	        		<div class="barText">{{nodes.allocatedResources.cpuLimits | kdCores}} /
+			        {{nodes.allocatedResources.cpuCapacity | kdCores}} ( {{nodes.allocatedResources.cpuLimitsFraction | number : 2}}% )</div>
+			      </div>
+			    </kd-resource-card-column>
+			    <kd-resource-card-column>
+			    	<div class="progress">
+			    		<span ng-style='{"width":nodes.allocatedResources.memoryRequestsFraction+"%"}' ng-class="$ctrl.getColor(nodes.allocatedResources.memoryRequestsFraction)">
+			    		</span>
+			    		<div class="barText">{{nodes.allocatedResources.memoryRequests | kdMemory}} /
+			        {{nodes.allocatedResources.memoryCapacity | kdMemory}} ( {{nodes.allocatedResources.memoryRequestsFraction | number : 2}}% )</div>
+			    	</div>
+			    </kd-resource-card-column>
+			      <kd-resource-card-column>
+			        <div class="progress">
+			        	<span ng-style='{"width":nodes.allocatedResources.memoryLimitsFraction+"%"}' ng-class="$ctrl.getColor(nodes.allocatedResources.memoryLimitsFraction)">
+			        	</span>
+			        		<div class="barText">{{nodes.allocatedResources.memoryLimits | kdMemory}} /
+			          {{nodes.allocatedResources.memoryCapacity | kdMemory}} ( {{nodes.allocatedResources.memoryLimitsFraction | number : 2}}% )</div>
+			        </div>
+			      </kd-resource-card-column>
+			      <kd-resource-card-column>
+			          <div class="progress">
+			          	<span ng-style='{"width":nodes.allocatedResources.allocatedPods / nodes.allocatedResources.podCapacity * 100+"%"}' ng-class="$ctrl.getColor(nodes.allocatedResources.allocatedPods / nodes.allocatedResources.podCapacity * 100| number : 2)">
+			          	</span>
+		        		<div class="barText">{{nodes.allocatedResources.allocatedPods}} /
+			          {{nodes.allocatedResources.podCapacity}} ( {{nodes.allocatedResources.allocatedPods / nodes.allocatedResources.podCapacity * 100
+		          | number : 2}}% )</div>
+			          </div>
+			      </kd-resource-card-column>
+			    </kd-resource-card-columns>
+			  </kd-resource-card>
+			  </div>
+			</kd-resource-card-list>
+		</kd-content>
+	</kd-content-card>
+		
+	<kd-content-card>
+		<kd-content>
+			<kd-resource-card-list>
+			  <kd-resource-card-list-header>
+			    [[Deployments|Label which appears above the list of such objects.]]
+			  </kd-resource-card-list-header>
+			  <kd-resource-card-header-columns>
+			    <kd-resource-card-header-column size="small" grow="2">
+			      [[Name|Label 'Name' which appears as a column label in the table of deployments (deployment list view).]]
+			    </kd-resource-card-header-column>
+			    <kd-resource-card-header-column size="small" grow="2" ng-if="$ctrl.areMultipleNamespacesSelected()">
+			      [[Namespace|Label 'Namespace' which appears as a column label in the table of deployments (deployment list view).]]
+			    </kd-resource-card-header-column>
+			    <!-- <kd-resource-card-header-column size="small" grow="2">
+			      [[Labels|Label 'Labels' which appears as a column label in the table of deployments (deployment list view).]]
+			    </kd-resource-card-header-column> -->
+			    <kd-resource-card-header-column size="small" grow="1">
+			      [[Pods|Label 'Pods' which appears as a column label in the table of deployments (deployment list view).]]
+			    </kd-resource-card-header-column>
+			    <kd-resource-card-header-column size="small" grow="1">
+			      [[Age|Label 'Age' which appears as a column label in the table of deployments (deployment list view).]]
+			    </kd-resource-card-header-column>
+			    <kd-resource-card-header-column size="small" grow="2">
+			      [[Images|Label 'Images' which appears as a column label in the table of deployments (deployment list view).]]
+			    </kd-resource-card-header-column>
+			    <kd-resource-card-header-column size="small" grow="nogrow">
+			    </kd-resource-card-header-column>
+			  </kd-resource-card-header-columns>
+			  <div ng-repeat="ietm in $ctrl.deployment">
+				<kd-resource-card type-meta="ietm.typeMeta" object-meta="ietm.objectMeta">
+				  <kd-resource-card-status layout="row">
+				    <md-icon class="material-icons kd-error" ng-if="::$ctrl.hasWarnings(ietm)">
+				      error
+				      <md-tooltip md-direction="right">
+				        [[One or more pods have errors|Tooltip saying that some pods in a deployment have errors.]]
+				      </md-tooltip>
+				    </md-icon>
+				    <md-icon class="material-icons" ng-if="::$ctrl.isPending(ietm)">
+				      timelapse
+				      <md-tooltip md-direction="right">
+				        [[One or more pods are in pending state|Tooltip saying that some pods in a deployment are pending.]]
+				      </md-tooltip>
+				    </md-icon>
+				    <md-icon class="material-icons kd-success" ng-if="::$ctrl.isSuccess(ietm)">
+				      check_circle
+				    </md-icon>
+				  </kd-resource-card-status>
+				  <kd-resource-card-columns>
+				    <kd-resource-card-column>
+				      <div>
+				        <a ng-href="{{::$ctrl.getDeploymentDetailHref(ietm)}}" style="display: block;">
+				          <kd-middle-ellipsis display-string="{{ietm.objectMeta.name}}">
+				          </kd-middle-ellipsis>
+				        </a>
+				      </div>
+				    </kd-resource-card-column>
+				    <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
+				      <div>
+				        <kd-middle-ellipsis display-string="{{::ietm.objectMeta.namespace}}">
+				        </kd-middle-ellipsis>
+				      </div>
+				    </kd-resource-card-column>
+				    <!-- <kd-resource-card-column>
+				      <kd-labels labels="::ietm.objectMeta.labels"></kd-labels>
+				    </kd-resource-card-column> -->
+				    <kd-resource-card-column>
+				      <span class="kd-replicase-card-pods-stat">
+				        {{::ietm.pods.running}} /
+				        {{::ietm.pods.desired}}
+				      </span>
+				    </kd-resource-card-column>
+				    <kd-resource-card-column>
+				      {{::ietm.objectMeta.creationTimestamp | relativeTime}}
+				      <md-tooltip>
+				        {{::$ctrl.getCreatedAtTooltip(ietm.objectMeta.creationTimestamp)}}
+				      </md-tooltip>
+				    </kd-resource-card-column>
+				    <kd-resource-card-column>
+				      <div ng-repeat="image in ::ietm.containerImages track by $index">
+				        <kd-middle-ellipsis display-string="{{::image}}"></kd-middle-ellipsis>
+				      </div>
+				    </kd-resource-card-column>
+				    <kd-resource-card-column class="kd-row-layout-column kd-icon-column">
+					    <span style="text-align: center; cursor: pointer;width: 100%;" ng-click="$ctrl.showpod(ietm.objectMeta.name,ietm.objectMeta.namespace)">
+					      [[查看 | 看板页面查看按钮]]
+
+					    </span>
+		<!-- 		      <kd-resource-card-menu>
+				        <kd-resource-card-delete-menu-item resource-kind-name="[[Deployment|Label 'Deployment' which will appear in the deployment delete dialog opened from a deployment card on the list page.]]">
+				        </kd-resource-card-delete-menu-item>
+				        <kd-resource-card-edit-menu-item resource-kind-name="[[Deployment|Label 'Deployment' which will appear in the deployment delete dialog opened from a deployment card on the list page.]]">
+				        </kd-resource-card-edit-menu-item>
+				      </kd-resource-card-menu> -->
+				    </kd-resource-card-column>
+				  </kd-resource-card-columns>
+				  <kd-resource-card-footer ng-if="::$ctrl.hasWarnings(ietm)">
+							<div ng-repeat="warning in ::ietm.pods.warnings">
+									<span class="kd-error">{{::warning.type=='Error'?warning.message:''}}</span>
+							</div>
+				  </kd-resource-card-footer>
+				</kd-resource-card>
+			  	
+			  </div>
+			  </kd-resource-card-list>
+		</kd-content>
+	</kd-content-card>		
+	<!-- <div class="poddialog"> -->
+		<kd-content-card class="poddialog" ng-if="$ctrl.podboxShow">
+			<kd-title>{{$ctrl.podeName}}</kd-title>
+			<kd-content>
+	  <kd-resource-card-list>
+	  <kd-resource-card-list-header>
+	    [[Pods|Label which appears above the list of such objects.]]
+	  </kd-resource-card-list-header>
+
+	  <kd-resource-card-header-columns>
+	    <kd-resource-card-header-column size="small" grow="2">
+	      [[Name|Title of a column]]
+	    </kd-resource-card-header-column>
+	    <kd-resource-card-header-column size="small" grow="1" ng-if="$ctrl.areMultipleNamespacesSelected()">
+	      [[Namespace|Title of a column]]
+	    </kd-resource-card-header-column>
+	    <kd-resource-card-header-column size="small" grow="1">
+	      [[Status|Title of a pod status column]]
+	    </kd-resource-card-header-column>
+	    <kd-resource-card-header-column size="small" grow="nogrow">
+	      [[Restarts|Title of a restarts column for a pod]]
+	    </kd-resource-card-header-column>
+	    <kd-resource-card-header-column size="small" grow="nogrow">
+	      [[Age|Title of a column for the age of a pod]]
+	    </kd-resource-card-header-column>
+	    <kd-resource-card-header-column size="small" grow="1" ng-if="::$ctrl.showPodMetrics()">
+	      [[CPU (cores)|Title of a column]]
+	    </kd-resource-card-header-column>
+	    <kd-resource-card-header-column size="small" grow="1" ng-if="::$ctrl.showPodMetrics()">
+	      [[Memory (bytes)|Title of a column]]
+	    </kd-resource-card-header-column>
+<!-- 	    <kd-resource-card-header-column size="small" grow="nogrow">
+	    </kd-resource-card-header-column> -->
+	  </kd-resource-card-header-columns>
+	  <div ng-repeat="poda in $ctrl.pod">
+		<kd-resource-card object-meta="::poda.objectMeta" type-meta="::poda.typeMeta">
+		  <kd-resource-card-status layout="row">
+		    <md-icon class="material-icons kd-error" ng-if="::$ctrl.podIsFailed(poda)">
+		      error
+		      <md-tooltip md-direction="right">
+		        [[This pod has errors.|Tooltip for failed pod card icon]]
+		      </md-tooltip>
+		    </md-icon>
+		    <md-icon class="material-icons" ng-if="::$ctrl.podIsPending(poda)">
+		      timelapse
+		      <md-tooltip md-direction="right">
+		        [[This pod is in a pending state.|Tooltip for pending pod card icon]]
+		      </md-tooltip>
+		    </md-icon>
+		    <md-icon class="material-icons kd-success" ng-if="::$ctrl.podIsSuccess(poda)">
+		      check_circle
+		    </md-icon>
+		  </kd-resource-card-status>
+		  <kd-resource-card-columns>
+		    <kd-resource-card-column>
+		      <div>
+		        <a ng-href="{{::$ctrl.getPodDetailHref()}}" class="kd-middle-ellipsised-link">
+		          <kd-middle-ellipsis display-string="{{::poda.objectMeta.name}}">
+		          </kd-middle-ellipsis>
+		        </a>
+		      </div>
+		    </kd-resource-card-column>
+		    <kd-resource-card-column ng-if="::$ctrl.areMultipleNamespacesSelected()">
+		      <div>
+		        <kd-middle-ellipsis display-string="{{::poda.objectMeta.namespace}}">
+		        </kd-middle-ellipsis>
+		      </div>
+		    </kd-resource-card-column>
+		    <kd-resource-card-column>
+		      <div>
+		        <kd-middle-ellipsis display-string="{{::$ctrl.getPodDisplayStatus(poda)}}">
+		        </kd-middle-ellipsis>
+		      </div>
+		    </kd-resource-card-column>
+		    <kd-resource-card-column>{{::poda.restartCount}}</kd-resource-card-column>
+		    <kd-resource-card-column>
+		      <div ng-if="::poda.objectMeta.creationTimestamp">
+		        {{::poda.objectMeta.creationTimestamp | relativeTime}}
+<!-- 		        <md-tooltip>
+		          {{::$ctrl.getCreatedAtTooltip(poda.objectMeta.creationTimestamp)}}
+		        </md-tooltip> -->
+		      </div>
+		      <div ng-if="::!poda.objectMeta.creationTimestamp">-</div>
+		    </kd-resource-card-column>
+		    <kd-resource-card-column ng-if="::$ctrl.showPodMetrics">
+		      <div ng-if="::$ctrl.hasPodCpuUsage(poda)">
+		        <kd-sparkline timeseries="::poda.metrics.cpuUsageHistory"
+		                      class="kd-sparkline-cpu-series"></kd-sparkline>
+		        {{::(poda.metrics.cpuUsage | kdCores)}}
+		      </div>
+		      <div ng-if="::!$ctrl.hasPodCpuUsage(poda)">-</div>
+		    </kd-resource-card-column>
+		    <kd-resource-card-column ng-if="::$ctrl.showPodMetrics">
+		      <div ng-if="::$ctrl.hasPodMemoryUsage(poda)">
+		        <kd-sparkline timeseries="::poda.metrics.memoryUsageHistory"
+		                      class="kd-sparkline-memory-series"></kd-sparkline>
+		        {{::(poda.metrics.memoryUsage | kdMemory)}}
+		      </div>
+		      <div ng-if="::!$ctrl.hasPodMemoryUsage(poda)">-</div>
+		    </kd-resource-card-column>
+		  </kd-resource-card-columns>
+		  <kd-resource-card-footer ng-if="::$ctrl.podIsFailed(poda)">
+				<div ng-repeat="warning in ::poda.warnings">
+					<span class="kd-error">{{::warning.type=='Error'?warning.message:''}}</span>
+				</div>
+		  </kd-resource-card-footer>
+		</kd-resource-card>
+	  </div>
+	</kd-resource-card-list>
+			</kd-content>
+		</kd-content-card>
+	<!-- </div> -->
+	<div style="position: absolute; width: 100%;height: calc(100% + 32px);background:rgba(33,33,33,.48); top: 0; left: 0;" ng-click="$ctrl.podboxShow=false;" ng-if="$ctrl.podboxShow"></div>
+</div>

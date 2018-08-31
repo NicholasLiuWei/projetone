@@ -1,5 +1,5 @@
 <!--
-Copyright 2017 The Kubernetes Authors.
+Copyright 2015 Google Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,8 +14,74 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<div layout="row"
-     layout-align="center center">
-  <div ui-view="actionbar"
-       class="kd-actionbar-view-part"></div>
+<div layout="row" layout-align="center center" style="position:relative;">
+    <div ui-view="actionbar" class="kd-actionbar-view-part"></div>
+    <!-- <div> -->
+    <md-icon class="kd-actionbar-icon-button" ng-click="$ctrl.getwarning($event)" style="margin-right:20px;cursor:pointer;">add_alert</md-icon>
+    <!-- </div> -->
+    <!-- <div ng-if="$ctrl.hasCustomActions()" class="kd-actionbar-divider"></div> -->
+
+    <!--   <div>
+    <md-button ng-click="$ctrl.create()">
+      <md-icon class="kd-actionbar-icon-button">add</md-icon>
+      <md-tooltip md-direction="bottom">
+        [[Create an application or any Kubernetes resource|Tooltip for global action bar
+          create button tooltip.]]
+      </md-tooltip>
+      [[Create|Label for global action bar create button.]]
+    </md-button>
+  </div> -->
+    <md-menu>
+        <div style="font-size:16px;cursor: pointer;" ng-click="$mdMenu.open($event)">
+            <md-icon class="kd-actionbar-icon-button">account_circle</md-icon>
+            [[管理员| caidan Admin]]
+        </div>
+        <md-menu-content>
+            <md-menu-item>
+                <md-button ng-disabled="true">[[版本 v1.0.0|版本信息]]</md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button class="md-primary" ng-click="$ctrl.changemima()">[[修改密码| caidan Change Password]]</md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button class="md-primary" ng-click="$ctrl.logouts()">[[退出| caidan Logout]]</md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
 </div>
+<div ng-if="$ctrl.showWarning" ng-switch="$ctrl.loading" style="overflow:hidden;width:500px;height:500px; border:1px solid #ccc;box-shadow:0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);background:#fff;position:absolute;top:65px;right:0; z-index:
+10; color:#000;" ng-click="$ctrl.stopPropagation($event)">
+    <div class="alertstitle" layout="row" layout-align="space-between">
+        [[历史告警| warnkuang History Alarm]]
+        <div style="text-indent: 0;" layout="row">
+            <div style="margin:0 10px;">
+                <md-icon ng-click="$ctrl.clearAlerts()" style="color:#000;cursor:pointer;">delete</md-icon>
+                <md-tooltip>[[清空| warnkuang Clear]]</md-tooltip>
+            </div>
+            <div style="margin:0 10px;">
+                <md-icon class="kd-actionbar-icon-button" ng-click="$ctrl.handleChangeEmailDialog()" style="color:#000;cursor:pointer;">email</md-icon>
+                <md-tooltip>[[邮箱| warnkuang Email]]</md-tooltip>
+            </div>
+        </div>
+    </div>
+    <div layout="row" flex layout-align="center center" ng-if="$ctrl.warninglist.length==0" class="nowarn">
+        [[暂无历史告警信息| warnkuang No historical alarm information]]
+    </div>
+    <md-virtual-repeat-container ng-switch-when="false" id="vertical-container" ng-if="$ctrl.warninglist.length!=0">
+        <div md-virtual-repeat="item in $ctrl.warninglist" class="warnitem" flex layout="row">
+            <div layout="row" layout-align="center center">
+                <md-icon class="kd-actionbar-icon-button" ng-style="{color:'#FF9900','margin-right':'5px',cursor:'pointer'}">warning</md-icon>
+            </div>
+            <div flex="65">
+                <div flex>{{$ctrl.i18n.MSG_warning_type}}:{{item.labels.alertname}}</div>
+                <div flex>{{$ctrl.i18n.MSG_warning_desc}}:{{item.annotations.description}}</div>
+            </div>
+            <div flex-offset="5" flex="20" style="color: #666;border-left:1px solid #ccc;padding-left: 5%;margin-top:10px;margin-bottom: 10px;" layout="row" layout-align="right end">{{$ctrl.getlocalTime(item.startsAt)}}</div>
+        </div>
+    </md-virtual-repeat-container>
+    <div ng-switch-when="true" class="kd-spinner">
+        <md-progress-circular md-mode="indeterminate" md-diameter="48">
+        </md-progress-circular>
+    </div>
+</div>
+<!-- <div ng-if="$ctrl.showWarning" style="position:fixed; width:100%;height:100%;z-index:8; top:0;left:0;" ng-click="$ctrl.showWarning=false;"></div> -->

@@ -1,0 +1,130 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- <div layout="row">
+  <kd-graph-card graph-title="[[CPU usage|Title for graph card displaying CPU metric of nodes.]]"
+                 metrics="$ctrl.nodeList.cumulativeMetrics" selected-metric-names="'cpu/usage_rate'">
+  </kd-graph-card>
+  <kd-graph-card graph-title="[[Memory usage|Title for graph card displaying memory metric of nodes.]]"
+                 graph-info="[[The memory usage includes caches.|Help message detailing what is included in the memory usage]]"
+                 metrics="$ctrl.nodeList.cumulativeMetrics" selected-metric-names="'memory/usage'">
+  </kd-graph-card>
+</div> -->
+
+<!-- <kd-content-card>
+  <kd-content> -->
+<kd-node-card-list layout="row" layout-wrap node-list="$ctrl.nodeList" node-list-resource="$ctrl.nodeListResource">
+</kd-node-card-list>
+<!-- </kd-content>
+</kd-content-card> -->
+
+<div class="nodedetailmask" ng-click="$ctrl.hide()" ng-show="$root.show"></div>
+<div class="nodedetail" ng-show="$root.show">
+    <div class="closedetail" ng-click="$ctrl.hide()">></div>
+    <div class="kd-spinner" ng-show="$root.loading">
+        <md-progress-circular md-mode="indeterminate" md-diameter="48">
+        </md-progress-circular>
+    </div>
+    <div style="width: 100%;height:100%;overflow: scroll;
+    box-sizing: border-box;
+    padding: 30px;" layout="row">
+        <div flex="40" class="ndleft">
+            <div class="nodestatusbox" layout="row">
+                <div class="img">
+                    <img src="assets/images/server.png" alt="">
+                </div>
+                <div class="namebox">
+                    <div class="name">{{$root.nodedetail.node.name}}</div>
+                    <div class="nodetatus" layout="row">
+                        <div class="statuscir" ng-style="{background:$root.nodedetail.node.status==2?'#FF9F00':'#00DEAC'}">
+                            <md-tooltip ng-if="$root.nodedetail.node.status">[[30分钟以上未自行恢复，请立即联系厂商解决| nodedetail ]]</md-tooltip>
+                        </div>
+                        <div class="statusdesc">{{$ctrl.statusCodes[$root.nodedetail.node.status]}}</div>
+                    </div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle">CPU</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row">
+                    <div flex="15" style="text-align:left;">[[核数| nodedetail Cores]]</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.CPU.NumCores}}</div>
+                </div>
+                <div flex layout="row">
+                    <div flex="15" style="text-align:left;">[[型号|nodedetail Model]]</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.CPU.Model}}</div>
+                </div>
+                <div flex layout="row">
+                    <div flex="15" style="text-align:left;">[[特性| nodedetail Characteristic]]</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.CPU.Capabilities}}</div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle">[[内存| nodedetail Memory]]</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row">
+                    <div flex="15" style="text-align:left;">[[总共| nodedetail Totail]]</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.Memory.TotalPhysicalBytes | kdMemory}}</div>
+                </div>
+                <div flex layout="row">
+                    <div flex="15" style="text-align:left;">[[可用|nodedetail Available]]</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.Memory.TotalUsableBytes | kdMemory}}</div>
+                </div>
+                <div flex layout="row">
+                    <div flex="15" style="text-align:left;">[[分页|nodedetail Paging]]</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.Memory.SupportedPageSizes[0] | kdMemory}}</div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle">[[硬盘|nodedetail Disk]]</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row" ng-repeat="disk in $root.nodedetail.detail.Disk">
+                    <div flex="15" style="text-align:left;" layout="row" layout-align="space-around center">
+                        <div class="diskstatus" ng-style="{background:disk.Good=='OK'?'#00DEAC':'#FF9F00'}">
+                            <md-tooltip ng-if="disk.Good!='OK'">[[硬盘异常，请联系厂商解决|node detail]]</md-tooltip>
+                        </div>
+                        {{disk.Name}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{disk.Type}} &nbsp;&nbsp;&nbsp;&nbsp; {{disk.SizeBytes | kdMemory}}</div>
+                </div>
+            </div>
+            <div flex class="nidetailtitle">[[网卡| nodedetail Network]]</div>
+            <div flex class="nidetaillist">
+                <div flex layout="row" ng-repeat="nic in $root.nodedetail.detail.Nic">
+                    <div flex="50" style="text-align:left;">{{nic.Name}}</div>
+                    <div flex="50" style="margin-left:20px;">{{nic.Driver=="ixgbe"?$ctrl.i18n.MSG_NODE_CARD_WANZHAO_NET:$ctrl.i18n.MSG_NODE_CARD_QIANZHAO_NET}}</div>
+                </div>
+            </div>
+        </div>
+        <div flex="60" class="ndright">
+            <div class="ndritem" flex>
+                <div flex class="ndritemtitle" layout="row">[[CPU监控|nodedetail CPU Monitor]]</div>
+                <div flex class="nidetailCPU"></div>
+            </div>
+            <div class="ndritem" flex>
+                <div flex class="ndritemtitle" layout="row">[[内存监控| nodedetail Memory Monitor]]</div>
+                <div flex class="nidetailMem"></div>
+            </div>
+            <div class="ndritem" flex>
+                <div flex class="ndritemtitle" layout="row" layout-align="space-between">[[网络I/O|nodedetail Network I/O]]
+                    <div class="rates" layout="row" layout-align="end">
+                        <div></div>
+                        <div>[[发送|nodedetail Send]]</div>
+                        <div></div>
+                        <div>[[接收|nodedetail Receive]]</div>
+                    </div>
+                </div>
+                <div flex class="nidetailNet"></div>
+            </div>
+        </div>
+    </div>
+</div>

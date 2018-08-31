@@ -1,0 +1,120 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- <kd-graph metrics="$ctrl.releaseList.cumulativeMetrics"></kd-graph> -->
+
+<!-- <kd-content-card ng-if="!$ctrl.shouldShowZeroState()"> -->
+<!-- <kd-content> -->
+<kd-release-card-list release-list="$ctrl.releaseList" release-list-resource="$ctrl.releaseListResource">
+</kd-release-card-list>
+<!-- </kd-content> -->
+<!-- </kd-content-card> -->
+<div class="nodedetailmask" ng-show="$ctrl.show" ng-click="$ctrl.show = false;$ctrl.loading = true;"></div>
+<div class="nodedetail releasesidenav" ng-show="$ctrl.show">
+    <div class="closedetail" ng-click="$ctrl.show = false;$ctrl.loading = true;">></div>
+    <div class="kd-spinner" ng-show="$ctrl.loading">
+        <md-progress-circular md-mode="indeterminate" md-diameter="48">
+        </md-progress-circular>
+    </div>
+    <md-content layout-padding="" class="md-padding">
+        <table ng-if="$root.releaseStr.indexOf('Deployment')!=-1" ng-repeat="deploy in $root.releaseDetail[0]">
+            <thead>
+                <th colspan="2">
+                    {{deploy[0]}}&nbsp;&nbsp;[[容器部署情况|relese detail Pod Deployment]]
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[期望份数| release detail Desired]]</td>
+                    <td>{{deploy[1]}}</td>
+                </tr>
+                <!-- <tr>
+                    <td>[[当前| release detail Current]]</td>
+                    <td>{{deploy[2]}}</td>
+                </tr>
+                <tr>
+                    <td>[[更新| release detail Update]]</td>
+                    <td>{{deploy[3]}}</td>
+                </tr> -->
+                <tr>
+                    <td>[[可用份数| release detail Available]]</td>
+                    <td>{{deploy[4]}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table ng-if="$root.releaseStr.indexOf('Service')!=-1" ng-repeat="service in $root.releaseDetail[1]">
+            <thead>
+                <th colspan="2">
+                    {{service[0]}}&nbsp;&nbsp;[[服务|release detail Service]]
+                </th>
+            </thead>
+            <tbody ng-repeat="ser in service[3]">
+                <tr>
+                    <td>[[内部入口| release detail Internal entrance]]</td>
+                    <td>{{service[1]}}:{{ser.indexOf(':')!=-1?ser.substring(0,ser.indexOf(':')):ser.substring(0,ser.indexOf('/'))}}</td>
+                </tr>
+                <tr ng-if="ser.indexOf(':')!=-1">
+                    <td>[[外部入口| release detail External entrance]]</td>
+                    <td>{{$ctrl.getHost()}}{{ser.substring(ser.indexOf(':'),ser.indexOf('/'))}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table ng-if="$root.releaseStr.indexOf('PersistentVolumeClaim')!=-1" ng-repeat="cunchu in $root.releaseDetail[2]">
+            <thead>
+                <th colspan="2">
+                    {{cunchu[0]}}&nbsp;&nbsp;[[存储卷|release detail Storage volume]]
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[状态| release detail Status]]</td>
+                    <td>{{cunchu[1]}}</td>
+                </tr>
+                <tr>
+                    <td>[[卷名称| relese detail Volume name]]</td>
+                    <td>{{cunchu[2]}}</td>
+                </tr>
+                <tr>
+                    <td>[[总量| release detail Total]]</td>
+                    <td>{{cunchu[3]}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <th colspan="2">
+                    {{$root.releaseDetail[3]}}&nbsp;&nbsp;{{::$ctrl.i18n.MSG_RELEASE_DOMAIN_SERVICE}}
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{::$ctrl.i18n.MSG_RELEASE_DOMAIN}}</td>
+                    <td>{{$root.releaseDetail[3]}}.k8s.com</td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-if="$root.releaseDetail.length==0">[[没有详细配置| release detail No detailed configuration]]</div>
+    </md-content>
+</div>
+<section layout="row" flex="" class="releasesidenav">
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right" style="width:800px;">
+
+
+    </md-sidenav>
+
+</section>
+<kd-zero-state ng-if="$ctrl.shouldShowZeroState()"></kd-zero-state>

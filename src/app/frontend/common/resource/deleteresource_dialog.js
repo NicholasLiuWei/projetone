@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ export default function showDeleteDialog(mdDialog, resourceKindName, resourceUrl
   return mdDialog.show({
     controller: DeleteResourceController,
     controllerAs: '$ctrl',
-    clickOutsideToClose: true,
+    clickOutsideToClose: false,
     templateUrl: 'common/resource/deleteresource.html',
     locals: {
       'resourceUrl': resourceUrl,

@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 export class ActionbarDeleteItemController {
   /**
    * @param {!./../../resource/verber_service.VerberService} kdResourceVerberService
-   * @param {!./../breadcrumbs/service.BreadcrumbsService} kdBreadcrumbsService
+   * @param {!./../breadcrumbs/breadcrumbs_service.BreadcrumbsService} kdBreadcrumbsService
    * @param {!ui.router.$state} $state
    * @ngInject
    */
@@ -38,7 +38,7 @@ export class ActionbarDeleteItemController {
     /** @private {!./../../resource/verber_service.VerberService} */
     this.kdResourceVerberService_ = kdResourceVerberService;
 
-    /** @private {!./../breadcrumbs/service.BreadcrumbsService} */
+    /** @private {!./../breadcrumbs/breadcrumbs_service.BreadcrumbsService} */
     this.kdBreadcrumbsService_ = kdBreadcrumbsService;
 
     /** @private {!ui.router.$state}} */
@@ -86,5 +86,6 @@ export const actionbarDeleteItemComponent = {
     'typeMeta': '<',
     'objectMeta': '<',
   },
+  bindToController: true,
   controller: ActionbarDeleteItemController,
 };

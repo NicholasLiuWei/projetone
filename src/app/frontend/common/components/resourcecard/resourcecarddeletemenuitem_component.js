@@ -1,4 +1,4 @@
-// Copyright 2017 The Kubernetes Authors.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,62 +17,55 @@
  * @final
  */
 export class ResourceCardDeleteMenuItemController {
-  /**
-   * @param {!./../../resource/verber_service.VerberService} kdResourceVerberService
-   * @param {!ui.router.$state} $state
-   * @param {!angular.$log} $log
-   * @ngInject
-   */
-  constructor(kdResourceVerberService, $state, $log) {
     /**
-     * Initialized from require just before $onInit is called.
-     * @export {!./resourcecard_component.ResourceCardController}
+     * @param {!./../../resource/verber_service.VerberService} kdResourceVerberService
+     * @param {!ui.router.$state} $state
+     * @ngInject
      */
-    this.resourceCardCtrl;
+    constructor(kdResourceVerberService, $state, $mdDialog) {
+        /**
+         * Initialized from require just before $onInit is called.
+         * @export {!./resourcecard_component.ResourceCardController}
+         */
+        this.resourceCardCtrl;
 
-    /** @export {string} Initialized from a binding.*/
-    this.resourceKindName;
+        /** @export {string} Initialized from a binding.*/
+        this.resourceKindName;
 
-    /** @private {!./../../resource/verber_service.VerberService} */
-    this.kdResourceVerberService_ = kdResourceVerberService;
+        /** @private {!./../../resource/verber_service.VerberService} */
+        this.kdResourceVerberService_ = kdResourceVerberService;
 
-    /** @private {!ui.router.$state}} */
-    this.state_ = $state;
+        /** @private {!ui.router.$state}} */
+        this.state_ = $state;
 
-    /** @private {!angular.$log} */
-    this.log_ = $log;
-  }
+        this.mdDialog_ = $mdDialog;
+    }
 
-  /**
-   * @export
-   */
-  remove() {
-    this.kdResourceVerberService_
-        .showDeleteDialog(
-            this.resourceKindName, this.resourceCardCtrl.typeMeta, this.resourceCardCtrl.objectMeta)
-        .then(() => {
-          // For now just reload the state. Later we can remove the item in place.
-          this.state_.reload();
-        })
-        .catch((err) => {
-          if (err) {
-            this.log_.error('Error showing delete dialog:', err);
-          }
-        });
-  }
+    /**
+     * @export
+     */
+    remove() {
+        this.kdResourceVerberService_
+            .showDeleteDialog(
+                this.resourceKindName, this.resourceCardCtrl.typeMeta, this.resourceCardCtrl.objectMeta)
+            .then(() => {
+                // For now just reload the state. Later we can remove the item in place.
+                this.state_.reload();
+            });
+    }
 }
 
 /**
  * @type {!angular.Component}
  */
 export const resourceCardDeleteMenuItemComponent = {
-  templateUrl: 'common/components/resourcecard/resourcecarddeletemenuitem.html',
-  bindings: {
-    'resourceKindName': '@',
-  },
-  bindToController: true,
-  require: {
-    'resourceCardCtrl': '^kdResourceCard',
-  },
-  controller: ResourceCardDeleteMenuItemController,
+    templateUrl: 'common/components/resourcecard/resourcecarddeletemenuitem.html',
+    bindings: {
+        'resourceKindName': '@',
+    },
+    bindToController: true,
+    require: {
+        'resourceCardCtrl': '^kdResourceCard',
+    },
+    controller: ResourceCardDeleteMenuItemController,
 };
