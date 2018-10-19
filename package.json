@@ -25,6 +25,7 @@
     "angular-toastr": "~2.1.1",
     "angular-ui-ace": "^0.2.3",
     "angular-utils-pagination": "~0.11.1",
+    "ng-jsoneditor": "~2.2.0",
     "ansi_up": "~2.0.2",
     "cnpm": "^6.0.0",
     "d3": "^3.4.4",
