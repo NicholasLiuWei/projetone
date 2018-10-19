@@ -48,6 +48,7 @@ import (
 	ns "github.com/kubernetes/dashboard/src/app/backend/resource/namespace"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/node"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/overview"
+	"github.com/kubernetes/dashboard/src/app/backend/resource/panel"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/persistentvolume"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/persistentvolumeclaim"
 	"github.com/kubernetes/dashboard/src/app/backend/resource/pod"
@@ -195,6 +196,15 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.GET("/workload/{namespace}").
 			To(apiHandler.handleGetWorkloads).
 			Writes(workload.Workloads{}))
+
+	apiV1Ws.Route(
+		apiV1Ws.GET("/panel").
+			To(apiHandler.handleGetPanels).
+			Writes(panel.Panels{}))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/panel/{namespace}").
+			To(apiHandler.handleGetPanels).
+			Writes(panel.Panels{}))
 
 	apiV1Ws.Route(
 		apiV1Ws.GET("/cluster").
