@@ -5,15 +5,17 @@ package panel
 
 import (
   "log"
-  "strconv"
-  "time"
+  // "strconv"
+  // "time"
 
   k8sClient "k8s.io/client-go/kubernetes"
   // "github.com/kubernetes/dashboard/src/app/backend/resource/deployment"
   noderes "github.com/kubernetes/dashboard/src/app/backend/resource/node"
-  "github.com/kubernetes/dashboard/src/app/backend/client"
+  metricapi "github.com/kubernetes/dashboard/src/app/backend/integration/metric/api"
+  // "github.com/kubernetes/dashboard/src/app/backend/client"
   "github.com/kubernetes/dashboard/src/app/backend/resource/dataselect"
-  "github.com/kubernetes/dashboard/src/app/backend/resource/common"
+  // "github.com/kubernetes/dashboard/src/app/backend/resource/common"
+  "github.com/kubernetes/dashboard/src/app/backend/api"
   //daemonset "github.com/kubernetes/dashboard/src/app/backend/resource/daemonset/list"
   //job "github.com/kubernetes/dashboard/src/app/backend/resource/job/list"
   //"github.com/kubernetes/dashboard/src/app/backend/resource/pod"
@@ -61,35 +63,38 @@ type Panels struct {
 //   return time.Unix(ts, 0).Format(JavascriptISOString)
 // }
 
-func GetPanels(client *k8sClient.Clientset, heapsterClient client.HeapsterClient,
-  nsQuery *common.NamespaceQuery, metricQuery *dataselect.MetricQuery) (*Panels, error) {
+func GetPanels(client k8sClient.Interface,
+  dsQuery *dataselect.DataSelectQuery, metricClient metricapi.MetricClient) (*Panels, error) {
   //channels := &common.ResourceChannels{
   //  NodeList: common.GetNodeListChannel(client, 1),
   //  DeploymentList: common.GetDeploymentListChannel(client, nsQuery, 1),
   //}
-  channels := &common.ResourceChannels{
-        NodeList: common.GetNodeListChannel(client, 1),
-	ReplicationControllerList: common.GetReplicationControllerListChannel(client, nsQuery, 1),
-	ReplicaSetList:            common.GetReplicaSetListChannel(client, nsQuery, 1),
-	JobList:                   common.GetJobListChannel(client, nsQuery, 1),
-	DaemonSetList:             common.GetDaemonSetListChannel(client, nsQuery, 1),
-	DeploymentList:            common.GetDeploymentListChannel(client, nsQuery, 1),
-	StatefulSetList:           common.GetStatefulSetListChannel(client, nsQuery, 1),
-	ServiceList:               common.GetServiceListChannel(client, nsQuery, 1),
-	PodList:                   common.GetPodListChannel(client, nsQuery, 7),
-	EventList:                 common.GetEventListChannel(client, nsQuery, 7),
-  }
+  // channels := &common.ResourceChannels{
+  //       NodeList: common.GetNodeListChannel(client, 1),
+	// ReplicationControllerList: common.GetReplicationControllerListChannel(client, nsQuery, 1),
+	// ReplicaSetList:            common.GetReplicaSetListChannel(client, nsQuery, 1),
+	// JobList:                   common.GetJobListChannel(client, nsQuery, 1),
+	// DaemonSetList:             common.GetDaemonSetListChannel(client, nsQuery, 1),
+	// DeploymentList:            common.GetDeploymentListChannel(client, nsQuery, 1),
+	// StatefulSetList:           common.GetStatefulSetListChannel(client, nsQuery, 1),
+	// ServiceList:               common.GetServiceListChannel(client, nsQuery, 1),
+	// PodList:                   common.GetPodListChannel(client, nsQuery, 7),
+	// EventList:                 common.GetEventListChannel(client, nsQuery, 7),
+  // }
+  NodeList, err := client.CoreV1().Nodes().List(api.ListEverything)
+  // NodeList := <-channels.NodeList.List
+  // err := <-channels.NodeList.Error
 
 
-  nodeChan := make(chan *noderes.NodeList)
+  // nodeChan := make(chan *noderes.NodeList)
   // deploymentChan := make(chan *deployment.DeploymentList)
-  errChan := make(chan error, 7)
+  // errChan := make(chan error, 7)
 
-  go func() {
-  	nodeList, err := noderes.GetNodeListFromChannels(channels, dataselect.DefaultDataSelect, nil)
-  	errChan <- err
-  	nodeChan <- nodeList
-  }()
+  // go func() {
+  // 	nodeList, err := noderes.GetNodeListFromChannels(channels, dataselect.DefaultDataSelect, nil)
+  // 	errChan <- err
+  // 	nodeChan <- nodeList
+  // }()
   // go func() {
   // 	deploymentList, err := deployment.GetDeploymentListFromChannels(channels, dataselect.DefaultDataSelect, nil)
   // 	errChan <- err
@@ -98,22 +103,22 @@ func GetPanels(client *k8sClient.Clientset, heapsterClient client.HeapsterClient
 
   //panels := new(Panels)
   //panels := &Panels{}
-  nodeList := <- nodeChan
-  err := <-errChan
+  // nodeList := <- nodeChan
+  // err := <-errChan
   if err != nil {
         log.Print("Getting node lists error")
   	return nil, err
   }
 
-  _cpu:=0.0
-  _mem:=0.0 
+  // _cpu:=0.0
+  // _mem:=0.0 
   //_fs:=0.0
-  var _tx int64 = 0
-  var _rx int64 = 0
-  var  metrList NodeMetricsList
+  // var _tx int64 = 0
+  // var _rx int64 = 0
+  // var  metrList NodeMetricsList
   ndl := []noderes.NodeDetail{}
-  for _, node := range nodeList.Nodes {
-    nodeDetail, err := noderes.GetNodeDetail(client, heapsterClient, node.ObjectMeta.Name)
+  for _, node := range NodeList.Items {
+    nodeDetail, err := noderes.GetNodeDetail(client, metricClient, node.ObjectMeta.Name,dsQuery)
     if err != nil {
       return nil, err
     }

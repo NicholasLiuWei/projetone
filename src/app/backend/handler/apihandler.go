@@ -1115,6 +1115,28 @@ func (apiHandler *APIHandler) handleGetWorkloads(request *restful.Request, respo
 	response.WriteHeaderAndEntity(http.StatusOK, result)
 }
 
+// Handles get Panels list API call.
+func (apiHandler *APIHandler) handleGetPanels(
+	request *restful.Request, response *restful.Response) {
+	log.Println("Getting panels ")
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	namespace := parseNamespacePathParameter(request)
+	log.Println("namespace",namespace)
+	dataSelect := parseDataSelectPathParameter(request)
+	dataSelect.MetricQuery = dataselect.StandardMetrics
+	result, err := panel.GetPanels(k8sClient, dataSelect, apiHandler.iManager.Metric().Client())
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+
+	response.WriteHeaderAndEntity(http.StatusOK, result)
+}
+
 func (apiHandler *APIHandler) handleOverview(request *restful.Request, response *restful.Response) {
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {

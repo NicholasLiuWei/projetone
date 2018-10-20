@@ -158,7 +158,7 @@ func main() {
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
 
-	initApp()
+	// initApp()
 	// Listen for http or https
 	if servingCerts != nil {
 		log.Printf("Serving securely on HTTPS port: %d", args.Holder.GetPort())
