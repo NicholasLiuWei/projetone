@@ -13,6 +13,7 @@ type NIC struct {
 	Model           string
 	Vendor          string
 	IsVirtual       bool
+	Speed           string
 	EnabledFeatures []string
 }
 

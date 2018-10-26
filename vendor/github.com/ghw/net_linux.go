@@ -54,6 +54,8 @@ func NICs() []*NIC {
 
 		mac := netDeviceMacAddress(filename)
 		driver, model := netDeviceDriverModel(filename)
+		speed := netSpeed(filename)
+		nic.Speed = speed
 		nic.MacAddress = mac
 		nic.Driver = driver
 		nic.Model = model
@@ -104,4 +106,13 @@ func netDeviceDriverModel(dev string) (string, string) {
 	  }
 	}
 	return driver, model
+}
+
+func netSpeed (dev string) (string){
+	speedPath := filepath.Join(PathSysClassNet, dev, "speed")
+	contents, err := ioutil.ReadFile(speedPath)
+	if err != nil {
+		return ""
+	}
+	return strings.Replace(string(contents),"\n","",-1)
 }
