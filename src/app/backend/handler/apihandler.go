@@ -15,10 +15,13 @@
 package handler
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	restful "github.com/emicklei/go-restful"
 	"github.com/kubernetes/dashboard/src/app/backend/api"
@@ -615,8 +618,579 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.GET("/overview/{namespace}").
 			To(apiHandler.handleOverview).
 			Writes(overview.Overview{}))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/storage/info").
+			To(apiHandler.handleGetStorageInfo))
+
+	apiV1Ws.Route(
+		apiV1Ws.GET("/userate").
+			To(apiHandler.handleUseRate))
+
+	apiV1Ws.Route(
+		apiV1Ws.GET("/baseinfo").
+			To(apiHandler.handleBaseInfo))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/baseinfo/{node}").
+			To(apiHandler.handleBaseInfoByNode))
 
 	return wsContainer, nil
+}
+
+//storage_info
+func (apiHandler *APIHandler) handleGetStorageInfo(request *restful.Request, response *restful.Response) {
+	var storageInfo = &StorageInfo{}
+	//storage_status
+	storageStatus, err := storageStatus()
+	if err != nil {
+		storageInfo.StorageStatus = 0
+	} else {
+		storageInfo.StorageStatus = storageStatus
+	}
+	//storage_use_rate
+	storageUseRate, err := storageUseRate()
+	if err != nil {
+		storageInfo.StorageUseRate = 0
+	} else {
+		storageInfo.StorageUseRate = storageUseRate
+	}
+	//storage_total
+	storageTotal, err := storageTotal()
+	if err != nil {
+		storageInfo.StorageTotal = 0
+	} else {
+		storageInfo.StorageTotal = storageTotal
+	}
+	//storage_available
+	storageAvailable, err := storageAvailable()
+	if err != nil {
+		storageInfo.StorageAvailable = 0
+	} else {
+		storageInfo.StorageAvailable = storageAvailable
+	}
+	//storage_used
+	storageUsed, err := storageUsed()
+	if err != nil {
+		storageInfo.StorageUsed = 0
+	} else {
+		storageInfo.StorageUsed = storageUsed
+	}
+
+	//storage_read_bytes
+	storageReaBytes, err := storageReadBytes()
+	if err != nil {
+		storageInfo.StorageUsed = 0
+	} else {
+		storageInfo.StorageReadBytes = storageReaBytes
+	}
+
+	//storage_read_ops
+	storageReadOps, err := storageReadOps()
+	if err != nil {
+		storageInfo.StorageReadOps = 0
+	} else {
+		storageInfo.StorageReadOps = storageReadOps
+	}
+
+	//storage_write_bytes
+	storageWriteBytes, err := storageWriteBytes()
+	if err != nil {
+		storageInfo.StorageWriteBytes = 0
+	} else {
+		storageInfo.StorageWriteBytes = storageWriteBytes
+	}
+
+	//storage_write_ops
+	storageWriteOps, err := storageWriteOps()
+	if err != nil {
+		storageInfo.StorageWriteOps = 0
+	} else {
+		storageInfo.StorageWriteOps = storageWriteOps
+	}
+
+	response.WriteHeaderAndEntity(http.StatusOK, storageInfo)
+}
+
+//storage_status
+func storageStatus() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=count(ceph_health_status)")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_use_rate
+func storageUseRate() (interface{}, error) {
+	var cephResp = &CephRespFloat{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_available_bytes/ceph_cluster_capacity_bytes")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_total
+func storageTotal() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_capacity_bytes")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_available
+func storageAvailable() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_available_bytes")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_used
+func storageUsed() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_used_bytes")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_read_bytes
+func storageReadBytes() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_read_bytes")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_read_ops
+func storageReadOps() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_read_ops")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_write_bytes
+func storageWriteBytes() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_write_bytes")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//storage_write_ops
+func storageWriteOps() (interface{}, error) {
+	var cephResp = &CephRespInt{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_write_ops")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//cpu_userate&memory_userate
+func (apiHandler *APIHandler) handleUseRate(equest *restful.Request, response *restful.Response) {
+	var useRateInfo = &UseRateInfo{}
+	//cpu
+	cpuUseRate, err := cpuUseRate()
+	if err != nil {
+		useRateInfo.CpuUseRate = 0
+	} else {
+		useRateInfo.CpuUseRate = cpuUseRate
+	}
+	//memory
+	memoryUserate, err := memoryUseRate()
+	if err != nil {
+		useRateInfo.MemoryUseRate = 0
+	} else {
+		useRateInfo.MemoryUseRate = memoryUserate
+	}
+	response.WriteHeaderAndEntity(http.StatusOK, useRateInfo)
+
+}
+
+//cpu_use_rate
+func cpuUseRate() (interface{}, error) {
+	var cephResp = &CephRespFloat{}
+	respData, err := http.Get(`http://prometheus.monitoring:9090/api/v1/query?query=sum(smart_cpu_seconds_total{mode!="idle"})/sum(smart_cpu_seconds_total)`)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//memory_userate
+func memoryUseRate() (interface{}, error) {
+	var cephResp = &CephRespFloat{}
+	respData, err := http.Get(`http://prometheus.monitoring:9090/api/v1/query?query=sum(smart_memory_MemFree_bytes)/sum(smart_memory_MemTotal_bytes)`)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return 0, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	err = json.Unmarshal(respBytes, cephResp)
+	if err != nil {
+		log.Println(err)
+		return 0, err
+	}
+	if cephResp != nil && cephResp.Status == "success" {
+		return cephResp.Data.Result[0].Value[1], nil
+	}
+	return 0, nil
+}
+
+//base Info
+func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response *restful.Response) {
+	var baseInfo = &BaseInfo{}
+	//cpu_info
+	t1 := time.Now().Add(-30 * time.Minute).Unix()
+	t2 := time.Now().Unix()
+	cpuResult, err := cpuInfo(t1, t2)
+	if err != nil {
+		baseInfo.Cpu = nil
+	} else {
+		baseInfo.Cpu = cpuResult
+	}
+
+	//memory_info
+	memoryResult, err := memoryInfo(t1, t2)
+	if err != nil {
+		baseInfo.Memory = nil
+	} else {
+		baseInfo.Memory = memoryResult
+	}
+
+	response.WriteHeaderAndEntity(http.StatusOK, baseInfo)
+}
+
+//cpu_info
+func cpuInfo(t1 int64, t2 int64) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	var cpuUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	log.Println(cpuUrl)
+	respData, err := http.Get(cpuUrl)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
+}
+
+//memory_info
+func memoryInfo(t1 int64, t2 int64) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=(smart_memory_MemTotal_bytes-smart_memory_MemFree_bytes)/smart_memory_MemTotal_bytes*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
+}
+
+//base Info
+func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, response *restful.Response) {
+	var baseInfo = &BaseInfo{}
+	//cpu_info
+	t1 := time.Now().Add(-30 * time.Minute).Unix()
+	t2 := time.Now().Unix()
+	node := request.PathParameter("node")
+	cpuResult, err := cpuInfoByNode(t1, t2, node)
+	if err != nil {
+		baseInfo.Cpu = nil
+	} else {
+		baseInfo.Cpu = cpuResult
+	}
+
+	//memory_info
+	memoryResult, err := memoryInfoByNode(t1, t2, node)
+	if err != nil {
+		baseInfo.Memory = nil
+	} else {
+		baseInfo.Memory = memoryResult
+	}
+	//	namespace := request.PathParameter("namespace")
+	response.WriteHeaderAndEntity(http.StatusOK, baseInfo)
+}
+
+//cpu_info_by_node
+func cpuInfoByNode(t1 int64, t2 int64, node string) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	var cpuUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	log.Println(cpuUrl)
+	respData, err := http.Get(cpuUrl)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	log.Println("cpubynode:", string(respBytes))
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
+}
+
+//memory_info_by_node
+func memoryInfoByNode(t1 int64, t2 int64, node string) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	var memoryUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=(smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}-smart_memory_MemFree_bytes{instance=" + `"` + node + `"` + "})/smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	log.Println(memoryUrl)
+	respData, err := http.Get(memoryUrl)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	log.Println("memorybynode:", string(respBytes))
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
 }
 
 // TODO: Handle case in which RBAC feature is not enabled in API server. Currently returns 404 resource not found
@@ -1125,7 +1699,7 @@ func (apiHandler *APIHandler) handleGetPanels(
 		return
 	}
 	namespace := parseNamespacePathParameter(request)
-	log.Println("namespace",namespace)
+	log.Println("namespace", namespace)
 	dataSelect := parseDataSelectPathParameter(request)
 	dataSelect.MetricQuery = dataselect.StandardMetrics
 	result, err := panel.GetPanels(k8sClient, dataSelect, apiHandler.iManager.Metric().Client())
