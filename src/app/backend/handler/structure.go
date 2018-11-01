@@ -23,6 +23,12 @@ type UseRateInfo struct {
 type BaseInfo struct {
 	Cpu    []ResultData `json:"cpu"`
 	Memory []ResultData `json:"memory"`
+	Net1000 []ResultData `json:"net1000"`
+	Net10000 []ResultData `json:"net10000"`
+	Rx1000 []ResultData `json:"rx1000"`
+	Rx10000 []ResultData `json:"rx10000"`
+	Tx1000 []ResultData `json:"tx1000"`
+	Tx10000 []ResultData `json:"tx10000"`
 }
 
 
@@ -72,10 +78,68 @@ type ResultData struct {
 	Values [][]interface{} `json:"values"`
 }
 
+
 type Metric struct {
 	Name     string `json:"__name__,omitempty"`
 	Alias    string `json:"alias",omitempty`
 	Cluster  string `json:"cluster,omitempty"`
 	Instance string `json:"instance,omitempty"`
 	Job      string `json:"job,omitempty"`
+	Feature interface{}  `json:"feature,omitempty"`
+	Model string   `json:"model,omitempty"`
+	NumCores interface{} `json:"numCores,omitempty"`
+	SupportedPageSizes interface{} `json:"supportedPageSizes,omitempty"`
+	TotalPhysicalBytes interface{} `json:"totalPhysicalBytes,omitempty"`
+	TotalUsableBytes interface{}   `json:"totalUsableBytes,omitempty"`
+	BusType         string `json:"busType,omitempty"`
+	Good            string `json:"good,omitempty"`
+	SectorSizeBytes string `json:"sectorSizeBytes,omitempty"`
+	SerialNumber    string `json:"serialNumber,omitempty"`
+	SizeBytes       string `json:"sizeBytes,omitempty"`
+	Type            string `json:"type,omitempty"`
+	Vendor          string `json:"vendor,omitempty"`
+	DiskName          string `json:"diskName,omitempty"`
+	Driver       string `json:"driver,omitempty"`
+	MacAddress   string `json:"macAddress,omitempty"`
+	// Model        string `json:"model,omitempty"`
+	NetName         string `json:"netName,omitempty"`
+
+}
+
+type NodeInfo struct {
+	BaseInfo BaseInfo `json:"baseinfo"`
+	CPU CPU           `json:"cpu"`
+	Memory MemoryInfo `json:"memory"`
+	Disk []DiskInfo     `json:"disk"`
+	Net []NetInfo       `json:"net"`
+}
+
+type CPU struct {
+	Feature interface{}  `json:"feature"`
+	Model interface{}   `json:"model"`
+	NumCores interface{} `json:"numCores"` 
+}
+
+type MemoryInfo struct {
+	SupportedPageSizes interface{} `json:"supportedPageSizes"`
+	TotalPhysicalBytes interface{} `json:"totalPhysicalBytes"`
+	TotalUsableBytes interface{}   `json:"totalUsableBytes"`
+}
+
+type DiskInfo struct {
+	BusType         string `json:"busType"`
+	Good            string `json:"good"`
+	SectorSizeBytes string `json:"sectorSizeBytes"`
+	SerialNumber    string `json:"serialNumber"`
+	SizeBytes       string `json:"sizeBytes"`
+	Type            string `json:"type"`
+	Vendor          string `json:"vendor"`
+	Name          string `json:"name"`
+}
+
+type NetInfo struct {
+	Driver       string `json:"driver"`
+	MacAddress   string `json:"macAddress"`
+	Model        string `json:"model"`
+	Name         string `json:"name"`
 }

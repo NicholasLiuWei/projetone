@@ -24,6 +24,7 @@ import (
 	"time"
 
 	restful "github.com/emicklei/go-restful"
+	"github.com/ghw"
 	"github.com/kubernetes/dashboard/src/app/backend/api"
 	"github.com/kubernetes/dashboard/src/app/backend/auth"
 	authApi "github.com/kubernetes/dashboard/src/app/backend/auth/api"
@@ -1049,6 +1050,30 @@ func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response 
 		baseInfo.Memory = memoryResult
 	}
 
+	err, qianStr, wanStr := netName()
+	if err != nil {
+		baseInfo.Net1000 = nil
+		baseInfo.Net10000 = nil
+		log.Println("get net name error : ", err)
+	}else{
+		netResult, err := networkInfo(t1, t2, qianStr)
+		log.Println("get Net1000 error : ",qianStr)
+		if err != nil {
+			baseInfo.Net1000 = nil
+			log.Println("get Net1000 error : ",err)
+		}else{
+			baseInfo.Net1000 = netResult
+		}
+		netResult, err = networkInfo(t1, t2, wanStr)
+		log.Println("get Net1000 error : ",wanStr)
+		if err != nil {
+			baseInfo.Net10000 = nil
+			log.Println("get Net10000 error : ",netResult)
+		}else{
+			baseInfo.Net10000 = netResult
+		}
+	}
+
 	response.WriteHeaderAndEntity(http.StatusOK, baseInfo)
 }
 
@@ -1056,7 +1081,7 @@ func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response 
 func cpuInfo(t1 int64, t2 int64) ([]ResultData, error) {
 	var rangeResp = &RangeResp{}
 	var cpuUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-	log.Println(cpuUrl)
+	// log.Println(cpuUrl)
 	respData, err := http.Get(cpuUrl)
 	if respData != nil {
 		defer respData.Body.Close()
@@ -1108,36 +1133,291 @@ func memoryInfo(t1 int64, t2 int64) ([]ResultData, error) {
 	return nil, nil
 }
 
+//net name
+func netName() (error, string, string){
+	qianNet := ""
+	wanNet := ""
+	nics, err := ghw.Network()
+	if err != nil {
+		return err, "", ""
+	}
+	for _ , net := range nics.NICs{
+		if net.Speed == "10000" {
+			if wanNet ==""{
+				wanNet = wanNet + net.Name
+			}else{
+				wanNet = wanNet + "|" + net.Name
+			}
+		}else{
+			if qianNet ==""{
+				qianNet = qianNet + net.Name
+			}else{
+				qianNet = qianNet + "|" + net.Name
+			}
+		}
+	}
+	return nil, qianNet, wanNet
+}
+
+//networ_info
+func networkInfo(t1 int64, t2 int64, netType string) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` +"}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
+	// respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
+	// log.Println("http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	log.Println(string(respBytes))
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	log.Println(rangeResp.Status)
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
+}
+
+//networ_info
+func networkInfoByNode(t1 int64, t2 int64, url string, node string) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	respData, err := http.Get(url)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	log.Println(string(respBytes))
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
+}
+
 //base Info
 func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, response *restful.Response) {
-	var baseInfo = &BaseInfo{}
+	var nodeInfo = &NodeInfo{}
 	//cpu_info
 	t1 := time.Now().Add(-30 * time.Minute).Unix()
 	t2 := time.Now().Unix()
 	node := request.PathParameter("node")
 	cpuResult, err := cpuInfoByNode(t1, t2, node)
 	if err != nil {
-		baseInfo.Cpu = nil
+		nodeInfo.BaseInfo.Cpu = nil
 	} else {
-		baseInfo.Cpu = cpuResult
+		nodeInfo.BaseInfo.Cpu = cpuResult
 	}
 
 	//memory_info
 	memoryResult, err := memoryInfoByNode(t1, t2, node)
 	if err != nil {
-		baseInfo.Memory = nil
+		nodeInfo.BaseInfo.Memory = nil
 	} else {
-		baseInfo.Memory = memoryResult
+		nodeInfo.BaseInfo.Memory = memoryResult
+	}
+
+	//network-info 
+	err, qianStr, wanStr := netName()
+	if err != nil {
+		nodeInfo.BaseInfo.Rx1000 = nil
+		nodeInfo.BaseInfo.Rx10000 = nil
+		nodeInfo.BaseInfo.Tx1000 = nil
+		nodeInfo.BaseInfo.Tx10000 = nil
+		log.Println("get net name error : ", err)
+	}else{
+		url := "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{device=~" + `"` + qianStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+		netResult, err := networkInfoByNode(t1, t2, url, node)
+		log.Println(netResult)
+		log.Println("rx1000",netResult)
+		if err != nil {
+			nodeInfo.BaseInfo.Rx1000 = nil
+			log.Println("Rx1000", err)
+		}else{
+			nodeInfo.BaseInfo.Rx1000 = netResult
+		}
+		url = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{device=~" + `"` + wanStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+		netResult, err = networkInfoByNode(t1, t2, url, node)
+		log.Println(netResult)
+		if err != nil {
+			nodeInfo.BaseInfo.Rx10000 = nil
+			log.Println("Rx10000", err)
+		}else{
+			nodeInfo.BaseInfo.Rx10000 = netResult
+		}
+		url = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{device=~" + `"` + qianStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+		netResult, err = networkInfoByNode(t1, t2, url, node)
+		log.Println(netResult)
+		if err != nil {
+			nodeInfo.BaseInfo.Tx1000 = nil
+			log.Println("Tx1000", err)
+		}else{
+			nodeInfo.BaseInfo.Tx1000 = netResult
+		}
+		url = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{device=~" + `"` + wanStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+		netResult, err = networkInfoByNode(t1, t2, url, node)
+		log.Println(netResult)
+		if err != nil {
+			nodeInfo.BaseInfo.Tx1000 = nil
+			log.Println("Tx10000", err)
+		}else{
+			nodeInfo.BaseInfo.Tx10000 = netResult
+		}
+	}
+
+	//node cpu info 
+	url := "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_cpu_info{instance=" + `"` + node + `"` +"}"
+	cpuinfo ,err := nodeInfos(url)
+	log.Println(json.Marshal(cpuinfo))
+	if err != nil {
+		log.Println("node cpu info err : ", err)
+		nodeInfo.CPU.Feature = ""
+		nodeInfo.CPU.Model = ""
+		nodeInfo.CPU.NumCores = ""
+	}else{
+		if len(cpuinfo) == 0{
+			nodeInfo.CPU.Feature = ""
+			nodeInfo.CPU.Model = ""
+			nodeInfo.CPU.NumCores = ""
+		}else{
+			nodeInfo.CPU.Feature = cpuinfo[0].Metric.Feature
+			nodeInfo.CPU.Model = cpuinfo[0].Metric.Model
+			nodeInfo.CPU.NumCores = cpuinfo[0].Metric.NumCores
+		}
+	}
+
+	//node memory info 
+	url = "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_memory_info{instance=" + `"` + node + `"` +"}"
+	memoryinfo ,err := nodeInfos(url)
+	hehe ,_ := json.Marshal(memoryinfo)
+	log.Println(string(hehe))
+	if err != nil {
+		log.Println("node memory info err : ", err)
+		nodeInfo.Memory.SupportedPageSizes = ""
+		nodeInfo.Memory.TotalPhysicalBytes = ""
+		nodeInfo.Memory.TotalUsableBytes = ""
+		log.Println(memoryinfo[0].Metric.SupportedPageSizes)
+		log.Println(len(memoryinfo))
+	}else{
+		if len(memoryinfo) == 0 {
+			nodeInfo.Memory.SupportedPageSizes = ""
+			nodeInfo.Memory.TotalPhysicalBytes = ""
+			nodeInfo.Memory.TotalUsableBytes = ""
+		}else{
+			nodeInfo.Memory.SupportedPageSizes = memoryinfo[0].Metric.SupportedPageSizes
+			nodeInfo.Memory.TotalPhysicalBytes = memoryinfo[0].Metric.TotalPhysicalBytes
+			nodeInfo.Memory.TotalUsableBytes = memoryinfo[0].Metric.TotalUsableBytes
+		}
+	}
+
+	//node disk info 
+	url = "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_disk_info{instance=" + `"` + node + `"` +"}"
+	diskinfo ,err := nodeInfos(url)
+	log.Println(json.Marshal(diskinfo))
+	if err != nil {
+		log.Println("node disk info err : ", err)
+		nodeInfo.Disk = nil
+	}else{
+		if len(diskinfo) == 0 {
+			nodeInfo.Disk = nil
+		}else{
+			d := make([]DiskInfo,len(diskinfo),len(diskinfo))
+			for i, disk := range diskinfo {
+				d[i].BusType = disk.Metric.BusType
+				d[i].Good = disk.Metric.Good
+				d[i].SectorSizeBytes = disk.Metric.SectorSizeBytes
+				d[i].SerialNumber = disk.Metric.SerialNumber
+				d[i].SizeBytes = disk.Metric.SizeBytes
+				d[i].Type = disk.Metric.Type
+				d[i].Vendor = disk.Metric.Vendor
+				d[i].Name = disk.Metric.DiskName
+			}
+			nodeInfo.Disk = d
+		}
+	}
+
+	//node net info 
+	url = "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_network_info{instance=" + `"` + node + `"` +"}"
+	netinfo ,err := nodeInfos(url)
+	a ,_ := json.Marshal(netinfo)
+	log.Println(string(a))
+	if err != nil {
+		log.Println("node net info err : ", err)
+		nodeInfo.Net = nil
+	}else{
+		if len(netinfo) == 0 {
+			nodeInfo.Net = nil
+		}else{
+			d := make([]NetInfo,len(netinfo),len(netinfo))
+			for i, _ := range netinfo {
+				d[i].Driver = netinfo[i].Metric.Driver
+				d[i].MacAddress = netinfo[i].Metric.MacAddress
+				d[i].Model = netinfo[i].Metric.Model
+				d[i].Name = netinfo[i].Metric.NetName
+			}
+			nodeInfo.Net = d
+		}
 	}
 	//	namespace := request.PathParameter("namespace")
-	response.WriteHeaderAndEntity(http.StatusOK, baseInfo)
+	response.WriteHeaderAndEntity(http.StatusOK, nodeInfo)
+}
+
+//node info 
+func nodeInfos (str string) ([]ResultData, error) {
+	var rangeResp = &RangeResp{}
+	respData, err := http.Get(str)
+	if respData != nil {
+		defer respData.Body.Close()
+	}
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
+	respBytes, err := ioutil.ReadAll(respData.Body)
+	// log.Println("cpubynode:", string(respBytes))
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	err = json.Unmarshal(respBytes, rangeResp)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	if rangeResp != nil && rangeResp.Status == "success" {
+		return rangeResp.Data.Result, nil
+	}
+	return nil, nil
 }
 
 //cpu_info_by_node
 func cpuInfoByNode(t1 int64, t2 int64, node string) ([]ResultData, error) {
 	var rangeResp = &RangeResp{}
 	var cpuUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-	log.Println(cpuUrl)
+	// log.Println(cpuUrl)
 	respData, err := http.Get(cpuUrl)
 	if respData != nil {
 		defer respData.Body.Close()
@@ -1147,7 +1427,7 @@ func cpuInfoByNode(t1 int64, t2 int64, node string) ([]ResultData, error) {
 		return nil, err
 	}
 	respBytes, err := ioutil.ReadAll(respData.Body)
-	log.Println("cpubynode:", string(respBytes))
+	// log.Println("cpubynode:", string(respBytes))
 	if err != nil {
 		log.Println(err)
 		return nil, err
@@ -1177,7 +1457,7 @@ func memoryInfoByNode(t1 int64, t2 int64, node string) ([]ResultData, error) {
 		return nil, err
 	}
 	respBytes, err := ioutil.ReadAll(respData.Body)
-	log.Println("memorybynode:", string(respBytes))
+	// log.Println("memorybynode:", string(respBytes))
 	if err != nil {
 		log.Println(err)
 		return nil, err
