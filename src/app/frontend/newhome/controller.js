@@ -12,7 +12,7 @@ export class homeController {
      * @param {!angular.$timeout} $timeout
      * @ngInject
      */
-    constructor($interval, $rootScope, kdFsmonResource, kdPanelResource, kdReleaseResource, $mdDialog, kdNamespaceService, kdPaginationService, $timeout, $filter, $scope, $resource) {
+    constructor($interval, $rootScope, kdCephResource, kdFsmonResource, kdPanelResource, kdReleaseResource, $mdDialog, kdNamespaceService, kdPaginationService, $timeout, $filter, $scope, $resource) {
             /** @private {!angular.Scope} */
             this.scope_ = $scope;
             /** @export {!angular.Scope}*/
@@ -31,6 +31,7 @@ export class homeController {
             this.kdFsmonResource = kdFsmonResource;
             this.kdPanelResource = kdPanelResource;
             this.kdReleaseResource = kdReleaseResource;
+            this.kdCephResource = kdCephResource;
             this.resource_ = $resource;
             /** @export */
             $rootScope.alertsnum = 0;
@@ -140,15 +141,15 @@ export class homeController {
          * 计算CPU,内存利用率
          */
     countRate(data) {
-            let cpuusage = 0;
-            let memusage = 0;
-            for (let i = 0; i < data["MonMAry"].length; i++) {
-                cpuusage += data["MonMAry"][i]["CpuMem"]["Cpu"]["Id"] - 0;
-                memusage += data["MonMAry"][i]["CpuMem"]["Mem"]["Used"] / data["MonMAry"][i]["CpuMem"]["Mem"]["Total"];
-            }
-            cpuusage = 100 - cpuusage / data["MonMAry"].length;
+            let cpuusage = (data["cpuUseRate"] - 0) * 100;
+            let memusage = 100 - (data["memoryUseRate"] - 0) * 100;
+            // for (let i = 0; i < data["MonMAry"].length; i++) {
+            //     cpuusage += data["MonMAry"][i]["CpuMem"]["Cpu"]["Id"] - 0;
+            //     memusage += data["MonMAry"][i]["CpuMem"]["Mem"]["Used"] / data["MonMAry"][i]["CpuMem"]["Mem"]["Total"];
+            // }
+            // cpuusage = 100 - cpuusage / data["MonMAry"].length;
             cpuusage = cpuusage.toFixed(1);
-            memusage = 100 * memusage / data["MonMAry"].length;
+            // memusage = 100 * memusage / data["MonMAry"].length;
             memusage = memusage.toFixed(1);
             return [cpuusage, memusage];
         }
@@ -200,12 +201,16 @@ export class homeController {
                     }],
                     "globalCoord": false, // 缺省为 false
                 }];
-                //循环取CPU 内存 网络数据
-                for (let i = 0; i < this.panelMes["metrics"]["MetricsList"].length; i++) {
-                    //CPU
+                //CPU 内存 网络数据
+                // for (let i = 0; i < this.panelMes["metrics"]["MetricsList"].length; i++) {
+                //CPU
+                for (let i = 0; i < this.panelMes["cpu"].length; i++) {
+                    // if(this.panelMes["cpu"][i]["metric"]["instance"]!=""){}
                     cpuoption["series"][i] = {
-                        "name": this.panelMes["metrics"]["MetricsList"][i]["Name"],
-                        "data": this.panelMes["metrics"]["MetricsList"][i]["Cpu"],
+                        "name": this.panelMes["cpu"][i]["metric"]["instance"],
+                        "data": this.panelMes["cpu"][i]["values"].map(function(item) {
+                            return [item[0] * 1000, (100 * (item[1] - 0)).toFixed(3)];
+                        }),
                         "type": 'line',
                         "z": i,
                         "showSymbol": false,
@@ -217,10 +222,14 @@ export class homeController {
                             "color": colors[i % 3],
                         },
                     };
-                    //内存
+                }
+                //内存
+                for (let i = 0; i < this.panelMes["memory"].length; i++) {
                     memoption["series"][i] = {
-                        "name": this.panelMes["metrics"]["MetricsList"][i]["Name"],
-                        "data": this.panelMes["metrics"]["MetricsList"][i]["Mem"],
+                        "name": this.panelMes["memory"][i]["metric"]["instance"],
+                        "data": this.panelMes["memory"][i]["values"].map(function(item) {
+                            return [item[0] * 1000, (item[1] - 0).toFixed(3)];
+                        }),
                         "type": 'line',
                         "z": i,
                         "showSymbol": false,
@@ -232,10 +241,14 @@ export class homeController {
                             "color": colors[i % 3],
                         },
                     };
-                    //千兆网卡
+                }
+                //千兆网卡
+                for (let i = 0; i < this.panelMes["net1000"].length; i++) {
                     qianoption["series"][i] = {
-                        "name": this.panelMes["metrics"]["MetricsList"][i]["Name"],
-                        "data": this.panelMes["metrics"]["MetricsList"][i]["Rx1000"],
+                        "name": this.panelMes["net1000"][i]["metric"]["instance"],
+                        "data": this.panelMes["net1000"][i]["values"].map(function(item) {
+                            return [item[0] * 1000, item[1]];
+                        }),
                         "type": 'line',
                         "z": i,
                         "showSymbol": false,
@@ -247,10 +260,14 @@ export class homeController {
                             "color": colors[i % 3],
                         },
                     };
-                    //万兆网卡
+                }
+                //万兆网卡
+                for (let i = 0; i < this.panelMes["net10000"].length; i++) {
                     wanoption["series"][i] = {
-                        "name": this.panelMes["metrics"]["MetricsList"][i]["Name"],
-                        "data": this.panelMes["metrics"]["MetricsList"][i]["Rx10000"],
+                        "name": this.panelMes["net10000"][i]["metric"]["instance"],
+                        "data": this.panelMes["net10000"][i]["values"].map(function(item) {
+                            return [item[0] * 1000, item[1]];
+                        }),
                         "type": 'line',
                         "z": i,
                         "showSymbol": false,
@@ -489,17 +506,28 @@ export class homeController {
             let send = this.echarts["init"](this.$('.send_rate').get(0));
             //实时获取数据
             let interreq = this.interval_(() => {
-                //存储
+                //CPU，内存利用率
                 this.kdFsmonResource.get().$promise.then((data) => {
+                    // this.fsmonMes = data;
+                    // fsusage = this.fsmonMes["MonMAry"][0]["CephIn"]["Stat"]["Kb_used"] / this.fsmonMes["MonMAry"][0]["CephIn"]["Stat"]["Kb"] * 100;
+                    // fsusage = fsusage.toFixed(1);
+                    // option1['series'][0]['data'][0]['value'] = fsusage;
+                    // option1['series'][0]['data'][1]['value'] = 100 - fsusage;
+                    // option1['series'][1]['data'][0]['value'] = fsusage;
+                    // option1['series'][1]['data'][1]['value'] = 100 - fsusage;
+                    // tu1["setOption"](option1);
+                    this.cmRate = this.countRate(data);
+                }, () => {});
+                //存储
+                this.kdCephResource.get().$promise.then((data) => {
                     this.fsmonMes = data;
-                    fsusage = this.fsmonMes["MonMAry"][0]["CephIn"]["Stat"]["Kb_used"] / this.fsmonMes["MonMAry"][0]["CephIn"]["Stat"]["Kb"] * 100;
+                    fsusage = this.fsmonMes["storageUsed"] / this.fsmonMes["storageTotal"] * 100;
                     fsusage = fsusage.toFixed(1);
                     option1['series'][0]['data'][0]['value'] = fsusage;
                     option1['series'][0]['data'][1]['value'] = 100 - fsusage;
                     option1['series'][1]['data'][0]['value'] = fsusage;
                     option1['series'][1]['data'][1]['value'] = 100 - fsusage;
                     tu1["setOption"](option1);
-                    this.cmRate = this.countRate(this.fsmonMes);
                 }, () => {});
                 //CPU 内存  网络
                 this.kdPanelResource.get().$promise.then((data) => {
@@ -654,17 +682,20 @@ export class homeController {
             };
             //echarts 存储画图
             let tu1 = this.echarts["init"](this.$('.storageusetu').get(0));
-            //存储
+            //CPU,内存使用率
             this.kdFsmonResource.get().$promise.then((data) => {
+                this.cmRate = this.countRate(data);
+            }, () => {});
+            //存储
+            this.kdCephResource.get().$promise.then((data) => {
                 this.fsmonMes = data;
-                fsusage = this.fsmonMes["MonMAry"][0]["CephIn"]["Stat"]["Kb_used"] / this.fsmonMes["MonMAry"][0]["CephIn"]["Stat"]["Kb"] * 100;
+                fsusage = this.fsmonMes["storageUsed"] / this.fsmonMes["storageTotal"] * 100;
                 fsusage = fsusage.toFixed(1);
                 option1['series'][0]['data'][0]['value'] = fsusage;
                 option1['series'][0]['data'][1]['value'] = 100 - fsusage;
                 option1['series'][1]['data'][0]['value'] = fsusage;
                 option1['series'][1]['data'][1]['value'] = 100 - fsusage;
                 tu1["setOption"](option1);
-                this.cmRate = this.countRate(this.fsmonMes);
             }, () => {});
             //CPU 内存  网络
             this.kdPanelResource.get().$promise.then((data) => {

@@ -57,16 +57,16 @@
     <div class="net basebox">
         <div class="restitle">
             [[集群存储|newhome Cluster storage]]
-            <span class="storageGoodStatus" ng-if="$ctrl.fsmonMes.MonMAry[0].CephIn.Health=='HEALTH_OK'">
+            <span class="storageGoodStatus" ng-if="$ctrl.fsmonMes.storageStatus=='1'">
                     [[正常 |newhome normal]]
             </span>
 
-            <span class="storageWarnStatus" ng-if="$ctrl.fsmonMes.MonMAry[0].CephIn.Health=='HEALTH_WARN'">
+            <span class="storageWarnStatus" ng-if="$ctrl.fsmonMes.storageStatus=='HEALTH_WARN'">
                 [[告警| newhome warn]]
                 <md-tooltip>[[30分钟以上未自行恢复，请立即联系厂商解决|]]</md-tooltip>
             </span>
 
-            <span class="storageWrongStatus" ng-if="$ctrl.fsmonMes.MonMAry[0].CephIn.Health=='HEALTH_ERR'">
+            <span class="storageWrongStatus" ng-if="$ctrl.fsmonMes.storageStatus=='0'">
                     [[异常|newhome abnormal]]
                     <md-tooltip>[[存储集群已经不可用，请立即联系厂商解决|]]</md-tooltip>
             </span>
@@ -76,11 +76,11 @@
                 <div class="storageusetu"></div>
                 <div class="storagedesc" layout="row" layout-align="space-around">
                     <div>[[已使用:| newhome Used:]]</div>
-                    <div>{{$ctrl.fsmonMes.MonMAry[0].CephIn.Stat.Kb_used*1000 | kdMemory}}</div>
+                    <div>{{$ctrl.fsmonMes.storageUsed | kdMemory}}</div>
                     <div>[[可用:|newhome Available:]]</div>
-                    <div>{{$ctrl.fsmonMes.MonMAry[0].CephIn.Stat.Kb_avail*1000 | kdMemory}}</div>
+                    <div>{{$ctrl.fsmonMes.storageAvailable | kdMemory}}</div>
                     <div>[[总共:|newhome Total:]]</div>
-                    <div>{{$ctrl.fsmonMes.MonMAry[0].CephIn.Stat.Kb*1000 | kdMemory}}</div>
+                    <div>{{$ctrl.fsmonMes.storageTotal | kdMemory}}</div>
                 </div>
             </div>
             <div class="storageright">
@@ -88,18 +88,18 @@
                     <div class="storate">[[写入|newhoem Write]]</div>
                     <div class="rateitem">
                         <span>
-                            {{($ctrl.fsmonMes.MonMAry[0].CephIn.WrRate | kdMemory)==0?'0':($ctrl.fsmonMes.MonMAry[0].CephIn.WrRate | kdMemory).substr(0,($ctrl.fsmonMes.MonMAry[0].CephIn.WrRate | kdMemory).length-2)}}
-                        </span> {{($ctrl.fsmonMes.MonMAry[0].CephIn.WrRate | kdMemory)==0?'kb':($ctrl.fsmonMes.MonMAry[0].CephIn.WrRate | kdMemory).substr(-2)}}/s
+                            {{($ctrl.fsmonMes.storageWriteBytes | kdMemory)==0?'0':($ctrl.fsmonMes.storageWriteBytes | kdMemory).substr(0,($ctrl.fsmonMes.storageWriteBytes | kdMemory).length-2)}}
+                        </span> {{($ctrl.fsmonMes.storageWriteBytes | kdMemory)==0?'kb':($ctrl.fsmonMes.storageWriteBytes | kdMemory).substr(-2)}}/s
                     </div>
-                    <div class="rateitem"><span>{{$ctrl.fsmonMes.MonMAry[0].CephIn.WrOp}}</span>op/s</div>
+                    <div class="rateitem"><span>{{$ctrl.fsmonMes.storageWriteOps}}</span>op/s</div>
                 </div>
                 <div class="wsto">
                     <div class="storate">[[读取| newhome Read]]</div>
                     <div class="rateitem">
                         <span>
-                            {{($ctrl.fsmonMes.MonMAry[0].CephIn.RdRate | kdMemory)==0?'0':($ctrl.fsmonMes.MonMAry[0].CephIn.RdRate | kdMemory).substr(0,($ctrl.fsmonMes.MonMAry[0].CephIn.RdRate | kdMemory).length-2)}}
-                        </span> {{($ctrl.fsmonMes.MonMAry[0].CephIn.RdRate | kdMemory)==0?'kb':($ctrl.fsmonMes.MonMAry[0].CephIn.RdRate | kdMemory).substr(-2)}}/s</div>
-                    <div class="rateitem"><span>{{$ctrl.fsmonMes.MonMAry[0].CephIn.RdOp}}</span>op/s</div>
+                            {{($ctrl.fsmonMes.storageReadBytes | kdMemory)==0?'0':($ctrl.fsmonMes.storageReadBytes | kdMemory).substr(0,($ctrl.fsmonMes.storageReadBytes | kdMemory).length-2)}}
+                        </span> {{($ctrl.fsmonMes.storageReadBytes | kdMemory)==0?'kb':($ctrl.fsmonMes.storageReadBytes | kdMemory).substr(-2)}}/s</div>
+                    <div class="rateitem"><span>{{$ctrl.fsmonMes.storageReadOps}}</span>op/s</div>
                 </div>
             </div>
         </div>
