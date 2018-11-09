@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * @fileoverview App config structure. Should only be used if you know what you're doing.
- *
- * @externs
- */
+// /**
+//  * @fileoverview App config structure. Should only be used if you know what you're doing.
+//  *
+//  * @externs
+//  */
 
-const appConfig_DO_NOT_USE_DIRECTLY = {};
+// const appConfig_DO_NOT_USE_DIRECTLY = {};
 
-/**
- * @typedef {{
- *   serverTime: number,
- * }}
- */
-appConfig_DO_NOT_USE_DIRECTLY.config;
+// /**
+//  * @typedef {{
+//  *   serverTime: number,
+//  * }}
+//  */
+// appConfig_DO_NOT_USE_DIRECTLY.config;

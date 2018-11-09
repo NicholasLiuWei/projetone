@@ -91,7 +91,7 @@ export class PasswordController {
                         };
                         /** @type {string} @desc 密码修改成功 Change Password OK*/
                         let MSG_change_passwd_good = goog.getMsg('密码修改成功');
-                        this.toastr.success(MSG_change_passwd_good, 0, {
+                        this.toastr["success"](MSG_change_passwd_good, 0, {
                             closeButton: true,
                             timeOut: 10000
                         });

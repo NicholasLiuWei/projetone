@@ -20,6 +20,7 @@ export default angular
     .service('kdNamespaceService1', NamespaceService)
     .factory('kdPanelResource', panelResource)
     .factory('kdFsmonResource', fsmonResource)
+    .factory('kdCephResource', cephResource)
     .factory('kdReleaseResource', releaseResource);
 
 /**
@@ -28,7 +29,15 @@ export default angular
  * @ngInject
  */
 function panelResource($resource) {
-    return $resource('api/v1/panel/:namespace');
+    return $resource('api/v1/baseinfo');
+}
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function cephResource($resource) {
+    return $resource('/api/v1/storage/info');
 }
 /**
  * @param {!angular.$resource} $resource
@@ -36,7 +45,7 @@ function panelResource($resource) {
  * @ngInject
  */
 function fsmonResource($resource) {
-    return $resource('fsmon');
+    return $resource('api/v1/userate');
 }
 /**
  * @param {!angular.$resource} $resource

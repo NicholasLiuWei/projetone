@@ -118,7 +118,7 @@ gulp.task('sort-translations', ['remove-duplicated-translations'], function() {
 
 /**
  * Task to remove duplicated translations (should remove old translations from XTB when entries are
- * updated in source code). It has to be runned before 'sort-translations' as original translation
+ * updated in source code). It has to be ran before 'sort-translations' as original translation
  * order is required.
  */
 gulp.task('remove-duplicated-translations', ['extract-translations'], function() {
@@ -136,7 +136,6 @@ gulp.task('find-translations-used-in-js', function() {
     return gulp.src(jsSource).pipe(freplace(/MSG_\w*/g, function(match) {
         // Mark every message found in JavaScript files as used, it will allow deletion of unused
         // messages afterwards.
-        console.log(match);
         translationsManager.addUsed(match);
     }));
 });
@@ -213,7 +212,7 @@ export let translationsManager = (function() {
 // Regex to match [[Foo | Bar]] or [[Foo]] i18n placeholders.
 // Technical details:
 // * First capturing group is lazy math for any string not-containing |. This is to make
-//   both [[ message | desription ]] and [[ message ]] work.
+//   both [[ message | description ]] and [[ message ]] work.
 // * Second is non-capturing and optional. It has a capturing group inside. This is to
 //   extract description that is optional.
 const I18N_REGEX = /\[\[([^|]*?)(?:\|(.*?))?\]\]/g;
@@ -233,7 +232,6 @@ export function processI18nMessages(file, minifiedHtml) {
      */
     function findI18nMessages(htmlContent) {
         let matches = htmlContent.match(I18N_REGEX);
-        // console.log(matches);
         if (matches) {
             return matches.map((match) => {
                 let exec = regexpClone(I18N_REGEX).exec(match);
@@ -284,7 +282,6 @@ export function processI18nMessages(file, minifiedHtml) {
         // Mark every message found in this HTML file as used, it will allow deletion of unused messages
         // afterwards.
         translationsManager.addUsed(message.varName);
-        // console.log(message.test, messsage.varName);
     });
 
     let messageVariables = i18nMessages.map((message) => {

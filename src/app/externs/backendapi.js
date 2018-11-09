@@ -1388,7 +1388,7 @@ backendApi.Release;
  *      releases: !Array<!backendApi.Release>,
  *       listMeta: !backendApi.ListMeta,
  *      }}
- */      
+ */
 backendApi.ReleaseList;
 
 /**
@@ -1409,5 +1409,16 @@ backendApi.ChartList;
  **/
 backendApi.Chart;
 
-/** @typedef {{serverTime: number}} */
+/**
+ * @typedef {{
+ *   serverTime: number,
+ * }}
+ */
 const appConfig_DO_NOT_USE_DIRECTLY = {};
+
+// /**
+//  * @typedef {{
+//  *   serverTime: number,
+//  * }}
+//  */
+// appConfig_DO_NOT_USE_DIRECTLY.config;

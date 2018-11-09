@@ -77,16 +77,21 @@ export default class NodeCardController {
          * @export
          */
     request() {
-            console.log(this);
-            let tubiao = this.resource_("api/v1/panel");
+            // console.log(this);
+            let tubiao = this.resource_(`api/v1/baseinfo/${this.node.objectMeta.name}`);
             tubiao.get().$promise.then(function(data) {
                 this.rootScope_.loading = false;
-                let which = 0;
-                for (let i = 0; i < data["metrics"]["MetricsList"].length; i++) {
-                    if (data["metrics"]["MetricsList"][i]["Name"] === this.node.objectMeta.name) {
-                        which = i;
-                    }
+                // let which = 0;
+                // for (let i = 0; i < data["metrics"]["MetricsList"].length; i++) {
+                //     if (data["metrics"]["MetricsList"][i]["Name"] === this.node.objectMeta.name) {
+                //         which = i;
+                //     }
+                // }
+                this.rootScope_.nodedetail['detail'] = JSON.parse(JSON.stringify(data));
+                if (this.rootScope_.nodedetail['detail']['baseinfo']) {
+                    delete this.rootScope_.nodedetail['detail']['baseinfo']
                 }
+                // console.log(data);
                 window.onresize = function() {
                     cpuuse["resize"]();
                     memuse["resize"]();
@@ -167,8 +172,10 @@ export default class NodeCardController {
                         "max": 100,
                     },
                     "series": [{
-                        "name": data["metrics"]["MetricsList"][which]["Name"],
-                        "data": data["metrics"]["MetricsList"][which]["Cpu"],
+                        "name": data["baseinfo"]["cpu"][0]["metric"]["name"],
+                        "data": data["baseinfo"]["cpu"][0]["values"].map(function(item) {
+                            return [item[0] * 1000, (100 * (item[1] - 0)).toFixed(3)];
+                        }),
                         "showSymbol": false,
                         "type": 'line',
                         "smooth": true,
@@ -259,8 +266,10 @@ export default class NodeCardController {
                         "max": 100,
                     },
                     "series": [{
-                        "name": data["metrics"]["MetricsList"][which]["Name"],
-                        "data": data["metrics"]["MetricsList"][which]["Mem"],
+                        "name": data["baseinfo"]["memory"][0]["metric"]["name"],
+                        "data": data["baseinfo"]["memory"][0]["values"].map(function(item) {
+                            return [item[0] * 1000, (item[1] - 0).toFixed(3)];
+                        }),
                         "showSymbol": false,
                         "type": 'line',
                         "smooth": true,
@@ -359,7 +368,9 @@ export default class NodeCardController {
                             "name": this.i18n.MSG_nodecard_qianzhao_fasong,
                             "z": 2,
                             "showSymbol": false,
-                            "data": data["metrics"]["MetricsList"][which]["Tx1000"],
+                            "data": data["baseinfo"]["tx1000"]["length"] == 0 ? [] : data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
+                                return [item[0] * 1000, item[1]]
+                            }),
                             "type": 'line',
                             "smooth": true,
                             "lineStyle": {
@@ -371,7 +382,9 @@ export default class NodeCardController {
                             "name": this.i18n.MSG_nodecard_qianzhao_receive,
                             "z": 1,
                             "showSymbol": false,
-                            "data": data["metrics"]["MetricsList"][which]["Rx1000"],
+                            "data": data["baseinfo"]["rx1000"]["length"] == 0 ? [] : data["baseinfo"]["rx1000"][0]["values"].map(function(item) {
+                                return [item[0] * 1000, item[1]]
+                            }),
                             "type": 'line',
                             "smooth": true,
                             "lineStyle": {
@@ -383,7 +396,11 @@ export default class NodeCardController {
                             "name": this.i18n.MSG_nodecard_wan_fasong,
                             "z": 4,
                             "showSymbol": false,
-                            "data": data["metrics"]["MetricsList"][which]["Tx10000"],
+                            "data": data["baseinfo"]["tx10000"]["length"] == 0 ? data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
+                                return [item[0] * 1000, 0]
+                            }) : data["baseinfo"]["tx10000"][0]["values"].map(function(item) {
+                                return [item[0] * 1000, item[1]]
+                            }),
                             "type": 'line',
                             "smooth": true,
                             "lineStyle": {
@@ -395,7 +412,11 @@ export default class NodeCardController {
                             "name": this.i18n.MSG_nodecard_wan_receive,
                             "z": 3,
                             "showSymbol": false,
-                            "data": data["metrics"]["MetricsList"][which]["Rx10000"],
+                            "data": data["baseinfo"]["rx10000"]["length"] == 0 ? data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
+                                return [item[0] * 1000, 0]
+                            }) : data["baseinfo"]["rx10000"][0]["values"].map(function(item) {
+                                return [item[0] * 1000, item[1]]
+                            }),
                             "type": 'line',
                             "smooth": true,
                             "lineStyle": {
@@ -415,18 +436,18 @@ export default class NodeCardController {
                 }
                 alert(this.i18n.MSG_nodecard_request_ERROE);
             }.bind(this));
-            let resource = this.resource_("gethw?host=" + this.node.externalID);
-            resource.get().$promise.then(function(data) {
-                this.rootScope_.nodedetail['detail'] = data;
-                this.rootScope_.loading = false;
-            }.bind(this), function() {
-                this.rootScope_.loading = false;
-                this.rootScope_.show = false;
-                if (this.rootScope_.nodedetail['interval']) {
-                    this.interval_.cancel(this.rootScope_.nodedetail['interval']);
-                }
-                alert(this.i18n.MSG_nodecard_request_ERROE);
-            }.bind(this));
+            // let resource = this.resource_("gethw?host=" + this.node.externalID);
+            // resource.get().$promise.then(function(data) {
+            //     this.rootScope_.nodedetail['detail'] = data;
+            //     this.rootScope_.loading = false;
+            // }.bind(this), function() {
+            //     this.rootScope_.loading = false;
+            //     this.rootScope_.show = false;
+            //     if (this.rootScope_.nodedetail['interval']) {
+            //         this.interval_.cancel(this.rootScope_.nodedetail['interval']);
+            //     }
+            //     alert(this.i18n.MSG_nodecard_request_ERROE);
+            // }.bind(this));
         }
         /**
          * Returns true if node is in ready state, false otherwise.

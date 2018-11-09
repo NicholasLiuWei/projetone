@@ -1,5 +1,5 @@
 <kd-content-card ng-show="ctrl.choice">
-    <kd-title>[[ Deploy a Helm chart |Title text which appears on top of the deploy page.]]</kd-title>
+    <kd-title>[[ Deploy a Helm charts |Title text which appears on top of the deploy page.]]</kd-title>
     <kd-content class="kd-content-padded">
         <kd-help-section>
             <form name="ctrl.form" ng-submit="ctrl.deploy()" validate>
@@ -58,6 +58,7 @@
                         {{::ctrl.i18n.MSG_DEPLOY_CHART_USER_HELP1}}
                     </kd-user-help>
                 </kd-help-section>
+                [[test|a]]
                 <md-input-container class="md-block" ng-show="ctrl.selectedRepos != 'None'">
                     <label ng-show="false"></label>
                     <input style="position: relative; z-index: -100; top: 0;" type="text" name="selectedCharts" required ng-model="ctrl.selectedCharts">
@@ -74,7 +75,7 @@
                             <div ng-message="pattern">[[名字非法,只可输入字母数字,字母开头|部署应用名字非法提示]]
                             </div>
                             <div ng-message="maxlength">
-                                [[不超过30个字符|部署应用名字过长提示]]
+                                <!-- [[不超过30个字符|部署应用名字过长提示]] -->
                             </div>
                             <div ng-message="repeat">
                                 [[名字重复|部署应用名字重复提示]]

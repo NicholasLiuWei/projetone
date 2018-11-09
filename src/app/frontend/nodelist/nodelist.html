@@ -60,48 +60,48 @@ limitations under the License.
             <div flex class="nidetaillist">
                 <div flex layout="row">
                     <div flex="15" style="text-align:left;">[[核数| nodedetail Cores]]</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.CPU.NumCores}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.cpu.numCores}}</div>
                 </div>
                 <div flex layout="row">
                     <div flex="15" style="text-align:left;">[[型号|nodedetail Model]]</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.CPU.Model}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.cpu.model}}</div>
                 </div>
                 <div flex layout="row">
                     <div flex="15" style="text-align:left;">[[特性| nodedetail Characteristic]]</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.CPU.Capabilities}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.cpu.feature}}</div>
                 </div>
             </div>
             <div flex class="nidetailtitle">[[内存| nodedetail Memory]]</div>
             <div flex class="nidetaillist">
                 <div flex layout="row">
                     <div flex="15" style="text-align:left;">[[总共| nodedetail Totail]]</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.Memory.TotalPhysicalBytes | kdMemory}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.memory.totalPhysicalBytes | kdMemory}}</div>
                 </div>
                 <div flex layout="row">
                     <div flex="15" style="text-align:left;">[[可用|nodedetail Available]]</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.Memory.TotalUsableBytes | kdMemory}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.memory.totalUsableBytes | kdMemory}}</div>
                 </div>
                 <div flex layout="row">
                     <div flex="15" style="text-align:left;">[[分页|nodedetail Paging]]</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.Memory.SupportedPageSizes[0] | kdMemory}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{$root.nodedetail.detail.memory.supportedPageSizes[0] | kdMemory}}</div>
                 </div>
             </div>
             <div flex class="nidetailtitle">[[硬盘|nodedetail Disk]]</div>
             <div flex class="nidetaillist">
-                <div flex layout="row" ng-repeat="disk in $root.nodedetail.detail.Disk">
+                <div flex layout="row" ng-repeat="disk in $root.nodedetail.detail.disk">
                     <div flex="15" style="text-align:left;" layout="row" layout-align="space-around center">
-                        <div class="diskstatus" ng-style="{background:disk.Good=='OK'?'#00DEAC':'#FF9F00'}">
-                            <md-tooltip ng-if="disk.Good!='OK'">[[硬盘异常，请联系厂商解决|node detail]]</md-tooltip>
+                        <div class="diskstatus" ng-style="{background:disk.good=='OK'?'#00DEAC':'#FF9F00'}">
+                            <md-tooltip ng-if="disk.good!='OK'">[[硬盘异常，请联系厂商解决|node detail]]</md-tooltip>
                         </div>
-                        {{disk.Name}}</div>
-                    <div flex="85" style="margin-left:20px;text-align:left;">{{disk.Type}} &nbsp;&nbsp;&nbsp;&nbsp; {{disk.SizeBytes | kdMemory}}</div>
+                        {{disk.name}}</div>
+                    <div flex="85" style="margin-left:20px;text-align:left;">{{disk.type}} &nbsp;&nbsp;&nbsp;&nbsp; {{disk.sizeBytes | kdMemory}}</div>
                 </div>
             </div>
             <div flex class="nidetailtitle">[[网卡| nodedetail Network]]</div>
             <div flex class="nidetaillist">
-                <div flex layout="row" ng-repeat="nic in $root.nodedetail.detail.Nic">
-                    <div flex="50" style="text-align:left;">{{nic.Name}}</div>
-                    <div flex="50" style="margin-left:20px;">{{nic.Driver=="ixgbe"?$ctrl.i18n.MSG_NODE_CARD_WANZHAO_NET:$ctrl.i18n.MSG_NODE_CARD_QIANZHAO_NET}}</div>
+                <div flex layout="row" ng-repeat="nic in $root.nodedetail.detail.net">
+                    <div flex="50" style="text-align:left;">{{nic.name}}</div>
+                    <div flex="50" style="margin-left:20px;">{{nic.driver=="ixgbe"?$ctrl.i18n.MSG_NODE_CARD_WANZHAO_NET:$ctrl.i18n.MSG_NODE_CARD_QIANZHAO_NET}}</div>
                 </div>
             </div>
         </div>

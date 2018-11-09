@@ -514,4 +514,8 @@ const i18n = {
      * page. */
     MSG_DEPLOY_CHART_ACTION_NOW_CANCLE1: goog.getMsg('取消'),
 
+    /** @export {string} @desc The text is put on the 'Cancel' button at the end of the chart deploy
+     * page. */
+    MSG_DEPLOY_CHART_TEST: goog.getMsg('取消1'),
+
 };

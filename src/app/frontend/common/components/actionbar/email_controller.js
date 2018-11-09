@@ -96,7 +96,7 @@ export default class AddEmailDialogController {
     onChangeEmailSuccess_() {
         this.log_.info(`Successfully added repository`);
         this.mdDialog_.hide();
-        this.toastr.success('修改成功');
+        this.toastr["success"]('修改成功');
         // this.state_.reload();
     }
 
@@ -107,7 +107,7 @@ export default class AddEmailDialogController {
     onChangeEmailError_(err) {
         this.log_.error(err);
         this.mdDialog_.hide();
-        this.toastr.error('修改失败,请重试');
+        this.toastr["error"]('修改失败,请重试');
     }
 }
 

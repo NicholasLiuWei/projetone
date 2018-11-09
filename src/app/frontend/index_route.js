@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { stateUrl as defaultStateUrl } from './login/state';
+// import { stateUrl as defaultStateUrl } from './newhome/state';
 // import { chromeController } from './chrome/chrome_component';
 
 /**
@@ -23,7 +23,7 @@ import { stateUrl as defaultStateUrl } from './login/state';
  */
 export default function routeConfig($urlRouterProvider) {
     // When no state is matched by an URL, redirect to default one.
-    $urlRouterProvider.otherwise(defaultStateUrl);
+    $urlRouterProvider.otherwise("/home");
     // $stateProvider.state('mains', {
     //     url: '/',
     //     views: {
