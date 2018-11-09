@@ -57,29 +57,18 @@ const containerRegistry = {
  * Package version information.
  */
 const version = {
-<<<<<<< HEAD
-  /**
-   * Current release version of the project.
-   */
-  release: 'v1.10.0',
-  /**
-   * Version name of the head release of the project.
-   */
-  head: 'head',
-  /**
-   * Year of last source change of the project
-   */
-  year: '2018',
-=======
     /**
      * Current release version of the project.
      */
-    release: 'v1.8.3',
+    release: 'v1.10.0',
     /**
      * Version name of the head release of the project.
      */
     head: 'head',
->>>>>>> 19fe157cb023a740af39370e513fa7c17dcb530b
+    /**
+     * Year of last source change of the project
+     */
+    year: '2018',
 };
 
 /**
@@ -188,7 +177,6 @@ export default {
     },
 
     /**
-<<<<<<< HEAD
      * Insecure port number of the backend server. Only used during development.
      */
     devServerPort: 9091,
@@ -218,8 +206,7 @@ export default {
      * will attempt to connect to Heapster via a service proxy.
      */
     heapsterServerHost: gulpUtil.env.heapsterServerHost !== undefined ?
-        gulpUtil.env.heapsterServerHost :
-        '',
+        gulpUtil.env.heapsterServerHost : '',
     /**
      * File containing the default x509 Certificate for HTTPS.
      */
@@ -234,17 +221,13 @@ export default {
      * '--auto-generate-certificates' flag.
      */
     autoGenerateCerts: gulpUtil.env.autoGenerateCerts !== undefined ?
-        gulpUtil.env.autoGenerateCerts :
-        'false',
+        gulpUtil.env.autoGenerateCerts : 'false',
     /**
      * Directory path containing certificate files. Matches dashboard '--default-cert-dir' flag.
      */
     defaultCertDir: gulpUtil.env.defaultCertDir !== undefined ? gulpUtil.env.defaultCertDir : '',
     /**
      * System banner message. Matches dashboard '--system-banner' flag.
-=======
-     * Project compilation architecture info.
->>>>>>> 19fe157cb023a740af39370e513fa7c17dcb530b
      */
     arch: arch,
 
