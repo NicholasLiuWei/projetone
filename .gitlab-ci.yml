@@ -1,0 +1,42 @@
+
+image: dashboard1.8:new
+
+#variables:
+  #DOCKER_HOST: tcp://docker:2375/
+  #DOCKER_DRIVER: overlay2
+
+#services:
+   #- docker:dind
+
+
+before_script:
+  #- service docker start
+  - source /etc/profile
+  - docker info
+  - ls
+
+after_script:
+  - ls
+  
+build_job:
+
+  script:
+  - echo "Release build..."
+  - docker ps
+  - chmod a+x ./build/postinstall.sh
+  #- docker images
+  - node -v
+  - echo $GOPATH
+  - cp /home/node_modules . -r
+  - cp /home/home . -r
+  - cp /home/dist . -r
+  - cp /home/.tmp . -r
+  - cp /home/.tools . -r
+  #- export http_proxy=http://172.16.0.4:8118
+  #- export https_proxy=https://172.16.0.4:8118
+ # - npm i --unsafe-perm
+  -  gulp docker-image:head:cross
+  -  docker images
+
+  tags:
+  - docker
