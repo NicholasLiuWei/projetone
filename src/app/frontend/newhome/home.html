@@ -27,29 +27,51 @@
                     <div layout="row">[[正常: |newhome normal]]&nbsp; <span> {{$ctrl.releasenum.normal}}</span> </div>
                 </div>
             </div>
-            <div class="sitem">
+            <div class="sitem" layout="row">
                 <!-- <div style="width: 173px;margin: 0 auto;"> -->
-                <div class="num" layout="row">
+                <!-- <div class="num" layout="row">
                     <div>
                         <img src="assets/images/server.png" alt="">
                     </div>
                     <div>
                         {{$ctrl.nodelist.nodes.length}}
                     </div>
+                </div> -->
+                <div style="width:75px;padding-right: 10px;box-sizing: border-box" layout="column" layout-align="space-between center">
+                    <img width="100%" height="75" style="margin-top:10px;" src="assets/images/x86.png" alt="">
+                    <img width="100%" height="75" style="margin-bottom:70px;" src="assets/images/arm.png" alt="">
                 </div>
-                <div class="itemlist">
-                    <div class="itemstatus" ng-repeat="node in $ctrl.nodelist.nodes" ng-class="{'itemgood':node.ready=='True','itemwrong':node.ready!='True'}">
-                        <md-tooltip>{{node.objectMeta.name}}</md-tooltip>
+                <div class="nodebox">
+                    <div class="itemlist">
+                        <div class="itemstatus" ng-repeat="node in $ctrl.amdnodelist" ng-class="{'itemgood':node.ready=='True','itemwrong':node.ready!='True'}">
+                            <md-tooltip>{{node.objectMeta.name}}</md-tooltip>
+                        </div>
+                        <div class="itemstatus" ng-repeat="node in $ctrl.nodestatus" ng-if="$index<14-$ctrl.amdnodelist.length"></div>
                     </div>
-                    <div class="itemstatus" ng-repeat="node in $ctrl.nodestatus" ng-if="$index<21-$ctrl.nodelist.nodes.length"></div>
-                </div>
-                <!-- </div> -->
-                <div class="statusdesc" layout="row" layout-align="space-between">
-                    <div layout="row">
-                        [[<b>服务器:</b>&nbsp;&nbsp;&nbsp;&nbsp;异常 |newhome Server: exception]] &nbsp;
-                        <span>{{$ctrl.nodenum.abnormal}}</span>
+                    <!-- </div> -->
+                    <div class="statusdesc" layout="row" layout-align="space-between">
+                        <div layout="row">
+                            [[<b>服务器:</b>&nbsp;&nbsp;&nbsp;&nbsp;异常 |newhome Server: exception]] &nbsp;
+                            <span>{{$ctrl.nodenum.amdabnormal}}</span>
+                        </div>
+                        <div layout="row">[[正常: |newhome normal]]&nbsp; <span> {{$ctrl.nodenum.amdnormal}}</span> </div>
                     </div>
-                    <div layout="row">[[正常: |newhome normal]]&nbsp; <span> {{$ctrl.nodenum.normal}}</span> </div>
+                    <!-- </div>
+                <div class="nodebox"> -->
+                    <div class="itemlist">
+                        <div class="itemstatus" ng-repeat="node in $ctrl.armnodelist" ng-class="{'itemgood':node.ready=='True','itemwrong':node.ready!='True'}">
+                            <md-tooltip>{{node.objectMeta.name}}</md-tooltip>
+                        </div>
+                        <div class="itemstatus" ng-repeat="node in $ctrl.nodestatus" ng-if="$index<14-$ctrl.armnodelist.length"></div>
+                    </div>
+                    <!-- </div> -->
+                    <div class="statusdesc" layout="row" layout-align="space-between">
+                        <div layout="row">
+                            [[<b>服务器:</b>&nbsp;&nbsp;&nbsp;&nbsp;异常 |newhome Server: exception]] &nbsp;
+                            <span>{{$ctrl.nodenum.armabnormal}}</span>
+                        </div>
+                        <div layout="row">[[正常: |newhome normal]]&nbsp; <span> {{$ctrl.nodenum.armnormal}}</span> </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ limitations under the License.
         <md-progress-circular md-mode="indeterminate" md-diameter="48">
         </md-progress-circular>
     </div>
-    <md-content layout-padding="" class="md-padding">
+    <div style="width: 100%;height:100%;overflow: scroll;box-sizing: border-box;" layout-padding="" class="md-padding">
         <table ng-if="$root.releaseStr.indexOf('Deployment')!=-1" ng-repeat="deploy in $root.releaseDetail[0]">
             <thead>
                 <th colspan="2">
@@ -106,8 +106,22 @@ limitations under the License.
                 </tr>
             </tbody>
         </table>
+        <table class="tixi">
+            <thead>
+                <th colspan="3">
+                    {{$root.releaseDetail[3]}}&nbsp;&nbsp;[[部署情况|部署情况]]
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>nginx10080-nginx-2128849807-zv955</td>
+                    <td>node1</td>
+                    <td>ARM64</td>
+                </tr>
+            </tbody>
+        </table>
         <div ng-if="$root.releaseDetail.length==0">[[没有详细配置| release detail No detailed configuration]]</div>
-    </md-content>
+    </div>
 </div>
 <section layout="row" flex="" class="releasesidenav">
 

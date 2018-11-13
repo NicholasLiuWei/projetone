@@ -496,6 +496,7 @@ export default class NodeCardController {
             this.rootScope_.nodedetail['node'] = {
                 "name": this.node.objectMeta.name,
                 "status": this.isReady(),
+                "architecture": this.node.nodeInfo.architecture
             };
             this.request();
             this.rootScope_.nodedetail['interval'] = this.interval_(() => {

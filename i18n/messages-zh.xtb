@@ -3,12 +3,16 @@
   <translation id="6783150167357318030" key="MSG_ACTION_BAR_DELETE_TOOLTIP" desc="Generic &quot;Delete some resource&quot; tooltip text which appears over the delete icon on the global action bar.">删除<ph name="RESOURCE_NAME"/></translation>
   <translation id="1421031463694814701" key="MSG_ACTION_BAR_EDIT_TOOLTIP" desc="Generic &quot;Edit some resource&quot; tooltip text which appears over the edit icon on the global action bar.">编辑<ph name="RESOURCE_NAME"/></translation>
   <translation id="1024358167652076581" key="MSG_ALL_NAMESPACES" desc="Text for dropdown item that indicates that no namespace was selected">所有命名空间</translation>
-  <translation id="8732948068794241031" key="MSG_APPSTORE_APPSTORE_0" desc="Title text which appears on top of the deploy page."> 部署容器应用 </translation>
-  <translation id="3997739202006813620" key="MSG_APPSTORE_APPSTORE_1" desc="lable for appstore page">命名空间</translation>
+  <translation id="4765626815874675830" key="MSG_APPSTORE_APPSTORE_0" desc="Title text which appears on top of the deploy page."> 部署容器应用 </translation>
+  <translation id="2194238272112050587" key="MSG_APPSTORE_APPSTORE_1" desc="App Store \u9009\u62E9\u4E00\u4E2A\u5E94\u7528\u90E8\u7F72">选择一个应用部署</translation>
   <translation id="8408310627713654814" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">名字非法,只可输入字母数字,字母开头</translation>
-  <translation id="1823754205212208912" key="MSG_APPSTORE_APPSTORE_3" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u8FC7\u957F\u63D0\u793A">不超过30个字符</translation>
-  <translation id="3095161108163462817" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
-  <translation id="4534652218670995840" key="MSG_APPSTORE_APPSTORE_5" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">必填,只可输入字母数字,字母开头</translation>
+  <translation id="7749715521199676576" key="MSG_APPSTORE_APPSTORE_3" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
+  <translation id="6673394930890065143" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">必填,只可输入字母数字,字母开头</translation>
+  <translation id="1147022517078023778" key="MSG_APPSTORE_APPSTORE_5" desc="App Store \u90E8\u7F72\u5E73\u53F0">部署平台</translation>
+  <translation id="1979038432263707626" key="MSG_APPSTORE_APPSTORE_6" desc="App Store \u90E8\u7F72\u5E73\u53F0">部署平台</translation>
+  <translation id="638196110450458660" key="MSG_APPSTORE_APPSTORE_7" desc="App Store Auto \u81EA\u52A8\u90E8\u7F72">自动</translation>
+  <translation id="6757135556100432238" key="MSG_APPSTORE_APPSTORE_8" desc="App Store ARM64">ARM64</translation>
+  <translation id="3126749517247109623" key="MSG_APPSTORE_APPSTORE_9" desc="App Store X86">X86</translation>
   <translation id="4466763630197200161" key="MSG_BREADCRUMBS_ADMIN_LABEL" desc="Label 'Admin' that appears as a breadcrumbs on the action bar.">Admin</translation>
   <translation id="1219798577113963556" key="MSG_BREADCRUMBS_APPSTORE_LABEL" desc="Label 'AppStore' that appears as a breadcrumbs on the action bar.">应用商店</translation>
   <translation id="954605561178153927" key="MSG_BREADCRUMBS_CONFIG_LABEL" desc="Label 'Config' that appears as a breadcrumbs on the action bar.">Config</translation>
@@ -18,7 +22,6 @@
   <translation id="9213553703311647006" key="MSG_BREADCRUMBS_DEPLOY_APP_LABEL" desc="Breadcrum label for the deploy containerized app form view.">创建应用</translation>
   <translation id="4773384993735600474" key="MSG_BREADCRUMBS_DEPLOY_CHART_LABEL" desc="Breadcrum label for the Chart deploy form">Deploy chart</translation>
   <translation id="3098067826555563293" key="MSG_BREADCRUMBS_DEPLOY_FILE_LABEL" desc="Breadcrum label for the YAML upload form">上传</translation>
-  <translation id="5257885175895306946" key="MSG_BREADCRUMBS_HOME_LABEL" desc="Label 'home' that appears as a breadcrumbs on the action bar.">仪表盘</translation>
   <translation id="2248903848244811172" key="MSG_BREADCRUMBS_HORIZONTAL_POD_AUTOSCALERS_LABEL" desc="Label 'Horizontal Pod Autoscalers' that appears as a breadcrumbs on the action bar.">容器组水平伸缩器</translation>
   <translation id="5747298115200147575" key="MSG_BREADCRUMBS_INGRESSS_LABEL" desc="Label 'Ingress' that appears as a breadcrumbs on the action bar.">Ingress</translation>
   <translation id="2741276106482217695" key="MSG_BREADCRUMBS_INTERNALERROR_LABEL" desc="Label for internal error page for breadcrumbs on the action bar.">内部错误</translation>
@@ -53,40 +56,54 @@
   <translation id="8473002622551161689" key="MSG_CHART_REPOSITORY_LABEL1" desc="Label &quot;Chart Repository&quot; label, for the chart repository on the deploy from chart page.">应用仓库</translation>
   <translation id="7283414261848281229" key="MSG_CHART_URL_LABEL" desc="Label &quot;Chart URL&quot; label, for the chart to deploy.">应用地址</translation>
   <translation id="3593502127559023266" key="MSG_CHART_URL_LABEL1" desc="Label &quot;Chart URL&quot; label, for the chart to deploy.">应用地址</translation>
+  <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
+  <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">退出</translation>
+  <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">登录</translation>
   <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
   <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">服务器</translation>
-  <translation id="9136634079282793837" key="MSG_CHROME_NAV_NAV1_2" desc="Deployments menu item in the nav.">应用</translation>
+  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">应用</translation>
   <translation id="4039929196642814375" key="MSG_CHROME_NAV_NAV1_4" desc="AppStore menu entry.">应用商店</translation>
   <translation id="7083028001351850780" key="MSG_CHROME_NAV_NAV1_5" desc="Repositories menu entry.">仓库设置</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
-  <translation id="8686558477394756967" key="MSG_CHROME_NAV_NAVS_1" desc="release menu item in the nav.">在线应用</translation>
+  <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">应用</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">应用商店</translation>
   <translation id="4240200807669722933" key="MSG_CHROME_NAV_NAVS_2" desc="Nodes menu item in the nav.">服务器</translation>
   <translation id="2454625266229670921" key="MSG_CHROME_NAV_NAVS_20" desc="Repositories menu entry.">仓库设置</translation>
-  <translation id="9218333053624016665" key="MSG_CHROME_NAV_NAV_0" desc="Admin menu item in the nav.">Admin</translation>
-  <translation id="8817355810443169078" key="MSG_CHROME_NAV_NAV_1" desc="release menu item in the nav.">应用</translation>
+  <translation id="3052977861521871394" key="MSG_CHROME_NAV_NAV_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
+  <translation id="996025791780854234" key="MSG_CHROME_NAV_NAV_1" desc="Release menu item in the nav.">应用</translation>
   <translation id="5330416203049826616" key="MSG_CHROME_NAV_NAV_11" desc="Pods menu item in the nav.">Pods</translation>
   <translation id="1743316598408730775" key="MSG_CHROME_NAV_NAV_2" desc="Nodes menu item in the nav.">服务器</translation>
-  <translation id="6793691322131116133" key="MSG_CHROME_NAV_NAV_22" desc="AppStore menu entry.">AppStore</translation>
+  <translation id="6793691322131116133" key="MSG_CHROME_NAV_NAV_22" desc="AppStore menu entry.">应用商店</translation>
   <translation id="2687925603976258961" key="MSG_CHROME_NAV_NAV_23" desc="Repositories menu entry.">仓库设置</translation>
   <translation id="5331096982749730759" key="MSG_CHROME_NAV_NAV_3" desc="storage menu entry.">存储</translation>
+  <translation id="373826984984498333" key="MSG_CHROME_NAV_ROLENAV_0" desc="Roles menu entry.">Roles</translation>
   <translation id="5512331139275482810" key="MSG_CHROME_NAV_THIRDPARTYRESOURCENAV_0" desc="Third Party Resources menu item in the nav.">第三方资源</translation>
   <translation id="6660248664655766122" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARDELETEITEM_0" desc="Action \'Delete\', which is a button on the actionbar and is there for every resource type.">删除</translation>
   <translation id="8227118065394270046" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAREDITITEM_0" desc="Action \'Edit\' for the edit button on the global action bar.">编辑</translation>
   <translation id="6890205203402149061" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARLISTBUTTONS_0" desc="Label for deploy app button.">部署应用</translation>
   <translation id="8440773175603161155" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARLISTBUTTONS_1" desc="Label for upload YAML button.">上传 YAML</translation>
-  <translation id="6056787647703242343" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_0" desc="Tooltip for global action bar create button tooltip.">Create an application or any Kubernetes resource</translation>
+  <translation id="4823508741067150667" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARLOGS_0" desc="Tooltip for the \'logs\' button on the action bar.">View logs</translation>
+  <translation id="1841242100396658719" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARLOGS_1" desc="Tooltip for the \'logs\' button on the action bar.">Logs</translation>
+  <translation id="1084824883842516553" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARNAMESPACEOVERVIEW_0" desc="(no description provided)">Go to namespace overview page</translation>
+  <translation id="3032438273792216799" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARNAMESPACEOVERVIEW_1" desc="(no description provided)">Overview</translation>
+  <translation id="4089620624906747934" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_0" desc="caidan Admin">管理员</translation>
   <translation id="9044428715504897578" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_1" desc="\u7248\u672C\u4FE1\u606F">版本 v1.0.0</translation>
-  <translation id="8804437357481114722" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_2" desc="caidan Logout">退出</translation>
-  <translation id="8262909300170288731" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_3" desc="warnkuang History Alarm">历史告警</translation>
-  <translation id="4310160174179534528" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_4" desc="warnkuang Clear">清空</translation>
-  <translation id="5629613301734521423" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_5" desc="warnkuang Email">邮箱</translation>
-  <translation id="6883624040636706419" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_6" desc="warnkuang No historical alarm information">暂无历史告警信息</translation>
+  <translation id="197202711047909552" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_2" desc="caidan Change Password">修改密码</translation>
+  <translation id="1047042684269657700" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_3" desc="caidan Logout">退出</translation>
+  <translation id="4067798114540579722" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_4" desc="warnkuang History Alarm">历史告警</translation>
+  <translation id="3479386123799704206" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_5" desc="warnkuang Clear">清空</translation>
+  <translation id="172469565694241447" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_6" desc="warnkuang Email">邮箱</translation>
   <translation id="3431500800761802315" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_7" desc="warnkuang No historical alarm information">暂无历史告警信息</translation>
+  <translation id="4246093411879805828" key="MSG_COMMON_COMPONENTS_ACTIONBAR_SHELL_0" desc="Exec button tooltip located on pod detail page actionbar">Exec into Pod</translation>
+  <translation id="1980816672340986356" key="MSG_COMMON_COMPONENTS_ACTIONBAR_SHELL_1" desc="Execute shell in the container">Exec</translation>
   <translation id="1745702155571319443" key="MSG_COMMON_COMPONENTS_ANNOTATIONS_ANNOTATIONS_0" desc="Friendly name of the kubernetes.io/created-by annotation">创建者</translation>
   <translation id="1417978160910275828" key="MSG_COMMON_COMPONENTS_ANNOTATIONS_ANNOTATIONS_1" desc="Text on the button to show fewer annotations.">显示简要注释</translation>
   <translation id="6884163988875905686" key="MSG_COMMON_COMPONENTS_ANNOTATIONS_ANNOTATIONS_2" desc="Text on the button to show all the annotations.">显示所有注释</translation>
   <translation id="6935188165410090417" key="MSG_COMMON_COMPONENTS_ANNOTATIONS_LASTAPPLIEDCONFIGURATION_0" desc="Label for the kubectl.kubernetes.io/last-applied-configuration annotation">最近应用配置</translation>
+  <translation id="6113138181366048141" key="MSG_COMMON_COMPONENTS_CAPACITY_CAPACITY_0" desc="Persistent volume claim\'s capacity list.">Capacity</translation>
+  <translation id="979480866972152672" key="MSG_COMMON_COMPONENTS_CAPACITY_CAPACITY_1" desc="Text for pods card list zerostate.">No capacity has been assigned to this resource.</translation>
+  <translation id="2514141981916684161" key="MSG_COMMON_COMPONENTS_CAPACITY_CAPACITY_2" desc="Persistent volume claim\'s resource name displayed on capacity list.">Resource name</translation>
+  <translation id="1900124231159091669" key="MSG_COMMON_COMPONENTS_CAPACITY_CAPACITY_3" desc="Persistent volume claim\'s quantity displayed on capacity list.">Quantity</translation>
   <translation id="6456481460873145449" key="MSG_COMMON_COMPONENTS_CONDITIONS_CONDITIONSLIST_0" desc="Label \'Conditions\' for the conditions section.">现状</translation>
   <translation id="8993677465322195935" key="MSG_COMMON_COMPONENTS_CONDITIONS_CONDITIONSLIST_1" desc="Label \'Type\' for the condition table header.">类型</translation>
   <translation id="286975103376271553" key="MSG_COMMON_COMPONENTS_CONDITIONS_CONDITIONSLIST_10" desc="Label when there is no data.">-</translation>
@@ -102,6 +119,9 @@
   <translation id="3496419655731709621" key="MSG_COMMON_COMPONENTS_CONDITIONS_CONDITIONSLIST_9" desc="Label when there is no data.">-</translation>
   <translation id="3570731037158883626" key="MSG_COMMON_COMPONENTS_LABELS_LABELS_0" desc="Tooltip on the &quot;show less&quot; button for the labels of any kubernetes resource. Usually appears on the resource details pages.">显示简要标签</translation>
   <translation id="8950559770902715649" key="MSG_COMMON_COMPONENTS_LABELS_LABELS_1" desc="Tooltip on the &quot;show all&quot; button for the labels of any kubernetes resource. Usually appears on the resource details pages.">显示所有标签</translation>
+  <translation id="194613042127042077" key="MSG_COMMON_COMPONENTS_PODWARNINGS_PODWARNINGS_0" desc="Message shown below pod warnings on pod list">Show more</translation>
+  <translation id="6174601589723043241" key="MSG_COMMON_COMPONENTS_PODWARNINGS_PODWARNINGS_1" desc="Message shown below pod warnings on pod list">Show less</translation>
+  <translation id="7262450799096886396" key="MSG_COMMON_COMPONENTS_RESOURCECARD_LOGSBUTTON_0" desc="Label for logs tooltip.">Logs</translation>
   <translation id="8077948432236649947" key="MSG_COMMON_COMPONENTS_RESOURCECARD_RESOURCECARDDELETEMENUITEM_0" desc="Action &quot;Delete&quot; (verb), which appears as a menu item on the cards for kubernetes resources.">删除</translation>
   <translation id="1786717544428328487" key="MSG_COMMON_COMPONENTS_RESOURCECARD_RESOURCECARDEDITMENUITEM_0" desc="Label for YAML edit menu item.">查看/编辑 YAML</translation>
   <translation id="6165720699884834015" key="MSG_COMMON_COMPONENTS_RESOURCECARD_RESOURCECARDMENU_0" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">操作</translation>
@@ -110,8 +130,19 @@
   <translation id="7353491667260402390" key="MSG_COMMON_COMPONENTS_RESOURCEDETAIL_INFOCARD_2" desc="Label \'Labels\' for a resource.">标签</translation>
   <translation id="5872558793526944357" key="MSG_COMMON_COMPONENTS_RESOURCEDETAIL_INFOCARD_3" desc="Label \'Annotations\' for a resource.">注释</translation>
   <translation id="311978980344633152" key="MSG_COMMON_COMPONENTS_RESOURCEDETAIL_INFOCARD_4" desc="Label \'Creation time\' for a resource.">创建时间</translation>
+  <translation id="5724590208757461876" key="MSG_COMMON_COMPONENTS_SCALE_SCALE_0" desc="Action \'Scale\' on the drop down menu on resource list page.">Scale</translation>
+  <translation id="2699323907720130275" key="MSG_COMMON_COMPONENTS_SCALE_SCALE_1" desc="Tooltip for the \'scale\' button on the action bar on a resource details view.">Edit number of pods</translation>
+  <translation id="8982112402145698888" key="MSG_COMMON_COMPONENTS_SCALE_SCALE_2" desc="Tooltip for the \'Scale\' button on the action bar on a resource details view.">Scale</translation>
+  <translation id="8514425134682432381" key="MSG_COMMON_COMPONENTS_WARNINGS_WARNINGS_0" desc="Tooltip for warning dismissal button.">Dismiss</translation>
+  <translation id="7328790086203280450" key="MSG_COMMON_COMPONENTS_WARNINGS_WARNINGS_1" desc="Tooltip for all warning dismissal button.">Dismiss all</translation>
   <translation id="6941584785589389821" key="MSG_COMMON_COMPONENTS_ZEROSTATE_ZEROSTATE_0" desc="Title text which appears on zero state view.">无内容显示</translation>
   <translation id="8000678649572976545" key="MSG_COMMON_COMPONENTS_ZEROSTATE_ZEROSTATE_1" desc="Description for a zero state page.">现在就&lt;a href="{{::$ctrl.getStateHref()}}"&gt;部署容器应用&lt;/a&gt;、查看其它命名空间，或&lt;a href="http://kubernetes.io/docs/user-guide/ui/" target="_blank"&gt;浏览控制面板概览&lt;i class="material-icons kd-zerostate-icon"&gt;open_in_new&lt;/i&gt;&lt;/a&gt;来了解更多</translation>
+  <translation id="4149717000499670158" key="MSG_COMMON_NAMESPACE_DIALOG_0" desc="(no description provided)">Change namespace?</translation>
+  <translation id="8388569784284170020" key="MSG_COMMON_NAMESPACE_DIALOG_1" desc="(no description provided)">Change namespace?</translation>
+  <translation id="1721881261473316662" key="MSG_COMMON_NAMESPACE_DIALOG_2" desc="(no description provided)">Selected resource is in a different namespace than currently selected.</translation>
+  <translation id="1338897477799282267" key="MSG_COMMON_NAMESPACE_DIALOG_3" desc="(no description provided)">Do you want to change namespace from &lt;i&gt;{{ $ctrl.currentNamespace()}}&lt;/i&gt; to &lt;i&gt;{{::$ctrl.newNamespace}}&lt;/i&gt;?</translation>
+  <translation id="5905842701609332332" key="MSG_COMMON_NAMESPACE_DIALOG_4" desc="(no description provided)">Yes</translation>
+  <translation id="4359384729196492445" key="MSG_COMMON_NAMESPACE_DIALOG_5" desc="(no description provided)">No</translation>
   <translation id="4492076728105331074" key="MSG_COMMON_NAMESPACE_NAMESPACESELECT_0" desc="Title for namespace select.">用户名称</translation>
   <translation id="5174603006239796789" key="MSG_COMMON_NAMESPACE_NAMESPACESELECT_1" desc="Text describing what namespace selector is">所选的命名空间标签</translation>
   <translation id="7324783266461564175" key="MSG_COMMON_NAMESPACE_NAMESPACESELECT_2" desc="Text for dropdown item that indicates that no namespace was selected.">所有命名空间</translation>
@@ -126,6 +157,16 @@
   <translation id="6030718757273830989" key="MSG_COMMON_RESOURCE_EDITRESOURCE_1" desc="Title for a delete resource dialog.">修改 {{::$ctrl.resourceKindName}}</translation>
   <translation id="7280957759518658382" key="MSG_COMMON_RESOURCE_EDITRESOURCE_2" desc="Label for cancel button.">取消</translation>
   <translation id="874103626505058314" key="MSG_COMMON_RESOURCE_EDITRESOURCE_3" desc="Label for update button.">更新</translation>
+  <translation id="4435278810119842088" key="MSG_COMMON_SCALING_SCALERESOURCE_0" desc="Title for a scaling resource dialog.">Scale a {{::$ctrl.resourceKindDisplayName}}</translation>
+  <translation id="6799841013413751791" key="MSG_COMMON_SCALING_SCALERESOURCE_1" desc="Title for a scaling resource dialog.">Scale a {{::$ctrl.resourceKindDisplayName}}</translation>
+  <translation id="3101929086031362285" key="MSG_COMMON_SCALING_SCALERESOURCE_2" desc="User help for the pod count update dialog (on the replication controllers detail page).">Resource {{::$ctrl.resourceName}} will be updated to reflect the desired count.</translation>
+  <translation id="3999312467829287271" key="MSG_COMMON_SCALING_SCALERESOURCE_3" desc="Label \'Desired number of pods\', which appears as a placeholder for the pods count input on the &quot;update pods count&quot; dialog (for a Deployment, ReplicaSet, Replication Controller resource).">Desired number of pods</translation>
+  <translation id="536413431729659126" key="MSG_COMMON_SCALING_SCALERESOURCE_4" desc="Label \'Desired degree parallelism for a Job\', which appears as a placeholder for the parallelism count input on the &quot;update parallelism count&quot; dialog (for a Job resource).">Desired degree of parallelism for Job</translation>
+  <translation id="937791798359212536" key="MSG_COMMON_SCALING_SCALERESOURCE_5" desc="This warning appears when the user does not specify a pods count on the &quot;update number of pods&quot; dialog (for a deployment).">Number of pods is required.</translation>
+  <translation id="2003054295342948819" key="MSG_COMMON_SCALING_SCALERESOURCE_6" desc="This warning appears when the specified pods count on the &quot;update number of pods&quot; dialog is not positive or non-integer.">Number of replicas must be equal to or greater than zero.</translation>
+  <translation id="294261030618218767" key="MSG_COMMON_SCALING_SCALERESOURCE_7" desc="This warning appears when the specified pods count (on the &quot;update number of pods&quot; dialog) is very high.">Setting high number of pods may cause performance issues of the cluster and Dashboard UI.</translation>
+  <translation id="2060548261728726971" key="MSG_COMMON_SCALING_SCALERESOURCE_8" desc="Label for cancel button.">Cancel</translation>
+  <translation id="486192895688311189" key="MSG_COMMON_SCALING_SCALERESOURCE_9" desc="Action \'OK\' for the confirmation button on the &quot;update number of pods dialog&quot;.">OK</translation>
   <translation id="5535184846025660010" key="MSG_CONFIGMAPDETAIL_ACTIONBAR_0" desc="Label \'Config Map\' which appears at the top of the\n      delete dialog, opened from a config map details page.">Config Map</translation>
   <translation id="8136474798646965010" key="MSG_CONFIGMAPDETAIL_CONFIGMAPDETAIL_0" desc="Header in a detail view of config map deta">Data</translation>
   <translation id="1352871513810336119" key="MSG_CONFIGMAPDETAIL_CONFIGMAPINFO_0" desc="Header in a detail view">Details</translation>
@@ -224,7 +265,48 @@
   <translation id="3596671845051866336" key="MSG_DEPLOYMENTLIST_DEPLOYMENTLIST_0" desc="Title for graph card displaying CPU metric of deployments.">CPU 使用</translation>
   <translation id="6520027878530985690" key="MSG_DEPLOYMENTLIST_DEPLOYMENTLIST_1" desc="Title for graph card displaying memory metric of deployments.">Memory 使用</translation>
   <translation id="5720117868467044726" key="MSG_DEPLOYMENTLIST_DEPLOYMENTLIST_2" desc="Help message detailing what is included in the memory usage">The memory usage includes the caches in the pods managed by these deployments.</translation>
+  <translation id="8731452969115857295" key="MSG_DEPLOYMENT_DETAIL_ACTIONBAR_0" desc="Label \'Deployment\' which will appear in the deployment scale dialog opened from the deployment details page.">Deployment</translation>
+  <translation id="4537205375409268523" key="MSG_DEPLOYMENT_DETAIL_ACTIONBAR_1" desc="Label \'Deployment\' which will appear in the deployment dialog opened from the deployment details page.">Deployment</translation>
+  <translation id="916794903553842041" key="MSG_DEPLOYMENT_DETAIL_DETAIL_0" desc="Title for graph card displaying CPU metric of one deployment.">CPU usage</translation>
+  <translation id="8453931805104629005" key="MSG_DEPLOYMENT_DETAIL_DETAIL_1" desc="Title for graph card displaying memory metric of one deployment.">Memory usage</translation>
+  <translation id="7206451673196119468" key="MSG_DEPLOYMENT_DETAIL_DETAIL_2" desc="Help message detailing what is included in the memory usage">The memory usage includes the caches in the pods managed by this deployment.</translation>
+  <translation id="4293182903162394917" key="MSG_DEPLOYMENT_DETAIL_DETAIL_3" desc="Title \'New Replica Set\' for the newly created replica set view, on the deployment details page.">New Replica Set</translation>
+  <translation id="2729052036441325990" key="MSG_DEPLOYMENT_DETAIL_DETAIL_4" desc="Text for new replica sets card zero-state in deployment details page.">There are currently no new Replica Sets on this Deployment.</translation>
+  <translation id="2813038998625423539" key="MSG_DEPLOYMENT_DETAIL_DETAIL_5" desc="Title \'Old Replica Sets\' for the old replica sets view, on the deployment details page.">Old Replica Sets</translation>
+  <translation id="1723843712965438402" key="MSG_DEPLOYMENT_DETAIL_DETAIL_6" desc="Text for old replica sets card zero-state in deployment details page.">This Deployment does not have any old replica sets</translation>
+  <translation id="7739204295740224750" key="MSG_DEPLOYMENT_DETAIL_DETAIL_7" desc="Text for horizontal pod autoscalers card zerostate in replica set details page.">There are currently no Horizontal Pod Autoscalers targeting this Deployment.</translation>
+  <translation id="6611756545608338379" key="MSG_DEPLOYMENT_DETAIL_INFO_0" desc="Header in a detail view">Details</translation>
+  <translation id="4932969084773099825" key="MSG_DEPLOYMENT_DETAIL_INFO_1" desc="Label \'Selector\' for the deployment\'s labels list on the deployment details page.">Selector</translation>
+  <translation id="1418909228527566695" key="MSG_DEPLOYMENT_DETAIL_INFO_10" desc="The message describes how many replicas were updated in the deployment (deployment details page).">{{ $ctrl.deployment.statusInfo.updated}} updated</translation>
+  <translation id="5614129460769727281" key="MSG_DEPLOYMENT_DETAIL_INFO_11" desc="The message describes how many replicas (in total) are in the deployment (deployment details page).">{{ $ctrl.deployment.statusInfo.replicas}} total</translation>
+  <translation id="3587397506875527412" key="MSG_DEPLOYMENT_DETAIL_INFO_12" desc="The message describes how many replicas are available in the deployment (deployment details page).">{{ $ctrl.deployment.statusInfo.available}} available</translation>
+  <translation id="8696932047917073539" key="MSG_DEPLOYMENT_DETAIL_INFO_13" desc="The message says how many replicas are unavailable in the deployment (deployment details page).">{{ $ctrl.deployment.statusInfo.unavailable}} unavailable</translation>
+  <translation id="6507608265569761196" key="MSG_DEPLOYMENT_DETAIL_INFO_2" desc="Label \'Min Ready Seconds\' for the deployment on the deployment details page.">Strategy</translation>
+  <translation id="7681438057463769443" key="MSG_DEPLOYMENT_DETAIL_INFO_3" desc="Label \'Min Ready Seconds\' for the deployment on the deployment details page.">Min ready seconds</translation>
+  <translation id="632031662825178320" key="MSG_DEPLOYMENT_DETAIL_INFO_4" desc="Label \'Revision history limit\' for the deployment property on the deployment details page.">Revision history limit</translation>
+  <translation id="8778466690634347256" key="MSG_DEPLOYMENT_DETAIL_INFO_5" desc="Label for the when revision history limit is not set.">Not set</translation>
+  <translation id="9139216972730244097" key="MSG_DEPLOYMENT_DETAIL_INFO_6" desc="Label \'Rolling Update Strategy\' for the deployment\'s rolling update strategy on the deployment details page.">Rolling update strategy</translation>
+  <translation id="2713495122690863709" key="MSG_DEPLOYMENT_DETAIL_INFO_7" desc="The message says how many replicas can be created above the desired number of replicas in a deployment (deployment details page).">Max surge: {{ $ctrl.deployment.rollingUpdateStrategy.maxSurge}}</translation>
+  <translation id="7570779705309302494" key="MSG_DEPLOYMENT_DETAIL_INFO_8" desc="The message says how many replicas are allowed to be unavailable during an update in the deployment (deployment details page).">Max unavailable: {{ $ctrl.deployment.rollingUpdateStrategy.maxUnavailable}}</translation>
+  <translation id="6726450891601072365" key="MSG_DEPLOYMENT_DETAIL_INFO_9" desc="Label \'Status\' for the deployment\'s status information on the deployment details page.">Status</translation>
+  <translation id="6649720579304216997" key="MSG_DEPLOYMENT_LIST_CARDLIST_0" desc="Label which appears above the list of such objects.">Deployments</translation>
+  <translation id="619866139389253048" key="MSG_DEPLOYMENT_LIST_CARDLIST_1" desc="Text for deployment card list zerostate.">There are no Deployment to display.</translation>
+  <translation id="8586998456653652646" key="MSG_DEPLOYMENT_LIST_CARDLIST_2" desc="Label \'Name\' which appears as a column label in the table of deployments (deployment list view).">Name</translation>
+  <translation id="696084034407319186" key="MSG_DEPLOYMENT_LIST_CARDLIST_3" desc="Label \'Namespace\' which appears as a column label in the table of deployments (deployment list view).">Namespace</translation>
+  <translation id="1081433819357754112" key="MSG_DEPLOYMENT_LIST_CARDLIST_4" desc="Label \'Labels\' which appears as a column label in the table of deployments (deployment list view).">Labels</translation>
+  <translation id="3828069336116934304" key="MSG_DEPLOYMENT_LIST_CARDLIST_5" desc="Label \'Pods\' which appears as a column label in the table of deployments (deployment list view).">Pods</translation>
+  <translation id="5256771205557279660" key="MSG_DEPLOYMENT_LIST_CARDLIST_6" desc="Label \'Age\' which appears as a column label in the table of deployments (deployment list view).">Age</translation>
+  <translation id="8102737937676296419" key="MSG_DEPLOYMENT_LIST_CARDLIST_7" desc="Label \'Images\' which appears as a column label in the table of deployments (deployment list view).">Images</translation>
+  <translation id="2943455083749849727" key="MSG_DEPLOYMENT_LIST_CARD_0" desc="Tooltip saying that some pods in a deployment have errors.">One or more pods have errors</translation>
+  <translation id="5603340787019545076" key="MSG_DEPLOYMENT_LIST_CARD_1" desc="Tooltip saying that some pods in a deployment are pending.">One or more pods are in pending state</translation>
+  <translation id="7178833329122586815" key="MSG_DEPLOYMENT_LIST_CARD_2" desc="Tooltip for the age column">Created at</translation>
+  <translation id="5009335850870865346" key="MSG_DEPLOYMENT_LIST_CARD_3" desc="Label \'Deployment\' which will appear in the deployment scale dialog opened from a deployment card on the list page.">Deployment</translation>
+  <translation id="1062694263538589459" key="MSG_DEPLOYMENT_LIST_CARD_4" desc="Label \'Deployment\' which will appear in the deployment delete dialog opened from a deployment card on the list page.">Deployment</translation>
+  <translation id="105228085458704561" key="MSG_DEPLOYMENT_LIST_CARD_5" desc="Label \'Deployment\' which will appear in the deployment edit dialog opened from a deployment card on the list page.">Deployment</translation>
   <translation id="8652993905127268587" key="MSG_DEPLOYMENT_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of a deployment.">创建于 <ph name="CREATION_DATE"/></translation>
+  <translation id="7895969081606283904" key="MSG_DEPLOYMENT_LIST_LIST_0" desc="Title for graph card displaying CPU metric of deployments.">CPU usage</translation>
+  <translation id="3670753449040819695" key="MSG_DEPLOYMENT_LIST_LIST_1" desc="Title for graph card displaying memory metric of deployments.">Memory usage</translation>
+  <translation id="5284074846571684536" key="MSG_DEPLOYMENT_LIST_LIST_2" desc="Help message detailing what is included in the memory usage">The memory usage includes the caches in the pods managed by these deployments.</translation>
   <translation id="8097230988371724477" key="MSG_DEPLOY_ANYWAY_DIALOG_CANCEL" desc="Cancellation text for the dialog shown on deploy validation error.">否</translation>
   <translation id="7984990840791623021" key="MSG_DEPLOY_ANYWAY_DIALOG_CONTENT" desc="Content for the dialog shown on deploy validation error.">确定要部署吗？</translation>
   <translation id="4208506908994292909" key="MSG_DEPLOY_ANYWAY_DIALOG_OK" desc="Confirmation text for the dialog shown on deploy validation error.">是</translation>
@@ -244,9 +326,10 @@
   <translation id="2962158407862517441" key="MSG_DEPLOY_CHART_RELEASE_NAME_LABEL" desc="Label &quot;Release Name&quot; label, for the release name on the deploy from chart page.">发布的名字</translation>
   <translation id="616047337773472461" key="MSG_DEPLOY_CHART_RELEASE_NAME_LABEL1" desc="Label &quot;Release Name&quot; label, for the release name on the deploy from chart page.">发布的名字</translation>
   <translation id="1983035032872423844" key="MSG_DEPLOY_CHART_RELEASE_NAME_USER_HELP" desc="User help for chart release name on the deploy from chart page.">发布的名字</translation>
-  <translation id="5992572798908340410" key="MSG_DEPLOY_CHART_RELEASE_NAME_USER_HELP1" desc="User help for chart release name on the deploy from chart page.">specify a release name.</translation>
+  <translation id="5992572798908340410" key="MSG_DEPLOY_CHART_RELEASE_NAME_USER_HELP1" desc="User help for chart release name on the deploy from chart page.">发布的名字</translation>
   <translation id="1202938124797695980" key="MSG_DEPLOY_CHART_REPO_USER_HELP" desc="User help for chart repository selection on the deploy from chart page.">选择一个应用仓库</translation>
   <translation id="1993070874792851325" key="MSG_DEPLOY_CHART_REPO_USER_HELP1" desc="User help for chart repository selection on the deploy from chart page.">选择一个应用仓库</translation>
+  <translation id="1612638995541398188" key="MSG_DEPLOY_CHART_TEST" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">取消1</translation>
   <translation id="7615332958125742034" key="MSG_DEPLOY_CHART_URL_USER_HELP" desc="User helm for chart URL to deploy">Specify the URL of the chart to deploy.</translation>
   <translation id="1344466574245629774" key="MSG_DEPLOY_CHART_URL_USER_HELP1" desc="User helm for chart URL to deploy">Specify the URL of the chart to deploy.</translation>
   <translation id="6147376001007018862" key="MSG_DEPLOY_CHART_USER_HELP" desc="User help for chart selection on the deploy from chart page.">选择部署的应用</translation>
@@ -280,10 +363,128 @@
   <translation id="7102498341704518355" key="MSG_DEPLOY_CREATESECRET_9" desc="Warning which tells the user that the image pull secret data is required.">数据必填</translation>
   <translation id="7384148252231766474" key="MSG_DEPLOY_DEPLOYFROMFILE_0" desc="The text is put on the button at the end of the YAML upload page.">上传</translation>
   <translation id="497825979832270260" key="MSG_DEPLOY_DEPLOYFROMFILE_1" desc="The text is put on the \'Cancel\' button at the end of the YAML upload page.">取消</translation>
+  <translation id="5968637654166833831" key="MSG_DEPLOY_DEPLOYFROMFILE_DEPLOYFROMFILE_0" desc="User help for the file upload form on the deploy page.">Select YAML or JSON file specifying the resources to deploy to the namespace specified in the file.</translation>
+  <translation id="59447854977935148" key="MSG_DEPLOY_DEPLOYFROMFILE_DEPLOYFROMFILE_1" desc="User help for the file upload form on the deploy page.">Select YAML or JSON file specifying the resources to deploy to the currently selected namespace.</translation>
+  <translation id="7764059568291431321" key="MSG_DEPLOY_DEPLOYFROMFILE_DEPLOYFROMFILE_2" desc="Learn more link label nearby the file upload on the deploy page.">Learn more</translation>
+  <translation id="1055725871949404093" key="MSG_DEPLOY_DEPLOYFROMFILE_DEPLOYFROMFILE_3" desc="Choose YAML or JSON file label from deploy from file view.">Choose YAML or JSON file</translation>
+  <translation id="4059828042595999120" key="MSG_DEPLOY_DEPLOYFROMFILE_DEPLOYFROMFILE_4" desc="Upload button label from deploy from file view.">Upload</translation>
+  <translation id="6518602879876852870" key="MSG_DEPLOY_DEPLOYFROMFILE_DEPLOYFROMFILE_5" desc="Cancel button label from deploy from file view.">Cancel</translation>
+  <translation id="87526913598313543" key="MSG_DEPLOY_DEPLOYFROMINPUT_DEPLOYFROMINPUT_0" desc="User help for the input upload form on the deploy page.">Enter YAML or JSON content specifying the resources to deploy to the namespace specified in the file.</translation>
+  <translation id="1852996086218095230" key="MSG_DEPLOY_DEPLOYFROMINPUT_DEPLOYFROMINPUT_1" desc="User help for the input upload form on the deploy page.">Enter YAML or JSON content specifying the resources to deploy to the currently selected namespace.</translation>
+  <translation id="2674557906525179372" key="MSG_DEPLOY_DEPLOYFROMINPUT_DEPLOYFROMINPUT_2" desc="Learn more link label nearby the file upload on the deploy page.">Learn more</translation>
+  <translation id="3170923771269436213" key="MSG_DEPLOY_DEPLOYFROMINPUT_DEPLOYFROMINPUT_3" desc="Upload button label from deploy from file view.">Upload</translation>
+  <translation id="1182267962823080155" key="MSG_DEPLOY_DEPLOYFROMINPUT_DEPLOYFROMINPUT_4" desc="Cancel button label from deploy from file view.">Cancel</translation>
   <translation id="9138539171661949270" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_0" desc="Label \'App name\', which appears as a placeholder in an empty input field on the deploy from settings page.">应用名称</translation>
   <translation id="8681272848357893557" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_1" desc="Appears to tell the user that app name input on the deploy from settings page is required.">应用名称必填</translation>
   <translation id="3622910483753794414" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_2" desc="Appears as warning when the user has typed in an app name that already exists. The text is followed by a specific namespace name.">此名称的副本控制器或服务已存在于此命名空间中</translation>
   <translation id="8248929735003226747" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_3" desc="Appears when the app name input on the deploy from settings page does not match the expected pattern.">应用名称必须以小写字母开头，只能包含小写字母、数字以及「-」连字符</translation>
+  <translation id="8408842802402121945" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_0" desc="Create namespace dialog title. The message appears at the top of the dialog box.">Create a new namespace</translation>
+  <translation id="326534459133347294" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_1" desc="Create namespace dialog subtitle. Appears right below the title.">The new namespace will be added to the cluster.</translation>
+  <translation id="3624821883565761425" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_2" desc="Label \'Namespace name\', which appears as a placeholder in an empty input field in the create namespace dialog.">Namespace name</translation>
+  <translation id="1842858705757129045" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_3" desc="The text appears when the namespace name does not match the expected pattern.">Name must be alphanumeric and may contain dashes.</translation>
+  <translation id="1735430662215508517" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_4" desc="The text appears when the namespace name exceeds the maximal length.">Name must be up to {{::$$ctrl.namespaceMaxLength}} characters long.</translation>
+  <translation id="5450642934947449387" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_5" desc="Warning which tells the user that the namespace name is required.">Name is required.</translation>
+  <translation id="6369544248937533328" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_6" desc="User help text for the input of the \'Namespace\' data.">A namespace with the specified name will be added to the cluster.</translation>
+  <translation id="6264820713832966557" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_7" desc="The text is used as a \'Learn more\' link text in the namespace creation dialog">Learn more</translation>
+  <translation id="7921810473368552784" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_8" desc="The text is put on the \'Create\' button in the namespace creation dialog.">Create</translation>
+  <translation id="1301307266329140634" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATENAMESPACE_CREATENAMESPACE_9" desc="The text is put on the \'Cancel\' button in the namespace creation dialog.">Cancel</translation>
+  <translation id="8005924565915931584" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_0" desc="Create image pull secret dialog title. The message appears at the top of the dialog box.">Create a new image pull secret</translation>
+  <translation id="2952740322496897763" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_1" desc="Create image pull secret dialog subtitle. Appears right below the title.">The new secret will be added to the cluster</translation>
+  <translation id="5613310058394554954" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_10" desc="The text appears when the image pull secret data is not Base64 encoded.">Data must be Base64 encoded.</translation>
+  <translation id="6041492545618309249" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_11" desc="User help text for the input of the &quot;Image Pull Secret&quot; data.">Specify the data for your secret to hold. The value is the Base64 encoded content of a .dockercfg file.</translation>
+  <translation id="3467448490521206795" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_12" desc="The text is used as a \'Learn more\' link text in the image pull secret creation dialog.">Learn more</translation>
+  <translation id="8656999413367217716" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_13" desc="The text is put on the \'Create\' button in the image pull secret creation dialog.">Create</translation>
+  <translation id="2891708566027064170" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_14" desc="The text is put on the \'Cancel\' button in the image pull secret creation dialog.">Cancel</translation>
+  <translation id="1806050590839630780" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_2" desc="Label \'Secret name\', which appears as a placeholder in an empty input field in the image pull secret creation dialog.">Secret name</translation>
+  <translation id="4350268878792860847" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_3" desc="The text appears when the image pull secret name does not match the expected pattern.">Name must follow the DNS domain name syntax (e.g. new.image-pull.secret).</translation>
+  <translation id="8010275309270505258" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_4" desc="The text appears when the image pull secret name exceeds the maximal length.">Name must be up to {{::$$ctrl.secretNameMaxLength}} characters long.</translation>
+  <translation id="1550785842124818252" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_5" desc="Warning which tells the user that the image pull secret name is required.">Name is required.</translation>
+  <translation id="3235676167774148407" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_6" desc="User help text for the create image pull secret dialog. Directly after this text a specific namespace is specified.">A secret with the specified name will be added to the cluster in the namespace.</translation>
+  <translation id="6126492418725062948" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_7" desc="The text is used as a \'Learn more\' link text in the image pull secret creation dialog.">Learn more</translation>
+  <translation id="8747154672843907917" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_8" desc="Label \'Image pull secret data\', which appears as a placeholder in an empty input field in the image pull secret creation dialog.">Image pull secret data</translation>
+  <translation id="5831351543898338028" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_CREATESECRET_CREATESECRET_9" desc="Warning which tells the user that the image pull secret data is required.">Data is required.</translation>
+  <translation id="3322255957425233391" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_0" desc="Label \'App name\', which appears as a placeholder in an empty input field on the deploy from settings page.">App name</translation>
+  <translation id="9166090440389010586" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_1" desc="Appears to tell the user that app name input on the deploy from settings page is required.">Application name is required.</translation>
+  <translation id="4925944378719477204" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_10" desc="User help for container image on deploy from settings page.">Enter the URL of a public image on any registry, or a private image hosted on Docker Hub or Google Container Registry.</translation>
+  <translation id="6178039510254082489" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_11" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="5437271114376684706" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_12" desc="Number of pods label on the deploy from settings page.">Number of pods</translation>
+  <translation id="3719876438516450686" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_13" desc="Number of pods is required warning on deploy from settings page.">Number of pods is required</translation>
+  <translation id="625821889101036276" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_14" desc="Number of pods must be a positive integer warning on deploy from settings page.">Number of pods must be a positive integer</translation>
+  <translation id="9202027506347663059" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_15" desc="Number of pods must be at least 1 warning on deploy from settings page.">Number of pods must be at least 1</translation>
+  <translation id="5341430644909021351" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_16" desc="High number of pods warning on deploy from settings page.">Setting high number of pods may cause performance issues of the cluster and Dashboard UI.</translation>
+  <translation id="5361584952555058156" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_17" desc="User help for number of pods on deploy from settings page.">A Deployment will be created to maintain the desired number of pods across your cluster.</translation>
+  <translation id="6044474239362836485" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_18" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="4557208312662042887" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_19" desc="Use help for port mapping on deploy from settings page.">Optionally, an internal or external Service can be defined to map an incoming Port to a target Port seen by the container.</translation>
+  <translation id="1480463698308889153" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_2" desc="Appears as warning when the user has typed in an app name that already exists. The text is followed by a specific namespace name.">Deployment or service with this name already exists within namespace.</translation>
+  <translation id="1037028076580706242" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_20" desc="User help for DNS name on deploy from settings page.">The internal DNS name for this Service will be:</translation>
+  <translation id="2577152365707949188" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_21" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="1490621507680042958" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_22" desc="Description label on deploy from settings page.">Description</translation>
+  <translation id="8866029091944568370" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_23" desc="User help for description on deploy from settings page.">The description will be added as an annotation to the Deployment and displayed in the application's details.</translation>
+  <translation id="2751761393764963045" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_24" desc="Labels subheader on deploy from settings page.">Labels</translation>
+  <translation id="7208221598343484351" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_25" desc="Label key label on deploy from settings page.">Key</translation>
+  <translation id="3985363219779755988" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_26" desc="Label value label on deploy from settings page.">Value</translation>
+  <translation id="7678568954810612662" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_27" desc="User help for the labels section on the deploy from settings page.">The specified labels will be applied to the created Deployment, Service (if any) and Pods. Common labels include release, environment, tier, partition and track.</translation>
+  <translation id="7873234715181447353" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_28" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="3202589057142310031" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_29" desc="Namespace label on the deploy from settings page.">Namespace</translation>
+  <translation id="6287295536760186773" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_3" desc="Appears when the app name input on the deploy from settings page does not match the expected pattern.">Application name must start with a lowercase letter and contain only lowercase letters, numbers, and '-' between words.</translation>
+  <translation id="4934647949293838043" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_30" desc="Create new namespace label on deploy from settings page.">Create a new namespace...</translation>
+  <translation id="3201254330436640498" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_31" desc="User help for the namespace selection on the deploy from settings page.">Namespaces let you partition resources into logically named groups.</translation>
+  <translation id="834167000335015513" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_32" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="7251991933244179058" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_33" desc="Image pull secret label on deploy from settings page.">Image Pull Secret</translation>
+  <translation id="9208569430240427400" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_34" desc="Create new secret label on deploy from settings page.">Create a new secret...</translation>
+  <translation id="380543672259901606" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_35" desc="User help for the image pull secret selection box on the deploy from settings page.">The specified image could require a pull secret credential if it is private. You may choose an existing secret or create a new one.</translation>
+  <translation id="307470333200718817" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_36" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="8607412702709572780" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_37" desc="CPU requirement label on the deploy from settings page.">CPU requirement (cores)</translation>
+  <translation id="400181652061104052" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_38" desc="Appears to tell the user that the typed in CPU cores count on the deploy page is not a number.">CPU requirement must be given as a valid number.</translation>
+  <translation id="9203309477293865581" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_39" desc="Appears to tell the user that the typed in number of CPU cores cannot be negative.">CPU requirement must be given as a positive number.</translation>
+  <translation id="3855373419994540818" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_4" desc="Name max length warning on deploy from settings page.">Name must be up to {{ $ctrl.nameMaxLength}} characters long.</translation>
+  <translation id="1047827915897503426" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_40" desc="Memory requirement label on the deploy from settings page.">Memory requirement (MiB)</translation>
+  <translation id="162835823692581982" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_41" desc="Appears to tell the user that the typed in memory on the deploy page is not a number.">Memory requirement must be given as a valid number.</translation>
+  <translation id="331166654758546062" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_42" desc="Appears to tell the user that the typed in memory (on the deploy page) cannot be negative.">Memory requirement must be given as a positive number.</translation>
+  <translation id="1401172456128588215" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_43" desc="User help for the memory and cpu requirement inputs on the deploy from settings page.">You can specify minimum CPU and memory requirements for the container.</translation>
+  <translation id="2933884261278587480" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_44" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="5009839740032766418" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_45" desc="Run command label (a noun, not a verb) on the deploy from settings page.">Run command</translation>
+  <translation id="170950543596737895" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_46" desc="Run command arguments label on the deploy from settings page.">Run command arguments</translation>
+  <translation id="9034794925912334913" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_47" desc="User help for the run command input on the deploy from settings page.">By default, your containers run the selected image's default entrypoint command. You can use the command options to override the default.</translation>
+  <translation id="1363535772708006131" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_48" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="8381707580619862786" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_49" desc="Run as privileged label for the corresponding checkbox on the deploy from settings page.">Run as privileged</translation>
+  <translation id="6584903757745515071" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_5" desc="User help for name field on deploy from settings page.">An 'app' label with this value will be added to the Deployment and Service that get deployed.</translation>
+  <translation id="1137680169888108320" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_50" desc="User help for the run as privileged checkbox input on the deploy from settings page.">Processes in privileged containers are equivalent to processes running as root on the host.</translation>
+  <translation id="6945421258786276425" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_51" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="3661714249664390523" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_52" desc="User help for the environment variables section on the deploy from settings page.">Environment variables available for use in the container. Values can reference other variables using $(VAR_NAME) syntax.</translation>
+  <translation id="576253408209715297" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_53" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="7904591843353404719" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_54" desc="Show advanced options label that appears on deploy from settings page.">Show advanced options</translation>
+  <translation id="2316186178784380169" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_55" desc="Hide advanced options label that appears on deploy from settings page.">Hide advanced options</translation>
+  <translation id="8280529231474321368" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_56" desc="Deploy button label that appears on deploy from settings page.">Deploy</translation>
+  <translation id="6893193880684596849" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_57" desc="Cancel button label that appears on deploy from settings page.">Cancel</translation>
+  <translation id="1656507679911004889" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_6" desc="Learn more link on deploy from settings page.">Learn more</translation>
+  <translation id="634935088207773051" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_7" desc="Container image label on the deploy from settings page.">Container image</translation>
+  <translation id="4523794992671346501" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_8" desc="Container image is required warning on deploy from settings page.">Container image is required</translation>
+  <translation id="1272578437320134865" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYFROMSETTINGS_9" desc="Container image is invalid warning on deploy from settings page.">Container image is invalid:</translation>
+  <translation id="294268054040141709" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_0" desc="Label is not unique warning on deploy label component.">{{ $ctrl.label.key}} is not unique</translation>
+  <translation id="1231678887286960041" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_1" desc="This warning appears when the key of a specified kubernetes label (on the deploy page) does not start with a proper prefix.">Prefix is not a valid DNS subdomain prefix (eg. my-domain.com).</translation>
+  <translation id="4656960526536446359" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_2" desc="This warning appears when the key name of a specified kubernetes label (on the deploy page) does not match the required pattern.">Label key name must be alphanumeric separated by '-', '_' or '.', optionally prefixed by a DNS subdomain and '/'.</translation>
+  <translation id="868107490307868628" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_3" desc="This warning appears when the key prefix of a specified kubernetes label (on the deploy page) is too long.">Prefix should not exceed 253 characters.</translation>
+  <translation id="8219339592121454206" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_4" desc="This warning appears when the value of a specified kubernetes label (on the deploy page) does not match the required pattern.">Label Key name should not exceed 63 characters.</translation>
+  <translation id="6184873524982090439" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_5" desc="This warning appears when the value of a specified kubernetes label (on the deploy page) does not match the required pattern.">Label value must be alphanumeric separated by '.' , '-' or '_'.</translation>
+  <translation id="2714838877898173869" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_DEPLOYLABEL_DEPLOYLABEL_6" desc="This warning appears when the value of a specified kubernetes label (on the deploy page) is too long.">Label Value must not exceed 253 characters.</translation>
+  <translation id="4021721764621979422" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_ENVIRONMENTVARIABLES_ENVIRONMENTVARIABLES_0" desc="Title of the Environment Variables section on the deploy page.">Environment variables</translation>
+  <translation id="263038526347988238" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_ENVIRONMENTVARIABLES_ENVIRONMENTVARIABLES_1" desc="Label &quot;Name&quot; which appears as a placeholder for the input of an environment variable name on the deploy page.">Name</translation>
+  <translation id="1280129093791383817" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_ENVIRONMENTVARIABLES_ENVIRONMENTVARIABLES_2" desc="Label &quot;Value&quot; which appears as a placeholder for the input of an environment variable value on the deploy page.">Variable name must be a valid C identifier.</translation>
+  <translation id="3807095727736000152" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_ENVIRONMENTVARIABLES_ENVIRONMENTVARIABLES_3" desc="Label &quot;Value&quot; which appears as a placeholder for the input of an environment variable value on the deploy page.">Value</translation>
+  <translation id="6592757977953549157" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_0" desc="Label \'Service\' above the service type selection box on the deploy page.">Service</translation>
+  <translation id="6892392939314096373" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_1" desc="Label \'Port\', which serves as a placeholder for the port input field in the port mappings section on the deploy page.">Port</translation>
+  <translation id="4902290159501351669" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_10" desc="Label \'Protocol\' above the protocol selection box in the port mappings section, on the deploy page.">Protocol</translation>
+  <translation id="9170817003129613039" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_11" desc="This warning appears when the user does not specify a protocol for an existing port mapping (in the port mappings section, on the deploy page).">Protocol is required.</translation>
+  <translation id="4860161612396594857" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_12" desc="This warning appears when the user specifies an invalid protocol for a port mapping (in the port mappings section, on the deploy page).">Invalid protocol.</translation>
+  <translation id="4076978233624044856" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_2" desc="This warning appears when the user specifies a non-integer port number in the port mappings section on the deploy page.">Port must be an integer.</translation>
+  <translation id="578510111641840475" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_3" desc="This warning appears when the user specifies a negative port number in the port mappings section on the deploy page.">Port must be greater than 0.</translation>
+  <translation id="3944675833238670930" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_4" desc="This warning appears when a typed in port number exceeds the maximum allowed value (in the port mappings section on the deploy page).">Port must be less than 65536.</translation>
+  <translation id="6662048222193719957" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_5" desc="This warning appears when the user specifies an empty port.">Port cannot be empty.</translation>
+  <translation id="1267056012898608107" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_6" desc="Label \'Target port\', which serves as a placeholder for the target port input field in the port mappings section on the deploy page.">Target port</translation>
+  <translation id="9067256908595321378" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_7" desc="This warning appears when the user specifies a non-integer target port number in the port mappings section on the deploy page.">Target port must be an integer.</translation>
+  <translation id="1304740736131929587" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_8" desc="This warning appears when the user specifies a negative target port number in the port mappings section on the deploy page.">Target port must be greater than 0.</translation>
+  <translation id="4959747095671365781" key="MSG_DEPLOY_DEPLOYFROMSETTINGS_PORTMAPPINGS_PORTMAPPINGS_9" desc="This warning appears when the user specifies an empty target port.">Target port cannot be empty.</translation>
   <translation id="871820752777189829" key="MSG_DEPLOY_DEPLOYLABEL_0" desc="This warning appears when the key of a specified kubernetes label (on the deploy page) does not start with a proper prefix.">前缀不是有效的 DNS 子域名前缀（例如 my-domain.com）</translation>
   <translation id="3134822266523562819" key="MSG_DEPLOY_DEPLOYLABEL_1" desc="This warning appears when the key name of a specified kubernetes label (on the deploy page) does not match the required pattern.">标签键名称必须为字母和数字，以「.」、「-」或「_」分隔，可用 DNS 子域名作前缀并以「/」分隔</translation>
   <translation id="5022527874934506978" key="MSG_DEPLOY_DEPLOYLABEL_2" desc="This warning appears when the key prefix of a specified kubernetes label (on the deploy page) is too long.">前缀不能多于 253 个字符</translation>
@@ -365,6 +566,14 @@
   <translation id="4857231998853727658" key="MSG_EMAIL_INVALIED" desc="Label for the email.">邮箱填写非法,多个收件人用 ; 隔开</translation>
   <translation id="4162582061346784285" key="MSG_ERROR_HANDLING_DIALOG_CLOSE_ACTION" desc="Action &quot;Close&quot; which appears at the bottom of any displayed error dialog.">关闭</translation>
   <translation id="6020266409089609793" key="MSG_ERROR_INTERNALERROR_0" desc="This is a label for button displayed on error page used to send feedback to GitHub new issue.">发送反馈</translation>
+  <translation id="1499717850384845922" key="MSG_EVENTS_CARDLIST_0" desc="Label which appears above the list of such objects.">Events</translation>
+  <translation id="813462428642107590" key="MSG_EVENTS_CARDLIST_1" desc="User help on the events page when no events are to be displayed.">It is possible that all events have expired.</translation>
+  <translation id="7442521290096503765" key="MSG_EVENTS_CARDLIST_2" desc="Label \'Message\' for the event message column of the events table (events list page).">Message</translation>
+  <translation id="7856217890216017405" key="MSG_EVENTS_CARDLIST_3" desc="Label \'Source\' for the event source column of the events table (events list page).">Source</translation>
+  <translation id="2941566808443385402" key="MSG_EVENTS_CARDLIST_4" desc="Label \'Sub-object\' for the respective column of the events table (events list page).">Sub-object</translation>
+  <translation id="168591748531542912" key="MSG_EVENTS_CARDLIST_5" desc="Label \'Count\' for event count column of the events table (events list page).">Count</translation>
+  <translation id="4741982508236749619" key="MSG_EVENTS_CARDLIST_6" desc="Label \'First seen\' for the respective column of the events table (events list page).">First seen</translation>
+  <translation id="8753225825753776972" key="MSG_EVENTS_CARDLIST_7" desc="Label \'Last seen\' for the respective column of the events table (events list page).">Last seen</translation>
   <translation id="5895395841330031723" key="MSG_EVENTS_EVENTCARDLIST_0" desc="Label which appears above the list of such objects.">事件</translation>
   <translation id="7618020634310257225" key="MSG_EVENTS_EVENTCARDLIST_1" desc="Label \'Message\' for the event message column of the events table (events list page).">消息</translation>
   <translation id="7495297439436040330" key="MSG_EVENTS_EVENTCARDLIST_2" desc="Label \'Source\' for the event source column of the events table (events list page).">来源</translation>
@@ -372,7 +581,7 @@
   <translation id="2916394551891554218" key="MSG_EVENTS_EVENTCARDLIST_4" desc="Label \'Count\' for event count column of the events table (events list page).">数量</translation>
   <translation id="8248624391902115626" key="MSG_EVENTS_EVENTCARDLIST_5" desc="Label \'First seen\' for the respective column of the events table (events list page).">最早出现</translation>
   <translation id="2544603000807264761" key="MSG_EVENTS_EVENTCARDLIST_6" desc="Label \'Last seen\' for the respective column of the events table (events list page).">最近出现</translation>
-  <translation id="7386770668705738137" key="MSG_EVENTS_EVENTCARDLIST_7" desc="Title of section when there are no events.">没有内容显示</translation>
+  <translation id="5243256499367938906" key="MSG_EVENTS_EVENTCARDLIST_7" desc="Title of section when there are no events.">没有内容展示</translation>
   <translation id="5659655825513847316" key="MSG_EVENTS_EVENTCARDLIST_8" desc="User help on the events page when no events are to be displayed.">所有的事件过期</translation>
   <translation id="4919061456654775514" key="MSG_EVENTS_WARNING_LABEL" desc="Label 'Warning' for the event selection drop-down.">警告</translation>
   <translation id="339987725992094148" key="MSG_GRAPH_CPU_AXIS_LABEL" desc="Name of Y axis showing CPU usage.">CPU (核)</translation>
@@ -382,49 +591,9 @@
   <translation id="2029236165141474072" key="MSG_GRAPH_MEMORY_AXIS_LABEL" desc="Name of Y axis showing memory usage.">内存 (字节)</translation>
   <translation id="6525531670828842343" key="MSG_GRAPH_MEMORY_USAGE_LEGEND_LABEL" desc="Name of the memory usage metric as displayed in the legend.">内存占用</translation>
   <translation id="185015236199417198" key="MSG_GRAPH_TIME_AXIS_LABEL" desc="Name of time axis.">时间</translation>
-  <translation id="6121455004855879586" key="MSG_HOMEDEPLOYMENT_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of a deployment.">Created at <ph name="CREATION_DATE"/></translation>
-  <translation id="633138098465351362" key="MSG_HOMEPOD_LIST_POD_TERMINATED_STATUS" desc="Status message showing a terminated status with [reason].">Terminated: <ph name="REASON"/></translation>
-  <translation id="3376998915967857657" key="MSG_HOMEPOD_LIST_POD_WAITING_STATUS" desc="Status message showing a waiting status with [reason].">Waiting: <ph name="REASON"/></translation>
   <translation id="4475122443688912494" key="MSG_HOME_ERROE_STATUS" desc="Abnormal">异常</translation>
   <translation id="5468779524245425957" key="MSG_HOME_GOOD_STATUS" desc="Normal">正常</translation>
   <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">系统警告</translation>
-  <translation id="6742982056011175730" key="MSG_HOME_HOME_0" desc="Label \'Allocated resources\' for the allocated resources section.">Allocated resources</translation>
-  <translation id="6083687088507256048" key="MSG_HOME_HOME_1" desc="Label \'CPU requests (cores)\' for the allocated resources table header on the node details page.">CPU 请求 (cores)</translation>
-  <translation id="2939247878314334187" key="MSG_HOME_HOME_10" desc="Label \'Pods\' which appears as a column label in the table of deployments (deployment list view).">容器</translation>
-  <translation id="5370783519475047772" key="MSG_HOME_HOME_11" desc="Label \'Age\' which appears as a column label in the table of deployments (deployment list view).">运行时长</translation>
-  <translation id="1216569674225607467" key="MSG_HOME_HOME_12" desc="Label \'Images\' which appears as a column label in the table of deployments (deployment list view).">镜像</translation>
-  <translation id="681380235857424046" key="MSG_HOME_HOME_13" desc="Tooltip saying that some pods in a deployment have errors.">一个或多个容器出错</translation>
-  <translation id="7622646660136490588" key="MSG_HOME_HOME_14" desc="Tooltip saying that some pods in a deployment are pending.">一个或多个容器部署中</translation>
-  <translation id="7203273395534425723" key="MSG_HOME_HOME_15" desc="Label \'node\' for the node table header on the panel page.">服务器</translation>
-  <translation id="7498525994475172015" key="MSG_HOME_HOME_16" desc="Label which appears above the list of such objects.">容器</translation>
-  <translation id="4757221139984450121" key="MSG_HOME_HOME_17" desc="Title of a column">名称</translation>
-  <translation id="4394966718600225303" key="MSG_HOME_HOME_18" desc="Title of a column">用户</translation>
-  <translation id="6123284179988890641" key="MSG_HOME_HOME_19" desc="Title of a pod status column">状态</translation>
-  <translation id="3554036233556503100" key="MSG_HOME_HOME_2" desc="Label \'CPU limits (cores)\' for the allocated resources table header on the node details page.">CPU 配额 (cores)</translation>
-  <translation id="894872175442673576" key="MSG_HOME_HOME_20" desc="Title of a restarts column for a pod">重启次数</translation>
-  <translation id="7545605501938411877" key="MSG_HOME_HOME_21" desc="Title of a column for the age of a pod">运行时长</translation>
-  <translation id="1704769811786509358" key="MSG_HOME_HOME_22" desc="Title of a column">CPU (cores)</translation>
-  <translation id="1753750412944789862" key="MSG_HOME_HOME_23" desc="Title of a column">Memory (bytes)</translation>
-  <translation id="1887632950622535303" key="MSG_HOME_HOME_24" desc="Tooltip for failed pod card icon">容器出错.</translation>
-  <translation id="7950000578774905877" key="MSG_HOME_HOME_25" desc="Tooltip for pending pod card icon">容器正在部署</translation>
-  <translation id="6534231123189288960" key="MSG_HOME_HOME_26" desc="title of panel page resource card">资源使用率</translation>
-  <translation id="3006371622064183335" key="MSG_HOME_HOME_27" desc="title of panel page memory count card">内存占比</translation>
-  <translation id="5399744916978718508" key="MSG_HOME_HOME_28" desc="title of panel page memory count card">内存占比</translation>
-  <translation id="6722468093316973765" key="MSG_HOME_HOME_29" desc="title of panel page network card">网络</translation>
-  <translation id="2429850074973785745" key="MSG_HOME_HOME_3" desc="Label \'Memory requests (bytes)\' for the allocated resources table header on the node details page.">Memory 请求 (bytes)</translation>
-  <translation id="8418076678975201098" key="MSG_HOME_HOME_30" desc="title of panel page release card">应用</translation>
-  <translation id="7468272625356446072" key="MSG_HOME_HOME_31" desc="label for nodes in panel page">服务器</translation>
-  <translation id="9134350901868562777" key="MSG_HOME_HOME_32" desc="\u770B\u677F\u9875\u9762\u67E5\u770B\u6309\u94AE">查看 </translation>
-  <translation id="7536018276445503987" key="MSG_HOME_HOME_33" desc="lable for release in panel page">容器</translation>
-  <translation id="7170549756190181396" key="MSG_HOME_HOME_34" desc="the warning title of panel page health card">警告</translation>
-  <translation id="6602142716886560858" key="MSG_HOME_HOME_35" desc="label for filesystem in panel page">存储</translation>
-  <translation id="8668251813203634909" key="MSG_HOME_HOME_36" desc="the warning title of panel page health card">警告</translation>
-  <translation id="5817664858511154001" key="MSG_HOME_HOME_4" desc="Label \'Memory limits (bytes)\' for the allocated resources table header on the node details page.">Memory 配额 (bytes)</translation>
-  <translation id="7977993681152508817" key="MSG_HOME_HOME_5" desc="Label \'Pods\' for the allocated resources table header on the node details page.">容器</translation>
-  <translation id="4442126291135085853" key="MSG_HOME_HOME_6" desc="Label which appears above the list of such objects.">应用</translation>
-  <translation id="2181248240956965949" key="MSG_HOME_HOME_7" desc="Label \'Name\' which appears as a column label in the table of deployments (deployment list view).">名称</translation>
-  <translation id="4248578831058806103" key="MSG_HOME_HOME_8" desc="Label \'Namespace\' which appears as a column label in the table of deployments (deployment list view).">用户</translation>
-  <translation id="457773769374393864" key="MSG_HOME_HOME_9" desc="title of panel page resource card">资源使用率</translation>
   <translation id="8795377511802100302" key="MSG_HOME_NO_WARN" desc="No Warning">系统无警告</translation>
   <translation id="3384365793583297069" key="MSG_HOME_STORAGE_RATE" desc="dashboard存储使用率">存储使用率</translation>
   <translation id="1585380567194471022" key="MSG_HORIZONTALPODAUTOSCALERDETAIL_ACTIONBAR_0" desc="Label \'Horizontal Pod Autoscaler\' which appears at the top of the delete dialog, opened from a horizontal pod autoscaler details page.">Horizontal Pod Autoscaler</translation>
@@ -498,9 +667,20 @@
   <translation id="357262544660295674" key="MSG_JOBLIST_JOBLIST_0" desc="Title for graph card displaying CPU metric of jobs.">CPU usage</translation>
   <translation id="6787661994791732767" key="MSG_JOBLIST_JOBLIST_1" desc="Title for graph card displaying memory metric of jobs.">Memory usage</translation>
   <translation id="8660427171549456209" key="MSG_JOBLIST_JOBLIST_2" desc="Help message detailing what is included in the memory usage">The memory usage includes the caches in the pods managed by these jobs.</translation>
+  <translation id="6428808795341026405" key="MSG_LOGIN_BASIC_0" desc="\'Username\' field label shown on login page for basic auth">Username</translation>
+  <translation id="2222883722971802152" key="MSG_LOGIN_BASIC_1" desc="\'Password\' field label shown on login page for basic auth">Password</translation>
+  <translation id="5760322479083675615" key="MSG_LOGIN_KUBECONFIG_0" desc="A \'Choose kubeconfig file\' placeholder for an empty file input field on login page.">Choose kubeconfig file</translation>
   <translation id="4114052729307097480" key="MSG_LOGIN_LOGIN_0" desc="login Can only enter the alphanumeric 6-12 bits">只能输入字母数字6-12位</translation>
-  <translation id="5474439021716449004" key="MSG_LOGIN_LOGIN_1" desc="\'Token\' option label shown on login page">Token</translation>
+  <translation id="5305372224951652610" key="MSG_LOGIN_LOGIN_1" desc="login ERROR Incorrect username or password">用户名或密码错误</translation>
   <translation id="5068917998956828211" key="MSG_LOGIN_LOGIN_2" desc="login Login">登录</translation>
+  <translation id="7931742467615349833" key="MSG_LOGIN_TOKEN_0" desc="\'Token\' field label shown on login page for token auth">Enter token</translation>
+  <translation id="6905890758241326832" key="MSG_LOGS_DOWNLOAD_DIALOG_0" desc="Log file download dialog title.">Downloading log file</translation>
+  <translation id="7920142392085872110" key="MSG_LOGS_DOWNLOAD_DIALOG_1" desc="Log file download dialog info.">Please wait until download has finished.</translation>
+  <translation id="3238335709642538928" key="MSG_LOGS_DOWNLOAD_DIALOG_2" desc="Log file download dialog download status info.">Downloaded: </translation>
+  <translation id="2306078941708704664" key="MSG_LOGS_DOWNLOAD_DIALOG_3" desc="Log file download dialog \'Save\' button.">Save</translation>
+  <translation id="6309042137906110314" key="MSG_LOGS_DOWNLOAD_DIALOG_4" desc="Log file download dialog \'Abort\' button.">Abort</translation>
+  <translation id="2500363004551972927" key="MSG_LOGS_DOWNLOAD_DIALOG_5" desc="Error title displayed on log file download dialog.">Forbidden (403)</translation>
+  <translation id="8509185303237588116" key="MSG_LOGS_DOWNLOAD_DIALOG_6" desc="Log file download dialog \'Close\' button.">Close</translation>
   <translation id="4722922095699681308" key="MSG_LOGS_LOGS_0" desc="Title prefix for logs card.">容器日志</translation>
   <translation id="6855662924451585032" key="MSG_LOGS_LOGS_1" desc="Title part for logs card.">位于</translation>
   <translation id="6208229815004454576" key="MSG_LOGS_LOGS_2" desc="Title prefix for logs card.">日志范围从</translation>
@@ -516,33 +696,35 @@
   <translation id="2940798370079834880" key="MSG_NAMESPACE_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of namespace.">创建于 <ph name="CREATION_DATE"/></translation>
   <translation id="5143266087600531180" key="MSG_NAMESPACE_SELECT_ARIA_LABEL" desc="Text describing what namespace selector is">所选的命名空间标签</translation>
   <translation id="6324817743387041934" key="MSG_NEWHOME_HOME_0" desc="newhome Cluster state">集群状态</translation>
-  <translation id="4949262464530396160" key="MSG_NEWHOME_HOME_1" desc="newhome Application: abnormality">&lt;b&gt;应用:&lt;/b&gt;&amp;nbsp;异常</translation>
-  <translation id="8378577018535483863" key="MSG_NEWHOME_HOME_10" desc="(no description provided)">存储集群已经不可用，请立即联系厂商解决</translation>
-  <translation id="8609758090381306994" key="MSG_NEWHOME_HOME_11" desc="newhome Total:">总共:</translation>
-  <translation id="5291376336094243524" key="MSG_NEWHOME_HOME_12" desc="newhome Available:">可用:</translation>
-  <translation id="1120865065592765705" key="MSG_NEWHOME_HOME_13" desc="newhome Read">读取</translation>
-  <translation id="6785325969440364531" key="MSG_NEWHOME_HOME_14" desc="newhome Cluster usage">集群使用率</translation>
-  <translation id="6157221882821306165" key="MSG_NEWHOME_HOME_15" desc="newhome Read">读取</translation>
-  <translation id="7868213470631678130" key="MSG_NEWHOME_HOME_16" desc="newhome Cluster usage">集群使用率</translation>
-  <translation id="7119420513614556685" key="MSG_NEWHOME_HOME_17" desc="newhome Server CPU">服务器CPU</translation>
-  <translation id="7187637357989521380" key="MSG_NEWHOME_HOME_18" desc="newhome Warning state">警告状态</translation>
-  <translation id="2279080874798772020" key="MSG_NEWHOME_HOME_19" desc="newhome Server Network">服务器网络</translation>
-  <translation id="4025928388854628923" key="MSG_NEWHOME_HOME_2" desc="(no description provided)">正常: newhome normal</translation>
-  <translation id="8565818753768594947" key="MSG_NEWHOME_HOME_20" desc="newhome GigE">千兆网</translation>
-  <translation id="8047186678080386086" key="MSG_NEWHOME_HOME_21" desc="newhome 10 GigE">万兆网</translation>
-  <translation id="6439897022200673065" key="MSG_NEWHOME_HOME_22" desc="newhome Release">应用</translation>
-  <translation id="1623983789168866969" key="MSG_NEWHOME_HOME_23" desc="newhome Age">运行时长</translation>
-  <translation id="8344105084602778465" key="MSG_NEWHOME_HOME_24" desc="newhome Release">在线应用</translation>
-  <translation id="4290119346624167300" key="MSG_NEWHOME_HOME_25" desc="newhome Age">运行时长</translation>
-  <translation id="7935262551386578566" key="MSG_NEWHOME_HOME_26" desc="newhome Age">运行时长</translation>
-  <translation id="1574423411676360086" key="MSG_NEWHOME_HOME_27" desc="newhome No Release">暂无应用</translation>
+  <translation id="2552924582161239935" key="MSG_NEWHOME_HOME_1" desc="newhome Application: abnormality">&lt;b&gt;应用:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;异常</translation>
+  <translation id="6722212271311488419" key="MSG_NEWHOME_HOME_10" desc="(no description provided)">30分钟以上未自行恢复，请立即联系厂商解决</translation>
+  <translation id="3475902765357339955" key="MSG_NEWHOME_HOME_11" desc="newhome abnormal">异常</translation>
+  <translation id="8173386612951958752" key="MSG_NEWHOME_HOME_12" desc="(no description provided)">存储集群已经不可用，请立即联系厂商解决</translation>
+  <translation id="5539650770115192905" key="MSG_NEWHOME_HOME_13" desc="newhome Used:">已使用:</translation>
+  <translation id="3920564931733814327" key="MSG_NEWHOME_HOME_14" desc="newhome Available:">可用:</translation>
+  <translation id="5474546522632975454" key="MSG_NEWHOME_HOME_15" desc="newhome Total:">总共:</translation>
+  <translation id="2988396621056464341" key="MSG_NEWHOME_HOME_16" desc="newhoem Write">写入</translation>
+  <translation id="279933316667064465" key="MSG_NEWHOME_HOME_17" desc="newhome Read">读取</translation>
+  <translation id="1917824447830503136" key="MSG_NEWHOME_HOME_18" desc="newhome Cluster usage">集群使用率</translation>
+  <translation id="2926905984391625603" key="MSG_NEWHOME_HOME_19" desc="newhome Memory">内存</translation>
+  <translation id="288125990052549762" key="MSG_NEWHOME_HOME_2" desc="newhome normal">正常: </translation>
+  <translation id="8974059330086938716" key="MSG_NEWHOME_HOME_20" desc="newhome Warning state">警告状态</translation>
+  <translation id="2233481341265892038" key="MSG_NEWHOME_HOME_21" desc="newhome Server CPU">服务器CPU</translation>
+  <translation id="2206002205501492189" key="MSG_NEWHOME_HOME_22" desc="newhome Server Memory">服务器内存</translation>
+  <translation id="5249952386330972826" key="MSG_NEWHOME_HOME_23" desc="newhome Server Network">服务器网络</translation>
+  <translation id="3331040019003495713" key="MSG_NEWHOME_HOME_24" desc="newhome GigE">千兆网</translation>
+  <translation id="2854078530260548166" key="MSG_NEWHOME_HOME_25" desc="newhome 10 GigE">万兆网</translation>
+  <translation id="520750861267127505" key="MSG_NEWHOME_HOME_26" desc="newhome Release">在线应用</translation>
+  <translation id="5588135426820594715" key="MSG_NEWHOME_HOME_27" desc="newhome">30分钟以上未自行恢复，请立即联系厂商解决</translation>
+  <translation id="4361764680884860036" key="MSG_NEWHOME_HOME_28" desc="newhome Age">运行时长</translation>
+  <translation id="267439760202669721" key="MSG_NEWHOME_HOME_29" desc="newhome No Release">暂无应用</translation>
   <translation id="8513272892058277399" key="MSG_NEWHOME_HOME_3" desc="newhome Server: exception">&lt;b&gt;服务器:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;异常 </translation>
   <translation id="5035594918818434134" key="MSG_NEWHOME_HOME_4" desc="newhome normal">正常: </translation>
-  <translation id="444655437464879522" key="MSG_NEWHOME_HOME_5" desc="newhome Cluster storage">集群存储</translation>
-  <translation id="655524929905229912" key="MSG_NEWHOME_HOME_6" desc="newhome normal">正常 </translation>
-  <translation id="184079791903228799" key="MSG_NEWHOME_HOME_7" desc="newhome warn">告警</translation>
-  <translation id="4622707635940482432" key="MSG_NEWHOME_HOME_8" desc="(no description provided)">30分钟以上未自行恢复，请立即联系厂商解决</translation>
-  <translation id="6757555169901036694" key="MSG_NEWHOME_HOME_9" desc="newhome Used:">已使用:</translation>
+  <translation id="6509764275848912642" key="MSG_NEWHOME_HOME_5" desc="newhome Server: exception">&lt;b&gt;服务器:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;异常 </translation>
+  <translation id="327193323544416163" key="MSG_NEWHOME_HOME_6" desc="newhome normal">正常: </translation>
+  <translation id="7535013330482589471" key="MSG_NEWHOME_HOME_7" desc="newhome Cluster storage">集群存储</translation>
+  <translation id="2569009161759028694" key="MSG_NEWHOME_HOME_8" desc="newhome normal">正常 </translation>
+  <translation id="3507568787272001905" key="MSG_NEWHOME_HOME_9" desc="newhome warn">告警</translation>
   <translation id="7797522188510592984" key="MSG_NODEDETAIL_NODEALLOCATEDRESOURCES_0" desc="Label \'Allocated resources\' for the allocated resources section.">Allocated resources</translation>
   <translation id="3054467191154992607" key="MSG_NODEDETAIL_NODEALLOCATEDRESOURCES_1" desc="Label \'CPU requests (cores)\' for the allocated resources table header on the node details page.">CPU 请求 (cores)</translation>
   <translation id="1449326582134481983" key="MSG_NODEDETAIL_NODEALLOCATEDRESOURCES_2" desc="Label \'CPU limits (cores)\' for the allocated resources table header on the node details page.">CPU 配额 (cores)</translation>
@@ -571,25 +753,25 @@
   <translation id="7400670026996882160" key="MSG_NODEDETAIL_NODEINFO_7" desc="Label \'Machine ID\' for the node machine ID displayed on its details page.">Machine ID</translation>
   <translation id="7091930339665338471" key="MSG_NODEDETAIL_NODEINFO_8" desc="Label \'System UUID\' for the node system UUID displayed on its details page.">System UUID</translation>
   <translation id="7608450553482340527" key="MSG_NODEDETAIL_NODEINFO_9" desc="Label \'Boot ID\' for the node boot ID displayed on its details page.">Boot ID</translation>
-  <translation id="5814896179364847765" key="MSG_NODELIST_NODECARD_0" desc="nodecard Age">运行时长</translation>
+  <translation id="5333375655442160673" key="MSG_NODELIST_NODECARD_0" desc="node">30分钟以上未自行恢复，请立即联系厂商解决</translation>
   <translation id="8291367293226355717" key="MSG_NODELIST_NODECARD_1" desc="nodecard Age">运行时长</translation>
   <translation id="4360992432581750156" key="MSG_NODELIST_NODECARD_2" desc="nodecard OS version">OS版本</translation>
-  <translation id="2370470625189981954" key="MSG_NODELIST_NODELIST_0" desc="nodedetail Cores">核数</translation>
+  <translation id="1706634159475866413" key="MSG_NODELIST_NODELIST_0" desc="nodedetail">30分钟以上未自行恢复，请立即联系厂商解决</translation>
   <translation id="5125096330651502230" key="MSG_NODELIST_NODELIST_1" desc="nodedetail Cores">核数</translation>
-  <translation id="8675110938657173198" key="MSG_NODELIST_NODELIST_10" desc="nodedetail CPU Monitor">CPU监控</translation>
+  <translation id="8088701252548040944" key="MSG_NODELIST_NODELIST_10" desc="nodedetail Network">网卡</translation>
   <translation id="7358846179193816600" key="MSG_NODELIST_NODELIST_11" desc="nodedetail CPU Monitor">CPU监控</translation>
-  <translation id="6617185730243980218" key="MSG_NODELIST_NODELIST_12" desc="nodedetail Network I/O">网络I/O</translation>
-  <translation id="8004597063360062376" key="MSG_NODELIST_NODELIST_13" desc="nodedetail Receive">接收</translation>
-  <translation id="6894730999996192156" key="MSG_NODELIST_NODELIST_14" desc="nodedetail Receive">接收</translation>
+  <translation id="4985402980392993386" key="MSG_NODELIST_NODELIST_12" desc="nodedetail Memory Monitor">内存监控</translation>
+  <translation id="6063167723746338718" key="MSG_NODELIST_NODELIST_13" desc="nodedetail Network I/O">网络I/O</translation>
+  <translation id="686060794984653886" key="MSG_NODELIST_NODELIST_14" desc="nodedetail Send">发送</translation>
   <translation id="3525177188340827820" key="MSG_NODELIST_NODELIST_15" desc="nodedetail Receive">接收</translation>
   <translation id="5295864746870364489" key="MSG_NODELIST_NODELIST_2" desc="nodedetail Model">型号</translation>
-  <translation id="3662872857194921930" key="MSG_NODELIST_NODELIST_3" desc="nodedetail Memory">内存</translation>
-  <translation id="4441656204943602461" key="MSG_NODELIST_NODELIST_4" desc="nodedetail Totail">总共</translation>
-  <translation id="2024996949865553814" key="MSG_NODELIST_NODELIST_5" desc="nodedetail Available">可用</translation>
+  <translation id="2547450734004287891" key="MSG_NODELIST_NODELIST_3" desc="nodedetail Characteristic">特性</translation>
+  <translation id="3729564480253003671" key="MSG_NODELIST_NODELIST_4" desc="nodedetail Memory">内存</translation>
+  <translation id="1985383327036027323" key="MSG_NODELIST_NODELIST_5" desc="nodedetail Totail">总共</translation>
   <translation id="6036501796472928918" key="MSG_NODELIST_NODELIST_6" desc="nodedetail Available">可用</translation>
-  <translation id="6405698106271729300" key="MSG_NODELIST_NODELIST_7" desc="nodedetail Disk">硬盘</translation>
+  <translation id="3688836729013620041" key="MSG_NODELIST_NODELIST_7" desc="nodedetail Paging">分页</translation>
   <translation id="6398448831555009328" key="MSG_NODELIST_NODELIST_8" desc="nodedetail Disk">硬盘</translation>
-  <translation id="2657031011294105439" key="MSG_NODELIST_NODELIST_9" desc="nodedetail CPU Monitor">CPU监控</translation>
+  <translation id="2436558574120666569" key="MSG_NODELIST_NODELIST_9" desc="node detail">硬盘异常，请联系厂商解决</translation>
   <translation id="8795278997864739569" key="MSG_NODE_CARD_QIANZHAO_NET" desc="服务器详情页千兆网卡">千兆网卡</translation>
   <translation id="6863549085559644492" key="MSG_NODE_CARD_WANZHAO_NET" desc="服务器详情页万兆网卡">万兆网卡</translation>
   <translation id="7667877337005745052" key="MSG_NODE_CARD_detail_error" desc="异常 Abnormal">异常</translation>
@@ -733,20 +915,22 @@
   <translation id="8050645543692471361" key="MSG_PORT_MAPPINGS_SERVICE_TYPE_INTERNAL_LABEL" desc="Label 'Internal', which appears as an option in the service type selection box on the deploy page.">内部</translation>
   <translation id="721797967401199865" key="MSG_PORT_MAPPINGS_SERVICE_TYPE_NONE_LABEL" desc="Label 'None', which appears as an option in the service type selection box on the deploy page.">无</translation>
   <translation id="4521543753957765275" key="MSG_RC_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of replication controller.">创建于 <ph name="CREATION_DATE"/></translation>
-  <translation id="1218818980045176439" key="MSG_RELEASELIST_RELEASECARD_0" desc="release Age">运行时长</translation>
-  <translation id="5803935802679933057" key="MSG_RELEASELIST_RELEASECARD_1" desc="release Delete">删除</translation>
-  <translation id="5783638371373661279" key="MSG_RELEASELIST_RELEASECARD_2" desc="release Delete">删除</translation>
+  <translation id="2415265520313065235" key="MSG_RELEASELIST_ACTIONBAR_0" desc="\u6D4B\u8BD5ceshi">ceshi测试</translation>
+  <translation id="737298456122489347" key="MSG_RELEASELIST_RELEASECARD_0" desc="newhome">30分钟以上未自行恢复，请立即联系厂商解决</translation>
+  <translation id="1263657710706358344" key="MSG_RELEASELIST_RELEASECARD_1" desc="release Age">运行时长</translation>
+  <translation id="289434030814436959" key="MSG_RELEASELIST_RELEASECARD_2" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
   <translation id="7043669989385776815" key="MSG_RELEASELIST_RELEASELIST_0" desc="relese detail Pod Deployment">容器部署情况</translation>
   <translation id="303904117895434210" key="MSG_RELEASELIST_RELEASELIST_1" desc="release detail Desired">期望份数</translation>
-  <translation id="5975493984871624426" key="MSG_RELEASELIST_RELEASELIST_10" desc="relese detail Volume name">卷名称</translation>
-  <translation id="6425962282579533522" key="MSG_RELEASELIST_RELEASELIST_2" desc="release detail Current">当前</translation>
-  <translation id="7972488014411863606" key="MSG_RELEASELIST_RELEASELIST_3" desc="release detail Update">更新</translation>
-  <translation id="5520180215692680521" key="MSG_RELEASELIST_RELEASELIST_4" desc="release detail Available">可用</translation>
-  <translation id="8223029907073040213" key="MSG_RELEASELIST_RELEASELIST_5" desc="release detail Service">服务</translation>
-  <translation id="7113512690929282961" key="MSG_RELEASELIST_RELEASELIST_6" desc="release detail Internal entrance">内部入口</translation>
-  <translation id="832766133557161031" key="MSG_RELEASELIST_RELEASELIST_7" desc="release detail External entrance">外部入口</translation>
+  <translation id="1693186602524018233" key="MSG_RELEASELIST_RELEASELIST_10" desc="\u90E8\u7F72\u60C5\u51B5">部署情况</translation>
+  <translation id="3196730331227278215" key="MSG_RELEASELIST_RELEASELIST_11" desc="release detail No detailed configuration">没有详细配置</translation>
+  <translation id="4108734438575262820" key="MSG_RELEASELIST_RELEASELIST_2" desc="release detail Available">可用份数</translation>
+  <translation id="1377525040409370516" key="MSG_RELEASELIST_RELEASELIST_3" desc="release detail Service">服务</translation>
+  <translation id="5191133258622233566" key="MSG_RELEASELIST_RELEASELIST_4" desc="release detail Internal entrance">内部入口</translation>
+  <translation id="7650236997883244603" key="MSG_RELEASELIST_RELEASELIST_5" desc="release detail External entrance">外部入口</translation>
+  <translation id="3961983637003968441" key="MSG_RELEASELIST_RELEASELIST_6" desc="release detail Storage volume">存储卷</translation>
+  <translation id="471783806441411961" key="MSG_RELEASELIST_RELEASELIST_7" desc="release detail Status">状态</translation>
   <translation id="5731604655069623676" key="MSG_RELEASELIST_RELEASELIST_8" desc="relese detail Volume name">卷名称</translation>
-  <translation id="7179836233995113217" key="MSG_RELEASELIST_RELEASELIST_9" desc="release detail Status">状态</translation>
+  <translation id="2024975417227612281" key="MSG_RELEASELIST_RELEASELIST_9" desc="release detail Total">总量</translation>
   <translation id="2041192263223817392" key="MSG_RELEASE_CANCEL_ACTION" desc="update release cancle.">取消</translation>
   <translation id="5128137147082892091" key="MSG_RELEASE_DELETE" desc="删除应用">删除</translation>
   <translation id="8006129793743799410" key="MSG_RELEASE_DOMAIN" desc="域名">域名</translation>

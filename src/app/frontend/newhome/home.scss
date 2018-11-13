@@ -155,6 +155,17 @@
                     }
                 }
             }
+            &:nth-of-type(2) {
+                width: 280px;
+                .itemlist {
+                    height: 68px;
+                    padding-top: 20px;
+                    box-sizing: border-box;
+                }
+                .nodebox {
+                    width: 205px;
+                }
+            }
         }
     }
 }

@@ -58,7 +58,6 @@
                         {{::ctrl.i18n.MSG_DEPLOY_CHART_USER_HELP1}}
                     </kd-user-help>
                 </kd-help-section>
-                [[test|a]]
                 <md-input-container class="md-block" ng-show="ctrl.selectedRepos != 'None'">
                     <label ng-show="false"></label>
                     <input style="position: relative; z-index: -100; top: 0;" type="text" name="selectedCharts" required ng-model="ctrl.selectedCharts">
@@ -182,6 +181,25 @@
                                 <div>
                                     <input type="text" readonly value="k8s.com" />
                                 </div>
+                            </md-input-container>
+                            <kd-user-help style="width: 40%;">
+                            </kd-user-help>
+                        </kd-help-section>
+                    </kd-content>
+                </kd-content-card>
+            </div>
+            <div>
+                <kd-content-card>
+                    <kd-title>[[Deployment platform|App Store 部署平台]]</kd-title>
+                    <kd-content class="kd-content-padded">
+                        <kd-help-section>
+                            <md-input-container>
+                                <label>[[Deployment platform|App Store 部署平台]]</label>
+                                <md-select ng-model="ctrl.platform">
+                                    <md-option selected value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
+                                    <md-option value="ARM64">[[ARM64|App Store ARM64]]</md-option>
+                                    <md-option value="X86">[[X86|App Store X86]]</md-option>
+                                </md-select>
                             </md-input-container>
                             <kd-user-help style="width: 40%;">
                             </kd-user-help>

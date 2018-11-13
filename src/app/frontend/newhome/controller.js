@@ -36,7 +36,7 @@ export class homeController {
             /** @export */
             $rootScope.alertsnum = 0;
             /** @export */
-            this.cmRate = [0, 0];
+            this.cmRate = [0, 100];
             /** @export */
             this.fsmonMes = {};
             /** @export */
@@ -47,7 +47,13 @@ export class homeController {
                 9: i18n.MSG_HOME_ERROE_STATUS,
             };
             /** @export */
-            this.nodelist = [];
+            this.amdnodelist = [];
+            /** @export */
+            this.armnodelist = [];
+            /** @export */
+            this.nodelist = {
+                "nodes": []
+            };
             /** @export */
             this.releaselist = {};
             /** @export */
@@ -57,8 +63,10 @@ export class homeController {
             };
             /** @export */
             this.nodenum = {
-                "normal": 0,
-                "abnormal": 0,
+                "amdnormal": 0,
+                "amdabnormal": 0,
+                "armnormal": 0,
+                "armabnormal": 0,
             };
             /** @export */
             this.releasestatus = [{
@@ -206,79 +214,96 @@ export class homeController {
                 //CPU
                 for (let i = 0; i < this.panelMes["cpu"].length; i++) {
                     // if(this.panelMes["cpu"][i]["metric"]["instance"]!=""){}
-                    cpuoption["series"][i] = {
-                        "name": this.panelMes["cpu"][i]["metric"]["instance"],
-                        "data": this.panelMes["cpu"][i]["values"].map(function(item) {
-                            return [item[0] * 1000, (100 * (item[1] - 0)).toFixed(3)];
-                        }),
-                        "type": 'line',
-                        "z": i,
-                        "showSymbol": false,
-                        "smooth": true,
-                        "lineStyle": {
-                            "width": '3',
-                        },
-                        "areaStyle": {
-                            "color": colors[i % 3],
-                        },
-                    };
+                    for (let j = 0; j < this.nodelist["nodes"].length; j++) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                            cpuoption["series"][i] = {
+                                "name": this.panelMes["cpu"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
+                                "data": this.panelMes["cpu"][i]["values"].map(function(item) {
+                                    return [item[0] * 1000, (100 * (item[1] - 0)).toFixed(3)];
+                                }),
+                                "type": 'line',
+                                "z": i,
+                                "showSymbol": false,
+                                "smooth": true,
+                                "lineStyle": {
+                                    "width": '3',
+                                },
+                                "areaStyle": {
+                                    "color": colors[i % 3],
+                                },
+                            };
+                            break;
+                        }
+                    }
                 }
                 //内存
                 for (let i = 0; i < this.panelMes["memory"].length; i++) {
-                    memoption["series"][i] = {
-                        "name": this.panelMes["memory"][i]["metric"]["instance"],
-                        "data": this.panelMes["memory"][i]["values"].map(function(item) {
-                            return [item[0] * 1000, (item[1] - 0).toFixed(3)];
-                        }),
-                        "type": 'line',
-                        "z": i,
-                        "showSymbol": false,
-                        "smooth": true,
-                        "lineStyle": {
-                            "width": '3',
-                        },
-                        "areaStyle": {
-                            "color": colors[i % 3],
-                        },
-                    };
+                    for (let j = 0; j < this.nodelist["nodes"].length; j++) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                            memoption["series"][i] = {
+                                "name": this.panelMes["memory"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
+                                "data": this.panelMes["memory"][i]["values"].map(function(item) {
+                                    return [item[0] * 1000, (item[1] - 0).toFixed(3)];
+                                }),
+                                "type": 'line',
+                                "z": i,
+                                "showSymbol": false,
+                                "smooth": true,
+                                "lineStyle": {
+                                    "width": '3',
+                                },
+                                "areaStyle": {
+                                    "color": colors[i % 3],
+                                },
+                            };
+                        }
+                    }
                 }
                 //千兆网卡
                 for (let i = 0; i < this.panelMes["net1000"].length; i++) {
-                    qianoption["series"][i] = {
-                        "name": this.panelMes["net1000"][i]["metric"]["instance"],
-                        "data": this.panelMes["net1000"][i]["values"].map(function(item) {
-                            return [item[0] * 1000, item[1]];
-                        }),
-                        "type": 'line',
-                        "z": i,
-                        "showSymbol": false,
-                        "smooth": true,
-                        "lineStyle": {
-                            "width": '3',
-                        },
-                        "areaStyle": {
-                            "color": colors[i % 3],
-                        },
-                    };
+                    for (let j = 0; j < this.nodelist["nodes"].length; j++) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                            qianoption["series"][i] = {
+                                "name": this.panelMes["net1000"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
+                                "data": this.panelMes["net1000"][i]["values"].map(function(item) {
+                                    return [item[0] * 1000, item[1]];
+                                }),
+                                "type": 'line',
+                                "z": i,
+                                "showSymbol": false,
+                                "smooth": true,
+                                "lineStyle": {
+                                    "width": '3',
+                                },
+                                "areaStyle": {
+                                    "color": colors[i % 3],
+                                },
+                            };
+                        }
+                    }
                 }
                 //万兆网卡
                 for (let i = 0; i < this.panelMes["net10000"].length; i++) {
-                    wanoption["series"][i] = {
-                        "name": this.panelMes["net10000"][i]["metric"]["instance"],
-                        "data": this.panelMes["net10000"][i]["values"].map(function(item) {
-                            return [item[0] * 1000, item[1]];
-                        }),
-                        "type": 'line',
-                        "z": i,
-                        "showSymbol": false,
-                        "smooth": true,
-                        "lineStyle": {
-                            "width": '3',
-                        },
-                        "areaStyle": {
-                            "color": colors[i % 3],
-                        },
-                    };
+                    for (let j = 0; j < this.nodelist["nodes"].length; j++) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                            wanoption["series"][i] = {
+                                "name": this.panelMes["net10000"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
+                                "data": this.panelMes["net10000"][i]["values"].map(function(item) {
+                                    return [item[0] * 1000, item[1]];
+                                }),
+                                "type": 'line',
+                                "z": i,
+                                "showSymbol": false,
+                                "smooth": true,
+                                "lineStyle": {
+                                    "width": '3',
+                                },
+                                "areaStyle": {
+                                    "color": colors[i % 3],
+                                },
+                            };
+                        }
+                    }
                 }
             };
             //echarts CPU配置
@@ -574,16 +599,33 @@ export class homeController {
                 getnode.get().$promise.then(
                     (data) => {
                         this.nodelist = data;
-                        let list = [0, 0];
+                        this.amdnodelist = [];
+                        this.armnodelist = [];
+                        let list = [0, 0, 0, 0];
                         for (let i = 0; i < data['nodes'].length; i++) {
-                            if (data['nodes'][i]['ready'] == "True") {
-                                list[0]++;
+                            if (data["nodes"][i]["objectMeta"]["labels"]["beta.kubernetes.io/arch"].indexOf("amd") != -1) {
+                                this.amdnodelist[this.amdnodelist.length] = data["nodes"][i];
                             } else {
-                                list[1]++;
+                                this.armnodelist[this.armnodelist.length] = data["nodes"][i];
+                            }
+                            if (data['nodes'][i]['ready'] == "True") {
+                                if (data["nodes"][i]["objectMeta"]["labels"]["beta.kubernetes.io/arch"].indexOf("amd") != -1) {
+                                    list[0]++;
+                                } else {
+                                    list[2]++;
+                                }
+                            } else {
+                                if (data["nodes"][i]["objectMeta"]["labels"]["beta.kubernetes.io/arch"].indexOf("amd") != -1) {
+                                    list[1]++;
+                                } else {
+                                    list[3]++;
+                                }
                             }
                         }
-                        this.nodenum["normal"] = list[0];
-                        this.nodenum["abnormal"] = list[1];
+                        this.nodenum["amdnormal"] = list[0];
+                        this.nodenum["amdabnormal"] = list[1];
+                        this.nodenum["armnormal"] = list[2];
+                        this.nodenum["armabnormal"] = list[3];
                         // this.formatstatus('node', list);
                     },
                     (res) => {
@@ -743,16 +785,33 @@ export class homeController {
             getnode.get().$promise.then(
                 (data) => {
                     this.nodelist = data;
-                    let list = [0, 0];
+                    this.amdnodelist = [];
+                    this.armnodelist = [];
+                    let list = [0, 0, 0, 0];
                     for (let i = 0; i < data['nodes'].length; i++) {
-                        if (data['nodes'][i]['ready'] == "True") {
-                            list[0]++;
+                        if (data["nodes"][i]["objectMeta"]["labels"]["beta.kubernetes.io/arch"].indexOf("amd") != -1) {
+                            this.amdnodelist[this.amdnodelist.length] = data["nodes"][i];
                         } else {
-                            list[1]++;
+                            this.armnodelist[this.armnodelist.length] = data["nodes"][i];
+                        }
+                        if (data['nodes'][i]['ready'] == "True") {
+                            if (data["nodes"][i]["objectMeta"]["labels"]["beta.kubernetes.io/arch"].indexOf("amd") != -1) {
+                                list[0]++;
+                            } else {
+                                list[2]++;
+                            }
+                        } else {
+                            if (data["nodes"][i]["objectMeta"]["labels"]["beta.kubernetes.io/arch"].indexOf("amd") != -1) {
+                                list[1]++;
+                            } else {
+                                list[3]++;
+                            }
                         }
                     }
-                    this.nodenum["normal"] = list[0];
-                    this.nodenum["abnormal"] = list[1];
+                    this.nodenum["amdnormal"] = list[0];
+                    this.nodenum["amdabnormal"] = list[1];
+                    this.nodenum["armnormal"] = list[2];
+                    this.nodenum["armabnormal"] = list[3];
                     // this.formatstatus('node', list);
                     // console.log(data);
                 },

@@ -58,7 +58,8 @@ limitations under the License.
 <div class="nodeitem" ng-click="$ctrl.getDetail()">
     <div class="nodestatusbox" layout="row">
         <div class="img">
-            <img src="assets/images/server.png" alt="">
+            <img src="assets/images/x86.png" ng-if="$ctrl.node.nodeInfo.architecture=='amd64'" alt="">
+            <img src="assets/images/arm.png" ng-if="$ctrl.node.nodeInfo.architecture=='arm64'" alt="">
         </div>
         <div class="namebox">
             <div class="name">{{$ctrl.node.objectMeta.name}}</div>
