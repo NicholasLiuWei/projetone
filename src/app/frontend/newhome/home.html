@@ -149,7 +149,8 @@
         <div class="warn basebox">
             <div class="warntitle">[[警告状态|newhome Warning state]]</div>
             <div layout="row" layout-align="space-between center" class="warnmes" ng-class="{'nowarns':$root.alertsnum==0}">
-                <div class="warndesc">{{$root.alertsnum==0?$ctrl.i18n.MSG_HOME_NO_WARN:$ctrl.i18n.MSG_HOME_HAVE_WARN}}</div>
+                <div class="warndesc" ng-if="$root.alertsnum==0">[[系统无警告|newhome No Warning]]</div>
+                <div class="warndesc" ng-if="$root.alertsnum!=0">[[系统警告|newhome Serious Warning]]</div>
                 <div class="warncount" ng-click="$root.getwarning($event)">{{$root.alertsnum}}</div>
             </div>
         </div>

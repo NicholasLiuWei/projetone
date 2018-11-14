@@ -709,16 +709,18 @@
   <translation id="2926905984391625603" key="MSG_NEWHOME_HOME_19" desc="newhome Memory">内存</translation>
   <translation id="288125990052549762" key="MSG_NEWHOME_HOME_2" desc="newhome normal">正常: </translation>
   <translation id="8974059330086938716" key="MSG_NEWHOME_HOME_20" desc="newhome Warning state">警告状态</translation>
-  <translation id="2233481341265892038" key="MSG_NEWHOME_HOME_21" desc="newhome Server CPU">服务器CPU</translation>
-  <translation id="2206002205501492189" key="MSG_NEWHOME_HOME_22" desc="newhome Server Memory">服务器内存</translation>
-  <translation id="5249952386330972826" key="MSG_NEWHOME_HOME_23" desc="newhome Server Network">服务器网络</translation>
-  <translation id="3331040019003495713" key="MSG_NEWHOME_HOME_24" desc="newhome GigE">千兆网</translation>
-  <translation id="2854078530260548166" key="MSG_NEWHOME_HOME_25" desc="newhome 10 GigE">万兆网</translation>
-  <translation id="520750861267127505" key="MSG_NEWHOME_HOME_26" desc="newhome Release">在线应用</translation>
-  <translation id="5588135426820594715" key="MSG_NEWHOME_HOME_27" desc="newhome">30分钟以上未自行恢复，请立即联系厂商解决</translation>
-  <translation id="4361764680884860036" key="MSG_NEWHOME_HOME_28" desc="newhome Age">运行时长</translation>
-  <translation id="267439760202669721" key="MSG_NEWHOME_HOME_29" desc="newhome No Release">暂无应用</translation>
+  <translation id="2726710763273772466" key="MSG_NEWHOME_HOME_21" desc="newhome No Warning">系统无警告</translation>
+  <translation id="4912248681956511431" key="MSG_NEWHOME_HOME_22" desc="newhome Serious Warning">系统警告</translation>
+  <translation id="3597609672845529595" key="MSG_NEWHOME_HOME_23" desc="newhome Server CPU">服务器CPU</translation>
+  <translation id="504050685595290445" key="MSG_NEWHOME_HOME_24" desc="newhome Server Memory">服务器内存</translation>
+  <translation id="7916087943786273157" key="MSG_NEWHOME_HOME_25" desc="newhome Server Network">服务器网络</translation>
+  <translation id="4731057832522620561" key="MSG_NEWHOME_HOME_26" desc="newhome GigE">千兆网</translation>
+  <translation id="4633615134379662673" key="MSG_NEWHOME_HOME_27" desc="newhome 10 GigE">万兆网</translation>
+  <translation id="6170625027620184783" key="MSG_NEWHOME_HOME_28" desc="newhome Release">在线应用</translation>
+  <translation id="4281151775346904350" key="MSG_NEWHOME_HOME_29" desc="newhome">30分钟以上未自行恢复，请立即联系厂商解决</translation>
   <translation id="8513272892058277399" key="MSG_NEWHOME_HOME_3" desc="newhome Server: exception">&lt;b&gt;服务器:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;异常 </translation>
+  <translation id="5919319179485000302" key="MSG_NEWHOME_HOME_30" desc="newhome Age">运行时长</translation>
+  <translation id="5207217192315219054" key="MSG_NEWHOME_HOME_31" desc="newhome No Release">暂无应用</translation>
   <translation id="5035594918818434134" key="MSG_NEWHOME_HOME_4" desc="newhome normal">正常: </translation>
   <translation id="6509764275848912642" key="MSG_NEWHOME_HOME_5" desc="newhome Server: exception">&lt;b&gt;服务器:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;异常 </translation>
   <translation id="327193323544416163" key="MSG_NEWHOME_HOME_6" desc="newhome normal">正常: </translation>

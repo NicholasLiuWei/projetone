@@ -4,10 +4,10 @@
   <translation id="1421031463694814701" key="MSG_ACTION_BAR_EDIT_TOOLTIP" desc="Generic &quot;Edit some resource&quot; tooltip text which appears over the edit icon on the global action bar.">Edit <ph name="RESOURCE_NAME"/></translation>
   <translation id="1024358167652076581" key="MSG_ALL_NAMESPACES" desc="Text for dropdown item that indicates that no namespace was selected">All namespaces</translation>
   <translation id="4765626815874675830" key="MSG_APPSTORE_APPSTORE_0" desc="Title text which appears on top of the deploy page."> Deploy a Helm charts </translation>
-  <translation id="2194238272112050587" key="MSG_APPSTORE_APPSTORE_1" desc="App Store \u9009\u62E9\u4E00\u4E2A\u5E94\u7528\u90E8\u7F72">选择一个应用部署</translation>
-  <translation id="8408310627713654814" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">名字非法,只可输入字母数字,字母开头</translation>
-  <translation id="7749715521199676576" key="MSG_APPSTORE_APPSTORE_3" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
-  <translation id="6673394930890065143" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">必填,只可输入字母数字,字母开头</translation>
+  <translation id="2194238272112050587" key="MSG_APPSTORE_APPSTORE_1" desc="App Store \u9009\u62E9\u4E00\u4E2A\u5E94\u7528\u90E8\u7F72">Select an release deploy</translation>
+  <translation id="8408310627713654814" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">The name is illegal. It can only enter alphanumeric characters, beginning with letters.</translation>
+  <translation id="7749715521199676576" key="MSG_APPSTORE_APPSTORE_3" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">Name repetition</translation>
+  <translation id="6673394930890065143" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">Required, only alphabetic digits, letters beginning.</translation>
   <translation id="1147022517078023778" key="MSG_APPSTORE_APPSTORE_5" desc="App Store \u90E8\u7F72\u5E73\u53F0">Deployment platform</translation>
   <translation id="1979038432263707626" key="MSG_APPSTORE_APPSTORE_6" desc="App Store \u90E8\u7F72\u5E73\u53F0">Deployment platform</translation>
   <translation id="638196110450458660" key="MSG_APPSTORE_APPSTORE_7" desc="App Store Auto \u81EA\u52A8\u90E8\u7F72">Auto</translation>
@@ -329,7 +329,7 @@
   <translation id="5992572798908340410" key="MSG_DEPLOY_CHART_RELEASE_NAME_USER_HELP1" desc="User help for chart release name on the deploy from chart page.">specify a release name.</translation>
   <translation id="1202938124797695980" key="MSG_DEPLOY_CHART_REPO_USER_HELP" desc="User help for chart repository selection on the deploy from chart page.">Select a Chart Repository.</translation>
   <translation id="1993070874792851325" key="MSG_DEPLOY_CHART_REPO_USER_HELP1" desc="User help for chart repository selection on the deploy from chart page.">Select a Chart Repository.</translation>
-  <translation id="1612638995541398188" key="MSG_DEPLOY_CHART_TEST" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">取消1</translation>
+  <translation id="1612638995541398188" key="MSG_DEPLOY_CHART_TEST" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">Cancel</translation>
   <translation id="7615332958125742034" key="MSG_DEPLOY_CHART_URL_USER_HELP" desc="User helm for chart URL to deploy">Specify the URL of the chart to deploy.</translation>
   <translation id="1344466574245629774" key="MSG_DEPLOY_CHART_URL_USER_HELP1" desc="User helm for chart URL to deploy">Specify the URL of the chart to deploy.</translation>
   <translation id="6147376001007018862" key="MSG_DEPLOY_CHART_USER_HELP" desc="User help for chart selection on the deploy from chart page.">Select a Chart to deploy.</translation>
@@ -593,8 +593,8 @@
   <translation id="185015236199417198" key="MSG_GRAPH_TIME_AXIS_LABEL" desc="Name of time axis.">Time</translation>
   <translation id="4475122443688912494" key="MSG_HOME_ERROE_STATUS" desc="Abnormal">Abnormal</translation>
   <translation id="5468779524245425957" key="MSG_HOME_GOOD_STATUS" desc="Normal">Normal</translation>
-  <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">Serious Warning</translation>
-  <translation id="8795377511802100302" key="MSG_HOME_NO_WARN" desc="No Warning">No Warning</translation>
+  <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">系统警告</translation>
+  <translation id="8795377511802100302" key="MSG_HOME_NO_WARN" desc="No Warning">系统无警告</translation>
   <translation id="3384365793583297069" key="MSG_HOME_STORAGE_RATE" desc="dashboard存储使用率">Storage Rate</translation>
   <translation id="1585380567194471022" key="MSG_HORIZONTALPODAUTOSCALERDETAIL_ACTIONBAR_0" desc="Label \'Horizontal Pod Autoscaler\' which appears at the top of the delete dialog, opened from a horizontal pod autoscaler details page.">Horizontal Pod Autoscaler</translation>
   <translation id="6001363562011800982" key="MSG_HORIZONTALPODAUTOSCALERDETAIL_HORIZONTALPODAUTOSCALERINFO_0" desc="Horizontal pod autoscaler info details section name.">Details</translation>
@@ -709,16 +709,18 @@
   <translation id="2926905984391625603" key="MSG_NEWHOME_HOME_19" desc="newhome Memory">Memory</translation>
   <translation id="288125990052549762" key="MSG_NEWHOME_HOME_2" desc="newhome normal">Normal: </translation>
   <translation id="8974059330086938716" key="MSG_NEWHOME_HOME_20" desc="newhome Warning state">Warning state</translation>
-  <translation id="2233481341265892038" key="MSG_NEWHOME_HOME_21" desc="newhome Server CPU">Server CPU</translation>
-  <translation id="2206002205501492189" key="MSG_NEWHOME_HOME_22" desc="newhome Server Memory">Server Memory</translation>
-  <translation id="5249952386330972826" key="MSG_NEWHOME_HOME_23" desc="newhome Server Network">Server Network</translation>
-  <translation id="3331040019003495713" key="MSG_NEWHOME_HOME_24" desc="newhome GigE">GigE</translation>
-  <translation id="2854078530260548166" key="MSG_NEWHOME_HOME_25" desc="newhome 10 GigE">10 GigE</translation>
-  <translation id="520750861267127505" key="MSG_NEWHOME_HOME_26" desc="newhome Release">Release</translation>
-  <translation id="5588135426820594715" key="MSG_NEWHOME_HOME_27" desc="newhome">No recovery has been made for more than 30 minutes. Please contact the manufacturer immediately.</translation>
-  <translation id="4361764680884860036" key="MSG_NEWHOME_HOME_28" desc="newhome Age">Age</translation>
-  <translation id="267439760202669721" key="MSG_NEWHOME_HOME_29" desc="newhome No Release">No Release</translation>
+  <translation id="2726710763273772466" key="MSG_NEWHOME_HOME_21" desc="newhome No Warning">No Warning</translation>
+  <translation id="4912248681956511431" key="MSG_NEWHOME_HOME_22" desc="newhome Serious Warning">Serious Warning</translation>
+  <translation id="3597609672845529595" key="MSG_NEWHOME_HOME_23" desc="newhome Server CPU">Server CPU</translation>
+  <translation id="504050685595290445" key="MSG_NEWHOME_HOME_24" desc="newhome Server Memory">Server Memory</translation>
+  <translation id="7916087943786273157" key="MSG_NEWHOME_HOME_25" desc="newhome Server Network">Server Network</translation>
+  <translation id="4731057832522620561" key="MSG_NEWHOME_HOME_26" desc="newhome GigE">GigE</translation>
+  <translation id="4633615134379662673" key="MSG_NEWHOME_HOME_27" desc="newhome 10 GigE">10 GigE</translation>
+  <translation id="6170625027620184783" key="MSG_NEWHOME_HOME_28" desc="newhome Release">Release</translation>
+  <translation id="4281151775346904350" key="MSG_NEWHOME_HOME_29" desc="newhome">No recovery has been made for more than 30 minutes. Please contact the manufacturer immediately.</translation>
   <translation id="8513272892058277399" key="MSG_NEWHOME_HOME_3" desc="newhome Server: exception">&lt;b&gt;Node:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Error </translation>
+  <translation id="5919319179485000302" key="MSG_NEWHOME_HOME_30" desc="newhome Age">Age</translation>
+  <translation id="5207217192315219054" key="MSG_NEWHOME_HOME_31" desc="newhome No Release">No Release</translation>
   <translation id="5035594918818434134" key="MSG_NEWHOME_HOME_4" desc="newhome normal">Normal </translation>
   <translation id="6509764275848912642" key="MSG_NEWHOME_HOME_5" desc="newhome Server: exception">&lt;b&gt;Node:&lt;/b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Error </translation>
   <translation id="327193323544416163" key="MSG_NEWHOME_HOME_6" desc="newhome normal">Normal: </translation>
