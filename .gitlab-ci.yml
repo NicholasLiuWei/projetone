@@ -65,3 +65,5 @@ upload_job:
   stage: upload
   script:
     - python2 built_image.py "upload" $CI_PROJECT_NAME  $PROJECT_IMAGES_FILTER$(git rev-parse --short HEAD)  $UPLOAD_IMAGE_REP $K8S_MASTER_IP $K8S_MASTER_USER  $K8S_MASTER_PASSWD  #(args项目名称)  调用打包镜像脚本
+
+    
