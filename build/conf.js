@@ -248,12 +248,12 @@ export default {
         /**
          * Image name for the head release for current architecture.
          */
-        headImageName: `${containerRegistry.head}/${imageNameBase}-${arch.default}:${version.head}`,
+        headImageName: `lenovo.com/cloud_server/kubernetes-dashboard-${arch.default}:${version.head}`,
 
         /**
          * Image name for the versioned release for current architecture.
          */
-        releaseImageName: `${containerRegistry.release}/${imageNameBase}-${arch.default}:${version.release}`,
+        releaseImageName: `lenovo.com/cloud_server/kubernetes-dashboard-${arch.default}:${version.release}`,
 
         /**
          * Image name for the head release for all supported architecture.
