@@ -30,7 +30,7 @@ check_job:
   stage: check
   script:
     - ls
-    - cat ./src/app/frontend/newhome/home.html
+    - cat ./build/conf.js
     #- python2 built_image.py "check" $BASH_IMAGE  $CI_PROJECT_NAME $CHECK_FILE #检查是否需要生成基础镜像或者更新基础镜像，如果生成或者更新镜像将抛出异常
   retry: 1 #重试1次
 
@@ -40,14 +40,14 @@ build_job:
   script:
   - echo "Release build..."
   - chmod a+x ./build/postinstall.sh
-  #- cp /home/node_modules . -r
-  #- cp /home/home . -r
-  #- cp /home/dist . -r
-  #- cp /home/.tmp . -r
-  #- cp /home/.tools . -r
-  - export http_proxy=http://172.16.0.4:8118
-  - export https_proxy=https://172.16.0.4:8118
-  - npm i --unsafe-perm
+  - cp /home/node_modules . -r
+  - cp /home/home . -r
+  - cp /home/dist . -r
+  - cp /home/.tmp . -r
+  - cp /home/.tools . -r
+  #- export http_proxy=http://172.16.0.4:8118
+  #- export https_proxy=https://172.16.0.4:8118
+  #- npm i --unsafe-perm
   - gulp docker-image:head:cross --tag $(git rev-parse --short HEAD)
   - docker images
   - git rev-parse --short HEAD
