@@ -5,7 +5,7 @@ stages:
   - upload
 
 variables:
-  K8S_MASTER_IP: "172.16.116.1" #k8s master 的ip
+  K8S_MASTER_IP: "172.16.116.4" #k8s master 的ip
   K8S_MASTER_USER: "root" #k8s master 的用户名
   K8S_MASTER_PASSWD: "public" #k8s master 的用户密码
   UPLOAD_IMAGE_REP:  "all"    #是否上传镜像仓库，true :上传镜像仓库 false:传递压缩文件 all：上传镜像仓库和传输压缩文件
