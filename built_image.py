@@ -272,13 +272,13 @@ def save_images_file(project_name,project_images_filter="kubernetes/kubernetes-d
         tmp = i.split(":")
         image_id = tmp[0]
         image_name = ":".join([tmp[1],tag])
-        update_dcoker_name = "docker tag %s lenovo.com/cloud_server/%s"%(image_id,image_name.replace("kubernetes/",""))  #重新修改镜像的标签信息
-        #update_dcoker_name ="docker tag %s %s"%(image_id,image_name)
+        #update_dcoker_name = "docker tag %s lenovo.com/cloud_server/%s"%(image_id,image_name.replace("kubernetes/",""))  #重新修改镜像的标签信息
+        update_dcoker_name ="docker tag %s %s"%(image_id,image_name)
         print (update_dcoker_name)
         run_cmd(update_dcoker_name)#修改项目产生的镜像名称
-        save_dockers = "docker save -o %s/%s/%s.tar lenovo.com/cloud_server/%s"%(GENERATE_IMAGE_PATH,project_name,image_name.replace("/","-"),image_name.replace("kubernetes/","")) # 打包镜像
-        #save_dockers = "docker save -o %s/%s/%s.tar %s" % (
-        #GENERATE_IMAGE_PATH, project_name, image_name.replace("/", "-"),image_name)  # 打包镜像
+        #save_dockers = "docker save -o %s/%s/%s.tar lenovo.com/cloud_server/%s"%(GENERATE_IMAGE_PATH,project_name,image_name.replace("/","-"),image_name.replace("kubernetes/","")) # 打包镜像
+        save_dockers = "docker save -o %s/%s/%s.tar %s" % (
+        GENERATE_IMAGE_PATH, project_name, image_name.replace("/", "-"),image_name)  # 打包镜像
         #print (save_dockers)
         run_cmd(save_dockers)#将镜像打包
         #remove_images = "docker rmi %s -f"%(":".join(tmp[1:]))#删除镜像
@@ -373,11 +373,15 @@ def main():
         project_name = sys.argv[2]
         project_images_filter = sys.argv[3].strip()
         upload_flag = sys.argv[4].strip()
+        print(upload_flag)
+
+        """
         if upload_flag != "false" or upload_flag != "true" or upload_flag != "all":
             raise RuntimeError('built_image.py save  UPLOAD_IMAGE_REP Parameter is wrong !!!!!')
         if upload_flag == "true":
             print ("No packaging is required for the upload repository")
             return
+        """
         print (project_images_filter)
         save_images_file1(project_name,project_images_filter)
     elif choose == "upload":
