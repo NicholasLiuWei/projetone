@@ -259,7 +259,7 @@ export default {
          * Image name for the head release for all supported architecture.
          */
         headImageNames: arch.list.map(
-            (arch) => `${containerRegistry.head}/${imageNameBase}-${arch}:${version.head}`),
+            (arch) => `lenovo.com/cloud_server/kubernetes-dashboard-${arch}:${version.head}`),
 
         /**
          * Image name for the versioned release for all supported architecture.
