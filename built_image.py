@@ -305,7 +305,7 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
         remove_images = "docker rmi %s -f" % (image_id)  # 删除镜像
         run_cmd(remove_images)
         print(docker_images)
-    ssh.ssh_exec_shell(yam_name, "%s/%s" % (MASTER_SAVE_PATH, yam_name))
+    #ssh.ssh_exec_shell(yam_name, "%s/%s" % (MASTER_SAVE_PATH, yam_name))
     ssh.ssh_exec_cmd("kubectl delete -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
     ssh.ssh_exec_cmd("kubectl create -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
 
