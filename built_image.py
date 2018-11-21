@@ -25,7 +25,7 @@ from datetime import datetime
 
 GENERATE_IMAGE_PATH="/mnt" #本地存储项目生成镜像的根目录
 MASTER_SAVE_PATH="/home"  #压缩文件传输到远程目标主机存放文件的根目录
-
+tag = "v1.8.3"
 def timethis(func):
     """
     时间装饰器，计算函数执行所消耗的时间
@@ -230,7 +230,6 @@ def save_images_file1(project_name,project_images_filter="kubernetes/kubernetes-
     if len(images_list) <=1:
         raise RuntimeError('The matching project image rule error or the project did not generate an image')#没有找到需要打包的镜像
     #tag = get_git_head()
-    tag = "v1.8.3"
     for num,i in enumerate(images_list[:-1]):
         #print (i.split(":"))
         tmp = i.split(":")
@@ -266,8 +265,6 @@ def check_baseimage_version(baseimage_name,project_name,setting_name):#负责检
         raise RuntimeError('build_base_image')
 
 def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,passwd,image_registry,yam_name):
-    #dd
-    tag = "v1.8.3" #打包镜像的tag
     ssh = SSHManager(ip, usr, passwd)
     regis_ip,_=image_registry.split(":")
     ssh_docker_registry = SSHManager(regis_ip, usr, passwd)
@@ -293,13 +290,6 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
                 ssh_docker_registry.ssh_exec_cmd("docker load -i %s/%s/%s" % (MASTER_SAVE_PATH, project_name, file_name))
     ssh.ssh_exec_cmd("rm -rf %s/%s/*.tar" % (MASTER_SAVE_PATH, project_name))
     ssh_docker_registry.ssh_exec_cmd("rm -rf %s/%s/*.tar" % (MASTER_SAVE_PATH, project_name))
-    #转移镜像
-
-    ssh.ssh_exec_shell(yam_name,"%s/%s"%(MASTER_SAVE_PATH,yam_name))
-    ssh.ssh_exec_cmd("kubectl delete -f %s/%s" %(MASTER_SAVE_PATH,yam_name))
-    ssh.ssh_exec_cmd("kubectl create -f %s/%s" %(MASTER_SAVE_PATH,yam_name ))
-    #run_cmd("rm -rf %s/%s/%s" % (GENERATE_IMAGE_PATH, project_name,"*.tar"))
-
     for num, i in enumerate(images_list[:-1]):
         tmp = i.split(":")
         image_id = tmp[0]
@@ -315,6 +305,9 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
         remove_images = "docker rmi %s -f" % (image_id)  # 删除镜像
         run_cmd(remove_images)
         print(docker_images)
+    ssh.ssh_exec_shell(yam_name, "%s/%s" % (MASTER_SAVE_PATH, yam_name))
+    ssh.ssh_exec_cmd("kubectl delete -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
+    ssh.ssh_exec_cmd("kubectl create -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
 
 def main():
 
