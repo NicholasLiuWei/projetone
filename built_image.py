@@ -25,7 +25,6 @@ from datetime import datetime
 
 GENERATE_IMAGE_PATH="/mnt" #本地存储项目生成镜像的根目录
 MASTER_SAVE_PATH="/home"  #压缩文件传输到远程目标主机存放文件的根目录
-K8S_YAM_NAME = "gykubernetes-dashboard.yaml"
 
 def timethis(func):
     """
@@ -237,41 +236,6 @@ def save_images_file1(project_name,project_images_filter="kubernetes/kubernetes-
         tmp = i.split(":")
         image_id = tmp[0]
         image_name = ":".join([tmp[1],tag])
-        update_dcoker_name = "docker tag %s lenovo.com/cloud_server/%s"%(image_id,image_name.replace("kubernetes/",""))  #重新修改镜像的标签信息
-        #update_dcoker_name ="docker tag %s %s"%(image_id,image_name)
-        print (update_dcoker_name)
-        run_cmd(update_dcoker_name)#修改项目产生的镜像名称
-        save_dockers = "docker save -o %s/%s/%s.tar lenovo.com/cloud_server/%s"%(GENERATE_IMAGE_PATH,project_name,image_name.replace("/","-"),image_name.replace("kubernetes/","")) # 打包镜像
-        #save_dockers = "docker save -o %s/%s/%s.tar %s" % (
-        #GENERATE_IMAGE_PATH, project_name, image_name.replace("/", "-"),image_name)  # 打包镜像
-        #print (save_dockers)
-        run_cmd(save_dockers)#将镜像打包
-        remove_images = "docker rmi %s -f"%(":".join(tmp[1:]))#删除镜像
-        #remove_images = "docker rmi %s -f" %(image_id)
-        run_cmd(remove_images)
-
-def save_images_file(project_name,project_images_filter="kubernetes/kubernetes-dashboard*:head"):#打包项目生成的镜像文件
-    """
-    :param save_images_filter: 需要打包的镜像规则
-    :return:
-    """
-    #get_filter_images = """docker images --format "{{.ID}}: {{.Repository}}" --filter=reference='dashboard*:head'"""
-    #get_container_id = "cat /proc/1/cgroup | grep 'docker/' | tail -1 | sed 's/^.*\///' | cut -c 1-12"
-    # copy_file = "docker cp "+"/etc/ld.so.conf "+a.strip()+":/mnt/"
-    run_cmd("mkdir %s/%s" % (GENERATE_IMAGE_PATH,project_name))
-    run_cmd("rm -rf %s/%s/*.tar"%(GENERATE_IMAGE_PATH,project_name))#删除所有压缩文件
-    docker_matching_image = """docker images --format "{{.ID}}:{{.Repository}}:{{.Tag}}" --filter=reference='%s'"""%(project_images_filter)
-    docker_images = run_cmd(docker_matching_image)
-    images_list = docker_images.split("\n")
-    if len(images_list) <=1:
-        raise RuntimeError('The matching project image rule error or the project did not generate an image')#没有找到需要打包的镜像
-    #tag = get_git_head()
-    tag = "v1.8.3"
-    for num,i in enumerate(images_list[:-1]):
-        #print (i.split(":"))
-        tmp = i.split(":")
-        image_id = tmp[0]
-        image_name = ":".join([tmp[1],tag])
         #update_dcoker_name = "docker tag %s lenovo.com/cloud_server/%s"%(image_id,image_name.replace("kubernetes/",""))  #重新修改镜像的标签信息
         update_dcoker_name ="docker tag %s %s"%(image_id,image_name)
         print (update_dcoker_name)
@@ -281,9 +245,9 @@ def save_images_file(project_name,project_images_filter="kubernetes/kubernetes-d
         GENERATE_IMAGE_PATH, project_name, image_name.replace("/", "-"),image_name)  # 打包镜像
         #print (save_dockers)
         run_cmd(save_dockers)#将镜像打包
-        #remove_images = "docker rmi %s -f"%(":".join(tmp[1:]))#删除镜像
-        remove_images = "docker rmi %s -f" %(image_id)
-        run_cmd(remove_images)
+        remove_images = "docker rmi %s -f"%(image_name)#删除镜像
+        #remove_images = "docker rmi %s -f" %(image_id)
+        #run_cmd(remove_images)
 
 def check_baseimage_version(baseimage_name,project_name,setting_name):#负责检查基础镜像信息，不存在则创建，配置更新则更新镜像
     """
@@ -292,6 +256,7 @@ def check_baseimage_version(baseimage_name,project_name,setting_name):#负责检
     :param setting_name: 需要检查的配置文件
     :return:
     """
+
     ret = build_base_image(baseimage_name,project_name,setting_name)
     if ret:#存在镜像
         isUpdate = update_base_image(baseimage_name,project_name,setting_name)#检查镜像是否需要更新
@@ -300,51 +265,56 @@ def check_baseimage_version(baseimage_name,project_name,setting_name):#负责检
     else:#不存在镜像，已经建立好镜像，主动抛出异常
         raise RuntimeError('build_base_image')
 
-def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,passwd):
+def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,passwd,image_registry,yam_name):
     #dd
+    tag = "v1.8.3" #打包镜像的tag
     ssh = SSHManager(ip, usr, passwd)
-    docker_matching_image = """docker images --format "{{.ID}}:{{.Repository}}:{{.Tag}}" --filter=reference='%s'""" % (
-        project_images_filter)
-    docker_images = ssh.ssh_exec_cmd(docker_matching_image)
-    images_list = docker_images.split("\n")
-    for num, i in enumerate(images_list[:-1]):
-        # print (i.split(":"))
-        tmp = i.split(":")
-        image_id = tmp[0]
-        remove_images = "docker rmi %s -f" % (image_id)  # 删除镜像
-        ssh.ssh_exec_cmd(remove_images)
+    regis_ip,_=image_registry.split(":")
+    ssh_docker_registry = SSHManager(regis_ip, usr, passwd)
+    docker_matching_image = """docker rmi $(docker images | grep "none" | awk '{print $3}')"""#删除none镜像
+    ssh.ssh_exec_cmd(docker_matching_image)
     ssh.ssh_exec_cmd("mkdir %s/%s"%(MASTER_SAVE_PATH,project_name))
     dirs = os.listdir("%s/%s"%(GENERATE_IMAGE_PATH,project_name))
     docker_matching_image = """docker images --format "{{.ID}}:{{.Repository}}:{{.Tag}}" |grep -w %s""" % (
         project_images_filter)
     docker_images = run_cmd(docker_matching_image)
     images_list = docker_images.split("\n")
-    if upload_flag == "false" or upload_flag == "all":#只传输压缩文件
-        for file_name in dirs:
-            print (file_name)
-            if os.path.splitext(file_name)[1] == '.tar':
-                tmp1 = '%s/%s/%s'%(GENERATE_IMAGE_PATH,project_name,file_name)
-                tmp2 = '%s/%s/%s'%(MASTER_SAVE_PATH,project_name,file_name)
+    for file_name in dirs:
+        print (file_name)
+        if os.path.splitext(file_name)[1] == '.tar':
+            tmp1 = '%s/%s/%s'%(GENERATE_IMAGE_PATH,project_name,file_name)
+            tmp2 = '%s/%s/%s'%(MASTER_SAVE_PATH,project_name,file_name)
+            if upload_flag == "false" or upload_flag == "all":  # 只传输压缩文件
                 ssh.ssh_exec_shell(tmp1,tmp2)
                 ssh.ssh_exec_cmd("docker load -i %s/%s/%s" % (MASTER_SAVE_PATH, project_name, file_name))
-                run_cmd("rm -rf %s/%s/%s"%(GENERATE_IMAGE_PATH,project_name,file_name))
-        ssh.ssh_exec_cmd("rm -rf %s/%s/*.tar" % (MASTER_SAVE_PATH, project_name))
-        #转移镜像
-        ssh.ssh_exec_cmd("kubectl delete -f %s" %(K8S_YAM_NAME))
-        ssh.ssh_exec_cmd("kubectl create -f %s" %(K8S_YAM_NAME ))
-        run_cmd("rm -rf %s/%s/%s" % (GENERATE_IMAGE_PATH, project_name,"*.tar"))
+                #run_cmd("rm -rf %s/%s/%s"%(GENERATE_IMAGE_PATH,project_name,file_name))
+            if upload_flag == "true" or upload_flag == "all":  # 上传镜像仓库
+                ssh_docker_registry.ssh_exec_shell(tmp1,tmp2)#复制到镜像仓库
+                ssh_docker_registry.ssh_exec_cmd("docker load -i %s/%s/%s" % (MASTER_SAVE_PATH, project_name, file_name))
+    ssh.ssh_exec_cmd("rm -rf %s/%s/*.tar" % (MASTER_SAVE_PATH, project_name))
+    ssh_docker_registry.ssh_exec_cmd("rm -rf %s/%s/*.tar" % (MASTER_SAVE_PATH, project_name))
+    #转移镜像
 
-    if upload_flag == "true" or  upload_flag == "all":#上传镜像仓库
-        for num, i in enumerate(images_list[:-1]):
-            tmp = i.split(":")
-            image_id = tmp[0]
-            image_name = ":".join(tmp[1:])
-            upload_images="docker push %s"%(image_name)#上传镜像仓库
-            remove_images = "docker rmi %s -f" % (image_name)  # 删除镜像
-            #run_cmd(upload_images)
-            print ("delete  %s"%(image_name))
-            run_cmd(remove_images)
-            print(docker_images)
+    ssh.ssh_exec_shell(yam_name,"%s/%s"%(MASTER_SAVE_PATH,yam_name))
+    ssh.ssh_exec_cmd("kubectl delete -f %s/%s" %(MASTER_SAVE_PATH,yam_name))
+    ssh.ssh_exec_cmd("kubectl create -f %s/%s" %(MASTER_SAVE_PATH,yam_name ))
+    #run_cmd("rm -rf %s/%s/%s" % (GENERATE_IMAGE_PATH, project_name,"*.tar"))
+
+    for num, i in enumerate(images_list[:-1]):
+        tmp = i.split(":")
+        image_id = tmp[0]
+        if upload_flag == "true" or upload_flag == "all":  # 上传镜像仓库
+            image_name = ":".join([tmp[1], tag])
+            update_tag = "docker tag %s  %s/%s"%(image_name, image_registry, image_name)
+            ssh_docker_registry.ssh_exec_cmd(update_tag)
+            upload_images = "docker push %s/%s" % (image_registry, image_name)  # 上传镜像仓库
+            ssh_docker_registry.ssh_exec_cmd(upload_images)
+            ssh_docker_registry.ssh_exec_cmd("docker rmi %s"%(image_name))
+            ssh_docker_registry.ssh_exec_cmd("docker rmi %s/%s" % (image_registry,image_name))
+        print ("delete  %s"%(image_id))
+        remove_images = "docker rmi %s -f" % (image_id)  # 删除镜像
+        run_cmd(remove_images)
+        print(docker_images)
 
 def main():
 
@@ -359,6 +329,7 @@ def main():
     :return:
     """
     #检查Dockerfile Update_Dockerfile 是否存在
+
     choose = sys.argv[1]
     if choose == "check":
         print ("check")
@@ -392,8 +363,10 @@ def main():
         target_IP= sys.argv[5].strip()
         target_USER = sys.argv[6].strip()
         target_PASSWD = sys.argv[7].strip()
+        image_registry = sys.argv[8].strip()
+        yam_name = sys.argv[9].strip()
         print(upload_flag)
-        transfer_ssh_file(project_name,project_images_filter,upload_flag,target_IP,target_USER,target_PASSWD)
+        transfer_ssh_file(project_name,project_images_filter,upload_flag,target_IP,target_USER,target_PASSWD,image_registry,yam_name)
 
     elif choose == "jump":
         print ("jump")

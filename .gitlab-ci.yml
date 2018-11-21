@@ -5,14 +5,16 @@ stages:
   - upload
 
 variables:
-  K8S_MASTER_IP: "172.16.116.4" #k8s master 的ip
+  K8S_MASTER_IP: "172.16.116.2" #k8s master 的ip
   K8S_MASTER_USER: "root" #k8s master 的用户名
   K8S_MASTER_PASSWD: "public" #k8s master 的用户密码
-  UPLOAD_IMAGE_REP:  "all"    #是否上传镜像仓库，true :上传镜像仓库 false:传递压缩文件 all：上传镜像仓库和传输压缩文件
+  K8S_MASTER_YAM_NAME: "gykubernetes-dashboard.yaml" #根目录先的yaml文件
+  IMAGES_REGISTRY_IP_PORT:  "172.16.116.1:5008" #镜像仓库的地址
+  UPLOAD_IMAGE_REP:  "all"  #是否上传镜像仓库，true :上传镜像仓库 false:传递压缩文件 all：上传镜像仓库和传输压缩文件
   #以上用于ssh连接k8s集群
   BASE_IMAGE: "dashboard:1.8.3" #项目依赖的基础镜像
   CHECK_FILE: "package.json" #该文件发生变化将更新BASE_IMAGE
-  PROJECT_IMAGES_FILTER: "lenovo.com/cloud_server/kubernetes*" #项目生成的镜像名称匹配规则
+  PROJECT_IMAGES_FILTER: "kubernetes/kubernetes-dashboard*" #项目生成的镜像名称匹配规则
 
 before_script:
   - source /etc/profile
@@ -56,4 +58,4 @@ upload_job:
   image: $BASE_IMAGE
   stage: upload
   script:
-    - python2 built_image.py "upload" $CI_PROJECT_NAME  $PROJECT_IMAGES_FILTER$(git rev-parse --short HEAD)  $UPLOAD_IMAGE_REP $K8S_MASTER_IP $K8S_MASTER_USER  $K8S_MASTER_PASSWD  #(args项目名称)  调用打包镜像脚本
+    - python2 built_image.py "upload" $CI_PROJECT_NAME  $(git rev-parse --short HEAD)  $UPLOAD_IMAGE_REP $K8S_MASTER_IP $K8S_MASTER_USER  $K8S_MASTER_PASSWD $IMAGES_REGISTRY_IP_PORT  $K8S_MASTER_YAM_NAME #(args项目名称)  调用打包镜像脚本
