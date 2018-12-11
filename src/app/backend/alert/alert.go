@@ -131,7 +131,7 @@ func (s *alertStore) postHandler(w http.ResponseWriter, r *http.Request) {
         if len(s.alerts) > s.capacity {
                 a := s.alerts
                 _, a = a[0], a[1:]
-                s.alerts = a+
+                s.alerts = a
         }
 }
 
