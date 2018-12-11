@@ -45,6 +45,8 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/systembanner"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/pflag"
+	"github.com/kubernetes/dashboard/src/app/backend/alert"
+	"golang.org/x/net/websocket"
 )
 
 var (
@@ -157,6 +159,17 @@ func main() {
 
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
+
+	// alertmanager webhook
+	http.HandleFunc("/alerts", alert.AlertsHandler)
+	// get alerts number
+	http.HandleFunc("/alertsnum", alert.GetAlertsNumHandler)
+	// clear alert history
+	http.HandleFunc("/alertsclear", alert.ClearAlertsHandler)
+	// alert websocket
+	http.Handle("/sockjs", websocket.Handler(alert.AlertHandler))
+	// configmap for email
+	http.HandleFunc("/email", alert.EmailHandler)
 
 	// initApp()
 	// Listen for http or https
