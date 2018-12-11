@@ -18,7 +18,8 @@ var apiserverHost = pflag.String("apiserver-alert", "http://127.0.0.1:8080", "Th
                 "Kubernetes cluster and local discovery is attempted.")
 
 // create clientset
-func getClientset() (*kubernetes.Clientset, error){
+//func getClientset() (*kubernetes.Clientset, error){
+func getClientset() (kubernetes.Interface, error) {
         cManager := client.NewClientManager("", *apiserverHost)
         clientset := cManager.InsecureClient()
         /*clientset, _, err := client.CreateApiserverClient(*apiserverHost, "")
