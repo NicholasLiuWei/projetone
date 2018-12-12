@@ -5,7 +5,7 @@ stages:
   - upload
 
 variables:
-  K8S_MASTER_IP: "172.16.116.2" #k8s master 的ip
+  K8S_MASTER_IP: "172.16.116.1" #k8s master 的ip
   K8S_MASTER_USER: "root" #k8s master 的用户名
   K8S_MASTER_PASSWD: "public" #k8s master 的用户密码
   K8S_MASTER_YAM_NAME: "gykubernetes-dashboard.yaml" #根目录先的yaml文件
