@@ -52,7 +52,7 @@ func (email *emailStore) getHandler(w http.ResponseWriter, r *http.Request) {
 
         email.Lock()
         defer email.Unlock()
-
+        
         emailString,err := getConfigMap("monitoring","alertmanager", "config.yml")
         //log.Printf("configmap=%v\n",emailString)
         if err!=nil {
