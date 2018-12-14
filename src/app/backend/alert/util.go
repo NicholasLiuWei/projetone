@@ -11,6 +11,7 @@ import(
         "time"
         "strconv"
         "encoding/json"
+        "io"
 
 	"github.com/spf13/pflag"
         influxdbclient "github.com/influxdata/influxdb/client/v2"
@@ -171,7 +172,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
         for i := 0; i < len(res[0].Series[0].Values); i++ {
                 //fmt.Println(res[0].Series[0].Values[i][0])
                 //fmt.Println(res[0].Series[0].Values[i][1])
-                dec := json.NewDecoder(res[0].Series[0].Values[i][1])
+                dec := json.NewDecoder(res[0].Series[0].Values[i][1].(io.Reader))
                 if err := dec.Decode(&m); err != nil {
                         log.Printf("error decoding message: %v", err)
                         return nil, err
