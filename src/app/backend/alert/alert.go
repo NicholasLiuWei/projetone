@@ -8,6 +8,7 @@ import(
 	"net/http"
 	"golang.org/x/net/websocket"
 	"log"
+	"strconv"
 	influxdbclient "github.com/influxdata/influxdb/client/v2"
 )
 
@@ -104,8 +105,8 @@ func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
 func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	var p  = AlertPageIndex{
-		itemsPerPage : r.Form["itemsPerPage"],
-		page : r.Form["page"],
+		itemsPerPage : strconv.Atoi(r.Form["itemsPerPage"]),
+		page : strconv.Atoi(r.Form["page"]),
 	}
 	/*dec := json.NewDecoder(r.Body)
 	defer r.Body.Close()
