@@ -102,14 +102,19 @@ func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
 
 // alerts get
 func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
-	var p AlertPageIndex
-	dec := json.NewDecoder(r.Body)
+	r.ParseForm()
+	var p  = AlertPageIndex{
+		itemsPerPage : r.Form["itemsPerPage"],
+		page : r.Form["page"],
+	}
+	/*dec := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	if err := dec.Decode(&p); err != nil {
 		log.Printf("error decoding message: %v", err)
 		http.Error(w, "invalid request body", 400)
 		return
-	}
+	}*/
+
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
