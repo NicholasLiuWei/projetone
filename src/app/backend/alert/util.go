@@ -116,7 +116,7 @@ func queryDB(cmd string) (res []influxdbclient.Result, err error) {
         return res, nil
 }
 
-func writeDB(value string)(err error) {
+func writeDB(value interface{})(err error) {
         // Create a new point batch
         bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
 		Database:  "alert",
