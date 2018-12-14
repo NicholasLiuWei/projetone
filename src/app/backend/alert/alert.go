@@ -104,8 +104,8 @@ func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
 // alerts get
 func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	itemsPerPage, _ := strconv.Atoi(r.Form["itemsPerPage"])
-	page, _ := strconv.Atoi(r.Form["page"])
+	itemsPerPage, _ := strconv.Atoi(r.Form["itemsPerPage"][0])
+	page, _ := strconv.Atoi(r.Form["page"][0])
 	var p  = AlertPageIndex{
 		itemsPerPage : itemsPerPage,
 		page : page,
