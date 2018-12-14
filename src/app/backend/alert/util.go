@@ -155,9 +155,12 @@ func countDB()(count int, err error) {
                 return 0, err
         }
         if len(res[0].Series) == 1 {
+                log.Println("countDB get result!")
                 count = res[0].Series[0].Values[0][1].(int)
+                log.Println("countDB count: ", count)
         } else {
-                return 0, nil
+                log.Println("countDB have no result!")
+                count = 0
         }
         return count, nil
 }
