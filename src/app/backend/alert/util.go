@@ -154,7 +154,11 @@ func countDB()(count int, err error) {
                 log.Fatal("countDB queryDB error!", err)
                 return 0, err
         }
-        count = res[0].Series[0].Values[0][1].(int)
+        if len(res[0].Series) == 1 {
+                count = res[0].Series[0].Values[0][1].(int)
+        } else {
+                return 0, nil
+        }
         return count, nil
 }
 
