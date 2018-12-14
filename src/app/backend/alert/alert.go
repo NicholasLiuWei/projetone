@@ -8,10 +8,11 @@ import(
 	"net/http"
 	"golang.org/x/net/websocket"
 	"log"
+	influxdbclient "github.com/influxdata/influxdb/client/v2"
 )
 
 var(
-	capacity = pflag.Int("cap", 64, "capacity of the simple alerts store")
+	capacity = pflag.Int("cap", 100, "capacity of the simple alerts store")
 )
 
 // alertmanager webhook
@@ -42,8 +43,9 @@ type (
         }
 
         // just an example alert store. in a real hook, you would do something useful
-        alertStore struct {
+        AlertStore struct {
                 sync.Mutex
+		client influxdbclient.Client
                 capacity int
                 alerts   []*HookMessage
                 AlertsNum int `json:"alertsnum"`
@@ -53,10 +55,16 @@ type (
         AlertNum struct{
                 AlertsNum int `json:"alertsnum"`
         }
+
+	// alert Request index
+	AlertPageIndex struct {
+		itemsPerPage int
+		page         int
+	}
 )
 
 // add alertmanager webhook
-var s = &alertStore{
+var s = &AlertStore{
         capacity: *capacity,
 }
 
@@ -78,7 +86,7 @@ func AlertsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // alertmanager webhook
-func (s *alertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
+func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
         log.Println("alertsHandler begin")
         switch r.Method {
         case http.MethodGet:
@@ -93,23 +101,42 @@ func (s *alertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // alerts get
-func (s *alertStore) getHandler(w http.ResponseWriter, r *http.Request) {
+func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
+	var p AlertPageIndex
+	dec := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	if err := dec.Decode(&p); err != nil {
+		log.Printf("error decoding message: %v", err)
+		http.Error(w, "invalid request body", 400)
+		return
+	}
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
         s.Lock()
         defer s.Unlock()
 
+	mess, err := queryDBMessages(p)
+	if err != nil {
+		log.Fatal("getHandler queryDBMessages error!", err)
+		return
+	}
         //log.Printf("getHandler message: %v\n", *s)
         //log.Printf("getHandler message s.alerts: %v\n", s.alerts)
-        if err := enc.Encode(s.alerts); err != nil {
+        if err := enc.Encode(mess); err != nil {
         //if err := enc.Encode(*s); err != nil {
                 log.Printf("error encoding messages: %v", err)
+		return
         }
 }
 
 // alerts post
-func (s *alertStore) postHandler(w http.ResponseWriter, r *http.Request) {
+func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
+	err := writeDB(string(r.Body))
+	if err != nil {
+		log.Fatal("Failed to write alert messages to influxdb!")
+		return
+	}
         dec := json.NewDecoder(r.Body)
         defer r.Body.Close()
 
@@ -124,15 +151,15 @@ func (s *alertStore) postHandler(w http.ResponseWriter, r *http.Request) {
         defer s.Unlock()
 
         //s.alerts = make([]*HookMessage)
-        s.alerts = append(s.alerts, &m)
+        /*s.alerts = append(s.alerts, &m)*/
         //log.Printf("alertsHandler POST, HookMessage=%v\n", m)
         sendChan <- &m
 
-        if len(s.alerts) > s.capacity {
+        /*if len(s.alerts) > s.capacity {
                 a := s.alerts
                 _, a = a[0], a[1:]
                 s.alerts = a
-        }
+        }*/
 }
 
 // GetAlertsNumHandler get alerts number history
@@ -141,19 +168,26 @@ func GetAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // get alerts number history
-func (s *alertStore) getAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
+func (s *AlertStore) getAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
         s.Lock()
         defer s.Unlock()
 
-	s.AlertsNum = 0
+	count, err := countDB()
+	if err != nil {
+		log.Fatal("getAlertsNumHandler countDB error!", err)
+		return
+	}
+	n.AlertsNum = count
+
+	/*s.AlertsNum = 0
 	n.AlertsNum = 0
 	for i:=0; i<len(s.alerts);i++ {
 		s.AlertsNum += len(s.alerts[i].Alerts)
 	}
-        n.AlertsNum = s.AlertsNum
+        n.AlertsNum = s.AlertsNum*/
         if err := enc.Encode(n); err != nil {
                 log.Printf("error encoding messages: %v", err)
         }
@@ -166,12 +200,17 @@ func ClearAlertsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // clear alerts history
-func (s *alertStore) clearAlertsHandler(w http.ResponseWriter, r *http.Request) {
+func (s *AlertStore) clearAlertsHandler(w http.ResponseWriter, r *http.Request) {
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
         s.Lock()
         defer s.Unlock()
+	_, err := queryDB("delete from node_alert")
+	if err != nil {
+		log.Fatal("clearAlertsHandler queryDB error!")
+		return
+	}
         s.AlertsNum=0
         n.AlertsNum=0
         //log.Printf("get alerts %v", s.alerts)
@@ -225,6 +264,10 @@ func AlertHandler(ws *websocket.Conn) {
 		log.Printf("send message=%v\n",message)
                 log.Println("send message finished")
       }
+}
+
+func RegisterInfluxdbClient(client influxdbclient.Client) {
+	s.client = client
 }
 
 // email handler

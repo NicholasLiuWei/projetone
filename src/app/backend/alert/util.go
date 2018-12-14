@@ -8,8 +8,13 @@ import(
         "k8s.io/api/core/v1"
 	"strings"
 	"log"
+        "time"
+        "strconv"
+        "encoding/json"
 
 	"github.com/spf13/pflag"
+        influxdbclient "github.com/influxdata/influxdb/client/v2"
+        "fmt"
 )
 
 var apiserverHost = pflag.String("apiserver-alert", "http://127.0.0.1:8080", "The address of the Kubernetes Apiserver "+
@@ -95,3 +100,83 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
         return nil
 }
 
+func queryDB(cmd string) (res []influxdbclient.Result, err error) {
+        q := influxdbclient.Query{
+                Command:  cmd,
+                Database: "alert",
+        }
+        if response, err := s.client.Query(q); err == nil {
+                if response.Error() != nil {
+                        return res, response.Error()
+                }
+                res = response.Results
+        } else {
+                return res, err
+        }
+        return res, nil
+}
+
+func writeDB(value string)(err error) {
+        // Create a new point batch
+        bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
+		Database:  "alert",
+		Precision: "s",
+	})
+	if err != nil {
+		log.Fatal(err)
+                return err
+	}
+	// Create a point and add to batch
+	tags := map[string]string{}
+	fields := map[string]interface{}{
+		"value":  value,
+	}
+
+	pt, err := influxdbclient.NewPoint("node_alert", tags, fields, time.Now())
+	if err != nil {
+		log.Fatal(err)
+                return err
+	}
+	bp.AddPoint(pt)
+
+	// Write the batch
+	if err := s.client.Write(bp); err != nil {
+		log.Fatal(err)
+                return err
+	}
+        return nil
+}
+
+func countDB()(count int, err error) {
+        res, err := queryDB("select count(value) from node_alert")
+        if err != nil {
+                log.Fatal("countDB queryDB error!", err)
+                return 0, err
+        }
+        count = res[0].Series[0].Values[0][1]
+        return count, nil
+}
+
+
+func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err error) {
+        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
+        res, err := queryDB(cmd)
+        if err != nil {
+                log.Fatal("queryDBMessages queryDB error!", err)
+                return nil, err
+        }
+        var m HookMessage
+        s.alerts=[]*HookMessage{}
+
+        for i := 0; i < len(res[0].Series[0].Values); i++ {
+                //fmt.Println(res[0].Series[0].Values[i][0])
+                //fmt.Println(res[0].Series[0].Values[i][1])
+                dec := json.NewDecoder(res[0].Series[0].Values[i][1])
+                if err := dec.Decode(&m); err != nil {
+                        log.Printf("error decoding message: %v", err)
+                        return nil, err
+                }
+                s.alerts = append(s.alerts, &m)
+        }
+        return s.alerts, nil
+}

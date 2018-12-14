@@ -47,6 +47,7 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/kubernetes/dashboard/src/app/backend/alert"
 	"golang.org/x/net/websocket"
+	influxdbclient "github.com/influxdata/influxdb/client/v2"
 )
 
 var (
@@ -159,6 +160,19 @@ func main() {
 
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
+
+	// Create a new influxdb HTTPClient
+	influxdbclient, err := influxdbclient.NewHTTPClient(influxdbclient.HTTPConfig{
+		Addr:     "http://172.16.68.1:32086",
+		Username: "admin",
+		Password: "admin",
+	})
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer influxdbclient.Close()
+	alert.RegisterInfluxdbClient(influxdbclient)
 
 	// alertmanager webhook
 	http.HandleFunc("/alerts", alert.AlertsHandler)
