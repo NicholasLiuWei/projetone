@@ -163,7 +163,7 @@ func main() {
 
 	// Create a new influxdb HTTPClient
 	influxdbclient, err := influxdbclient.NewHTTPClient(influxdbclient.HTTPConfig{
-		Addr:     "http://172.16.68.1:32086",
+		Addr:     "http://127.0.0.1:32086",
 		Username: "admin",
 		Password: "admin",
 	})
