@@ -153,7 +153,7 @@ func countDB()(count int, err error) {
                 log.Fatal("countDB queryDB error!", err)
                 return 0, err
         }
-        count = res[0].Series[0].Values[0][1]
+        count = res[0].Series[0].Values[0][1].(int)
         return count, nil
 }
 
