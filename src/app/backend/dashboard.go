@@ -160,6 +160,8 @@ func main() {
 
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
+	//alert request from dashboard frontend
+	http.HandleFunc("/alerts", Handle(NewReverseProxy("127.0.0.1:9999")))
 
 	// Create a new influxdb HTTPClient
 	influxdbclient, err := influxdbclient.NewHTTPClient(influxdbclient.HTTPConfig{
@@ -183,9 +185,9 @@ func main() {
 	// clear alert history
 	alert_mux.HandleFunc("/alertsclear", alert.ClearAlertsHandler)
 	// alert websocket
-	alert_mux.Handle("/sockjs", websocket.Handler(alert.AlertHandler))
+	alert_mux.Handle("/alertssockjs", websocket.Handler(alert.AlertHandler))
 	// configmap for email
-	alert_mux.HandleFunc("/email", alert.EmailHandler)
+	alert_mux.HandleFunc("/alertsemail", alert.EmailHandler)
 
 	alert_server := &http.Server{
 		Addr: ":9999",
