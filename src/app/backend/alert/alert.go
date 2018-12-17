@@ -145,11 +145,13 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 
 // alerts post
 func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("enter alert postHandler!")
 	err := writeDB(r.Body)
 	if err != nil {
 		log.Fatal("Failed to write alert messages to influxdb!")
 		return
 	}
+	log.Printf("after alert postHandler writeDB!")
         dec := json.NewDecoder(r.Body)
         defer r.Body.Close()
 

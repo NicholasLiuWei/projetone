@@ -119,6 +119,7 @@ func queryDB(cmd string) (res []influxdbclient.Result, err error) {
 
 func writeDB(value interface{})(err error) {
         // Create a new point batch
+        log.Printf("writeDB")
         bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
 		Database:  "alert",
 		Precision: "s",
@@ -132,19 +133,21 @@ func writeDB(value interface{})(err error) {
 	fields := map[string]interface{}{
 		"value":  value,
 	}
-
+        log.Printf("writeDB after NewBatchPoints")
 	pt, err := influxdbclient.NewPoint("node_alert", tags, fields, time.Now())
 	if err != nil {
 		log.Fatal(err)
                 return err
 	}
+        log.Printf("writeDB after NewPoint")
 	bp.AddPoint(pt)
-
+        log.Printf("writeDB after AddPoint")
 	// Write the batch
 	if err := s.client.Write(bp); err != nil {
 		log.Fatal(err)
                 return err
 	}
+        log.Printf("writeDB after Write")
         return nil
 }
 
