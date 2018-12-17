@@ -174,16 +174,28 @@ func main() {
 	defer influxdbclient.Close()
 	alert.RegisterInfluxdbClient(influxdbclient)
 
+	alert_mux := http.NewServeMux()
+
 	// alertmanager webhook
-	http.HandleFunc("/alerts", alert.AlertsHandler)
+	alert_mux.HandleFunc("/alerts", alert.AlertsHandler)
 	// get alerts number
-	http.HandleFunc("/alertsnum", alert.GetAlertsNumHandler)
+	alert_mux.HandleFunc("/alertsnum", alert.GetAlertsNumHandler)
 	// clear alert history
-	http.HandleFunc("/alertsclear", alert.ClearAlertsHandler)
+	alert_mux.HandleFunc("/alertsclear", alert.ClearAlertsHandler)
 	// alert websocket
-	http.Handle("/sockjs", websocket.Handler(alert.AlertHandler))
+	alert_mux.Handle("/sockjs", websocket.Handler(alert.AlertHandler))
 	// configmap for email
-	http.HandleFunc("/email", alert.EmailHandler)
+	alert_mux.HandleFunc("/email", alert.EmailHandler)
+
+	alert_server := &http.Server{
+		Addr: ":9999",
+		ReadTimeout: 60 * time.Second,
+		WriteTimeout: 60 * time.Second,
+		Handler: alert_mux,
+	}
+	go func () {
+		log.Fatal(alert_server.ListenAndServe())
+	}()
 
 	// initApp()
 	// Listen for http or https
