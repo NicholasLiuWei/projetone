@@ -188,7 +188,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                         s.alerts = append(s.alerts, &m)
                 }
         } else {
-               // nothing to do 
+               // nothing to do
         }
 
         return s.alerts, nil

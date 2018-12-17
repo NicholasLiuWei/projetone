@@ -10,6 +10,7 @@ import(
 	"log"
 	"strconv"
 	influxdbclient "github.com/influxdata/influxdb/client/v2"
+	"net/url"
 )
 
 var(
@@ -103,11 +104,12 @@ func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
 
 // alerts get
 func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	log.Println(strconv.Atoi(r.Form["itemsPerPage"][0]))
-	log.Println(strconv.Atoi(r.Form["page"][0]))
-	itemsPerPage, _ := strconv.Atoi(r.Form["itemsPerPage"][0])
-	page, _ := strconv.Atoi(r.Form["page"][0])
+	u, _ := url.Parse(r.URL.String())
+	queryParams := u.Query()
+	log.Println("alert getHandler:", strconv.Atoi(queryParams["itemsPerPage"]))
+	log.Println("alert getHandler:", strconv.Atoi(queryParams["page"]))
+	itemsPerPage, _ := strconv.Atoi(queryParams["itemsPerPage"])
+	page, _ := strconv.Atoi(queryParams["page"])
 	var p  = AlertPageIndex{
 		itemsPerPage : itemsPerPage,
 		page : page,
