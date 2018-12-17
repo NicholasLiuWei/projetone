@@ -107,10 +107,10 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("alert enter getHandler!")
 	u, _ := url.Parse(r.URL.String())
 	queryParams := u.Query()
-	log.Println(strconv.Atoi(queryParams["itemsPerPage"]))
-	log.Println(strconv.Atoi(queryParams["page"]))
-	itemsPerPage, _ := strconv.Atoi(queryParams["itemsPerPage"])
-	page, _ := strconv.Atoi(queryParams["page"])
+	log.Println(queryParams["itemsPerPage"])
+	log.Println(queryParams["page"])
+	itemsPerPage, _ := strconv.Atoi(queryParams["itemsPerPage"][0])
+	page, _ := strconv.Atoi(queryParams["page"][0])
 	var p  = AlertPageIndex{
 		itemsPerPage : itemsPerPage,
 		page : page,
