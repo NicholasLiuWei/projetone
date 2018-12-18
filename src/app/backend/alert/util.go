@@ -11,6 +11,7 @@ import(
         "time"
         "strconv"
         "encoding/json"
+        "github.com/ghodss/yaml"
         //"io"
 
 	"github.com/spf13/pflag"
@@ -62,6 +63,8 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
         }
 
         dataValue := configMap.Data[repoCMDataKey]
+        values,_ := yaml.YAMLToJSON(dataValue)
+        fmt.Println("shuju:",values)
         tmp := strings.Split(dataValue,"email_configs:")
         if len(tmp)!=2 {
                 return ErrNoEmailConfigs
@@ -94,9 +97,9 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
 
         log.Printf("update alertmanager data, data=%v\n", data)
         cm.Data = map[string]string{repoCMDataKey: data}
-        if _,err := clientset.CoreV1().ConfigMaps(namespace).Update(cm); err!=nil {
-                return err
-        }
+        // if _,err := clientset.CoreV1().ConfigMaps(namespace).Update(cm); err!=nil {
+        //         return err
+        // }
 
         return nil
 }
