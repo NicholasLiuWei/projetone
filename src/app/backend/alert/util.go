@@ -183,10 +183,14 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                 for i := 0; i < len(res[0].Series[0].Values); i++ {
                         //fmt.Println(res[0].Series[0].Values[i][0])
                         //fmt.Println(res[0].Series[0].Values[i][1])
-                        dec := json.NewDecoder(res[0].Series[0].Values[i][1].(io.Reader))
+                        /*dec := json.NewDecoder(res[0].Series[0].Values[i][1].(io.Reader))
                         if err := dec.Decode(&m); err != nil {
                                 log.Printf("error decoding message: %v", err)
                                 return nil, err
+                        }*/
+                        var buf []byte = []byte(res[0].Series[0].Values[i][1])
+                        if err = json.Unmarshal(buf, &m); err != nil {
+                                log.Println("json unmarshal error:", err)
                         }
                         s.alerts = append(s.alerts, &m)
                 }

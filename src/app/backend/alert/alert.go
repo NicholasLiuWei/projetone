@@ -146,12 +146,6 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 // alerts post
 func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("enter alert postHandler!")
-	err := writeDB(r.Body)
-	if err != nil {
-		log.Fatal("Failed to write alert messages to influxdb!")
-		return
-	}
-	log.Printf("after alert postHandler writeDB!")
         dec := json.NewDecoder(r.Body)
         defer r.Body.Close()
 
@@ -164,6 +158,19 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 
         s.Lock()
         defer s.Unlock()
+
+	//write to DB
+	var buf []byte
+	var err error
+	if buf, err = json.Marshal(m); err != nil {
+		log.Fatal("json marshal error:", err)
+	}
+	err = writeDB(string(buf))
+	if err != nil {
+		log.Printf("Failed to write alert messages to influxdb!", string(buf))
+		return
+	}
+	log.Printf("after alert postHandler writeDB!")
 
         //s.alerts = make([]*HookMessage)
         /*s.alerts = append(s.alerts, &m)*/
