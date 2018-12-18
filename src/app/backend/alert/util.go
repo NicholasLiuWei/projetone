@@ -171,11 +171,13 @@ func countDB()(count int, err error) {
 
 func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err error) {
         cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
+        log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
         if err != nil {
                 log.Fatal("queryDBMessages queryDB error!", err)
                 return nil, err
         }
+        log.Println("queryDBMessages res: ", res)
         var m HookMessage
         s.alerts=[]*HookMessage{}
 
@@ -188,6 +190,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                                 log.Printf("error decoding message: %v", err)
                                 return nil, err
                         }*/
+                        log.Println("queryDBMessages res- ",i,":", res)
                         var buf []byte = []byte(res[0].Series[0].Values[i][1].(string))
                         if err = json.Unmarshal(buf, &m); err != nil {
                                 log.Println("json unmarshal error:", err)
@@ -196,6 +199,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                 }
         } else {
                // nothing to do
+                log.Println("queryDBMessages NULL res!")
         }
 
         return s.alerts, nil
