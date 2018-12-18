@@ -11,7 +11,7 @@ import(
         "time"
         "strconv"
         "encoding/json"
-        "io"
+        //"io"
 
 	"github.com/spf13/pflag"
         influxdbclient "github.com/influxdata/influxdb/client/v2"
@@ -117,7 +117,7 @@ func queryDB(cmd string) (res []influxdbclient.Result, err error) {
         return res, nil
 }
 
-func writeDB(value interface{})(err error) {
+func writeDB(value string)(err error) {
         // Create a new point batch
         log.Printf("writeDB")
         bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
