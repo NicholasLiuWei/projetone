@@ -117,7 +117,7 @@ func queryDB(cmd string) (res []influxdbclient.Result, err error) {
         return res, nil
 }
 
-func writeDB(value string)(err error) {
+func writeDB(value interface{})(err error) {
         // Create a new point batch
         log.Printf("writeDB")
         bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
@@ -130,7 +130,7 @@ func writeDB(value string)(err error) {
 	}
 	// Create a point and add to batch
 	tags := map[string]string{}
-	fields := map[string]string{
+	fields := map[string]interface{}{
 		"value":  value,
 	}
         log.Printf("writeDB after NewBatchPoints")
@@ -188,7 +188,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                                 log.Printf("error decoding message: %v", err)
                                 return nil, err
                         }*/
-                        var buf []byte = []byte(res[0].Series[0].Values[i][1])
+                        var buf []byte = []byte(res[0].Series[0].Values[i][1].(string))
                         if err = json.Unmarshal(buf, &m); err != nil {
                                 log.Println("json unmarshal error:", err)
                         }
