@@ -166,6 +166,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("json marshal error:", err)
 	}
 	err = writeDB(string(buf))
+	log.Printf("write context: %s", string(buf))
 	if err != nil {
 		log.Printf("Failed to write alert messages to influxdb!", string(buf))
 		return
