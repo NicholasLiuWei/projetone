@@ -63,7 +63,7 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
         }
 
         dataValue := configMap.Data[repoCMDataKey]
-        values,_ := yaml.YAMLToJSON(dataValue)
+        values,_ := yaml.YAMLToJSON([]byte(dataValue))
         fmt.Println("shuju:",values)
         tmp := strings.Split(dataValue,"email_configs:")
         if len(tmp)!=2 {
