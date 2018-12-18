@@ -130,7 +130,7 @@ func writeDB(value string)(err error) {
 	}
 	// Create a point and add to batch
 	tags := map[string]string{}
-	fields := map[string]interface{}{
+	fields := map[string]string{
 		"value":  value,
 	}
         log.Printf("writeDB after NewBatchPoints")
