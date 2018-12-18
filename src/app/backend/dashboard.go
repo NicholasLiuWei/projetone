@@ -161,7 +161,7 @@ func main() {
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
 	//alert request from dashboard frontend
-	http.HandleFunc("/alerts", Handle(NewReverseProxy("127.0.0.1:9999")))
+	http.HandleFunc("/alert/", Handle(NewReverseProxy("127.0.0.1:9999")))
 
 	// Create a new influxdb HTTPClient
 	influxdbclient, err := influxdbclient.NewHTTPClient(influxdbclient.HTTPConfig{
@@ -179,15 +179,15 @@ func main() {
 	alert_mux := http.NewServeMux()
 
 	// alertmanager webhook
-	alert_mux.HandleFunc("/alerts", alert.AlertsHandler)
+	alert_mux.HandleFunc("/alert/alerts", alert.AlertsHandler)
 	// get alerts number
-	alert_mux.HandleFunc("/alertsnum", alert.GetAlertsNumHandler)
+	alert_mux.HandleFunc("/alert/alertsnum", alert.GetAlertsNumHandler)
 	// clear alert history
-	alert_mux.HandleFunc("/alertsclear", alert.ClearAlertsHandler)
+	alert_mux.HandleFunc("/alert/alertsclear", alert.ClearAlertsHandler)
 	// alert websocket
-	alert_mux.Handle("/alertssockjs", websocket.Handler(alert.AlertHandler))
+	alert_mux.Handle("/alert/sockjs", websocket.Handler(alert.AlertHandler))
 	// configmap for email
-	alert_mux.HandleFunc("/alertsemail", alert.EmailHandler)
+	alert_mux.HandleFunc("/alert/email", alert.EmailHandler)
 
 	alert_server := &http.Server{
 		Addr: ":9999",
