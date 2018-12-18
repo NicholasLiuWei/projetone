@@ -220,10 +220,26 @@ func main() {
 
 
 func NewReverseProxy(target string) *httputil.ReverseProxy {
-	return httputil.NewSingleHostReverseProxy(&url.URL{
+	proxy := httputil.NewSingleHostReverseProxy(&url.URL{
 		Scheme: "http",
 		Host:   target,
 	})
+
+	pTransport := &http.Transport{
+		Proxy:                 http.ProxyFromEnvironment,
+		DialContext: (&net.Dialer{
+			Timeout:   8 * time.Second,
+			KeepAlive: 8 * time.Second,
+			DualStack: true,
+		}).DialContext,
+		IdleConnTimeout:       10 * time.Second,
+		TLSHandshakeTimeout:   10 * time.Second,
+		ExpectContinueTimeout: 1 * time.Second,
+	}
+
+	proxy.Transport = pTransport
+
+	return proxy
 }
 
 func Handle(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
