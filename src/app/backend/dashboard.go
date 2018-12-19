@@ -183,6 +183,7 @@ func main() {
 	// get alerts number
 	alert_mux.HandleFunc("/alert/alertsnum", alert.GetAlertsNumHandler)
 	alert_mux.HandleFunc("/alert/alertsdelete", alert.DelAlertsHandler)
+	alert_mux.HandleFunc("/alert/alertsupdate", alert.UpdateAlertsHandler)
 	// clear alert history
 	alert_mux.HandleFunc("/alert/alertsclear", alert.ClearAlertsHandler)
 	// alert websocket

@@ -243,6 +243,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error
                         if err = json.Unmarshal(buf, &m); err != nil {
                                 log.Println("json unmarshal error:", err)
                         }
+                        m.InfluxdbIndex = (res[0].Series[0].Values[i][0].(string))
                         alerts = append(alerts, &m)
                 }
         } else {
@@ -254,14 +255,9 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error
 }
 
 func deleteDB(records []InfluxAlert) (err error) {
-        log.Println("deleteBD records")
-        var buf []byte
+        log.Println("deletesBD records")
         for i:=0; i<len(records); i++ {
-                if buf, err = json.Marshal(records[i]); err != nil {
-                        log.Fatal("json marshal error:", err)
-                        return err
-                }
-                cmd := fmt.Sprintf("delete from node_stat where value=%s", string(buf))
+                cmd := fmt.Sprintf("delete from node_alert where time=%s", records[i].InfluxdbIndex)
                 log.Println("deleteDB cmd: ", cmd)
                 _, err = queryDB(cmd)
                 if err != nil {
@@ -272,3 +268,36 @@ func deleteDB(records []InfluxAlert) (err error) {
         log.Println("deleteDB success!")
         return nil
 }
+
+func updateDB(record InfluxAlert) (err error) {
+        log.Println("updateBD record")
+
+        cmd := fmt.Sprintf("delete from node_alert where time=%s", record.InfluxdbIndex)
+        log.Println("updateDB cmd: ", cmd)
+        _, err = queryDB(cmd)
+        if err != nil {
+                log.Fatal("updateDB queryDB error!", err)
+                return err
+        }
+
+        var newRecord = record
+        var buf []byte
+        newRecord.UserProcessed = "true"
+
+        if buf, err = json.Marshal(newRecord); err != nil {
+                log.Fatal("updateDB json marshal error:", err)
+                return err
+        }
+
+        cmd = fmt.Sprintf("insert node_alert value=%s %s", string(buf), record.InfluxdbIndex)
+        _, err = queryDB(cmd)
+        log.Printf("write context: %s", cmd)
+        if err != nil {
+                log.Printf("Failed to write alert messages to influxdb!", cmd)
+                return
+        }
+
+        log.Println("updateDB success!")
+        return nil
+}
+

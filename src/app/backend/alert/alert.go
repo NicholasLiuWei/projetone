@@ -65,6 +65,7 @@ type (
 	}
 
 	InfluxAlert struct {
+		InfluxdbIndex     string            `json: influxdbIndex`
 		UserProcessed     string            `json:"userProcessed"`
 		GroupLabels       map[string]string `json:"groupLabels"`
 		Status            string            `json:"status"`
@@ -171,6 +172,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 	var buf []byte
 	var err error
 	var influxAlert = InfluxAlert{
+		InfluxdbIndex: "",
 		UserProcessed: "false",
 		GroupLabels  : m.GroupLabels,
 		Status       : m.Status,
@@ -207,6 +209,22 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 // GetAlertsNumHandler get alerts number history
 func GetAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
 	s.getAlertsNumHandler(w,r)
+}
+
+func UpdateAlertsHandler(w http.ResponseWriter, r *http.Request) {
+	dec := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+
+	var m InfluxAlert
+	if err := dec.Decode(&m); err != nil {
+		log.Printf("error decoding message: %v", err)
+		http.Error(w, "invalid request body", 400)
+		return
+	}
+	if err := updateDB(m); err != nil {
+		log.Printf("error deleteBD, err: %v", err)
+		return
+	}
 }
 
 func DelAlertsHandler(w http.ResponseWriter, r *http.Request) {
