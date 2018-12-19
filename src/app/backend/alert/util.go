@@ -244,7 +244,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error
                                 log.Println("json unmarshal error:", err)
                         }
                         m.InfluxdbIndex = (res[0].Series[0].Values[i][0].(string))
-                        alerts = append(alerts, &m)
+                        alerts = append(alerts, m)
                 }
         } else {
                // nothing to do
