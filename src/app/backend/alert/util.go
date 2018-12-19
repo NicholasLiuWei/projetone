@@ -172,7 +172,7 @@ func countDB()(count int, err error) {
 }
 
 
-func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err error) {
+func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error) {
         cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
         log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
@@ -181,8 +181,8 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                 return nil, err
         }
         log.Println("queryDBMessages res: ", res)
-        var m HookMessage
-        s.alerts=[]*HookMessage{}
+        var alerts = []InfluxAlert{}
+        //s.alerts=[]*HookMessage{}
 
         if len(res[0].Series) == 1 {
                 for i := 0; i < len(res[0].Series[0].Values); i++ {
@@ -194,16 +194,37 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []*HookMessage, err erro
                                 return nil, err
                         }*/
                         log.Println("queryDBMessages res- ",i,":", res)
+                        var m = InfluxAlert{}
                         var buf []byte = []byte(res[0].Series[0].Values[i][1].(string))
                         if err = json.Unmarshal(buf, &m); err != nil {
                                 log.Println("json unmarshal error:", err)
                         }
-                        s.alerts = append(s.alerts, &m)
+                        alerts = append(alerts, &m)
                 }
         } else {
                // nothing to do
                 log.Println("queryDBMessages NULL res!")
         }
 
-        return s.alerts, nil
+        return alerts, nil
+}
+
+func deleteDB(records []InfluxAlert) (err error) {
+        log.Println("deleteBD records")
+        var buf []byte
+        for i:=0; i<len(records); i++ {
+                if buf, err = json.Marshal(records[i]); err != nil {
+                        log.Fatal("json marshal error:", err)
+                        return err
+                }
+                cmd := fmt.Sprintf("delete from node_stat where value=%s", string(buf))
+                log.Println("deleteDB cmd: ", cmd)
+                _, err = queryDB(cmd)
+                if err != nil {
+                        log.Fatal("deleteDB queryDB error!", err)
+                        return err
+                }
+        }
+        log.Println("deleteDB success!")
+        return nil
 }

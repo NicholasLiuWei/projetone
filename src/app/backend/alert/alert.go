@@ -63,6 +63,14 @@ type (
 		itemsPerPage int
 		page         int
 	}
+
+	InfluxAlert struct {
+		UserProcessed     string            `json:"userProcessed"`
+		GroupLabels       map[string]string `json:"groupLabels"`
+		Status            string            `json:"status"`
+		Receiver          string            `json:"receiver"`
+		Alerts            Alert             `json:"alerts"`
+	}
 )
 
 // add alertmanager webhook
@@ -162,16 +170,27 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 	//write to DB
 	var buf []byte
 	var err error
-	if buf, err = json.Marshal(m); err != nil {
-		log.Fatal("json marshal error:", err)
+	var influxAlert = InfluxAlert{
+		UserProcessed: "false",
+		GroupLabels  : m.GroupLabels,
+		Status       : m.Status,
+		Receiver     : m.Receiver,
 	}
-	err = writeDB(string(buf))
-	log.Printf("write context: %s", string(buf))
-	if err != nil {
-		log.Printf("Failed to write alert messages to influxdb!", string(buf))
-		return
+	for i := 0; i < len(m.Alerts); i++ {
+		log.Println("start process alert message index: ", i, m.Alerts[i])
+		influxAlert.Alerts = m.Alerts[i]
+		if buf, err = json.Marshal(influxAlert); err != nil {
+			log.Fatal("json marshal error:", err)
+		}
+		err = writeDB(string(buf))
+		log.Printf("write context: %s", string(buf))
+		if err != nil {
+			log.Printf("Failed to write alert messages to influxdb!", string(buf))
+			return
+		}
+		log.Printf("after alert postHandler writeDB!")
 	}
-	log.Printf("after alert postHandler writeDB!")
+
 
         //s.alerts = make([]*HookMessage)
         /*s.alerts = append(s.alerts, &m)*/
@@ -188,6 +207,22 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 // GetAlertsNumHandler get alerts number history
 func GetAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
 	s.getAlertsNumHandler(w,r)
+}
+
+func DelAlertsHandler(w http.ResponseWriter, r *http.Request) {
+	dec := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+
+	var m []InfluxAlert
+	if err := dec.Decode(&m); err != nil {
+		log.Printf("error decoding message: %v", err)
+		http.Error(w, "invalid request body", 400)
+		return
+	}
+	if err := deleteDB(m); err != nil {
+		log.Printf("error deleteBD, err: %v", err)
+		return
+	}
 }
 
 // get alerts number history
