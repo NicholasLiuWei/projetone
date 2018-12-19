@@ -119,6 +119,7 @@ func updateConfigMap(action string, repoCMName string, namespace string, repoCMD
                                         continue
                                 }else{
                                         newEmailArr = append(newEmailArr,emailName)
+                                        break
                                 }
                         }
                 default:
