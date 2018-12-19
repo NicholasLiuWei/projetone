@@ -79,10 +79,38 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
                 end = "  webhook_configs:" + tmp2[1]
         }
 
-        // update dataValue
-        emails := strings.Split(emailName,";")
+        // get email name
+        list := strings.Split(dataValue, "email_configs:")
+        emailArr := make([]string,0)
+        if len(tmp) > 0{
+                tmp2 := strings.Split(list[1],"webhook_configs:")
+                tmp3 := strings.Split(tmp2[0], SEPERATOR)
+                for _,v := range tmp3 {
+                        if v=="\n" || v=="" {
+                                continue
+                        }
+                        v = strings.TrimSpace(v)
+                        if len(v)>1 && v[0]=='#'{
+                                continue
+                        }
+                        if len(v)>7 {
+                                v = v[7:len(v)-1]
+                                emailArr = append(emailArr, v)
+                        }
+                }
+        }
+
+        //new email arr
+        newEmailArr := make([]string,0)
+        for _,val := range emailArr{
+                if val == emailName{
+                        continue
+                }else{
+                        newEmailArr = append(newEmailArr,emailName)
+                }
+        }
         middle += "\n"
-        for _,v := range emails {
+        for _,v := range newEmailArr {
                 middle += "  - to: " + "\"" + v + "\"" + SEPERATOR
         }
         //middle += "\n"
@@ -97,9 +125,9 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
 
         log.Printf("update alertmanager data, data=%v\n", data)
         cm.Data = map[string]string{repoCMDataKey: data}
-        // if _,err := clientset.CoreV1().ConfigMaps(namespace).Update(cm); err!=nil {
-        //         return err
-        // }
+        if _,err := clientset.CoreV1().ConfigMaps(namespace).Update(cm); err!=nil {
+                return err
+        }
 
         return nil
 }
