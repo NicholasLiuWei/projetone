@@ -333,4 +333,9 @@ func EmailHandler(w http.ResponseWriter, r *http.Request){
 	e.emailHandler(w,r)
 }
 
+// add email handler
+func AddEmailHandler(w http.ResponseWriter, r *http.Request){
+	e.addEmailHandler(w,r)
+}
+
 

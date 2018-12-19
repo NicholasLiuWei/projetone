@@ -189,6 +189,8 @@ func main() {
 	alert_mux.Handle("/alert/sockjs", websocket.Handler(alert.AlertHandler))
 	// configmap for email
 	alert_mux.HandleFunc("/alert/email", alert.EmailHandler)
+	// configmap for email
+	alert_mux.HandleFunc("/alert/add/email", alert.AddEmailHandler)
 
 	alert_server := &http.Server{
 		Addr: ":9999",

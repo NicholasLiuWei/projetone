@@ -103,7 +103,7 @@ func (email *emailStore) postHandler(w http.ResponseWriter, r *http.Request) {
         log.Printf("emailHandler POST, emailName=%v\n", e.EmailName)
 
         // update alertmanager ConfigMap for email
-        if err := updateConfigMap("alertmanager","kube-system","config.yml",e.EmailName); err!=nil {
+        if err := updateConfigMap("delete","alertmanager","kube-system","config.yml",e.EmailName); err!=nil {
                 log.Println("update alertmanager configmap failed")
                 return
         } 
@@ -137,6 +137,48 @@ func httpPostForm()([]byte,error){
                 return nil,err
         }
         return body,nil
+}
+
+
+// add email handler
+func (email *emailStore) addEmailHandler(w http.ResponseWriter, r *http.Request) {
+        log.Println("addEmailHandler begin")
+        dec := json.NewDecoder(r.Body)
+        defer r.Body.Close()
+
+        email.Lock()
+        defer email.Unlock()
+
+        if err := dec.Decode(&e); err != nil {
+                log.Printf("error decoding message: %v", err)
+                http.Error(w, "invalid request body", 400)
+                return
+        }
+
+        log.Printf("addEmailHandler POST, emailName=%v\n", e.EmailName)
+
+        // update alertmanager ConfigMap for email
+        if err := updateConfigMap("add","alertmanager","kube-system","config.yml",e.EmailName); err!=nil {
+                log.Println("update alertmanager configmap failed")
+                return
+        }
+
+        // command reload alertmanager
+        //cmd := exec.Command("ls", "/")
+        //cmd := exec.Command("curl", "-X", "POST", "http://alertmanager.kube-system.svc.cluster.local:9093/-/reload")
+        //cmd := exec.Command("curl", "-X", "POST", "http://127.0.0.1:30903/-/reload")
+        //out,err := cmd.Output()
+        //if err!= nil {
+        //      log.Printf("reload alertmanager config failed, err=%v\n",err)
+        //        return
+        //}
+        //log.Printf("reload alertmanager config success, out=%v\n",out)
+        body,err := httpPostForm()
+        if err!=nil{
+                log.Println("reload alertmanager config failed")
+                return
+        }
+        log.Printf("reload alertmanager config success, body=%v",string(body))
 }
 
 
