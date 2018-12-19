@@ -12,6 +12,7 @@ import(
         "strconv"
         "encoding/json"
         "github.com/ghodss/yaml"
+        "errors"
         //"io"
 
 	"github.com/spf13/pflag"
@@ -52,7 +53,7 @@ func getConfigMap(namespace string,repoCMName string, repoCMDataKey string)(stri
 
 // update configmap
 // repoCMDataKey - config.yml
-func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, emailName string) error {
+func updateConfigMap(action string, repoCMName string, namespace string, repoCMDataKey string, emailName string) error {
         clientset,err:=getClientset()
         if err!=nil {
                 return err
@@ -102,12 +103,26 @@ func updateConfigMap(repoCMName string, namespace string, repoCMDataKey string, 
 
         //new email arr
         newEmailArr := make([]string,0)
-        for _,val := range emailArr{
-                if val == emailName{
-                        continue
-                }else{
-                        newEmailArr = append(newEmailArr,emailName)
-                }
+        switch action {
+                case "delete":
+                        for _,val := range emailArr{
+                                if val == emailName{
+                                        continue
+                                }else{
+                                        newEmailArr = append(newEmailArr,val)
+                                }
+                        }     
+                case "add":
+                        newEmailArr = append(newEmailArr,emailArr...)
+                        for _,val := range emailArr{
+                                if val == emailName{
+                                        continue
+                                }else{
+                                        newEmailArr = append(newEmailArr,emailName)
+                                }
+                        }
+                default:
+                        return errors.New("updateConfigMap miss action")
         }
         middle += "\n"
         for _,v := range newEmailArr {
