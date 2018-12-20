@@ -74,7 +74,7 @@ type (
 	}
 
 	DashboardPages struct {
-		TotalItems       string             `json:"totalItems"`
+		TotalItems        int               `json:"totalItems"`
 	}
 
 	DashboardAlert struct {
