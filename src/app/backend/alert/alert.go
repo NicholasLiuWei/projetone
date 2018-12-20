@@ -131,7 +131,7 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	page, _ := strconv.Atoi(queryParams["page"][0])
 	var p  = AlertPageIndex{
 		itemsPerPage : itemsPerPage,
-		page : page,
+		page : (page-1)*itemsPerPage,
 	}
 	/*dec := json.NewDecoder(r.Body)
 	defer r.Body.Close()

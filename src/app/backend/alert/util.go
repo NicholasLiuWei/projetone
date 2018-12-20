@@ -222,7 +222,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err erro
         //var alerts = []InfluxAlert{}
         var alerts = DashboardAlert{}
         var items int = 0
-        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
+        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page))
         log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
         if err != nil {
