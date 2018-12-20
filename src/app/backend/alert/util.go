@@ -210,7 +210,7 @@ func countDB()(count int, err error) {
                 log.Println("countDB count: ", count)
         } else {
                 log.Println("countDB have no result!")
-                count = 0
+                count = "0"
         }
         return strconv.Atoi(string(count)), nil
 }
