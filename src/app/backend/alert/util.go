@@ -217,17 +217,17 @@ func countDB()(count int, err error) {
 
 
 func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err error) {
+        //var alerts = []InfluxAlert{}
+        var alerts = DashboardAlert{}
+        var items int = 0
         cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
         log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
         if err != nil {
                 log.Fatal("queryDBMessages queryDB error!", err)
-                return nil, err
+                return alerts, err
         }
         log.Println("queryDBMessages res: ", res)
-        //var alerts = []InfluxAlert{}
-        var alerts = DashboardAlert{}
-        var items int = 0
         //s.alerts=[]*HookMessage{}
 
         if len(res[0].Series) == 1 {
@@ -255,7 +255,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err erro
 
         if items, err = countDB(); err != nil {
                 log.Fatal("queryDBMessages countDB error!", err)
-                return nil, err
+                return alerts, err
         }
         alerts.ListMeta.TotalItems = items
         log.Println("queryDBMessages items: ", items)
