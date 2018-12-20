@@ -72,6 +72,15 @@ type (
 		Receiver          string            `json:"receiver"`
 		Alerts            Alert             `json:"alerts"`
 	}
+
+	DashboardPages struct {
+		TotalItems       string             `json:"totalItems"`
+	}
+
+	DashboardAlert struct {
+		Alerts            []InfluxAlert     `json:"alerts"`
+		ListMeta          DashboardPages    `json:"listMeta"`
+	}
 )
 
 // add alertmanager webhook

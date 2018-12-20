@@ -216,7 +216,7 @@ func countDB()(count int, err error) {
 }
 
 
-func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error) {
+func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err error) {
         cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
         log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
@@ -225,7 +225,9 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error
                 return nil, err
         }
         log.Println("queryDBMessages res: ", res)
-        var alerts = []InfluxAlert{}
+        //var alerts = []InfluxAlert{}
+        var alerts = DashboardAlert{}
+        var items int = 0
         //s.alerts=[]*HookMessage{}
 
         if len(res[0].Series) == 1 {
@@ -244,12 +246,20 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error
                                 log.Println("json unmarshal error:", err)
                         }
                         m.InfluxdbIndex = (res[0].Series[0].Values[i][0].(string))
-                        alerts = append(alerts, m)
+                        alerts.Alerts = append(alerts.Alerts, m)
                 }
         } else {
                // nothing to do
                 log.Println("queryDBMessages NULL res!")
         }
+
+        if items, err = countDB(); err != nil {
+                log.Fatal("queryDBMessages countDB error!", err)
+                return nil, err
+        }
+        alerts.ListMeta.TotalItems = items
+        log.Println("queryDBMessages items: ", items)
+
 
         return alerts, nil
 }
