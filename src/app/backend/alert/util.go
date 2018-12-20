@@ -199,6 +199,7 @@ func writeDB(value interface{})(err error) {
 }
 
 func countDB()(count int, err error) {
+        var items string
         res, err := queryDB("select count(value) from node_alert")
         if err != nil {
                 log.Fatal("countDB queryDB error!", err)
@@ -206,13 +207,13 @@ func countDB()(count int, err error) {
         }
         if len(res[0].Series) == 1 {
                 log.Println("countDB get result!")
-                count = res[0].Series[0].Values[0][1].(json.Number)
-                log.Println("countDB count: ", count)
+                items = res[0].Series[0].Values[0][1].(json.Number)
+                log.Println("countDB count: ", items)
         } else {
                 log.Println("countDB have no result!")
-                count = "0"
+                items = "0"
         }
-        return strconv.Atoi(string(count)), nil
+        return strconv.Atoi(string(items)), nil
 }
 
 
