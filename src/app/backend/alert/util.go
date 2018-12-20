@@ -207,13 +207,14 @@ func countDB()(count int, err error) {
         }
         if len(res[0].Series) == 1 {
                 log.Println("countDB get result!")
-                items = res[0].Series[0].Values[0][1].(json.Number)
+                items = string(res[0].Series[0].Values[0][1].(json.Number))
                 log.Println("countDB count: ", items)
         } else {
                 log.Println("countDB have no result!")
                 items = "0"
         }
-        return strconv.Atoi(string(items)), nil
+        count, _ =  strconv.Atoi(string(items))
+        return count, nil
 }
 
 
