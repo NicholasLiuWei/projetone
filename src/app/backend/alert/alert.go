@@ -132,11 +132,13 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}*/
 
+	log.Println("getHandler before encoder.")
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
-        s.Lock()
-        defer s.Unlock()
+        //s.Lock()
+        //defer s.Unlock()
+
 
 	mess, err := queryDBMessages(p)
 	if err != nil {
@@ -165,8 +167,8 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
                 return
         }
 
-        s.Lock()
-        defer s.Unlock()
+        //s.Lock()
+        //defer s.Unlock()
 
 	//write to DB
 	var buf []byte
@@ -249,8 +251,8 @@ func (s *AlertStore) getAlertsNumHandler(w http.ResponseWriter, r *http.Request)
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
-        s.Lock()
-        defer s.Unlock()
+        //s.Lock()
+        //defer s.Unlock()
 
 	count, err := countDB()
 	if err != nil {
@@ -281,8 +283,8 @@ func (s *AlertStore) clearAlertsHandler(w http.ResponseWriter, r *http.Request) 
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
-        s.Lock()
-        defer s.Unlock()
+        //s.Lock()
+        //defer s.Unlock()
 	_, err := queryDB("delete from node_alert")
 	if err != nil {
 		log.Fatal("clearAlertsHandler queryDB error!")
