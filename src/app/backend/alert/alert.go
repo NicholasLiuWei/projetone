@@ -178,6 +178,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		Status       : m.Status,
 		Receiver     : m.Receiver,
 	}
+	log.Println("alert post len: ", len(m.Alerts), m)
 	for i := 0; i < len(m.Alerts); i++ {
 		log.Println("start process alert message index: ", i, m.Alerts[i])
 		influxAlert.Alerts = m.Alerts[i]
