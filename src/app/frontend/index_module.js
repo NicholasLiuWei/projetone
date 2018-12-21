@@ -57,13 +57,15 @@ import storageClassListModule from './storageclasslist/module';
 import thirdPartyResourceDetailModule from './thirdpartyresourcedetail/detail_module';
 import thirdPartyResourceListModule from './thirdpartyresourcelist/list_module';
 import { TitleController } from './title_controller';
-import workloadsModule from './workloads/workloads_module';
+// import workloadsModule from './workloads/workloads_module';
 import repositorylistModule from './repositorylist/repositorylist_module';
 import repositorydetailModule from './repositorydetail/repositorydetail_module';
 import appStoreModule from './appStore/module';
 // import homeModule from './home/module';
 import newhomeModule from './newhome/module';
 import releaseModule from './releaselist/releaselist_module';
+import imagelistModule from './imagelist/module';
+import warningModule from './warning/module';
 // import storageModule from './storage/module';
 
 export default angular
@@ -93,7 +95,7 @@ export default angular
             namespaceListModule.name,
             nodeListModule.name,
             deploymentListModule.name,
-            workloadsModule.name,
+            // workloadsModule.name,
             adminModule.name,
             serviceDetailModule.name,
             serviceListModule.name,
@@ -124,6 +126,8 @@ export default angular
             // homeModule.name,
             // storageModule.name,
             newhomeModule.name,
+            imagelistModule.name,
+            warningModule.name
         ])
     .config(indexConfig)
     .config(routeConfig)
