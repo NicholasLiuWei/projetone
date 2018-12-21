@@ -69,8 +69,8 @@
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">应用商店</translation>
   <translation id="4240200807669722933" key="MSG_CHROME_NAV_NAVS_2" desc="Nodes menu item in the nav.">服务器</translation>
   <translation id="2454625266229670921" key="MSG_CHROME_NAV_NAVS_20" desc="Repositories menu entry.">仓库设置</translation>
-  <translation id="5664559335763886095" key="MSG_CHROME_NAV_NAVS_3" desc="Image menu entry.">Image</translation>
-  <translation id="5393939587734973786" key="MSG_CHROME_NAV_NAVS_4" desc="warning menu entry.">warning</translation>
+  <translation id="5664559335763886095" key="MSG_CHROME_NAV_NAVS_3" desc="Image menu entry.">镜像管理</translation>
+  <translation id="5393939587734973786" key="MSG_CHROME_NAV_NAVS_4" desc="warning menu entry.">监控中心</translation>
   <translation id="3052977861521871394" key="MSG_CHROME_NAV_NAV_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
   <translation id="996025791780854234" key="MSG_CHROME_NAV_NAV_1" desc="Release menu item in the nav.">应用</translation>
   <translation id="5330416203049826616" key="MSG_CHROME_NAV_NAV_11" desc="Pods menu item in the nav.">Pods</translation>
