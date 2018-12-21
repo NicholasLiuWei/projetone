@@ -27,6 +27,7 @@ export class ImagelistService {
      * user wants
      * to s2i. Nothing happens when user clicks cancel on the dialog.
      *
+     * @export
      * @returns {!angular.$q.Promise}
      */
     showS2IDialog(image) {
