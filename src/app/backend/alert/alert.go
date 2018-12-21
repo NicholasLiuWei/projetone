@@ -180,7 +180,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		if buf, err = json.Marshal(influxAlert); err != nil {
 			log.Fatal("json marshal error:", err)
 		}
-		err = writeDB(string(buf))
+		err = writeDB(string(buf), time.Now())
 		log.Printf("write context: %s", string(buf))
 		if err != nil {
 			log.Printf("Failed to write alert messages to influxdb!", string(buf))
@@ -208,7 +208,7 @@ func UpdateAlertsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err := updateDB(m); err != nil {
-		log.Printf("error deleteBD, err: %v", err)
+		log.Printf("error updateDB, err: %v", err)
 		return
 	}
 }

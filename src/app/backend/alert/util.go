@@ -162,7 +162,7 @@ func queryDB(cmd string) (res []influxdbclient.Result, err error) {
         return res, nil
 }
 
-func writeDB(value interface{})(err error) {
+func writeDB(value interface{}, t time.Time)(err error) {
         // Create a new point batch
         log.Printf("writeDB")
         bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
@@ -179,7 +179,7 @@ func writeDB(value interface{})(err error) {
 		"value":  value,
 	}
         log.Printf("writeDB after NewBatchPoints")
-	pt, err := influxdbclient.NewPoint("node_alert", tags, fields, time.Now())
+	pt, err := influxdbclient.NewPoint("node_alert", tags, fields, t)
 	if err != nil {
 		log.Fatal(err)
                 return err
@@ -293,13 +293,21 @@ func updateDB(record InfluxAlert) (err error) {
                 return err
         }
 
-        cmd = fmt.Sprintf("insert node_alert value=%s %s", string(buf), record.InfluxdbIndex)
+        dbIndexInt64, _ := strconv.ParseInt(record.InfluxdbIndex, 10, 64)
+        err = writeDB(string(buf), time.Unix(0, dbIndexInt64))
+        log.Printf("write context: %s", string(buf))
+        if err != nil {
+                log.Printf("Failed to write alert messages to influxdb!", string(buf))
+                return
+        }
+
+        /*cmd = fmt.Sprintf("insert node_alert value=%s %s", string(buf), record.InfluxdbIndex)
         _, err = queryDB(cmd)
         log.Printf("write context: %s", cmd)
         if err != nil {
                 log.Printf("Failed to write alert messages to influxdb!", cmd)
                 return
-        }
+        }*/
 
         log.Println("updateDB success!")
         return nil
