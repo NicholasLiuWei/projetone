@@ -30,6 +30,7 @@ export class warningListController {
 
         this.$timeout = $timeout;
 
+        /** @export */
         this.alertResource = kdAlertResource;
 
         this.toastr = toastr;
@@ -67,6 +68,7 @@ export class warningListController {
     };
 
     /**
+     * @export
      * is all selected
      */
     isIndeterminate() {
