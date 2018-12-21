@@ -4,7 +4,6 @@ import(
         "k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/client"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	//"k8s.io/client-go/pkg/api/v1"
         "k8s.io/api/core/v1"
 	"strings"
 	"log"
@@ -13,7 +12,6 @@ import(
         "encoding/json"
         "github.com/ghodss/yaml"
         "errors"
-        //"io"
 
 	"github.com/spf13/pflag"
         influxdbclient "github.com/influxdata/influxdb/client/v2"
@@ -219,9 +217,9 @@ func countDB()(count int, err error) {
 
 
 func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err error) {
-        //var alerts = []InfluxAlert{}
         var alerts = DashboardAlert{}
         var items int = 0
+        loc, _ := time.LoadLocation("Local")
         cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page))
         log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
@@ -230,24 +228,18 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err erro
                 return alerts, err
         }
         log.Println("queryDBMessages res: ", res)
-        //s.alerts=[]*HookMessage{}
 
         if len(res[0].Series) == 1 {
                 for i := 0; i < len(res[0].Series[0].Values); i++ {
-                        //fmt.Println(res[0].Series[0].Values[i][0])
-                        //fmt.Println(res[0].Series[0].Values[i][1])
-                        /*dec := json.NewDecoder(res[0].Series[0].Values[i][1].(io.Reader))
-                        if err := dec.Decode(&m); err != nil {
-                                log.Printf("error decoding message: %v", err)
-                                return nil, err
-                        }*/
                         log.Println("queryDBMessages res- ",i,":", res)
                         var m = InfluxAlert{}
                         var buf []byte = []byte(res[0].Series[0].Values[i][1].(string))
                         if err = json.Unmarshal(buf, &m); err != nil {
                                 log.Println("json unmarshal error:", err)
                         }
-                        m.InfluxdbIndex = (res[0].Series[0].Values[i][0].(string))
+
+                        dbTime, _ := time.ParseInLocation(time.RFC3339, res[0].Series[0].Values[i][0].(string), loc)
+                        m.InfluxdbIndex = strconv.FormatInt(dbTime.UnixNano(), 10)
                         alerts.Alerts = append(alerts.Alerts, m)
                 }
         } else {
