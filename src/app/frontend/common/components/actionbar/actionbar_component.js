@@ -56,7 +56,8 @@ export class ActionbarComponent {
             this.showWarning = false;
             /** @export */
             this.warninglist = [];
-            this.conn = new WebSocket('wss://' + location.host + '/sockjs');
+            // this.conn = new WebSocket('ws://172.16.116.1:30008' + '/alert/sockjs')
+            this.conn = new WebSocket('wss://' + location.host + '/alert/sockjs');
             this.conn.onopen = function(data) {
                 // this.toastr.success('监控正常', 0, {
                 //     closeButton: true,
@@ -73,11 +74,11 @@ export class ActionbarComponent {
                 }
             }.bind(this);
             this.conn.onclose = function(data) {
-                // console.log(data);
+                console.log(data);
                 // console.log('close');
             };
             this.conn.onerror = function(data) {
-                // console.log(data);
+                console.log(data);
                 // console.log('error');
             };
         }
@@ -159,7 +160,7 @@ export class ActionbarComponent {
             this.showWarning = false;
         } else {
             this.showWarning = true;
-            let warning = this.resource_('alerts');
+            let warning = this.resource_('alert/alerts?page=1&itemsPerPage=10');
             warning.query((res) => {
                 this.warninglist = [];
                 for (let i = 0; i < res.length; i++) {

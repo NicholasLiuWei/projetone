@@ -57,7 +57,7 @@ limitations under the License.
 </kd-resource-card> -->
 <div class="nodeitem" ng-click="$ctrl.getDetail()">
     <div class="nodestatusbox" layout="row">
-        <div class="img">
+        <div class="img" layout="row" layout-align="center center">
             <img src="assets/images/x86.png" ng-if="$ctrl.node.nodeInfo.architecture=='amd64'" alt="">
             <img src="assets/images/arm.png" ng-if="$ctrl.node.nodeInfo.architecture=='arm64'" alt="">
         </div>

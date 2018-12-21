@@ -16,70 +16,70 @@
  * @final
  */
 export class NavItemController {
-  /**
-   * @param {!ui.router.$state} $state
-   * @param {!./nav_service.NavService} kdNavService
-   * @ngInject
-   */
-  constructor($state, kdNavService) {
-    /** @export {string} */
-    this.state;
+    /**
+     * @param {!ui.router.$state} $state
+     * @param {!./nav_service.NavService} kdNavService
+     * @ngInject
+     */
+    constructor($state, kdNavService) {
+        /** @export {string} */
+        this.state;
 
-    /** @export {string} */
-    this.icon;
+        /** @export {string} */
+        this.icon;
 
-    /** @export {string} */
-    this.href;
+        /** @export {string} */
+        this.href;
 
-    /** @export {boolean} */
-    this.active;
+        /** @export {boolean} */
+        this.active;
 
-    /** @private {!ui.router.$state} */
-    this.state_ = $state;
+        /** @private {!ui.router.$state} */
+        this.state_ = $state;
 
-    /** @private {!./nav_service.NavService} */
-    this.kdNavService_ = kdNavService;
-  }
+        /** @private {!./nav_service.NavService} */
+        this.kdNavService_ = kdNavService;
+    }
 
-  /** @export */
-  $onInit() {
-    this.kdNavService_.registerState(this.state);
-  }
+    /** @export */
+    $onInit() {
+        this.kdNavService_.registerState(this.state);
+    }
 
-  /**
-   * Returns reference link for menu entries. By default default href for state will be returned, it
-   * can be overwritten by passing 'href' to the component.
-   *
-   * @return {string}
-   * @export
-   */
-  getHref() {
-    return this.href ? this.href : this.state_.href(this.state);
-  }
+    /**
+     * Returns reference link for menu entries. By default default href for state will be returned, it
+     * can be overwritten by passing 'href' to the component.
+     *
+     * @return {string}
+     * @export
+     */
+    getHref() {
+        return this.href ? this.href : this.state_.href(this.state);
+    }
 
-  /**
-   * Returns true if current state is active and menu entry should be highlighted. By default uses
-   * navigation service, but can be overwritten by passing 'active' to the component.
-   *
-   * @return {boolean}
-   * @export
-   */
-  isActive() {
-    return this.active !== undefined ? this.active : this.kdNavService_.isActive(this.state);
-  }
+    /**
+     * Returns true if current state is active and menu entry should be highlighted. By default uses
+     * navigation service, but can be overwritten by passing 'active' to the component.
+     *
+     * @return {boolean}
+     * @export
+     */
+    isActive() {
+        return this.active !== undefined ? this.active : this.kdNavService_.isActive(this.state);
+    }
 }
 
 /**
  * @type {!angular.Component}
  */
 export const navItemComponent = {
-  controller: NavItemController,
-  bindings: {
-    'state': '@',
-    'href': '@',
-    'icon':'@',
-    'active': '=',
-  },
-  transclude: true,
-  templateUrl: 'chrome/nav/navitem.html',
+    controller: NavItemController,
+    bindings: {
+        'state': '@',
+        'href': '@',
+        'icon': '@',
+        'active': '=',
+    },
+    transclude: true,
+    templateUrl: 'chrome/nav/navitem.html',
 };

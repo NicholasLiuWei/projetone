@@ -54,8 +54,8 @@
   <translation id="8924158133899232978" key="MSG_CHANGE_EMAIL_NAME_LABEL" desc="Label for the email.">??????</translation>
   <translation id="1062764936429972160" key="MSG_CHANGE_EMAIL_NAME_REQUIRED_WARNING" desc="Warning for the email.">????????????</translation>
   <translation id="7551043363205295803" key="MSG_CHANGE_EMAIL_OK_ACTION" desc="Action 'OK' for the confirmation button on the &quot;change email dialog&quot;.">启用</translation>
-  <translation id="6880195384216845733" key="MSG_CHANGE_EMAIL_TITLE" desc="Title for the change email dialog.">???????????????</translation>
-  <translation id="6465393913702628456" key="MSG_CHANGE_EMAIL_USER_HELP" desc="user help for email.">????????????(?????????????????? ; ??????)</translation>
+  <translation id="2224491476324446488" key="MSG_CHANGE_EMAIL_TITLE" desc="Title for the change email dialog.">添加收件人</translation>
+  <translation id="5996811769448248796" key="MSG_CHANGE_EMAIL_USER_HELP" desc="user help for email.">填写邮箱</translation>
   <translation id="3352821773496767610" key="MSG_CHART_REPOSITORY_LABEL" desc="Label &quot;Chart Repository&quot; label, for the chart repository on the deploy from chart page.">Chart Repository</translation>
   <translation id="8473002622551161689" key="MSG_CHART_REPOSITORY_LABEL1" desc="Label &quot;Chart Repository&quot; label, for the chart repository on the deploy from chart page.">Chart Repository</translation>
   <translation id="7283414261848281229" key="MSG_CHART_URL_LABEL" desc="Label &quot;Chart URL&quot; label, for the chart to deploy.">Chart URL</translation>
@@ -73,6 +73,8 @@
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">AppStore</translation>
   <translation id="4240200807669722933" key="MSG_CHROME_NAV_NAVS_2" desc="Nodes menu item in the nav.">Nodes</translation>
   <translation id="2454625266229670921" key="MSG_CHROME_NAV_NAVS_20" desc="Repositories menu entry.">Repositories</translation>
+  <translation id="5664559335763886095" key="MSG_CHROME_NAV_NAVS_3" desc="Image menu entry.">Image</translation>
+  <translation id="5393939587734973786" key="MSG_CHROME_NAV_NAVS_4" desc="warning menu entry.">warning</translation>
   <translation id="3052977861521871394" key="MSG_CHROME_NAV_NAV_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
   <translation id="996025791780854234" key="MSG_CHROME_NAV_NAV_1" desc="Release menu item in the nav.">Release</translation>
   <translation id="5330416203049826616" key="MSG_CHROME_NAV_NAV_11" desc="Pods menu item in the nav.">?????????</translation>
@@ -230,6 +232,10 @@
     <ph name="CREATION_DATE"> ?????????</ph>
   </translation>
   <translation id="8141242969054628436" key="MSG_DEFAULT_NAMESPACES" desc="Text for dropdown item that indicates that default namespace was selected">default</translation>
+  <translation id="9156340645950580933" key="MSG_DELETE_ALERT_CENCEl" desc="取消">取消</translation>
+  <translation id="1033922780548717752" key="MSG_DELETE_ALERT_CONTENT" desc="删除告警提示">确定删除<ph name="NUMBER">条告警吗？</ph></translation>
+  <translation id="3915597890815183135" key="MSG_DELETE_ALERT_OK" desc="确定">确定</translation>
+  <translation id="4519670967000916823" key="MSG_DELETE_ALERT_TITLE" desc="删除告警">删除告警</translation>
   <translation id="4053635060615677386" key="MSG_DEPLOYMENTDETAIL_ACTIONBAR_0" desc="Label \'Deployment\' which will appear in the deployment delete dialog opened from the deployment details page.">?????????????????????</translation>
   <translation id="1190053946078776500" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_0" desc="Title for graph card displaying CPU metric of one deployment.">CPU usage</translation>
   <translation id="6583176718896419422" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_1" desc="Title for graph card displaying memory metric of one deployment.">Memory usage</translation>
@@ -573,7 +579,7 @@
   <translation id="4669054964389464806" key="MSG_DEPLOY_UPLOAD_1" desc="Appears to tell the user that he/she must upload a YAML or a JSON file on the deploy page.">?????????????????????</translation>
   <translation id="7942197803383171833" key="MSG_DEPLOY_UPLOAD_2" desc="User help for the YAML/JSON file upload form on the deploy page.">??????????????????????????????????????? YAML ???????????? JSON ??????????????????????????????????????????</translation>
   <translation id="1706523109425956587" key="MSG_DEPLOY_UPLOAD_3" desc="The text is used as a \'Learn more\' link text besides the file upload on the deploy page.">???????????????</translation>
-  <translation id="4857231998853727658" key="MSG_EMAIL_INVALIED" desc="Label for the email.">??????????????????,?????????????????? ; ??????</translation>
+  <translation id="8326580451189209125" key="MSG_EMAIL_INVALIED" desc="Label for the email.">邮箱填写非法</translation>
   <translation id="4162582061346784285" key="MSG_ERROR_HANDLING_DIALOG_CLOSE_ACTION" desc="Action &quot;Close&quot; which appears at the bottom of any displayed error dialog.">?????????</translation>
   <translation id="6020266409089609793" key="MSG_ERROR_INTERNALERROR_0" desc="This is a label for button displayed on error page used to send feedback to GitHub new issue.">Send feedback</translation>
   <translation id="1499717850384845922" key="MSG_EVENTS_CARDLIST_0" desc="Label which appears above the list of such objects.">Events</translation>
@@ -638,6 +644,72 @@
   <translation id="9182587734524448852" key="MSG_HORIZONTAL_POD_AUTOSCALER_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of the horizontal pod autoscaler.">
     <ph name="CREATION_DATE"> ?????????</ph>
   </translation>
+  <translation id="2429738413060384411" key="MSG_IMAGELIST_APP_0" desc="component">component</translation>
+  <translation id="6692832471990130704" key="MSG_IMAGELIST_APP_1" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="7334228831219585673" key="MSG_IMAGELIST_APP_10" desc="\u6700\u5927\u4EFD\u6570">最大份数</translation>
+  <translation id="8385837593744454405" key="MSG_IMAGELIST_APP_11" desc="\u6700\u5C0F\u4EFD\u6570">最小份数</translation>
+  <translation id="2301959296496090528" key="MSG_IMAGELIST_APP_12" desc="\u76EE\u6807CPU\u5229\u7528\u7387">目标CPU利用率</translation>
+  <translation id="3002126427241869708" key="MSG_IMAGELIST_APP_13" desc="\u955C\u50CF">镜像</translation>
+  <translation id="4626682706612387959" key="MSG_IMAGELIST_APP_14" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="5003496084500388577" key="MSG_IMAGELIST_APP_15" desc="\u6DFB\u52A0\u955C\u50CF">添加镜像</translation>
+  <translation id="2593417613480873423" key="MSG_IMAGELIST_APP_16" desc="\u5220\u9664\u955C\u50CF">删除镜像</translation>
+  <translation id="7677210021273172572" key="MSG_IMAGELIST_APP_17" desc="\u5730\u5740">地址</translation>
+  <translation id="5902336679450303613" key="MSG_IMAGELIST_APP_18" desc="\u62C9\u53D6\u7B56\u7565">拉取策略</translation>
+  <translation id="9220063789648443599" key="MSG_IMAGELIST_APP_19" desc="\u53C2\u6570">参数</translation>
+  <translation id="5905166305608923547" key="MSG_IMAGELIST_APP_2" desc="\u6DFB\u52A0\u5E94\u7528">添加应用</translation>
+  <translation id="4079526764072429227" key="MSG_IMAGELIST_APP_20" desc="\u547D\u4EE4">命令</translation>
+  <translation id="5519555101462262658" key="MSG_IMAGELIST_APP_21" desc="\u8D44\u6E90">资源</translation>
+  <translation id="5789780161411311622" key="MSG_IMAGELIST_APP_22" desc="\u9650\u989DCPU">限额CPU</translation>
+  <translation id="8632152944161769321" key="MSG_IMAGELIST_APP_23" desc="\u9650\u989D\u5185\u5B58">限额内存</translation>
+  <translation id="1469437381987441072" key="MSG_IMAGELIST_APP_24" desc="\u914D\u989DCPU">配额CPU</translation>
+  <translation id="5490877511272865260" key="MSG_IMAGELIST_APP_25" desc="\u914D\u989D\u5185\u5B58">配额内存</translation>
+  <translation id="7672719129587122862" key="MSG_IMAGELIST_APP_26" desc="\u5B58\u50A8">存储</translation>
+  <translation id="6809866505991311048" key="MSG_IMAGELIST_APP_27" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="1056224062561287221" key="MSG_IMAGELIST_APP_28" desc="\u6DFB\u52A0\u5B58\u50A8">添加存储</translation>
+  <translation id="1272153227525089124" key="MSG_IMAGELIST_APP_29" desc="\u540D\u79F0">名称</translation>
+  <translation id="644383169299111093" key="MSG_IMAGELIST_APP_3" desc="\u5220\u9664\u670D\u52A1">删除服务</translation>
+  <translation id="5724598853360872737" key="MSG_IMAGELIST_APP_30" desc="\u6A21\u5F0F">模式</translation>
+  <translation id="1622065330259553624" key="MSG_IMAGELIST_APP_31" desc="\u6302\u8F7D\u8DEF\u5F84">挂载路径</translation>
+  <translation id="4073756552317214299" key="MSG_IMAGELIST_APP_32" desc="\u5927\u5C0F">大小</translation>
+  <translation id="594095960957076444" key="MSG_IMAGELIST_APP_33" desc="\u7C7B\u578B">类型</translation>
+  <translation id="780810679753493622" key="MSG_IMAGELIST_APP_34" desc="\u73AF\u5883\u53D8\u91CF">环境变量</translation>
+  <translation id="7785144864603706893" key="MSG_IMAGELIST_APP_35" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="1013397886719324014" key="MSG_IMAGELIST_APP_36" desc="\u6DFB\u52A0">添加</translation>
+  <translation id="7244927039879720324" key="MSG_IMAGELIST_APP_37" desc="\u540D\u79F0">名称</translation>
+  <translation id="6437060248830054493" key="MSG_IMAGELIST_APP_38" desc="\u503C">值</translation>
+  <translation id="9085991858872952624" key="MSG_IMAGELIST_APP_39" desc="\u7AEF\u53E3">端口</translation>
+  <translation id="3734082292084969186" key="MSG_IMAGELIST_APP_4" desc="\u5E94\u7528\u7C7B\u578B">应用类型</translation>
+  <translation id="1925615256949762554" key="MSG_IMAGELIST_APP_40" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="3565270196903455869" key="MSG_IMAGELIST_APP_41" desc="\u6DFB\u52A0">添加</translation>
+  <translation id="2813389869453280966" key="MSG_IMAGELIST_APP_42" desc="\u5BB9\u5668\u7AEF\u53E3">容器端口</translation>
+  <translation id="2922002241514014997" key="MSG_IMAGELIST_APP_43" desc="\u6A21\u5F0F">模式</translation>
+  <translation id="1227551388713751793" key="MSG_IMAGELIST_APP_5" desc="\u5E94\u7528\u540D\u79F0">名称</translation>
+  <translation id="7160370604773193764" key="MSG_IMAGELIST_APP_6" desc="\u91CD\u542F\u7B56\u7565">重启策略</translation>
+  <translation id="2711340411953072386" key="MSG_IMAGELIST_APP_7" desc="\u521D\u59CB\u4EFD\u6570">初始份数</translation>
+  <translation id="2446959863828566779" key="MSG_IMAGELIST_APP_8" desc="\u81EA\u52A8\u6269\u5BB9">自动扩容</translation>
+  <translation id="7168619591282929942" key="MSG_IMAGELIST_APP_9" desc="\u662F\u5426\u914D\u7F6E">是否配置</translation>
+  <translation id="103766565925141546" key="MSG_IMAGELIST_IMAGELIST_0" desc="\u57FA\u7840\u955C\u50CF">基础镜像</translation>
+  <translation id="4915686818651664220" key="MSG_IMAGELIST_IMAGELIST_1" desc="S2I">S2I</translation>
+  <translation id="964064464876978771" key="MSG_IMAGELIST_IMAGELIST_10" desc="\u670D\u52A1\u7AEF\u53E3">服务端口</translation>
+  <translation id="2241331327299975865" key="MSG_IMAGELIST_IMAGELIST_11" desc="\u670D\u52A1\u540D\u5B57">服务名字</translation>
+  <translation id="5952866166498217565" key="MSG_IMAGELIST_IMAGELIST_2" desc="\u81EA\u5B9A\u4E49\u955C\u50CF">自定义镜像</translation>
+  <translation id="8129979504520678345" key="MSG_IMAGELIST_IMAGELIST_3" desc="\u521B\u5EFA\u5E94\u7528">创建应用</translation>
+  <translation id="3979501814270507705" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u5E94\u7528\u540D\u79F0">应用名称</translation>
+  <translation id="5665794647258203316" key="MSG_IMAGELIST_IMAGELIST_5" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
+  <translation id="4037890851966195201" key="MSG_IMAGELIST_IMAGELIST_6" desc="\u521B\u5EFA">创建</translation>
+  <translation id="6932806899247830056" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u663E\u793A\u9AD8\u7EA7">显示高级</translation>
+  <translation id="8037241371028144254" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u662F\u5426\u914D\u7F6E">是否配置</translation>
+  <translation id="5343556586489231376" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u5730\u5740">地址</translation>
+  <translation id="1937389621995341440" key="MSG_IMAGELIST_S2I_0" desc="\u4ED3\u5E93\u5730\u5740">仓库地址</translation>
+  <translation id="7567721771210862521" key="MSG_IMAGELIST_S2I_1" desc="\u5206\u652F">分支</translation>
+  <translation id="4607351051458982671" key="MSG_IMAGELIST_S2I_2" desc="\u955C\u50CF\u540D\u79F0">镜像名称</translation>
+  <translation id="1591204509478096203" key="MSG_IMAGELIST_SERVICE_0" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="7507863271251706082" key="MSG_IMAGELIST_SERVICE_1" desc="\u6DFB\u52A0\u670D\u52A1">添加服务</translation>
+  <translation id="7244569979947260449" key="MSG_IMAGELIST_SERVICE_2" desc="\u5220\u9664\u670D\u52A1">删除服务</translation>
+  <translation id="1434920064714811801" key="MSG_IMAGELIST_SERVICE_3" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
+  <translation id="5286928070794584496" key="MSG_IMAGELIST_SERVICE_4" desc="\u6DFB\u52A0\u7AEF\u53E3">添加端口</translation>
+  <translation id="5696228969575516677" key="MSG_IMAGELIST_TEST" desc="imagelist">imagelist</translation>
+  <translation id="4313229714437574636" key="MSG_IMAGE_LABEL" desc="Label 'Releases' that appears as a breadcrumbs on the action bar.">Image</translation>
   <translation id="9187405739901697345" key="MSG_INGRESSDETAIL_ACTIONBAR_0" desc="Label \'Ingress\' which appears at the top of the delete dialog, opened from an ingress details page.">???????????????</translation>
   <translation id="2640165037560914246" key="MSG_INGRESSDETAIL_INFO_0" desc="Resource info details section name.">??????</translation>
   <translation id="9151423718836175081" key="MSG_INGRESSDETAIL_INFO_1" desc="Resource info details section name entry.">??????</translation>
@@ -1118,6 +1190,10 @@
   <translation id="4707374810025494648" key="MSG_RESOURCEQUOTADETAIL_RESOURCEQUOTADETAIL_1" desc="Resource quota info details section name">??????</translation>
   <translation id="6441862772940625742" key="MSG_RESOURCEQUOTADETAIL_RESOURCEQUOTADETAIL_2" desc="Resource quota info details section scopes">????????????</translation>
   <translation id="3641265385665997534" key="MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR" desc="Message shown to the user when there is a pagination error.">?????????????????????????????????</translation>
+  <translation id="2528761437844965428" key="MSG_S2I_CANCEL_ACTION" desc="update release cancle.">Cancle</translation>
+  <translation id="2759038103209691171" key="MSG_S2I_LOCATION" desc="image location.">Image location</translation>
+  <translation id="2315821539252743508" key="MSG_S2I_OK_ACTION" desc="update release OK.">OK</translation>
+  <translation id="3998364216090544553" key="MSG_S2I_Title" desc="update image.">Source To Image</translation>
   <translation id="1320482404001625698" key="MSG_SECRETDETAIL_ACTIONBAR_0" desc="Label \'Secret\' which appears at the top of the delete dialog, opened from a secret details page.">??????????????????</translation>
   <translation id="7988357395949564443" key="MSG_SECRETDETAIL_DETAIL_0" desc="Config map info details section name.">?????????</translation>
   <translation id="7488314601782256695" key="MSG_SECRETDETAIL_DETAIL_1" desc="Tooltip label for showing secret content">??????????????????????????????????????????</translation>
@@ -1232,6 +1308,25 @@
   <translation id="58035047264145239" key="MSG_TIME_UNIT_YEAR_LABEL" desc="Time units label, a single year.">1 ???</translation>
   <translation id="7831482692212754207" key="MSG_TPR_LIST_STARTED_AT_TOOLTIP" desc="Tooltip 'Started at [some date]' showing the exact creation time of third party resource object.">Started at <ph name="START_DATE"> UTC</ph></translation>
   <translation id="4037658160328783864" key="MSG_UNKNOWN_SERVER_ERROR" desc="String to display when error object has invalid structure.">????????????????????????????????????</translation>
+  <translation id="5887222560247795921" key="MSG_WARNING_LABEL" desc="Label 'Warning' that appears as a breadcrumbs on the action bar.">Warning</translation>
+  <translation id="1751156908882161640" key="MSG_WARNING_LIST_LIST_0" desc="\u7CFB\u7EDF\u544A\u8B66">系统告警</translation>
+  <translation id="1429427665370591345" key="MSG_WARNING_LIST_LIST_1" desc="\u5220\u9664">删除</translation>
+  <translation id="8961546642107190100" key="MSG_WARNING_LIST_LIST_10" desc="\u6682\u65E0\u544A\u8B66">暂无告警</translation>
+  <translation id="8462341737608490143" key="MSG_WARNING_LIST_LIST_2" desc="\u540D\u79F0">名称</translation>
+  <translation id="6374300499359619699" key="MSG_WARNING_LIST_LIST_3" desc="\u7C7B\u578B">类型</translation>
+  <translation id="2474708781326243691" key="MSG_WARNING_LIST_LIST_4" desc="\u76EE\u6807">目标</translation>
+  <translation id="8615550496482594433" key="MSG_WARNING_LIST_LIST_5" desc="\u65F6\u95F4">时间</translation>
+  <translation id="3583560653993047958" key="MSG_WARNING_LIST_LIST_6" desc="\u64CD\u4F5C">操作</translation>
+  <translation id="1393770128441724470" key="MSG_WARNING_LIST_LIST_7" desc="\u544A\u8B66">告警</translation>
+  <translation id="8418700994499490822" key="MSG_WARNING_LIST_LIST_8" desc="\u9519\u8BEF">错误</translation>
+  <translation id="6186569074642098265" key="MSG_WARNING_LIST_LIST_9" desc="\u5DF2\u77E5\u6089">已知悉</translation>
+  <translation id="4552044874744119007" key="MSG_WARNING_SETTINGS_LIST_0" desc="\u544A\u8B66\u901A\u77E5\u5217\u8868">告警通知列表</translation>
+  <translation id="8076359133279423019" key="MSG_WARNING_SETTINGS_LIST_1" desc="\u65B0\u589E\u90AE\u4EF6\u6536\u4EF6\u4EBA">新增邮件收件人</translation>
+  <translation id="5370016247057744346" key="MSG_WARNING_SETTINGS_LIST_2" desc="\u90AE\u7BB1">邮箱</translation>
+  <translation id="7603999528514162265" key="MSG_WARNING_SETTINGS_LIST_3" desc="\u64CD\u4F5C">操作</translation>
+  <translation id="4915261500475444328" key="MSG_WARNING_SETTINGS_LIST_4" desc="\u5220\u9664">删除</translation>
+  <translation id="5653357915035297193" key="MSG_WARNING_WARNING_0" desc="\u7CFB\u7EDF\u544A\u8B66">系统告警</translation>
+  <translation id="809907742384229196" key="MSG_WARNING_WARNING_1" desc="\u544A\u8B66\u8BBE\u7F6E">告警设置</translation>
   <translation id="4302564966959880468" key="MSG_WORKLOADS_WORKLOADS_0" desc="Title for graph card displaying CPU metric of one all resources.">CPU?????????</translation>
   <translation id="1036433586363793837" key="MSG_WORKLOADS_WORKLOADS_1" desc="Title for graph card displaying memory metric of one all resources.">Memory usage</translation>
   <translation id="5680064618107855853" key="MSG_WORKLOADS_WORKLOADS_2" desc="Help message detailing what is included in the memory usage">??????????????????????????????????????????????????????????????????????????????????????????????????????????????????(???????????????????????????????????????(???: ??????????????????????????????????????????)??????????????????????????????????????????????????????2??????????????????????????????)</translation>
@@ -1241,6 +1336,11 @@
   <translation id="3418347109217776066" key="MSG_chart_deployment_failed_title" desc="appstore 部署失败提示">服务器错误</translation>
   <translation id="2159949066931242059" key="MSG_chart_deployment_partly" desc="Chart deployment has partly completed. 应用部署未完成">Chart deployment has partly completed</translation>
   <translation id="1254252880229322045" key="MSG_chart_deploypre_failed" desc="Deploying chart has failed. 应用部署失败">Deploying chart has failed</translation>
+  <translation id="7634709554037056826" key="MSG_image_deployment_failed_button" desc="image 部署失败提示">确定</translation>
+  <translation id="6571388540812573885" key="MSG_image_deployment_failed_con" desc="image 部署失败提示">部署失败，请重试</translation>
+  <translation id="2746713520527501031" key="MSG_image_deployment_failed_title" desc="image 部署失败提示">服务器错误</translation>
+  <translation id="2483598429205640983" key="MSG_image_s2i_error_title" desc="release 更新失败">更新失败</translation>
+  <translation id="6408231948271223670" key="MSG_image_s2i_success_title" desc="release 更新成功">更新成功</translation>
   <translation id="3491360723330747422" key="MSG_login_jiqun_error" desc="集群异常 Cluster anomaly">集群异常</translation>
   <translation id="1355740095585846445" key="MSG_login_login_error" desc="请求失败,后端服务异常 Request failure, backend service exception">请求失败,后端服务异常</translation>
   <translation id="2672057988085598240" key="MSG_nodecard_qianzhao_fasong" desc="Gigabit send">千兆(应用)发送</translation>

@@ -1,0 +1,63 @@
+<kd-resource-card-list selectable="false" with-statuses="false" object-meta="{name:'alert'}">
+    <kd-resource-card-list-header>
+        [[系统告警|系统告警]]
+        <md-button ng-if="$ctrl.selected.length!=0" class="md-button md-raised md-primary" ng-click="$ctrl.deleteAlert($event)">[[删除|删除]]</md-button>
+    </kd-resource-card-list-header>
+    <kd-resource-card-header-columns>
+        <div style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
+            <md-checkbox class="wselect" style="margin-left:4px;" aria-label="Select All" ng-checked="$ctrl.isChecked()" md-indeterminate="$ctrl.isIndeterminate()" ng-click="$ctrl.toggleAll()">
+            </md-checkbox>
+        </div>
+        <kd-resource-card-header-column size="medium" grow="4">
+            [[名称|名称]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="nogrow">
+            [[类型|类型]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="nogrow">
+            [[目标|目标]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="medium" grow="1">
+            [[时间|时间]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="medium" grow="nogrow">
+            [[操作|操作]]
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <kd-resource-card total-items="::$ctrl.alertList.listMeta.totalItems" pagination-id="alerts" object-meta="{'name':warn.labels.alertname,'namespace':'default'}" type-meta="{'kind':'alert'}" dir-paginate="warn in $ctrl.alertList.alerts | itemsPerPage: default">
+        <!-- <kd-resource-card-status>Foo status</kd-resource-card-status> -->
+        <kd-resource-card-columns>
+            <div style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">
+                <md-checkbox ng-checked="$ctrl.exists(warn)" ng-click="$ctrl.toggle(warn)" aria-label="alerts" class="wselect" style="margin-left:4px;">
+                </md-checkbox>
+            </div>
+            <kd-resource-card-column>
+                {{warn.alerts.annotations.description}}
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="color:#f1483f" ng-if="warn.status=='firing'">
+                    [[告警|告警]]
+                </div>
+                <div style="color:#f1483f" ng-if="warn.status!='firing'">
+                    [[错误|错误]]
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                {{warn.alerts.labels.instance}}
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                {{$ctrl.getTime(warn.alerts.startsAt)}}
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div>
+                    <md-button ng-disabled="warn.userProcessed=='true'" class="md-raised md-primary" md-ripple-size="auto" ng-click="$ctrl.getwarn(warn)">[[已知悉|已知悉]]</md-button>
+                </div>
+            </kd-resource-card-column>
+        </kd-resource-card-columns>
+        <kd-resource-card-footer>
+        </kd-resource-card-footer>
+    </kd-resource-card>
+    <div ng-if="$ctrl.alertList.alerts.length==0" class="norelease" layout="row" layout-align="center center">[[暂无告警|暂无告警]]</div>
+    <kd-resource-card-list-pagination pagination-id="alerts" list="$ctrl.alertList" list-resource="$ctrl.alertResource">
+    </kd-resource-card-list-pagination>
+</kd-resource-card-list>

@@ -55,12 +55,6 @@ export default class AddEmailDialogController {
         this.addemail = '';
         /** @export */
         this.disabled = false;
-        $resource('email').query((res) => {
-                this.emaillist = res;
-            },
-            (res) => {
-                console.log(res);
-            });
     }
 
 
@@ -75,7 +69,7 @@ export default class AddEmailDialogController {
             let obj = {
                 "email": this.addemail,
             };
-            let resource = this.resource_('email');
+            let resource = this.resource_('alert/add/email');
             resource.save(
                 obj, this.onChangeEmailSuccess_.bind(this),
                 this.onChangeEmailError_.bind(this));
@@ -96,8 +90,8 @@ export default class AddEmailDialogController {
     onChangeEmailSuccess_() {
         this.log_.info(`Successfully added repository`);
         this.mdDialog_.hide();
-        this.toastr["success"]('修改成功');
-        // this.state_.reload();
+        this.toastr["success"]('添加成功');
+        this.state_.reload();
     }
 
     /**
@@ -107,20 +101,20 @@ export default class AddEmailDialogController {
     onChangeEmailError_(err) {
         this.log_.error(err);
         this.mdDialog_.hide();
-        this.toastr["error"]('修改失败,请重试');
+        this.toastr["error"]('添加失败,请重试');
     }
 }
 
 function i18n() {
     return {
         /** @export {string} @desc Title for the change email dialog. */
-        MSG_CHANGE_EMAIL_TITLE: goog.getMsg('修改收件人'),
+        MSG_CHANGE_EMAIL_TITLE: goog.getMsg('添加收件人'),
         /** @export {string} @desc user help for email. */
-        MSG_CHANGE_EMAIL_USER_HELP: goog.getMsg('填写邮箱(多个收件人用 ; 隔开)'),
+        MSG_CHANGE_EMAIL_USER_HELP: goog.getMsg('填写邮箱'),
         /** @export {string} @desc Label for the email. */
         MSG_CHANGE_EMAIL_NAME_LABEL: goog.getMsg('邮箱'),
         /** @export {string} @desc Label for the email. */
-        MSG_EMAIL_INVALIED: goog.getMsg('邮箱填写非法,多个收件人用 ; 隔开'),
+        MSG_EMAIL_INVALIED: goog.getMsg('邮箱填写非法'),
         /** @export {string} @desc Warning for the email. */
         MSG_CHANGE_EMAIL_NAME_REQUIRED_WARNING: goog.getMsg('邮箱必填'),
         /** @export {string} @desc Action 'Cancel' for the confirmation button on the "change email

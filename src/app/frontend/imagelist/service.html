@@ -1,0 +1,90 @@
+<kd-content-card>
+    <kd-title layout="row" layout-align="space-between">service
+
+        <md-menu>
+            <md-button ng-click="$mdMenu.open($event)" class="md-icon-button">
+                <md-icon md-font-library="material-icons">more_vert</md-icon>
+                <md-tooltip>[[Actions|Tooltip "Actions", which appears when you hover over the menu icon on any resource card.]]</md-tooltip>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button ng-click="$ctrl.addService()">[[添加服务|添加服务]]</md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-disabled="$ctrl.kdService.value.content.services.length<=1" ng-click="$ctrl.deleteService()">[[删除服务|删除服务]]</md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </kd-title>
+    <kd-content class="kd-content-padded">
+        <kd-help-section>
+            <md-input-container class="md-block">
+                <!-- <label>{{ctrl.tanslate(key)}}</label> -->
+                <label>name</label>
+                <div>
+                    <input ng-model="$ctrl.service.name" required>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <!-- <label>{{ctrl.tanslate(key)}}</label> -->
+                <label>pods</label>
+                <div>
+                    <input ng-model="$ctrl.service.pods" required>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <!-- <label>{{ctrl.tanslate(key)}}</label> -->
+                <label>type</label>
+                <md-select name="type" ng-model="$ctrl.service.type">
+                    <md-option value="ClusterIP">ClusterIP</md-option>
+                    <md-option value="NodePort">NodePort</md-option>
+                </md-select>
+            </md-input-container>
+            <kd-user-help style="width: 40%;">
+            </kd-user-help>
+        </kd-help-section>
+        <kd-content-card>
+            <kd-title layout="row" layout-align="space-between">port
+                <md-menu>
+                    <md-button ng-click="$mdMenu.open($event)" class="md-icon-button">
+                        <md-icon md-font-library="material-icons">more_vert</md-icon>
+                        <md-tooltip>[[Actions|Tooltip "Actions", which appears when you hover over the menu icon on any resource card.]]</md-tooltip>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="$ctrl.addport()">[[添加端口|添加端口]]</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </kd-title>
+            <kd-content class="kd-content-padded">
+                <kd-help-section ng-repeat="port in $ctrl.service.ports track by $index">
+                    <md-input-container class="md-block">
+                        <!-- <label>{{ctrl.tanslate(key)}}</label> -->
+                        <label>protocol</label>
+                        <div>
+                            <input ng-model="port.protocol" required>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <!-- <label>{{ctrl.tanslate(key)}}</label> -->
+                        <label>targetPort</label>
+                        <div>
+                            <input ng-model="port.targetPort" required>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <!-- <label>{{ctrl.tanslate(key)}}</label> -->
+                        <label>port</label>
+                        <div>
+                            <input ng-model="port.port" required>
+                        </div>
+                    </md-input-container>
+                    <kd-user-help style="width: 40%;">
+                        <md-button class="material-icons md-icon-button md-raised md-button" ng-disabled="$ctrl.service.ports.length<=1" ng-click="$ctrl.deleteport($index)">delete</md-button>
+                    </kd-user-help>
+                </kd-help-section>
+            </kd-content>
+        </kd-content-card>
+    </kd-content>
+</kd-content-card>

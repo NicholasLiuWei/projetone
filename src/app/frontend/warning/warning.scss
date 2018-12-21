@@ -1,0 +1,58 @@
+.warn-list-item.active {
+    a {
+        color: #fff;
+    }
+    background-image: linear-gradient(-166deg, #42E695 0%, #3BB2B8 100%);
+    color:#fff;
+}
+
+.warn-list-item:last-child {
+    margin-bottom: 0;
+    border-bottom: 1px solid #e4e7ed;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.wselect {
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.warn-list-item {
+    line-height: 40px;
+    position: relative;
+    height: 40px;
+    padding: 0 10px;
+    cursor: pointer;
+    a {
+        color: #4CB19C;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+    color: #4CB19C;
+    border: 1px solid #e4e7ed;
+    border-bottom: none;
+    background-color: #f5f7fa;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.warn-list-group {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 0;
+    padding-top: 20px;
+    list-style-type: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(204, 209, 217, 0.3);
+}
+
+.md-button.md-primary.md-raised:not([disabled]):hover {
+    background: #3BB2B8;
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon,
+md-checkbox.md-checked .md-icon {
+    background-color: #3BB2B8;
+}

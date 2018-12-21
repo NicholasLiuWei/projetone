@@ -37,6 +37,8 @@ import { stateName as repositoryState } from 'repositorylist/repositorylist_stat
 import { stateName as appStore } from 'appStore/state';
 import { stateName as home } from 'newhome/state';
 import { stateName as release } from 'releaselist/releaselist_state';
+import { stateName as image } from 'imagelist/state';
+import { stateName as warning } from 'warning/list/state';
 // import { stateName as storage } from 'storage/state';
 
 /**
@@ -90,6 +92,8 @@ export class NavController {
             'appStore': appStore,
             'home': home,
             'release': release,
+            'image': image,
+            'warning': warning
         };
         /** cunchu */
         this.getNav();

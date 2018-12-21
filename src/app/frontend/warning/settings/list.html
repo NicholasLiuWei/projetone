@@ -1,0 +1,36 @@
+<kd-content-card>
+    <kd-title>[[告警通知列表|告警通知列表]]</kd-title>
+    <kd-content>
+        <kd-resource-card-list selectable="false" with-statuses="false" object-meta="">
+            <kd-resource-card-list-header>
+                <md-button ng-click="$ctrl.addEmailDialog()" class="md-raised md-primary">[[新增邮件收件人|新增邮件收件人]]</md-button>
+            </kd-resource-card-list-header>
+            <kd-resource-card-header-columns>
+                <kd-resource-card-header-column size="large" grow="4">
+                    [[邮箱|邮箱]]
+                </kd-resource-card-header-column>
+                <kd-resource-card-header-column size="medium" grow="nogrow">
+                    [[操作|操作]]
+                </kd-resource-card-header-column>
+            </kd-resource-card-header-columns>
+            <kd-resource-card ng-repeat="email in $ctrl.emailList track by $index">
+                <!-- <kd-resource-card-status>Foo status</kd-resource-card-status> -->
+                <kd-resource-card-columns>
+                    <kd-resource-card-column>
+                        {{email}}
+                    </kd-resource-card-column>
+                    <kd-resource-card-column>
+                        <!-- <kd-resource-card-menu> -->
+                        <div>
+                            <md-button ng-click="$ctrl.delete(email)" class="md-raised">[[删除|删除]]</md-button>
+                        </div>
+                        <!-- </kd-resource-card-menu> -->
+                    </kd-resource-card-column>
+                </kd-resource-card-columns>
+                <kd-resource-card-footer>
+                    <div></div>
+                </kd-resource-card-footer>
+            </kd-resource-card>
+        </kd-resource-card-list>
+    </kd-content>
+</kd-content-card>
