@@ -72,6 +72,15 @@ type (
 		Receiver          string            `json:"receiver"`
 		Alerts            Alert             `json:"alerts"`
 	}
+
+	DashboardPages struct {
+		TotalItems        int               `json:"totalItems"`
+	}
+
+	DashboardAlert struct {
+		Alerts            []InfluxAlert     `json:"alerts"`
+		ListMeta          DashboardPages    `json:"listMeta"`
+	}
 )
 
 // add alertmanager webhook
@@ -122,31 +131,20 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	page, _ := strconv.Atoi(queryParams["page"][0])
 	var p  = AlertPageIndex{
 		itemsPerPage : itemsPerPage,
-		page : page,
+		page : (page-1)*itemsPerPage,
 	}
-	/*dec := json.NewDecoder(r.Body)
-	defer r.Body.Close()
-	if err := dec.Decode(&p); err != nil {
-		log.Printf("error decoding message: %v", err)
-		http.Error(w, "invalid request body", 400)
-		return
-	}*/
 
+	log.Println("getHandler before encoder.")
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
-
-        s.Lock()
-        defer s.Unlock()
 
 	mess, err := queryDBMessages(p)
 	if err != nil {
 		log.Fatal("getHandler queryDBMessages error!", err)
 		return
 	}
-        //log.Printf("getHandler message: %v\n", *s)
-        //log.Printf("getHandler message s.alerts: %v\n", s.alerts)
+
         if err := enc.Encode(mess); err != nil {
-        //if err := enc.Encode(*s); err != nil {
                 log.Printf("error encoding messages: %v", err)
 		return
         }
@@ -165,9 +163,6 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
                 return
         }
 
-        s.Lock()
-        defer s.Unlock()
-
 	//write to DB
 	var buf []byte
 	var err error
@@ -185,7 +180,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		if buf, err = json.Marshal(influxAlert); err != nil {
 			log.Fatal("json marshal error:", err)
 		}
-		err = writeDB(string(buf))
+		err = writeDB(string(buf), time.Now())
 		log.Printf("write context: %s", string(buf))
 		if err != nil {
 			log.Printf("Failed to write alert messages to influxdb!", string(buf))
@@ -194,17 +189,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("after alert postHandler writeDB!")
 	}
 
-
-        //s.alerts = make([]*HookMessage)
-        /*s.alerts = append(s.alerts, &m)*/
-        //log.Printf("alertsHandler POST, HookMessage=%v\n", m)
         sendChan <- &m
-
-        /*if len(s.alerts) > s.capacity {
-                a := s.alerts
-                _, a = a[0], a[1:]
-                s.alerts = a
-        }*/
 }
 
 // GetAlertsNumHandler get alerts number history
@@ -223,7 +208,7 @@ func UpdateAlertsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err := updateDB(m); err != nil {
-		log.Printf("error deleteBD, err: %v", err)
+		log.Printf("error updateDB, err: %v", err)
 		return
 	}
 }
@@ -249,9 +234,6 @@ func (s *AlertStore) getAlertsNumHandler(w http.ResponseWriter, r *http.Request)
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
-        s.Lock()
-        defer s.Unlock()
-
 	count, err := countDB()
 	if err != nil {
 		log.Fatal("getAlertsNumHandler countDB error!", err)
@@ -259,12 +241,6 @@ func (s *AlertStore) getAlertsNumHandler(w http.ResponseWriter, r *http.Request)
 	}
 	n.AlertsNum = count
 
-	/*s.AlertsNum = 0
-	n.AlertsNum = 0
-	for i:=0; i<len(s.alerts);i++ {
-		s.AlertsNum += len(s.alerts[i].Alerts)
-	}
-        n.AlertsNum = s.AlertsNum*/
         if err := enc.Encode(n); err != nil {
                 log.Printf("error encoding messages: %v", err)
         }
@@ -281,8 +257,6 @@ func (s *AlertStore) clearAlertsHandler(w http.ResponseWriter, r *http.Request) 
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
-        s.Lock()
-        defer s.Unlock()
 	_, err := queryDB("delete from node_alert")
 	if err != nil {
 		log.Fatal("clearAlertsHandler queryDB error!")
@@ -290,7 +264,6 @@ func (s *AlertStore) clearAlertsHandler(w http.ResponseWriter, r *http.Request) 
 	}
         s.AlertsNum=0
         n.AlertsNum=0
-        //log.Printf("get alerts %v", s.alerts)
         s.alerts=[]*HookMessage{}
 
         if err := enc.Encode(s.alerts); err != nil {

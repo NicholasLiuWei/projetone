@@ -4,7 +4,6 @@ import(
         "k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/client"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	//"k8s.io/client-go/pkg/api/v1"
         "k8s.io/api/core/v1"
 	"strings"
 	"log"
@@ -13,7 +12,6 @@ import(
         "encoding/json"
         "github.com/ghodss/yaml"
         "errors"
-        //"io"
 
 	"github.com/spf13/pflag"
         influxdbclient "github.com/influxdata/influxdb/client/v2"
@@ -164,7 +162,7 @@ func queryDB(cmd string) (res []influxdbclient.Result, err error) {
         return res, nil
 }
 
-func writeDB(value interface{})(err error) {
+func writeDB(value interface{}, t time.Time)(err error) {
         // Create a new point batch
         log.Printf("writeDB")
         bp, err := influxdbclient.NewBatchPoints(influxdbclient.BatchPointsConfig{
@@ -181,7 +179,7 @@ func writeDB(value interface{})(err error) {
 		"value":  value,
 	}
         log.Printf("writeDB after NewBatchPoints")
-	pt, err := influxdbclient.NewPoint("node_alert", tags, fields, time.Now())
+	pt, err := influxdbclient.NewPoint("node_alert", tags, fields, t)
 	if err != nil {
 		log.Fatal(err)
                 return err
@@ -199,6 +197,7 @@ func writeDB(value interface{})(err error) {
 }
 
 func countDB()(count int, err error) {
+        var items string
         res, err := queryDB("select count(value) from node_alert")
         if err != nil {
                 log.Fatal("countDB queryDB error!", err)
@@ -206,50 +205,55 @@ func countDB()(count int, err error) {
         }
         if len(res[0].Series) == 1 {
                 log.Println("countDB get result!")
-                count = res[0].Series[0].Values[0][1].(int)
-                log.Println("countDB count: ", count)
+                items = string(res[0].Series[0].Values[0][1].(json.Number))
+                log.Println("countDB count: ", items)
         } else {
                 log.Println("countDB have no result!")
-                count = 0
+                items = "0"
         }
+        count, _ =  strconv.Atoi(string(items))
         return count, nil
 }
 
 
-func queryDBMessages(pageIndex AlertPageIndex)(messages []InfluxAlert, err error) {
-        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page-1))
+func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err error) {
+        var alerts = DashboardAlert{}
+        var items int = 0
+        loc, _ := time.LoadLocation("Local")
+        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page))
         log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
         if err != nil {
                 log.Fatal("queryDBMessages queryDB error!", err)
-                return nil, err
+                return alerts, err
         }
         log.Println("queryDBMessages res: ", res)
-        var alerts = []InfluxAlert{}
-        //s.alerts=[]*HookMessage{}
 
         if len(res[0].Series) == 1 {
                 for i := 0; i < len(res[0].Series[0].Values); i++ {
-                        //fmt.Println(res[0].Series[0].Values[i][0])
-                        //fmt.Println(res[0].Series[0].Values[i][1])
-                        /*dec := json.NewDecoder(res[0].Series[0].Values[i][1].(io.Reader))
-                        if err := dec.Decode(&m); err != nil {
-                                log.Printf("error decoding message: %v", err)
-                                return nil, err
-                        }*/
                         log.Println("queryDBMessages res- ",i,":", res)
                         var m = InfluxAlert{}
                         var buf []byte = []byte(res[0].Series[0].Values[i][1].(string))
                         if err = json.Unmarshal(buf, &m); err != nil {
                                 log.Println("json unmarshal error:", err)
                         }
-                        m.InfluxdbIndex = (res[0].Series[0].Values[i][0].(string))
-                        alerts = append(alerts, m)
+
+                        dbTime, _ := time.ParseInLocation(time.RFC3339, res[0].Series[0].Values[i][0].(string), loc)
+                        m.InfluxdbIndex = strconv.FormatInt(dbTime.UnixNano(), 10)
+                        alerts.Alerts = append(alerts.Alerts, m)
                 }
         } else {
                // nothing to do
                 log.Println("queryDBMessages NULL res!")
         }
+
+        if items, err = countDB(); err != nil {
+                log.Fatal("queryDBMessages countDB error!", err)
+                return alerts, err
+        }
+        alerts.ListMeta.TotalItems = items
+        log.Println("queryDBMessages items: ", items)
+
 
         return alerts, nil
 }
@@ -289,13 +293,21 @@ func updateDB(record InfluxAlert) (err error) {
                 return err
         }
 
-        cmd = fmt.Sprintf("insert node_alert value=%s %s", string(buf), record.InfluxdbIndex)
+        dbIndexInt64, _ := strconv.ParseInt(record.InfluxdbIndex, 10, 64)
+        err = writeDB(string(buf), time.Unix(0, dbIndexInt64))
+        log.Printf("write context: %s", string(buf))
+        if err != nil {
+                log.Printf("Failed to write alert messages to influxdb!", string(buf))
+                return
+        }
+
+        /*cmd = fmt.Sprintf("insert node_alert value=%s %s", string(buf), record.InfluxdbIndex)
         _, err = queryDB(cmd)
         log.Printf("write context: %s", cmd)
         if err != nil {
                 log.Printf("Failed to write alert messages to influxdb!", cmd)
                 return
-        }
+        }*/
 
         log.Println("updateDB success!")
         return nil
