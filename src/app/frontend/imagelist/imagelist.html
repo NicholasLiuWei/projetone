@@ -3,10 +3,13 @@
     <kd-content layout="row">
         <!-- {{ctrl.choicedBaseimage.name}} -->
         <!-- <md-radio-group ng-change="ctrl.choiceBaseimage(event)" ng-model="ctrl.choicedBaseimage" layout="row"> -->
-        <md-card style="width:200px;height: 200px;" ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" ng-click="ctrl.choiceBaseimage(image)">
-            <img ng-src="{{image.icon}}" class="md-card-image" alt="Washed Out">
+        <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" ng-click="ctrl.choiceBaseimage(image)">
+            <!-- <img ng-src="{{image.icon}}" class="md-card-image" alt="Washed Out"> -->
             <md-card-content>
-                {{image.name}}
+                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
+                <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
+                <div class="kd-chart-color-secondary">{{image.tag}}</div>
+                <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
             </md-card-content>
             <!-- <md-radio-button flex ng-value="image" class="md-primary" aria-label="image.name">
                 </md-radio-button> -->
@@ -30,10 +33,13 @@
 <kd-content-card ng-if="!ctrl.showDeploynow">
     <kd-title>[[自定义镜像|自定义镜像]]</kd-title>
     <kd-content layout="row" layout-wrap>
-        <md-card style="width:200px;height: 200px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
-            <img ng-src="{{image.icon}}" class="md-card-image" alt="Washed Out">
+        <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
+            <!-- <img ng-src="{{image.icon}}" class="md-card-image" alt="Washed Out"> -->
             <md-card-content>
-                {{image.name}}
+                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
+                <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
+                <div class="kd-chart-color-secondary">{{image.tag}}</div>
+                <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
             </md-card-content>
         </md-card>
     </kd-content>
