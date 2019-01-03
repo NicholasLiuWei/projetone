@@ -58,6 +58,7 @@ func (email *emailStore) getHandler(req *restful.Request, resp *restful.Response
         //log.Printf("configmap=%v\n",emailString)
         if err!=nil {
                 log.Printf("error get configmap messages: %v", err)
+                return
         }
 
         // get email name
