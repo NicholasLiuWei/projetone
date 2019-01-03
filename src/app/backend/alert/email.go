@@ -9,6 +9,7 @@ import(
 	"sync"
 	"log"
 	"strings"
+        "github.com/emicklei/go-restful"
 )
 
 var ErrNoEmailConfigs = errors.New("invalid email config")
@@ -29,31 +30,31 @@ var e = &emailStore{
 
 
 // email handler
-func (email *emailStore) emailHandler(w http.ResponseWriter, r *http.Request) {
+func (email *emailStore) emailHandler(req *restful.Request, resp *restful.Response) {
         log.Println("emailHandler begin")
-        switch r.Method {
+        switch req.Request.Method {
         case http.MethodGet:
                 log.Println("emailHandler GET")
-                email.getHandler(w, r)
+                email.getHandler(req, resp)
         case http.MethodPost:
                 log.Println("emailHandler POST")
-                email.postHandler(w, r)
+                email.postHandler(req, resp)
         default:
-                http.Error(w, "unsupported HTTP method", 400)
+                http.Error(resp.ResponseWriter, "unsupported HTTP method", 400)
         }
 }
 
 const SEPERATOR = "\n    html: '{{ template \"email.k8s.html\" . }}'\n    headers: { Subject: \"[!!!] 报警邮件\" }\n"
 
 // email get
-func (email *emailStore) getHandler(w http.ResponseWriter, r *http.Request) {
-        enc := json.NewEncoder(w)
-        w.Header().Set("Content-Type", "application/json")
+func (email *emailStore) getHandler(req *restful.Request, resp *restful.Response) {
+        enc := json.NewEncoder(resp.ResponseWriter)
+        resp.ResponseWriter.Header().Set("Content-Type", "application/json")
 
         email.Lock()
         defer email.Unlock()
         
-        emailString,err := getConfigMap("kube-system","alertmanager", "config.yml")
+        emailString,err := getConfigMap("kube-system","alertmanager", "config.yml", req)
         //log.Printf("configmap=%v\n",emailString)
         if err!=nil {
                 log.Printf("error get configmap messages: %v", err)
@@ -87,23 +88,23 @@ func (email *emailStore) getHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // email post
-func (email *emailStore) postHandler(w http.ResponseWriter, r *http.Request) {
-        dec := json.NewDecoder(r.Body)
-        defer r.Body.Close()
+func (email *emailStore) postHandler(req *restful.Request, resp *restful.Response) {
+        dec := json.NewDecoder(req.Request.Body)
+        defer req.Request.Body.Close()
 
         email.Lock()
         defer email.Unlock()
 
         if err := dec.Decode(&e); err != nil {
                 log.Printf("error decoding message: %v", err)
-                http.Error(w, "invalid request body", 400)
+                http.Error(resp.ResponseWriter, "invalid request body", 400)
                 return
         }
 
         log.Printf("emailHandler POST, emailName=%v\n", e.EmailName)
 
         // update alertmanager ConfigMap for email
-        if err := updateConfigMap("delete","alertmanager","kube-system","config.yml",e.EmailName); err!=nil {
+        if err := updateConfigMap("delete","alertmanager","kube-system","config.yml",e.EmailName, req); err!=nil {
                 log.Println("update alertmanager configmap failed")
                 return
         } 
@@ -141,24 +142,24 @@ func httpPostForm()([]byte,error){
 
 
 // add email handler
-func (email *emailStore) addEmailHandler(w http.ResponseWriter, r *http.Request) {
+func (email *emailStore) addEmailHandler(req *restful.Request, resp *restful.Response) {
         log.Println("addEmailHandler begin")
-        dec := json.NewDecoder(r.Body)
-        defer r.Body.Close()
+        dec := json.NewDecoder(req.Request.Body)
+        defer req.Request.Body.Close()
 
         email.Lock()
         defer email.Unlock()
 
         if err := dec.Decode(&e); err != nil {
                 log.Printf("error decoding message: %v", err)
-                http.Error(w, "invalid request body", 400)
+                http.Error(resp.ResponseWriter, "invalid request body", 400)
                 return
         }
 
         log.Printf("addEmailHandler POST, emailName=%v\n", e.EmailName)
 
         // update alertmanager ConfigMap for email
-        if err := updateConfigMap("add","alertmanager","kube-system","config.yml",e.EmailName); err!=nil {
+        if err := updateConfigMap("add","alertmanager","kube-system","config.yml",e.EmailName, req); err!=nil {
                 log.Println("update alertmanager configmap failed")
                 return
         }
