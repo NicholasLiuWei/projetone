@@ -21,7 +21,7 @@ import(
 
 var apiserverHost = pflag.String("apiserver-alert", "https://127.0.0.1:6443", "The address of the Kubernetes Apiserver "+
                 "to connect to in the format of protocol://address:port, e.g., "+
-                "http://localhost:8080. If not specified, the assumption is that the binary runs inside a "+
+                "https://localhost:6443. If not specified, the assumption is that the binary runs inside a "+
                 "Kubernetes cluster and local discovery is attempted.")
 
 // create clientset
