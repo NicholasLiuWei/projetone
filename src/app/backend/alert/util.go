@@ -27,7 +27,7 @@ var apiserverHost = pflag.String("apiserver-alert", "https://127.0.0.1:6443", "T
 // create clientset
 //func getClientset() (*kubernetes.Clientset, error){
 func getClientset(req *restful.Request) (kubernetes.Interface, error) {
-        cManager := client.NewClientManager("", *apiserverHost)
+        cManager := client.NewClientManager("", "")
         //clientset := cManager.InsecureClient()
         clientset, err := cManager.Client(req)
         if err != nil {
