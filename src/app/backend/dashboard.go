@@ -48,6 +48,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/alert"
 	"golang.org/x/net/websocket"
 	influxdbclient "github.com/influxdata/influxdb/client/v2"
+	"github.com/emicklei/go-restful"
 )
 
 var (
@@ -176,8 +177,20 @@ func main() {
 	defer influxdbclient.Close()
 	alert.RegisterInfluxdbClient(influxdbclient)
 
-	alert_mux := http.NewServeMux()
+	alertContainer := restful.NewContainer()
+	alertWs := new(restful.WebService)
+	alertWs.Route(alertWs.GET("/alert/alerts").To(alert.AlertsHandler))
+	alertWs.Route(alertWs.POST("/alert/alerts").To(alert.AlertsHandler))
+	alertWs.Route(alertWs.GET("/alert/alertsnum").To(alert.GetAlertsNumHandler))
+	alertWs.Route(alertWs.POST("/alert/alertsdelete").To(alert.DelAlertsHandler))
+	alertWs.Route(alertWs.POST("/alert/alertsupdate").To(alert.UpdateAlertsHandler))
+	alertWs.Route(alertWs.POST("/alert/alertsclear").To(alert.ClearAlertsHandler))
+	//alertWs.Route(alertWs.POST("/alert/sockjs").To(websocket.Handler(alert.AlertHandler)))
+	alertWs.Route(alertWs.GET("/alert/email").To(alert.EmailHandler))
+	alertWs.Route(alertWs.POST("/alert/email").To(alert.EmailHandler))
+	alertWs.Route(alertWs.POST("/alert/add/email").To(alert.AddEmailHandler))
 
+	/*alert_mux := http.NewServeMux()
 	// alertmanager webhook
 	alert_mux.HandleFunc("/alert/alerts", alert.AlertsHandler)
 	// get alerts number
@@ -191,13 +204,14 @@ func main() {
 	// configmap for email
 	alert_mux.HandleFunc("/alert/email", alert.EmailHandler)
 	// configmap for email
-	alert_mux.HandleFunc("/alert/add/email", alert.AddEmailHandler)
+	alert_mux.HandleFunc("/alert/add/email", alert.AddEmailHandler)*/
 
+	alertContainer.Add(alertWs)
 	alert_server := &http.Server{
 		Addr: ":9999",
 		ReadTimeout: 60 * time.Second,
 		WriteTimeout: 60 * time.Second,
-		Handler: alert_mux,
+		Handler: alertContainer,
 	}
 	go func () {
 		log.Fatal(alert_server.ListenAndServe())

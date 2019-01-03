@@ -11,6 +11,7 @@ import(
 	"strconv"
 	influxdbclient "github.com/influxdata/influxdb/client/v2"
 	"net/url"
+	"github.com/emicklei/go-restful"
 )
 
 var(
@@ -101,22 +102,24 @@ var n = &AlertNum{
 }
 
 // AlertsHandler webhook
-func AlertsHandler(w http.ResponseWriter, r *http.Request) {
-	s.alertsHandler(w,r)
+//func AlertsHandler(w http.ResponseWriter, r *http.Request) {
+func AlertsHandler(req *restful.Request, resp *restful.Response) {
+	s.alertsHandler(req,resp)
 }
 
 // alertmanager webhook
-func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
+//func (s *AlertStore) alertsHandler(w http.ResponseWriter, r *http.Request) {
+func (s *AlertStore) alertsHandler(req *restful.Request, resp *restful.Response) {
         log.Println("alertsHandler begin")
-        switch r.Method {
+        switch req.Request.Method {
         case http.MethodGet:
                 log.Println("alertsHandler GET")
-                s.getHandler(w, r)
+                s.getHandler(resp.ResponseWriter, req.Request)
         case http.MethodPost:
                 log.Println("alertsHandler POST")
-                s.postHandler(w, r)
+                s.postHandler(resp.ResponseWriter, req.Request)
         default:
-                http.Error(w, "unsupported HTTP method", 400)
+                http.Error(resp.ResponseWriter, "unsupported HTTP method", 400)
         }
 }
 
@@ -193,18 +196,20 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // GetAlertsNumHandler get alerts number history
-func GetAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
-	s.getAlertsNumHandler(w,r)
+//func GetAlertsNumHandler(w http.ResponseWriter, r *http.Request) {
+func GetAlertsNumHandler(req *restful.Request, resp *restful.Response) {
+	s.getAlertsNumHandler(resp.ResponseWriter,req.Request)
 }
 
-func UpdateAlertsHandler(w http.ResponseWriter, r *http.Request) {
-	dec := json.NewDecoder(r.Body)
-	defer r.Body.Close()
+//func UpdateAlertsHandler(w http.ResponseWriter, r *http.Request) {
+func UpdateAlertsHandler(req *restful.Request, resp *restful.Response) {
+	dec := json.NewDecoder(req.Request.Body)
+	defer req.Request.Body.Close()
 
 	var m InfluxAlert
 	if err := dec.Decode(&m); err != nil {
 		log.Printf("error decoding message: %v", err)
-		http.Error(w, "invalid request body", 400)
+		http.Error(resp.ResponseWriter, "invalid request body", 400)
 		return
 	}
 	if err := updateDB(m); err != nil {
@@ -213,14 +218,15 @@ func UpdateAlertsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func DelAlertsHandler(w http.ResponseWriter, r *http.Request) {
-	dec := json.NewDecoder(r.Body)
-	defer r.Body.Close()
+//func DelAlertsHandler(w http.ResponseWriter, r *http.Request) {
+func DelAlertsHandler(req *restful.Request, resp *restful.Response) {
+	dec := json.NewDecoder(req.Request.Body)
+	defer req.Request.Body.Close()
 
 	var m []InfluxAlert
 	if err := dec.Decode(&m); err != nil {
 		log.Printf("error decoding message: %v", err)
-		http.Error(w, "invalid request body", 400)
+		http.Error(resp.ResponseWriter, "invalid request body", 400)
 		return
 	}
 	if err := deleteDB(m); err != nil {
@@ -248,8 +254,8 @@ func (s *AlertStore) getAlertsNumHandler(w http.ResponseWriter, r *http.Request)
 }
 
 // ClearAlertsHandler clear alerts history
-func ClearAlertsHandler(w http.ResponseWriter, r *http.Request) {
-	s.clearAlertsHandler(w,r)
+func ClearAlertsHandler(req *restful.Request, resp *restful.Response) {
+	s.clearAlertsHandler(resp.ResponseWriter,req.Request)
 }
 
 // clear alerts history
@@ -321,13 +327,13 @@ func RegisterInfluxdbClient(client influxdbclient.Client) {
 }
 
 // email handler
-func EmailHandler(w http.ResponseWriter, r *http.Request){
-	e.emailHandler(w,r)
+func EmailHandler(req *restful.Request, resp *restful.Response){
+	e.emailHandler(req, resp)
 }
 
 // add email handler
-func AddEmailHandler(w http.ResponseWriter, r *http.Request){
-	e.addEmailHandler(w,r)
+func AddEmailHandler(req *restful.Request, resp *restful.Response){
+	e.addEmailHandler(req, resp)
 }
 
 

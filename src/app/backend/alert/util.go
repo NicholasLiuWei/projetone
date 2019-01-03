@@ -16,6 +16,7 @@ import(
 	"github.com/spf13/pflag"
         influxdbclient "github.com/influxdata/influxdb/client/v2"
         "fmt"
+        "github.com/emicklei/go-restful"
 )
 
 var apiserverHost = pflag.String("apiserver-alert", "http://127.0.0.1:8080", "The address of the Kubernetes Apiserver "+
@@ -25,9 +26,14 @@ var apiserverHost = pflag.String("apiserver-alert", "http://127.0.0.1:8080", "Th
 
 // create clientset
 //func getClientset() (*kubernetes.Clientset, error){
-func getClientset() (kubernetes.Interface, error) {
+func getClientset(req *restful.Request) (kubernetes.Interface, error) {
         cManager := client.NewClientManager("", *apiserverHost)
-        clientset := cManager.InsecureClient()
+        //clientset := cManager.InsecureClient()
+        clientset, err := cManager.Client(req)
+        if err != nil {
+                log.Printf("getClientset error : ", err)
+                return nil,err
+        }
         /*clientset, _, err := client.CreateApiserverClient(*apiserverHost, "")
         if err != nil {
                 return nil,err
@@ -35,8 +41,8 @@ func getClientset() (kubernetes.Interface, error) {
         return clientset,nil
 }
 
-func getConfigMap(namespace string,repoCMName string, repoCMDataKey string)(string,error){
-        clientset,err:=getClientset()
+func getConfigMap(namespace string,repoCMName string, repoCMDataKey string, req *restful.Request)(string,error){
+        clientset,err:=getClientset(req)
         if err!=nil {
                 return "",err
         }
@@ -51,8 +57,8 @@ func getConfigMap(namespace string,repoCMName string, repoCMDataKey string)(stri
 
 // update configmap
 // repoCMDataKey - config.yml
-func updateConfigMap(action string, repoCMName string, namespace string, repoCMDataKey string, emailName string) error {
-        clientset,err:=getClientset()
+func updateConfigMap(action string, repoCMName string, namespace string, repoCMDataKey string, emailName string, req *restful.Request) error {
+        clientset,err:=getClientset(req)
         if err!=nil {
                 return err
         }
