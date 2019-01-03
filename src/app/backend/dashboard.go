@@ -185,10 +185,10 @@ func main() {
 	alertWs.Route(alertWs.POST("/alert/alertsdelete").To(alert.DelAlertsHandler))
 	alertWs.Route(alertWs.POST("/alert/alertsupdate").To(alert.UpdateAlertsHandler))
 	alertWs.Route(alertWs.POST("/alert/alertsclear").To(alert.ClearAlertsHandler))
-	//alertWs.Route(alertWs.POST("/alert/sockjs").To(websocket.Handler(alert.AlertHandler)))
 	alertWs.Route(alertWs.GET("/alert/email").To(alert.EmailHandler))
 	alertWs.Route(alertWs.POST("/alert/email").To(alert.EmailHandler))
 	alertWs.Route(alertWs.POST("/alert/add/email").To(alert.AddEmailHandler))
+	alertContainer.ServeMux.Handle("/alert/sockjs", websocket.Handler(alert.AlertHandler))
 
 	/*alert_mux := http.NewServeMux()
 	// alertmanager webhook
