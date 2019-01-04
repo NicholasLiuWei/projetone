@@ -125,11 +125,11 @@ func (s *AlertStore) alertsHandler(req *restful.Request, resp *restful.Response)
 
 // alerts get
 func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("alert enter getHandler!")
+	//log.Println("alert enter getHandler!")
 	u, _ := url.Parse(r.URL.String())
 	queryParams := u.Query()
-	log.Println(queryParams["itemsPerPage"])
-	log.Println(queryParams["page"])
+	//log.Println(queryParams["itemsPerPage"])
+	//log.Println(queryParams["page"])
 	itemsPerPage, _ := strconv.Atoi(queryParams["itemsPerPage"][0])
 	page, _ := strconv.Atoi(queryParams["page"][0])
 	var p  = AlertPageIndex{
@@ -137,7 +137,7 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 		page : (page-1)*itemsPerPage,
 	}
 
-	log.Println("getHandler before encoder.")
+	//log.Println("getHandler before encoder.")
         enc := json.NewEncoder(w)
         w.Header().Set("Content-Type", "application/json")
 
@@ -155,7 +155,7 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 
 // alerts post
 func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("enter alert postHandler!")
+	//log.Printf("enter alert postHandler!")
         dec := json.NewDecoder(r.Body)
         defer r.Body.Close()
 
@@ -176,20 +176,20 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		Status       : m.Status,
 		Receiver     : m.Receiver,
 	}
-	log.Println("alert post len: ", len(m.Alerts), m)
+	//log.Println("alert post len: ", len(m.Alerts), m)
 	for i := 0; i < len(m.Alerts); i++ {
-		log.Println("start process alert message index: ", i, m.Alerts[i])
+		//log.Println("start process alert message index: ", i, m.Alerts[i])
 		influxAlert.Alerts = m.Alerts[i]
 		if buf, err = json.Marshal(influxAlert); err != nil {
 			log.Fatal("json marshal error:", err)
 		}
 		err = writeDB(string(buf), time.Now())
-		log.Printf("write context: %s", string(buf))
+		//log.Printf("write context: %s", string(buf))
 		if err != nil {
 			log.Printf("Failed to write alert messages to influxdb!", string(buf))
 			return
 		}
-		log.Printf("after alert postHandler writeDB!")
+		//log.Printf("after alert postHandler writeDB!")
 	}
 
         sendChan <- &m
