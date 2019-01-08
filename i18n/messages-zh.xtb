@@ -708,7 +708,7 @@
   <translation id="5711019371830079014" key="MSG_INGRESSDETAIL_INFO_2" desc="Resource info details section namespace entry.">Namespace</translation>
   <translation id="2087085534074400977" key="MSG_INGRESSDETAIL_INFO_3" desc="Resource info details section labels entry.">标签</translation>
   <translation id="3221446391724737441" key="MSG_INGRESSDETAIL_INFO_4" desc="Resource info details section annotations entry.">Annotations</translation>
-  <translation id="4313226248975897155" key="MSG_INGRESSLIST_CARDLIST_0" desc="Label which appears above the list of such objects.">Ingresses</translation>
+  <translation id="4313226248975897155" key="MSG_INGRESSLIST_CARDLIST_0" desc="Label which appears above the list of such objects.">负载均衡</translation>
   <translation id="5303084475271187350" key="MSG_INGRESSLIST_CARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of ingresses (ingress list view).">名称</translation>
   <translation id="1103411838151096703" key="MSG_INGRESSLIST_CARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of ingresses (ingress list view).">命名空间</translation>
   <translation id="6970100075274497061" key="MSG_INGRESSLIST_CARDLIST_3" desc="Label \'endpoints\' which appears as a column label in the table of ingresses (ingress list view).">端点</translation>
@@ -1196,7 +1196,7 @@
   <translation id="939574893609507785" key="MSG_SERVICEDETAIL_SERVICEDETAILINFO_6" desc="Label \'External endpoints\' for the external endpoints of the service, appears in the connectivity part (right) of the service details view.">External endpoints</translation>
   <translation id="8302893756956754954" key="MSG_SERVICEDETAIL_SERVICEDETAIL_0" desc="Title for pods card zerostate in stateful set details page.">没有内容显示</translation>
   <translation id="1777687475500640375" key="MSG_SERVICEDETAIL_SERVICEDETAIL_1" desc="Text for pods card zerostate in stateful set details page.">此服务没有使用容器</translation>
-  <translation id="5598175555148966016" key="MSG_SERVICELIST_SERVICECARDLIST_0" desc="Label which appears above the list of such objects.">Services</translation>
+  <translation id="5598175555148966016" key="MSG_SERVICELIST_SERVICECARDLIST_0" desc="Label which appears above the list of such objects.">服务</translation>
   <translation id="668323935453874914" key="MSG_SERVICELIST_SERVICECARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of services (service list view).">名称</translation>
   <translation id="5879151015255792005" key="MSG_SERVICELIST_SERVICECARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of services (service list view).">命名空间</translation>
   <translation id="8197359356330384567" key="MSG_SERVICELIST_SERVICECARDLIST_3" desc="Label \'Labels\' which appears as a column label in the table of services (service list view).">标签</translation>
