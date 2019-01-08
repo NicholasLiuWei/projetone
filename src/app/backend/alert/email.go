@@ -54,7 +54,7 @@ func (email *emailStore) getHandler(req *restful.Request, resp *restful.Response
         email.Lock()
         defer email.Unlock()
         
-        emailString,err := getConfigMap("kube-system","alertmanager", "config.yml", req)
+        emailString,err := getConfigMap("monitoring","alertmanager", "config.yml", req)
         //log.Printf("configmap=%v\n",emailString)
         if err!=nil {
                 log.Printf("error get configmap messages: %v", err)
@@ -105,7 +105,7 @@ func (email *emailStore) postHandler(req *restful.Request, resp *restful.Respons
         log.Printf("emailHandler POST, emailName=%v\n", e.EmailName)
 
         // update alertmanager ConfigMap for email
-        if err := updateConfigMap("delete","alertmanager","kube-system","config.yml",e.EmailName, req); err!=nil {
+        if err := updateConfigMap("delete","alertmanager","monitoring","config.yml",e.EmailName, req); err!=nil {
                 log.Println("update alertmanager configmap failed")
                 return
         } 
@@ -160,7 +160,7 @@ func (email *emailStore) addEmailHandler(req *restful.Request, resp *restful.Res
         log.Printf("addEmailHandler POST, emailName=%v\n", e.EmailName)
 
         // update alertmanager ConfigMap for email
-        if err := updateConfigMap("add","alertmanager","kube-system","config.yml",e.EmailName, req); err!=nil {
+        if err := updateConfigMap("add","alertmanager","monitoring","config.yml",e.EmailName, req); err!=nil {
                 log.Println("update alertmanager configmap failed")
                 return
         }
