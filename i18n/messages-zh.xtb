@@ -72,7 +72,7 @@
   <translation id="4240200807669722933" key="MSG_CHROME_NAV_NAVS_2" desc="Nodes menu item in the nav.">服务器</translation>
   <translation id="2454625266229670921" key="MSG_CHROME_NAV_NAVS_20" desc="Repositories menu entry.">仓库设置</translation>
   <translation id="5664559335763886095" key="MSG_CHROME_NAV_NAVS_3" desc="Image menu entry.">镜像管理</translation>
-  <translation id="5393939587734973786" key="MSG_CHROME_NAV_NAVS_4" desc="warning menu entry.">监控中心</translation>
+  <translation id="5393939587734973786" key="MSG_CHROME_NAV_NAVS_4" desc="warning menu entry.">告警中心</translation>
   <translation id="4402882578434851728" key="MSG_CHROME_NAV_NAVS_5" desc="\u5B58\u50A8\u7BA1\u7406 menu entry.">存储管理</translation>
   <translation id="5249470873573491512" key="MSG_CHROME_NAV_NAVS_6" desc="\u7F51\u7EDC\u7BA1\u7406 menu entry.">网络管理</translation>
   <translation id="5525293622790707025" key="MSG_CHROME_NAV_NAVS_7" desc="\u65E5\u5FD7\u4E2D\u5FC3 menu entry.">日志中心</translation>
