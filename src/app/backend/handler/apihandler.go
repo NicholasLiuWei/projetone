@@ -729,7 +729,7 @@ func storageStatus() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageStatus Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -756,7 +756,7 @@ func storageUseRate() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageUseRate Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -783,7 +783,7 @@ func storageTotal() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageTotal Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -810,7 +810,7 @@ func storageAvailable() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageAvailable Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -837,7 +837,7 @@ func storageUsed() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageUsed Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -864,7 +864,7 @@ func storageReadBytes() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageReadBytes Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -891,7 +891,7 @@ func storageReadOps() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageReadOps Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -918,7 +918,7 @@ func storageWriteBytes() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageWriteBytes Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -945,7 +945,7 @@ func storageWriteOps() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("storageWriteOps Unmarshal", err, string(respBytes))
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -993,7 +993,7 @@ func cpuUseRate() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("cpuUseRate Unmarshal", err)
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -1020,7 +1020,7 @@ func memoryUseRate() (interface{}, error) {
 	}
 	err = json.Unmarshal(respBytes, cephResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("memoryUseRate Unmarshal", err)
 		return 0, err
 	}
 	if cephResp != nil && cephResp.Status == "success" {
@@ -1097,7 +1097,7 @@ func cpuInfo(t1 int64, t2 int64) ([]ResultData, error) {
 	}
 	err = json.Unmarshal(respBytes, rangeResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("cpuInfo Unmarshal", err)
 		return nil, err
 	}
 	if rangeResp != nil && rangeResp.Status == "success" {
@@ -1124,7 +1124,7 @@ func memoryInfo(t1 int64, t2 int64) ([]ResultData, error) {
 	}
 	err = json.Unmarshal(respBytes, rangeResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("memoryInfo Unmarshal", err)
 		return nil, err
 	}
 	if rangeResp != nil && rangeResp.Status == "success" {
@@ -1180,7 +1180,7 @@ func networkInfo(t1 int64, t2 int64, netType string) ([]ResultData, error) {
 	log.Println(string(respBytes))
 	err = json.Unmarshal(respBytes, rangeResp)
 	if err != nil {
-		log.Println(err)
+		log.Println("networkInfo Unmarshal", err)
 		return nil, err
 	}
 	log.Println(rangeResp.Status)
