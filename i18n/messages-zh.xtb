@@ -709,10 +709,10 @@
   <translation id="2087085534074400977" key="MSG_INGRESSDETAIL_INFO_3" desc="Resource info details section labels entry.">标签</translation>
   <translation id="3221446391724737441" key="MSG_INGRESSDETAIL_INFO_4" desc="Resource info details section annotations entry.">Annotations</translation>
   <translation id="4313226248975897155" key="MSG_INGRESSLIST_CARDLIST_0" desc="Label which appears above the list of such objects.">Ingresses</translation>
-  <translation id="5303084475271187350" key="MSG_INGRESSLIST_CARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of ingresses (ingress list view).">Name</translation>
-  <translation id="1103411838151096703" key="MSG_INGRESSLIST_CARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of ingresses (ingress list view).">Namespace</translation>
-  <translation id="6970100075274497061" key="MSG_INGRESSLIST_CARDLIST_3" desc="Label \'endpoints\' which appears as a column label in the table of ingresses (ingress list view).">Endpoints</translation>
-  <translation id="8202258406797150740" key="MSG_INGRESSLIST_CARDLIST_4" desc="Label \'Age\' which appears as a column label in the table of ingresses (ingress list view).">Age</translation>
+  <translation id="5303084475271187350" key="MSG_INGRESSLIST_CARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of ingresses (ingress list view).">名称</translation>
+  <translation id="1103411838151096703" key="MSG_INGRESSLIST_CARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of ingresses (ingress list view).">命名空间</translation>
+  <translation id="6970100075274497061" key="MSG_INGRESSLIST_CARDLIST_3" desc="Label \'endpoints\' which appears as a column label in the table of ingresses (ingress list view).">端点</translation>
+  <translation id="8202258406797150740" key="MSG_INGRESSLIST_CARDLIST_4" desc="Label \'Age\' which appears as a column label in the table of ingresses (ingress list view).">时间</translation>
   <translation id="6014322650743882966" key="MSG_INGRESS_LIST_STARTED_AT_TOOLTIP" desc="Tooltip 'Started at [some date]' showing the exact start time of the ingress.">创建于 <ph name="START_DATE"> UTC</ph></translation>
   <translation id="4499447363651929542" key="MSG_JIANKONG_RIZHI_0" desc="\u8BE6\u7EC6\u76D1\u63A7\u4FE1\u606F\u8BF7\u8BBF\u95EE\u4E00\u4F53\u5F0F\u76D1\u63A7\u4E2D\u5FC3:">详细监控信息请访问一体式监控中心:</translation>
   <translation id="6315518507776012285" key="MSG_JOBDETAIL_ACTIONBAR_0" desc="Label \'Job\' which appears at the top of the dialog, opened from a job details page.">Job</translation>
@@ -875,12 +875,12 @@
   <translation id="4647526198205146421" key="MSG_PERSISTENTVOLUMECLAIMDETAIL_PERSISTENTVOLUMECLAIMINFO_2" desc="Persistent volume claim info details section volume entry.">Volume</translation>
   <translation id="4573804148379208551" key="MSG_PERSISTENTVOLUMECLAIMDETAIL_PERSISTENTVOLUMECLAIMINFO_3" desc="Persistent volume claim info details section capacity entry.">Capacity</translation>
   <translation id="9110806056221049320" key="MSG_PERSISTENTVOLUMECLAIMDETAIL_PERSISTENTVOLUMECLAIMINFO_4" desc="Persistent volume claim info details section access modes entry.">Access modes</translation>
-  <translation id="7501902062811472506" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_0" desc="Label which appears above the list of such objects.">Persistent Volume Claims</translation>
-  <translation id="6586647416917075263" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Name</translation>
-  <translation id="6404469456421622697" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Namespace</translation>
-  <translation id="2306325482144488153" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_3" desc="Label \'Volume\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Volume</translation>
+  <translation id="7501902062811472506" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_0" desc="Label which appears above the list of such objects.">持久化存储卷声明</translation>
+  <translation id="6586647416917075263" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">名称</translation>
+  <translation id="6404469456421622697" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">标签</translation>
+  <translation id="2306325482144488153" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_3" desc="Label \'Volume\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">存储卷</translation>
   <translation id="7038728376661079663" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_4" desc="Label \'Labels\' which appears as a column label in the table of persistent volume claim (persistent volume claim list view).">标签</translation>
-  <translation id="4669931994584774261" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_5" desc="Label \'Age\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">Age</translation>
+  <translation id="4669931994584774261" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_5" desc="Label \'Age\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">已创建</translation>
   <translation id="5605513756759404025" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARD_0" desc="Tooltip text which appears on error icon hover.">This claim is in lost state</translation>
   <translation id="7813004235196632560" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARD_1" desc="Tooltip text which appears on pending icon hover.">This claim is in pending state</translation>
   <translation id="5690741977032012793" key="MSG_PERSISTENTVOLUMEDETAIL_ACTIONBAR_0" desc="Label \'Persistent Volume\' which appears at the top of the delete dialog, opened from a config map details page.">Persistent Volume</translation>
@@ -1197,12 +1197,12 @@
   <translation id="8302893756956754954" key="MSG_SERVICEDETAIL_SERVICEDETAIL_0" desc="Title for pods card zerostate in stateful set details page.">没有内容显示</translation>
   <translation id="1777687475500640375" key="MSG_SERVICEDETAIL_SERVICEDETAIL_1" desc="Text for pods card zerostate in stateful set details page.">此服务没有使用容器</translation>
   <translation id="5598175555148966016" key="MSG_SERVICELIST_SERVICECARDLIST_0" desc="Label which appears above the list of such objects.">Services</translation>
-  <translation id="668323935453874914" key="MSG_SERVICELIST_SERVICECARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of services (service list view).">Name</translation>
-  <translation id="5879151015255792005" key="MSG_SERVICELIST_SERVICECARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of services (service list view).">Namespace</translation>
+  <translation id="668323935453874914" key="MSG_SERVICELIST_SERVICECARDLIST_1" desc="Label \'Name\' which appears as a column label in the table of services (service list view).">名称</translation>
+  <translation id="5879151015255792005" key="MSG_SERVICELIST_SERVICECARDLIST_2" desc="Label \'Namespace\' which appears as a column label in the table of services (service list view).">命名空间</translation>
   <translation id="8197359356330384567" key="MSG_SERVICELIST_SERVICECARDLIST_3" desc="Label \'Labels\' which appears as a column label in the table of services (service list view).">标签</translation>
-  <translation id="6951488712384233222" key="MSG_SERVICELIST_SERVICECARDLIST_4" desc="Label \'Cluster IP\' which appears as a column label in the table of services (service list view).">Cluster IP</translation>
-  <translation id="8943299193201683733" key="MSG_SERVICELIST_SERVICECARDLIST_5" desc="Label \'Internal endpoints\' which appears as a column label in the table of services (service list view).">Internal endpoints</translation>
-  <translation id="2444115344683141265" key="MSG_SERVICELIST_SERVICECARDLIST_6" desc="Label \'External endpoints\' which appears as a column label in the table of services (service list view).">External endpoints</translation>
+  <translation id="6951488712384233222" key="MSG_SERVICELIST_SERVICECARDLIST_4" desc="Label \'Cluster IP\' which appears as a column label in the table of services (service list view).">集群 IP</translation>
+  <translation id="8943299193201683733" key="MSG_SERVICELIST_SERVICECARDLIST_5" desc="Label \'Internal endpoints\' which appears as a column label in the table of services (service list view).">内部端点</translation>
+  <translation id="2444115344683141265" key="MSG_SERVICELIST_SERVICECARDLIST_6" desc="Label \'External endpoints\' which appears as a column label in the table of services (service list view).">外部端点</translation>
   <translation id="6527658776236691367" key="MSG_SERVICELIST_SERVICECARD_0" desc="tooltip for pending service card icon">This service is in a pending state</translation>
   <translation id="6466948840454457439" key="MSG_STATEFULSETDETAIL_ACTIONBAR_0" desc="Label \'Stateful Set\' which appears at the top of the delete dialog, opened from a stateful set details page.">Stateful Set</translation>
   <translation id="8560431905058366716" key="MSG_STATEFULSETDETAIL_STATEFULSETDETAIL_0" desc="Title for graph card displaying CPU metric of one stateful set.">CPU usage</translation>
@@ -1242,14 +1242,14 @@
   <translation id="3845258623294585092" key="MSG_STORAGECLASSDETAIL_ACTIONBAR_0" desc="Label \'Storage Class\' which appears at the top of the delete dialog, opened from a config map details page.">Storage Class</translation>
   <translation id="6112487762115934260" key="MSG_STORAGECLASSDETAIL_INFO_0" desc="Header in a detail view">Details</translation>
   <translation id="7429744805412578813" key="MSG_STORAGECLASSDETAIL_INFO_1" desc="Label \'Labels\' for the storage class\'s labels list on the storage class details page.">标签</translation>
-  <translation id="4574441007364120674" key="MSG_STORAGECLASSDETAIL_INFO_2" desc="Storage Class info details section provisioner entry.">Provisioner</translation>
-  <translation id="4977823441775704922" key="MSG_STORAGECLASSDETAIL_INFO_3" desc="Storage Class info details section parameters entry.">Parameters</translation>
-  <translation id="6008341695704911355" key="MSG_STORAGECLASSLIST_CARDLIST_0" desc="Label which appears above the list of such objects.">Storage Classes</translation>
-  <translation id="8688891660072056178" key="MSG_STORAGECLASSLIST_CARDLIST_1" desc="Storage class list header: name.">Name</translation>
+  <translation id="4574441007364120674" key="MSG_STORAGECLASSDETAIL_INFO_2" desc="Storage Class info details section provisioner entry.">供应者</translation>
+  <translation id="4977823441775704922" key="MSG_STORAGECLASSDETAIL_INFO_3" desc="Storage Class info details section parameters entry.">参数</translation>
+  <translation id="6008341695704911355" key="MSG_STORAGECLASSLIST_CARDLIST_0" desc="Label which appears above the list of such objects.">存储类</translation>
+  <translation id="8688891660072056178" key="MSG_STORAGECLASSLIST_CARDLIST_1" desc="Storage class list header: name.">名称</translation>
   <translation id="6035383925010933879" key="MSG_STORAGECLASSLIST_CARDLIST_2" desc="Storage class list header: labels.">标签</translation>
-  <translation id="1806030793883905199" key="MSG_STORAGECLASSLIST_CARDLIST_3" desc="Storage class list header: provisioner.">Provisioner</translation>
-  <translation id="5744180173965368140" key="MSG_STORAGECLASSLIST_CARDLIST_4" desc="Storage class list header: parameters.">Parameters</translation>
-  <translation id="4505943818214171647" key="MSG_STORAGECLASSLIST_CARDLIST_5" desc="Storage class list header: age.">Age</translation>
+  <translation id="1806030793883905199" key="MSG_STORAGECLASSLIST_CARDLIST_3" desc="Storage class list header: provisioner.">供应者</translation>
+  <translation id="5744180173965368140" key="MSG_STORAGECLASSLIST_CARDLIST_4" desc="Storage class list header: parameters.">参数</translation>
+  <translation id="4505943818214171647" key="MSG_STORAGECLASSLIST_CARDLIST_5" desc="Storage class list header: age.">时间</translation>
   <translation id="2882847796231236957" key="MSG_STORAGECLASSLIST_CARD_0" desc="Label \'Storage Class\' which will appear in the storage class delete dialog opened from a storageclass card on the list page.">Storage Class</translation>
   <translation id="310605795325552510" key="MSG_STORAGECLASSLIST_CARD_1" desc="Label \'Storage Class\' which will appear in the storage class delete dialog opened from a storageclass card on the list page.">Storage Class</translation>
   <translation id="2857396329294182623" key="MSG_STORAGE_CLASS_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of storage class.">创建于 <ph name="CREATION_DATE"/></translation>
