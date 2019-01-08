@@ -61,10 +61,28 @@ export class NavService {
         let state = this.kdFutureStateService_.state;
         while (state) {
             let lastIndex
-            if (state.name == "chrome.monitoring.list" || state.name == "chrome.monitoring.setting") {
-                lastIndex = this.states_.lastIndexOf("chrome.monitoring.list");
-            } else {
-                lastIndex = this.states_.lastIndexOf(state.name);
+            switch (state.name) {
+                case "chrome.monitoring.list":
+                    lastIndex = this.states_.lastIndexOf("chrome.monitoring.list");
+                    break;
+                case "chrome.monitoring.setting":
+                    lastIndex = this.states_.lastIndexOf("chrome.monitoring.list");
+                    break;
+                case "chrome.storage.storageclass":
+                    lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
+                    break;
+                case "chrome.storage.pvc":
+                    lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
+                    break;
+                case "chrome.net.service":
+                    lastIndex = this.states_.lastIndexOf("chrome.net.service");
+                    break;
+                case "chrome.net.ingress":
+                    lastIndex = this.states_.lastIndexOf("chrome.net.service");
+                    break;
+                default:
+                    lastIndex = this.states_.lastIndexOf(state.name);
+                    break;
             }
             if (lastIndex !== -1) {
                 return this.states_[lastIndex] === stateName;

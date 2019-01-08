@@ -1,0 +1,7 @@
+<kd-content-card>
+    <kd-content>
+        <kd-persistent-volume-claim-card-list persistent-volume-claim-list="$ctrl.persistentVolumeClaimList" persistent-volume-claim-list-resource="$ctrl.persistentVolumeClaimListResource">
+        </kd-persistent-volume-claim-card-list>
+        <div style="height:200px;" ng-if="$ctrl.storageClassList.items.length==0">[[暂无信息|暂无信息]]</div>
+    </kd-content>
+</kd-content-card>

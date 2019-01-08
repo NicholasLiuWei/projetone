@@ -15,46 +15,46 @@ limitations under the License.
 -->
 
 <kd-resource-card object-meta="::$ctrl.persistentVolumeClaim.objectMeta" type-meta="::$ctrl.persistentVolumeClaim.typeMeta">
-  <kd-resource-card-status layout="row">
-    <md-icon class="material-icons kd-error" ng-if="::$ctrl.isLost()">
-      error
-      <md-tooltip md-direction="right">[[This claim is in lost state|Tooltip text which appears on error icon hover.]]</md-tooltip>
-    </md-icon>
-    <md-icon class="material-icons kd-" ng-if="::$ctrl.isPending()">
-      timelapse
-      <md-tooltip md-direction="right">[[This claim is in pending state|Tooltip text which appears on pending icon hover.]]</md-tooltip>
-    </md-icon>
-    <md-icon class="material-icons kd-success" ng-if="::$ctrl.isBound()">
-      check_circle
-    </md-icon>
-  </kd-resource-card-status>
-  <kd-resource-card-columns>
-    <kd-resource-card-column>
-      <div>
-        <a ng-href="{{::$ctrl.getPersistentVolumeClaimDetailHref()}}" class="kd-middle-ellipsised-link">
-          <kd-middle-ellipsis display-string="{{::$ctrl.persistentVolumeClaim.objectMeta.name}}">
-          </kd-middle-ellipsis>
-        </a>
-      </div>
-    </kd-resource-card-column>
-    <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
-      <div>
-        <kd-middle-ellipsis display-string="{{::$ctrl.persistentVolumeClaim.objectMeta.namespace}}">
-        </kd-middle-ellipsis>
-      </div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <div ng-show="::$ctrl.persistentVolumeClaim.Volume">{{::$ctrl.persistentVolumeClaim.Volume}}</div>
-      <div ng-hide="::$ctrl.persistentVolumeClaim.Volume">-</div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <kd-labels labels="::$ctrl.persistentVolumeClaim.objectMeta.labels"></kd-labels>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      {{::$ctrl.persistentVolumeClaim.objectMeta.creationTimestamp | relativeTime}}
-      <md-tooltip>
-        {{::$ctrl.getCreatedAtTooltip($ctrl.persistentVolumeClaim.objectMeta.creationTimestamp)}}
-      </md-tooltip>
-    </kd-resource-card-column>
-  </kd-resource-card-columns>
+    <kd-resource-card-status layout="row">
+        <md-icon class="material-icons kd-error" ng-if="::$ctrl.isLost()">
+            error
+            <md-tooltip md-direction="right">[[This claim is in lost state|Tooltip text which appears on error icon hover.]]</md-tooltip>
+        </md-icon>
+        <md-icon class="material-icons kd-" ng-if="::$ctrl.isPending()">
+            timelapse
+            <md-tooltip md-direction="right">[[This claim is in pending state|Tooltip text which appears on pending icon hover.]]</md-tooltip>
+        </md-icon>
+        <md-icon class="material-icons kd-success" ng-if="::$ctrl.isBound()">
+            check_circle
+        </md-icon>
+    </kd-resource-card-status>
+    <kd-resource-card-columns>
+        <kd-resource-card-column>
+            <div>
+                <!-- <a ng-href="{{::$ctrl.getPersistentVolumeClaimDetailHref()}}" class="kd-middle-ellipsised-link"> -->
+                <kd-middle-ellipsis display-string="{{::$ctrl.persistentVolumeClaim.objectMeta.name}}">
+                </kd-middle-ellipsis>
+                <!-- </a> -->
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
+            <div>
+                <kd-middle-ellipsis display-string="{{::$ctrl.persistentVolumeClaim.objectMeta.namespace}}">
+                </kd-middle-ellipsis>
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div ng-show="::$ctrl.persistentVolumeClaim.Volume">{{::$ctrl.persistentVolumeClaim.Volume}}</div>
+            <div ng-hide="::$ctrl.persistentVolumeClaim.Volume">-</div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <kd-labels labels="::$ctrl.persistentVolumeClaim.objectMeta.labels"></kd-labels>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            {{::$ctrl.persistentVolumeClaim.objectMeta.creationTimestamp | relativeTime}}
+            <md-tooltip>
+                {{::$ctrl.getCreatedAtTooltip($ctrl.persistentVolumeClaim.objectMeta.creationTimestamp)}}
+            </md-tooltip>
+        </kd-resource-card-column>
+    </kd-resource-card-columns>
 </kd-resource-card>

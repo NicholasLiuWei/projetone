@@ -66,7 +66,11 @@ import newhomeModule from './newhome/module';
 import releaseModule from './releaselist/releaselist_module';
 import imagelistModule from './imagelist/module';
 import warningModule from './warning/module';
-// import storageModule from './storage/module';
+import storageModule from './storage/module';
+import networkModule from './network/module';
+import rizhiModule from './rizhi/module';
+import jiankongModule from './jiankong/module';
+
 
 export default angular
     .module(
@@ -124,10 +128,13 @@ export default angular
             appStoreModule.name,
             releaseModule.name,
             // homeModule.name,
-            // storageModule.name,
+            storageModule.name,
             newhomeModule.name,
             imagelistModule.name,
-            warningModule.name
+            warningModule.name,
+            networkModule.name,
+            rizhiModule.name,
+            jiankongModule.name
         ])
     .config(indexConfig)
     .config(routeConfig)

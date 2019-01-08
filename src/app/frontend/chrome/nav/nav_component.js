@@ -39,7 +39,10 @@ import { stateName as home } from 'newhome/state';
 import { stateName as release } from 'releaselist/releaselist_state';
 import { stateName as image } from 'imagelist/state';
 import { stateName as warning } from 'warning/list/state';
-// import { stateName as storage } from 'storage/state';
+import { stateName as storage } from 'storage/pvc/state';
+import { stateName as network } from 'network/service/state';
+import { stateName as rizhi } from 'rizhi/state';
+import { stateName as jiankong } from 'jiankong/state';
 
 /**
  * @final
@@ -93,7 +96,11 @@ export class NavController {
             'home': home,
             'release': release,
             'image': image,
-            'warning': warning
+            'warning': warning,
+            'storage': storage,
+            'net': network,
+            'rizhi': rizhi,
+            'jiankong': jiankong
         };
         /** cunchu */
         this.getNav();

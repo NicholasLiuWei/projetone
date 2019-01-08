@@ -57,7 +57,7 @@
         <kd-resource-card-footer>
         </kd-resource-card-footer>
     </kd-resource-card>
-    <div ng-if="$ctrl.alertList.alerts.length==0" class="norelease" layout="row" layout-align="center center">[[暂无告警|暂无告警]]</div>
+    <div ng-if="$ctrl.alertList.listMeta.totalItems==0" style="height:200px;" layout="row" layout-align="center center">[[暂无告警|暂无告警]]</div>
     <kd-resource-card-list-pagination pagination-id="alerts" list="$ctrl.alertList" list-resource="$ctrl.alertResource">
     </kd-resource-card-list-pagination>
 </kd-resource-card-list>

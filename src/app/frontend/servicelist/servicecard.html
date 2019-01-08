@@ -15,54 +15,54 @@ limitations under the License.
 -->
 
 <kd-resource-card object-meta="::$ctrl.service.objectMeta" type-meta="::$ctrl.service.typeMeta">
-  <kd-resource-card-status layout="row">
-    <md-icon class="material-icons" ng-if="::$ctrl.isPending()">
-      timelapse
-      <md-tooltip md-direction="right">[[This service is in a pending state|tooltip for pending service card icon]]
-      </md-tooltip>
-    </md-icon>
-    <md-icon class="material-icons kd-success" ng-if="::$ctrl.isSuccess()">
-      check_circle
-    </md-icon>
-  </kd-resource-card-status>
-  <kd-resource-card-columns>
-    <kd-resource-card-column>
-      <a ng-href="{{::$ctrl.getServiceDetailHref()}}">
-        <kd-middle-ellipsis display-string="{{::$ctrl.service.objectMeta.name}}">
-        </kd-middle-ellipsis>
-      </a>
-    </kd-resource-card-column>
-    <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
-      <div>
-        <kd-middle-ellipsis display-string="{{::$ctrl.service.objectMeta.namespace}}">
-        </kd-middle-ellipsis>
-      </div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <kd-labels labels="::$ctrl.service.objectMeta.labels"></kd-labels>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <div>{{::$ctrl.getServiceClusterIP()}}</div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <div ng-if="::$ctrl.service.internalEndpoint">
-        <kd-internal-endpoint endpoint="::$ctrl.service.internalEndpoint"></kd-internal-endpoint>
-      </div>
-      <div ng-hide="::$ctrl.service.internalEndpoint">-</div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <div ng-if="::$ctrl.service.externalEndpoints">
-        <kd-external-endpoint endpoints="::$ctrl.service.externalEndpoints"></kd-external-endpoint>
-      </div>
-      <div ng-hide="::$ctrl.service.externalEndpoints">-</div>
-    </kd-resource-card-column>
-    <kd-resource-card-column class="kd-row-layout-column kd-icon-column">
-      <kd-resource-card-menu>
-        <kd-resource-card-delete-menu-item resource-kind-name="Service">
-        </kd-resource-card-delete-menu-item>
-        <kd-resource-card-edit-menu-item resource-kind-name="Service">
-        </kd-resource-card-edit-menu-item>
-      </kd-resource-card-menu>
-    </kd-resource-card-column>
-  </kd-resource-card-columns>
+    <kd-resource-card-status layout="row">
+        <md-icon class="material-icons" ng-if="::$ctrl.isPending()">
+            timelapse
+            <md-tooltip md-direction="right">[[This service is in a pending state|tooltip for pending service card icon]]
+            </md-tooltip>
+        </md-icon>
+        <md-icon class="material-icons kd-success" ng-if="::$ctrl.isSuccess()">
+            check_circle
+        </md-icon>
+    </kd-resource-card-status>
+    <kd-resource-card-columns>
+        <kd-resource-card-column>
+            <!-- <a ng-href="{{::$ctrl.getServiceDetailHref()}}"> -->
+            <kd-middle-ellipsis display-string="{{::$ctrl.service.objectMeta.name}}">
+            </kd-middle-ellipsis>
+            <!-- </a> -->
+        </kd-resource-card-column>
+        <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
+            <div>
+                <kd-middle-ellipsis display-string="{{::$ctrl.service.objectMeta.namespace}}">
+                </kd-middle-ellipsis>
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <kd-labels labels="::$ctrl.service.objectMeta.labels"></kd-labels>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div>{{::$ctrl.getServiceClusterIP()}}</div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div ng-if="::$ctrl.service.internalEndpoint">
+                <kd-internal-endpoint endpoint="::$ctrl.service.internalEndpoint"></kd-internal-endpoint>
+            </div>
+            <div ng-hide="::$ctrl.service.internalEndpoint">-</div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div ng-if="::$ctrl.service.externalEndpoints">
+                <kd-external-endpoint endpoints="::$ctrl.service.externalEndpoints"></kd-external-endpoint>
+            </div>
+            <div ng-hide="::$ctrl.service.externalEndpoints">-</div>
+        </kd-resource-card-column>
+        <kd-resource-card-column class="kd-row-layout-column kd-icon-column">
+            <kd-resource-card-menu>
+                <kd-resource-card-delete-menu-item resource-kind-name="Service">
+                </kd-resource-card-delete-menu-item>
+                <kd-resource-card-edit-menu-item resource-kind-name="Service">
+                </kd-resource-card-edit-menu-item>
+            </kd-resource-card-menu>
+        </kd-resource-card-column>
+    </kd-resource-card-columns>
 </kd-resource-card>

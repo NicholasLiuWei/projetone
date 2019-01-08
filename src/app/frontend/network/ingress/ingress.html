@@ -1,0 +1,7 @@
+<kd-content-card>
+    <kd-content>
+        <kd-ingress-card-list ingress-list="$ctrl.ingressList" with-statuses="false" ingress-list-resource="$ctrl.ingressListResource">
+        </kd-ingress-card-list>
+        <div style="height:200px;" ng-if="$ctrl.ingressList.items.length==0">[[暂无信息|暂无信息]]</div>
+    </kd-content>
+</kd-content-card>

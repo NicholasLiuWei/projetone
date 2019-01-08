@@ -7,7 +7,6 @@ import { stateName as listStateName } from './list/state';
 import { stateName as SetStateName } from './settings/state';
 import { listConfig } from './list/stateconfig';
 import { listConfig as setListConfig } from './settings/stateconfig';
-console.log(listConfig)
 
 
 /**

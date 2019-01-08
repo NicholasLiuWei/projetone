@@ -7,7 +7,7 @@ import stateConfig from './stateconfig';
 
 export default angular
     .module(
-        'kubernetesDashboard.storage', [
+        'kubernetesDashboard.network', [
             'ngMaterial',
             'ngResource',
             'ui.router',
@@ -18,16 +18,16 @@ export default angular
         ])
     .config(stateConfig)
     .service('kdNamespaceService1', NamespaceService)
-    .factory('kdStorageResource', storageClassListResource)
-    .factory('kdPVCResource', persistentVolumeClaimListResource);
+    .factory('kdServiceListResource', serviceListResource)
+    .factory('kdIngressListResource', ingressListResource);
 
 /**
  * @param {!angular.$resource} $resource
  * @return {!angular.Resource}
  * @ngInject
  */
-function storageClassListResource($resource) {
-    return $resource('api/v1/storageclass');
+function serviceListResource($resource) {
+    return $resource('api/v1/service/default');
 }
 
 /**
@@ -35,6 +35,6 @@ function storageClassListResource($resource) {
  * @return {!angular.Resource}
  * @ngInject
  */
-function persistentVolumeClaimListResource($resource) {
-    return $resource('api/v1/persistentvolumeclaim/default');
+function ingressListResource($resource) {
+    return $resource('api/v1/ingress/default');
 }

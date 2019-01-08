@@ -15,34 +15,34 @@ limitations under the License.
 -->
 
 <kd-resource-card type-meta="::$ctrl.ingress.typeMeta" object-meta="::$ctrl.ingress.objectMeta">
-  <kd-resource-card-columns>
-    <kd-resource-card-column>
-      <div>
-        <a ng-href="{{::$ctrl.getIngressDetailHref()}}" class="kd-middle-ellipsised-link">
-          <kd-middle-ellipsis display-string="{{::$ctrl.ingress.objectMeta.name}}">
-          </kd-middle-ellipsis>
-        </a>
-      </div>
-    </kd-resource-card-column>
-    <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
-      <div>
-        <kd-middle-ellipsis display-string="{{::$ctrl.ingress.objectMeta.namespace}}">
-        </kd-middle-ellipsis>
-      </div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <div ng-if="::$ctrl.ingress.endpoints.length">
-        <kd-external-endpoint endpoints="::$ctrl.ingress.endpoints"></kd-external-endpoint>
-      </div>
-    </kd-resource-card-column>
-    <kd-resource-card-column>
-      <div ng-if="::$ctrl.ingress.objectMeta.creationTimestamp">
-        {{::$ctrl.ingress.objectMeta.creationTimestamp | relativeTime}}
-        <md-tooltip>
-          {{::$ctrl.getStartedAtTooltip($ctrl.ingress.objectMeta.creationTimestamp)}}
-        </md-tooltip>
-      </div>
-      <div ng-if="::!$ctrl.ingress.objectMeta.creationTimestamp">-</div>
-    </kd-resource-card-column>
-  </kd-resource-card-columns>
+    <kd-resource-card-columns>
+        <kd-resource-card-column>
+            <div>
+                <!-- <a ng-href="{{::$ctrl.getIngressDetailHref()}}" class="kd-middle-ellipsised-link"> -->
+                <kd-middle-ellipsis display-string="{{::$ctrl.ingress.objectMeta.name}}">
+                </kd-middle-ellipsis>
+                <!-- </a> -->
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column ng-if="$ctrl.areMultipleNamespacesSelected()">
+            <div>
+                <kd-middle-ellipsis display-string="{{::$ctrl.ingress.objectMeta.namespace}}">
+                </kd-middle-ellipsis>
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div ng-if="::$ctrl.ingress.endpoints.length">
+                <kd-external-endpoint endpoints="::$ctrl.ingress.endpoints"></kd-external-endpoint>
+            </div>
+        </kd-resource-card-column>
+        <kd-resource-card-column>
+            <div ng-if="::$ctrl.ingress.objectMeta.creationTimestamp">
+                {{::$ctrl.ingress.objectMeta.creationTimestamp | relativeTime}}
+                <md-tooltip>
+                    {{::$ctrl.getStartedAtTooltip($ctrl.ingress.objectMeta.creationTimestamp)}}
+                </md-tooltip>
+            </div>
+            <div ng-if="::!$ctrl.ingress.objectMeta.creationTimestamp">-</div>
+        </kd-resource-card-column>
+    </kd-resource-card-columns>
 </kd-resource-card>

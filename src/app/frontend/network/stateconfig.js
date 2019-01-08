@@ -3,10 +3,10 @@ import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_ser
 
 import { stateName as storageName, stateUrl } from './state';
 import { storageController } from './controller';
-import { stateName as pvcStateName } from './pvc/state';
-import { stateName as storageclassStateName } from './storageclass/state';
-import { pvcConfig } from './pvc/stateconfig';
-import { storageclassConfig } from './storageclass/stateconfig';
+import { stateName as serviceStateName } from './service/state';
+import { stateName as ingressStateName } from './ingress/state';
+import { serviceConfig } from './service/stateconfig';
+import { ingressConfig } from './ingress/stateconfig';
 
 /**
  * Configures states for the home.
@@ -23,20 +23,15 @@ export default function stateConfig($stateProvider) {
             '': {
                 controller: storageController,
                 controllerAs: '$ctrl',
-                templateUrl: 'storage/storage.html',
+                templateUrl: 'network/storage.html',
             },
         },
         data: {
             [breadcrumbsConfig]: {
-                'label': i18n.MSG_BREADCRUMBS_STORAGE_LABEL,
+                'label': 'net',
             },
         },
     });
-    $stateProvider.state(pvcStateName, pvcConfig);
-    $stateProvider.state(storageclassStateName, storageclassConfig);
+    $stateProvider.state(serviceStateName, serviceConfig);
+    $stateProvider.state(ingressStateName, ingressConfig);
 }
-
-const i18n = {
-    /** @type {string} @desc Label 'Storage' that appears as a breadcrumbs on the action bar. */
-    MSG_BREADCRUMBS_STORAGE_LABEL: goog.getMsg('Storage'),
-};
