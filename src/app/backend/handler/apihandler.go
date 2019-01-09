@@ -1095,6 +1095,11 @@ func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response 
 
 //cpu_info
 func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
+	start := time.Now()
+	defer func(){
+		cost := time.Since(start)
+		log.Println("cpuInfo spend: ",cost)
+	}()
 	var rangeResp = &RangeResp{}
 	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	// log.Println(cpuUrl)
@@ -1129,6 +1134,11 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 
 //memory_info
 func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
+	start := time.Now()
+	defer func(){
+		cost := time.Since(start)
+		log.Println("memoryInfo spend: ",cost)
+	}()
 	var rangeResp = &RangeResp{}
 	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=(smart_memory_MemTotal_bytes-smart_memory_MemFree_bytes)/smart_memory_MemTotal_bytes*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
 	if respData != nil {
@@ -1161,6 +1171,11 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 
 //net name
 func netName() (error, string, string){
+	start := time.Now()
+	defer func(){
+		cost := time.Since(start)
+		log.Println("netName spend: ",cost)
+	}()
 	qianNet := ""
 	wanNet := ""
 	nics, err := ghw.Network()
@@ -1223,6 +1238,11 @@ func networkInfo(t1 int64, t2 int64, netType string, ch chan []ResultData) ([]Re
 
 //networ_info
 func networkInfoByNode(t1 int64, t2 int64, url string, node string, ch chan []ResultData) ([]ResultData, error) {
+	start := time.Now()
+	defer func(){
+		cost := time.Since(start)
+		log.Println("networkInfoByNode spend: ",cost)
+	}()
 	var rangeResp = &RangeResp{}
 	respData, err := http.Get(url)
 	if respData != nil {
@@ -1445,6 +1465,12 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 
 //node info 
 func nodeInfos (str string, ch chan []ResultData) ([]ResultData, error) {
+	start := time.Now()
+	defer func(str string){
+		cost := time.Since(start)
+		log.Println(str)
+		log.Println("nodeInfos spend: ",cost)
+	}(str)
 	var rangeResp = &RangeResp{}
 	respData, err := http.Get(str)
 	if respData != nil {
@@ -1478,6 +1504,12 @@ func nodeInfos (str string, ch chan []ResultData) ([]ResultData, error) {
 
 //cpu_info_by_node
 func cpuInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]ResultData, error) {
+	start := time.Now()
+	defer func(){
+		cost := time.Since(start)
+		log.Println()
+		log.Println("cpuInfoByNode spend: ",cost)
+	}()
 	var rangeResp = &RangeResp{}
 	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	// log.Println(cpuUrl)
@@ -1513,6 +1545,11 @@ func cpuInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]Res
 
 //memory_info_by_node
 func memoryInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]ResultData, error) {
+	start := time.Now()
+	defer func(){
+		cost := time.Since(start)
+		log.Println("memoryInfoByNode spend: ",cost)
+	}()
 	var rangeResp = &RangeResp{}
 	var memoryUrl = "http://127.0.0.1:30090/api/v1/query_range?query=(smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}-smart_memory_MemFree_bytes{instance=" + `"` + node + `"` + "})/smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	log.Println(memoryUrl)
