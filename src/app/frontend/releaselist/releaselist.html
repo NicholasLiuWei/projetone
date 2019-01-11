@@ -30,16 +30,16 @@ limitations under the License.
         </md-progress-circular>
     </div>
     <div style="width: 100%;height:100%;overflow: scroll;box-sizing: border-box;" layout-padding="" class="md-padding">
-        <table ng-if="$root.releaseStr.indexOf('Deployment')!=-1" ng-repeat="deploy in $root.releaseDetail[0]">
+        <table ng-if="$root.releaseDetail.hasOwnProperty('deployInfo')">
             <thead>
                 <th colspan="2">
-                    {{deploy[0]}}&nbsp;&nbsp;[[容器部署情况|relese detail Pod Deployment]]
+                    &nbsp;&nbsp;[[容器部署情况|relese detail Pod Deployment]]
                 </th>
             </thead>
             <tbody>
                 <tr>
                     <td>[[期望份数| release detail Desired]]</td>
-                    <td>{{deploy[1]}}</td>
+                    <td>{{$root.releaseDetail.deployInfo.desired}}</td>
                 </tr>
                 <!-- <tr>
                     <td>[[当前| release detail Current]]</td>
@@ -51,49 +51,49 @@ limitations under the License.
                 </tr> -->
                 <tr>
                     <td>[[可用份数| release detail Available]]</td>
-                    <td>{{deploy[4]}}</td>
+                    <td>{{$root.releaseDetail.deployInfo.current}}</td>
                 </tr>
             </tbody>
         </table>
-        <table ng-if="$root.releaseStr.indexOf('Service')!=-1" ng-repeat="service in $root.releaseDetail[1]">
+        <table ng-if="$root.releaseDetail.serviceInfo">
             <thead>
                 <th colspan="2">
-                    {{service[0]}}&nbsp;&nbsp;[[服务|release detail Service]]
-                </th>
-            </thead>
-            <tbody ng-repeat="ser in service[3]">
-                <tr>
-                    <td>[[内部入口| release detail Internal entrance]]</td>
-                    <td>{{service[1]}}:{{ser.indexOf(':')!=-1?ser.substring(0,ser.indexOf(':')):ser.substring(0,ser.indexOf('/'))}}</td>
-                </tr>
-                <tr ng-if="ser.indexOf(':')!=-1">
-                    <td>[[外部入口| release detail External entrance]]</td>
-                    <td>{{$ctrl.getHost()}}{{ser.substring(ser.indexOf(':'),ser.indexOf('/'))}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table ng-if="$root.releaseStr.indexOf('PersistentVolumeClaim')!=-1" ng-repeat="cunchu in $root.releaseDetail[2]">
-            <thead>
-                <th colspan="2">
-                    {{cunchu[0]}}&nbsp;&nbsp;[[存储卷|release detail Storage volume]]
+                    &nbsp;&nbsp;[[服务|release detail Service]]
                 </th>
             </thead>
             <tbody>
-                <tr>
-                    <td>[[状态| release detail Status]]</td>
-                    <td>{{cunchu[1]}}</td>
+                <tr ng-if="$root.releaseDetail.serviceInfo.internal">
+                    <td>[[内部入口| release detail Internal entrance]]</td>
+                    <td>{{$root.releaseDetail.serviceInfo.internal[0]}}</td>
                 </tr>
-                <tr>
-                    <td>[[卷名称| relese detail Volume name]]</td>
-                    <td>{{cunchu[2]}}</td>
-                </tr>
-                <tr>
-                    <td>[[总量| release detail Total]]</td>
-                    <td>{{cunchu[3]}}</td>
+                <tr ng-if="$root.releaseDetail.serviceInfo.external">
+                    <td>[[外部入口| release detail External entrance]]</td>
+                    <td>{{$root.releaseDetail.serviceInfo.external[0]}}</td>
                 </tr>
             </tbody>
         </table>
-        <table>
+        <table ng-if="$root.releaseDetail.storageInfo">
+            <thead>
+                <th colspan="2">
+                    &nbsp;&nbsp;[[存储卷|release detail Storage volume]]
+                </th>
+            </thead>
+            <tbody ng-repeat="cunchu in $root.releaseDetail.storageInfo">
+                <tr>
+                    <td>[[状态| release detail Status]]</td>
+                    <td>{{cunchu.name}}</td>
+                </tr>
+                <tr>
+                    <td>[[卷名称| relese detail Volume name]]</td>
+                    <td>{{cunchu.capacity}}</td>
+                </tr>
+                <tr>
+                    <td>[[总量| release detail Total]]</td>
+                    <td>{{cunchu.phase}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table ng-if="$root.releaseDetail.ingressInfo">
             <thead>
                 <th colspan="2">
                     {{$root.releaseDetail[3]}}&nbsp;&nbsp;{{::$ctrl.i18n.MSG_RELEASE_DOMAIN_SERVICE}}
@@ -102,21 +102,21 @@ limitations under the License.
             <tbody>
                 <tr>
                     <td>{{::$ctrl.i18n.MSG_RELEASE_DOMAIN}}</td>
-                    <td>{{$root.releaseDetail[3]}}.k8s.com</td>
+                    <td>{{$root.releaseDetail.ingressInfo[0].host}}</td>
                 </tr>
             </tbody>
         </table>
-        <table class="tixi">
+        <table class="tixi" ng-if="$root.releaseDetail.hasOwnProperty('podInfo')">
             <thead>
                 <th colspan="3">
                     {{$root.releaseDetail[3]}}&nbsp;&nbsp;[[部署情况|部署情况]]
                 </th>
             </thead>
             <tbody>
-                <tr>
-                    <td>nginx10080-nginx-2128849807-zv955</td>
-                    <td>node1</td>
-                    <td>ARM64</td>
+                <tr ng-repeat="pod in $root.releaseDetail.podInfo">
+                    <td>{{pod.name}}</td>
+                    <td>{{pod.node}}</td>
+                    <td>{{pod.arch}}</td>
                 </tr>
             </tbody>
         </table>

@@ -227,7 +227,8 @@ export default class ReleaseCardController {
         let resource = this.resource_("api/v1/helm/release/namespace/" + this.release.namespace + "/name/" + this.release.name);
         resource.get().$promise.then(function(data) {
             this.scope.$emit('getsuccess', {});
-            this.rootScope_.releaseStr = data["release"]["info"]["status"]["resources"];
+            // this.rootScope_.releaseStr = data["release"]["info"]["status"]["resources"];
+            this.rootScope_.releaseStr = data;
             this.structReleaseStr();
         }.bind(this), function(data) {
             this.scope.$emit('geterror', {});
@@ -248,58 +249,58 @@ export default class ReleaseCardController {
      * @export
      */
     structReleaseStr() {
-        this.rootScope_.releaseDetail = [];
-        let arr = this.rootScope_.releaseStr.split('\n');
-        for (let i = 0; i < arr.length; i++) {
-            switch (arr[i]) {
-                case '==> v1beta1/Deployment':
-                    let deployarr = [];
-                    let j = i + 2;
-                    while (arr[j] != "") {
-                        let deploy = arr[j].replace(/\s+/g, " ");
-                        deploy = deploy.split(" ");
-                        deployarr[j - i - 2] = deploy;
-                        j++;
-                    }
-                    this.rootScope_.releaseDetail[0] = deployarr;
-                    break;
-                case '==> v1/Service':
-                    let servicearr = [];
-                    let k = i + 2;
-                    while (arr[k] != "") {
-                        let service = arr[k].replace(/\s+/g, " ");
-                        service = service.split(" ");
-                        servicearr[k - i - 2] = service;
-                        k++;
-                    };
-                    for (let i = 0; i < servicearr.length; i++) {
-                        let mes = servicearr[i][3];
-                        if (mes.indexOf(':') == -1) {
-                            mes = mes.substr(0, mes.indexOf('/') + 4);
-                        };
-                        servicearr[i][3] = [];
-                        if (mes.indexOf(',') != -1) {
-                            servicearr[i][3] = mes.split(',');
-                        } else {
-                            servicearr[i][3][0] = mes;
-                        }
-                    }
-                    this.rootScope_.releaseDetail[1] = servicearr;
-                    break;
-                case '==> v1/PersistentVolumeClaim':
-                    let cunchuarr = [];
-                    let l = i + 2;
-                    while (arr[l] != "") {
-                        let cunchu = arr[l].replace(/\s+/g, " ");
-                        cunchu = cunchu.split(" ");
-                        cunchuarr[l - i - 2] = cunchu;
-                        l++;
-                    }
-                    this.rootScope_.releaseDetail[2] = cunchuarr;
-                    break;
-            }
-        }
-        this.rootScope_.releaseDetail[3] = this.release.name;
+        this.rootScope_.releaseDetail = this.rootScope_.releaseStr;
+        // let arr = this.rootScope_.releaseStr.split('\n');
+        // for (let i = 0; i < arr.length; i++) {
+        //     switch (arr[i]) {
+        //         case '==> v1beta1/Deployment':
+        //             let deployarr = [];
+        //             let j = i + 2;
+        //             while (arr[j] != "") {
+        //                 let deploy = arr[j].replace(/\s+/g, " ");
+        //                 deploy = deploy.split(" ");
+        //                 deployarr[j - i - 2] = deploy;
+        //                 j++;
+        //             }
+        //             this.rootScope_.releaseDetail[0] = deployarr;
+        //             break;
+        //         case '==> v1/Service':
+        //             let servicearr = [];
+        //             let k = i + 2;
+        //             while (arr[k] != "") {
+        //                 let service = arr[k].replace(/\s+/g, " ");
+        //                 service = service.split(" ");
+        //                 servicearr[k - i - 2] = service;
+        //                 k++;
+        //             };
+        //             for (let i = 0; i < servicearr.length; i++) {
+        //                 let mes = servicearr[i][3];
+        //                 if (mes.indexOf(':') == -1) {
+        //                     mes = mes.substr(0, mes.indexOf('/') + 4);
+        //                 };
+        //                 servicearr[i][3] = [];
+        //                 if (mes.indexOf(',') != -1) {
+        //                     servicearr[i][3] = mes.split(',');
+        //                 } else {
+        //                     servicearr[i][3][0] = mes;
+        //                 }
+        //             }
+        //             this.rootScope_.releaseDetail[1] = servicearr;
+        //             break;
+        //         case '==> v1/PersistentVolumeClaim':
+        //             let cunchuarr = [];
+        //             let l = i + 2;
+        //             while (arr[l] != "") {
+        //                 let cunchu = arr[l].replace(/\s+/g, " ");
+        //                 cunchu = cunchu.split(" ");
+        //                 cunchuarr[l - i - 2] = cunchu;
+        //                 l++;
+        //             }
+        //             this.rootScope_.releaseDetail[2] = cunchuarr;
+        //             break;
+        //     }
+        // }
+        // this.rootScope_.releaseDetail[3] = this.release.name;
         //console.log(this.rootScope_.releaseDetail);
     }
 }
