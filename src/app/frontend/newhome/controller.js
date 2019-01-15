@@ -574,7 +574,7 @@ export class homeController {
                     }
                 }, () => {});
                 //告警数量
-                let getWarnCount = this.resource_('alertsnum');
+                let getWarnCount = this.resource_('alert/alertsnum');
                 getWarnCount.get().$promise.then(
                     (data) => {
                         this.rootScope_.alertsnum = data['alertsnum'];
