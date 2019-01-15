@@ -231,7 +231,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err erro
                 log.Fatal("queryDBMessages countDB error!", err)
                 return alerts, err
         }
-        if count%pageIndex.itemsPerPage < pageIndex.itemsPerPage {
+        if pageIndex.itemsPerPage * pageIndex.page > count {
                 offset = 0
                 limit = count%pageIndex.itemsPerPage
         }else {
