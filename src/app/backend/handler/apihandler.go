@@ -1037,25 +1037,27 @@ func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response 
 	t1 := time.Now().Add(-30 * time.Minute).Unix()
 	t2 := time.Now().Unix()
 	//cpu_info
-	var ch =  make([] chan []ResultData,4)
-	for i:=0; i<4; i++ {
+	var ch =  make([] chan []ResultData,3)
+	for i:=0; i<3; i++ {
         ch[i] = make(chan []ResultData)
     }
 	go cpuInfo(t1, t2, ch[0])
 	//memory_info
 	go memoryInfo(t1, t2, ch[1])
 
-	err, qianStr, wanStr := netName()
-	if err != nil {
-		baseInfo.Net1000 = nil
-		baseInfo.Net10000 = nil
-		log.Println("get net name error : ", err)
-	}else{
-		//千兆网卡信息
-		go networkInfo(t1, t2, qianStr, ch[2])
-		//万兆网卡
-		go networkInfo(t1, t2, wanStr, ch[3])
-	}
+	//网卡网速信息
+	go networkInfo(t1, t2, ch[2])
+	// err, qianStr, wanStr := netName()
+	// if err != nil {
+	// 	baseInfo.Net1000 = nil
+	// 	baseInfo.Net10000 = nil
+	// 	log.Println("get net name error : ", err)
+	// }else{
+	// 	//千兆网卡信息
+	// 	go networkInfo(t1, t2, qianStr, ch[2])
+	// 	//万兆网卡
+	// 	go networkInfo(t1, t2, wanStr, ch[3])
+	// }
 
 	//cpu信息
 	tmp := <-ch[0]
@@ -1077,16 +1079,14 @@ func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response 
 	tmp = <-ch[2]
 	if tmp == nil {
 		baseInfo.Net1000 = nil
-	}else{
-		baseInfo.Net1000 = tmp
-	}
-
-	//万兆网卡
-	tmp = <-ch[3]
-	if tmp == nil {
 		baseInfo.Net10000 = nil
 	}else{
-		baseInfo.Net10000 = tmp
+		for i,_ := range tmp{
+			switch tmp[i].Metric.Speed{
+			case "1000": baseInfo.Net1000 = append(baseInfo.Net1000,tmp[i])
+			case "10000": baseInfo.Net10000 = append(baseInfo.Net10000,tmp[i])
+			}
+		}
 	}
 	cost := time.Since(start)
 	log.Println("handleBaseInfo spend: ",cost)
@@ -1101,7 +1101,7 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 		log.Println("cpuInfo spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=(1 - (avg by(instance) (irate(smart_cpu_seconds_total{instance="+`"node1"`+",job="+`"smart-exporter"`+",mode="+`"idle"`+"}[1m]))))&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	// log.Println(cpuUrl)
 	respData, err := http.Get(cpuUrl)
 	if respData != nil {
@@ -1201,9 +1201,9 @@ func netName() (error, string, string){
 }
 
 //networ_info
-func networkInfo(t1 int64, t2 int64, netType string, ch chan []ResultData) ([]ResultData, error) {
+func networkInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 	var rangeResp = &RangeResp{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` +"}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
+	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,isVirtual,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
 	// respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
 	// log.Println("http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15")
 	if respData != nil {
@@ -1293,43 +1293,29 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	// cpuResult, err := cpuInfoByNode(t1, t2, node)
 
 	//network-info 
-	err, qianStr, wanStr := netName()
-	if err != nil {
-		nodeInfo.BaseInfo.Rx1000 = nil
-		nodeInfo.BaseInfo.Rx10000 = nil
-		nodeInfo.BaseInfo.Tx1000 = nil
-		nodeInfo.BaseInfo.Tx10000 = nil
-		log.Println("get net name error : ", err)
-	}else{
-		//network info 千兆网卡接收
-		url := "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{device=~" + `"` + qianStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-		go networkInfoByNode(t1, t2, url, node, ch[2])
-		//network info 万兆网卡接收
-		url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{device=~" + `"` + wanStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-		go networkInfoByNode(t1, t2, url, node, ch[3])
-		//network info 千兆网卡发送
-		url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{device=~" + `"` + qianStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-		go networkInfoByNode(t1, t2, url, node, ch[4])
-		//network info 万兆网卡发送
-		url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{device=~" + `"` + wanStr + `"` + ",instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-		go networkInfoByNode(t1, t2, url, node, ch[5])
-	}
+
+	//network info 千万兆网卡接收
+	url := "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	go networkInfoByNode(t1, t2, url, node, ch[2])
+	//network info 千万兆网卡发送
+	url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	go networkInfoByNode(t1, t2, url, node, ch[3])
 
 	//node cpu info 
-	url := "http://127.0.0.1:30090/api/v1/query?query=smart_info_cpu_info{instance=" + `"` + node + `"` +"}"
-	go nodeInfos(url,ch[6])
+	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_cpu_info{instance=" + `"` + node + `"` +"}"
+	go nodeInfos(url,ch[4])
 
 	//node memory info 
 	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_memory_info{instance=" + `"` + node + `"` +"}"
-	go nodeInfos(url,ch[7])
+	go nodeInfos(url,ch[5])
 
 	//node disk info 
 	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_disk_info{instance=" + `"` + node + `"` +"}"
-	go nodeInfos(url,ch[8])
+	go nodeInfos(url,ch[6])
 
 	//node net info 
 	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_network_info{instance=" + `"` + node + `"` +"}"
-	go nodeInfos(url,ch[9])
+	go nodeInfos(url,ch[7])
 
 	//get cpu info
 	tmp := <-ch[0] 
@@ -1351,37 +1337,33 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	tmp = <-ch[2] 
 	if tmp == nil {
 		nodeInfo.BaseInfo.Rx1000 = nil
+		nodeInfo.BaseInfo.Rx10000 = nil
 		// log.Println("Rx1000", err)
 	}else{
-		nodeInfo.BaseInfo.Rx1000 = tmp
+		for i,_ := range tmp{
+			switch tmp[i].Metric.Speed{
+			case "1000": nodeInfo.BaseInfo.Rx1000 = append(nodeInfo.BaseInfo.Rx1000,tmp[i])
+			case "10000": nodeInfo.BaseInfo.Rx10000 = append(nodeInfo.BaseInfo.Rx10000,tmp[i])
+			}
+		}
 	}
 	//get 万兆接收
 	tmp = <-ch[3] 
 	if tmp == nil {
-		nodeInfo.BaseInfo.Rx10000 = nil
+		nodeInfo.BaseInfo.Tx1000 = nil
+		nodeInfo.BaseInfo.Tx10000 = tmp
 		// log.Println("Rx10000", err)
 	}else{
-		nodeInfo.BaseInfo.Rx10000 = tmp
-	}
-	//get 千兆发送
-	tmp = <-ch[4] 
-	if tmp == nil {
-		nodeInfo.BaseInfo.Tx1000 = nil
-		// log.Println("Tx1000", err)
-	}else{
-		nodeInfo.BaseInfo.Tx1000 = tmp
-	}
-	//get 万兆发送
-	tmp = <-ch[5] 
-	if tmp == nil {
-		nodeInfo.BaseInfo.Tx1000 = nil
-		// log.Println("Tx10000", err)
-	}else{
-		nodeInfo.BaseInfo.Tx10000 = tmp
+		for i,_ := range tmp{
+			switch tmp[i].Metric.Speed{
+			case "1000": nodeInfo.BaseInfo.Tx1000 = append(nodeInfo.BaseInfo.Tx1000,tmp[i])
+			case "10000": nodeInfo.BaseInfo.Tx10000 = append(nodeInfo.BaseInfo.Tx10000,tmp[i])
+			}
+		}
 	}
 
 	//CPU信息
-	tmp = <-ch[6]
+	tmp = <-ch[4]
 	if tmp == nil {
 		nodeInfo.CPU.Feature = ""
 		nodeInfo.CPU.Model = ""
@@ -1399,7 +1381,7 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	}
 
 	//内存信息
-	tmp = <-ch[7]
+	tmp = <-ch[5]
 	if tmp == nil {
 		nodeInfo.Memory.SupportedPageSizes = ""
 		nodeInfo.Memory.TotalPhysicalBytes = ""
@@ -1417,7 +1399,7 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	}
 
 	//硬盘信息
-	tmp = <-ch[8]
+	tmp = <-ch[6]
 	if tmp == nil {
 		nodeInfo.Disk = nil
 	}else{
@@ -1440,7 +1422,7 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	}
 
 	//网卡信息
-	tmp = <-ch[9]
+	tmp = <-ch[7]
 	if tmp == nil {
 		nodeInfo.Net = nil
 	}else{

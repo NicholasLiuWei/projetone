@@ -103,6 +103,8 @@ type Metric struct {
 	MacAddress   string `json:"macAddress,omitempty"`
 	// Model        string `json:"model,omitempty"`
 	NetName         string `json:"netName,omitempty"`
+	Speed           string `json:"speed,omitempty"`
+	IsVirtual       string `json:"isVirtual,omitempty"`
 
 }
 
