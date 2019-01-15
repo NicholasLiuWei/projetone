@@ -224,9 +224,22 @@ func countDB()(count int, err error) {
 
 func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err error) {
         var alerts = DashboardAlert{}
-        var items int = 0
+        var offset int = 0
+        var limit int = 0
+        count, err := countDB()
+        if err != nil {
+                log.Fatal("queryDBMessages countDB error!", err)
+                return alerts, err
+        }
+        if pageIndex.itemsPerPage * pageIndex.page > count {
+                offset = 0
+                limit = count%pageIndex.itemsPerPage
+        }else {
+                offset = count - pageIndex.itemsPerPage * pageIndex.page
+                limit = pageIndex.itemsPerPage
+        }
         loc, _ := time.LoadLocation("Local")
-        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(pageIndex.itemsPerPage), strconv.Itoa(pageIndex.page))
+        cmd := fmt.Sprintf("select * from node_alert LIMIT %s offset %s", strconv.Itoa(limit), strconv.Itoa(offset))
         //log.Println("queryDBMessages cmd: ", cmd)
         res, err := queryDB(cmd)
         if err != nil {
@@ -236,7 +249,7 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err erro
         //log.Println("queryDBMessages res: ", res)
 
         if len(res[0].Series) == 1 {
-                for i := 0; i < len(res[0].Series[0].Values); i++ {
+                for i := len(res[0].Series[0].Values)-1; i >= 0; i-- {
                         //log.Println("queryDBMessages res- ",i,":", res)
                         var m = InfluxAlert{}
                         var buf []byte = []byte(res[0].Series[0].Values[i][1].(string))
@@ -253,13 +266,8 @@ func queryDBMessages(pageIndex AlertPageIndex)(messages DashboardAlert, err erro
                 log.Println("queryDBMessages NULL res!")
         }
 
-        if items, err = countDB(); err != nil {
-                log.Fatal("queryDBMessages countDB error!", err)
-                return alerts, err
-        }
-        alerts.ListMeta.TotalItems = items
+        alerts.ListMeta.TotalItems = count
         //log.Println("queryDBMessages items: ", items)
-
 
         return alerts, nil
 }

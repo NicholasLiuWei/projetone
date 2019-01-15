@@ -134,7 +134,7 @@ func (s *AlertStore) getHandler(w http.ResponseWriter, r *http.Request) {
 	page, _ := strconv.Atoi(queryParams["page"][0])
 	var p  = AlertPageIndex{
 		itemsPerPage : itemsPerPage,
-		page : (page-1)*itemsPerPage,
+		page : page,
 	}
 
 	//log.Println("getHandler before encoder.")
