@@ -98,10 +98,6 @@
   <translation id="9044428715504897578" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_1" desc="\u7248\u672C\u4FE1\u606F">Version v1.0.0</translation>
   <translation id="197202711047909552" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_2" desc="caidan Change Password">Change Password</translation>
   <translation id="1047042684269657700" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_3" desc="caidan Logout">Logout</translation>
-  <translation id="4067798114540579722" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_4" desc="warnkuang History Alarm">History Alarm</translation>
-  <translation id="3479386123799704206" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_5" desc="warnkuang Clear">Clear</translation>
-  <translation id="172469565694241447" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_6" desc="warnkuang Email">Email</translation>
-  <translation id="3431500800761802315" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_7" desc="warnkuang No historical alarm information">No historical alarm information</translation>
   <translation id="4246093411879805828" key="MSG_COMMON_COMPONENTS_ACTIONBAR_SHELL_0" desc="Exec button tooltip located on pod detail page actionbar">Exec into Pod</translation>
   <translation id="1980816672340986356" key="MSG_COMMON_COMPONENTS_ACTIONBAR_SHELL_1" desc="Execute shell in the container">Exec</translation>
   <translation id="1745702155571319443" key="MSG_COMMON_COMPONENTS_ANNOTATIONS_ANNOTATIONS_0" desc="Friendly name of the kubernetes.io/created-by annotation">Created by:</translation>
@@ -605,8 +601,8 @@
   <translation id="185015236199417198" key="MSG_GRAPH_TIME_AXIS_LABEL" desc="Name of time axis.">Time</translation>
   <translation id="4475122443688912494" key="MSG_HOME_ERROE_STATUS" desc="Abnormal">Abnormal</translation>
   <translation id="5468779524245425957" key="MSG_HOME_GOOD_STATUS" desc="Normal">Normal</translation>
-  <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">System warning</translation>
-  <translation id="8795377511802100302" key="MSG_HOME_NO_WARN" desc="No Warning">System no warning</translation>
+  <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">Serious Warning</translation>
+  <translation id="8795377511802100302" key="MSG_HOME_NO_WARN" desc="No Warning">No Warning</translation>
   <translation id="3384365793583297069" key="MSG_HOME_STORAGE_RATE" desc="dashboard存储使用率">Storage Rate</translation>
   <translation id="1585380567194471022" key="MSG_HORIZONTALPODAUTOSCALERDETAIL_ACTIONBAR_0" desc="Label \'Horizontal Pod Autoscaler\' which appears at the top of the delete dialog, opened from a horizontal pod autoscaler details page.">Horizontal Pod Autoscaler</translation>
   <translation id="6001363562011800982" key="MSG_HORIZONTALPODAUTOSCALERDETAIL_HORIZONTALPODAUTOSCALERINFO_0" desc="Horizontal pod autoscaler info details section name.">Details</translation>

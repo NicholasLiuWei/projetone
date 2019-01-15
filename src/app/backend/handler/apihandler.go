@@ -1101,7 +1101,7 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 		log.Println("cpuInfo spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=(1-(avg by(instance)(irate(smart_cpu_seconds_total{job="+`"smart-exporter"`+",mode="+`"idle"`+"}[1m]))))&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=(1-(avg(irate(smart_cpu_seconds_total{job="+`"smart-exporter"`+",mode="+`"idle"`+"}[1m]))by(instance)))&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	log.Println("cpuUrl ", cpuUrl)
 	// log.Println(cpuUrl)
 	respData, err := http.Get(cpuUrl)
@@ -1296,10 +1296,10 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	//network-info 
 
 	//network info 千万兆网卡接收
-	url := "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	url := "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	go networkInfoByNode(t1, t2, url, node, ch[2])
 	//network info 千万兆网卡发送
-	url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	go networkInfoByNode(t1, t2, url, node, ch[3])
 
 	//node cpu info 
