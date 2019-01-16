@@ -57,7 +57,7 @@ export class ActionbarComponent {
             /** @export */
             this.warninglist = [];
             // this.conn = new WebSocket('ws://172.16.116.1:30008' + '/alert/sockjs')
-            this.conn = new WebSocket('ws://' + location.host + '/alert/sockjs');
+            this.conn = new WebSocket('wss://' + location.host + '/api/sockjs');
             this.conn.onopen = function(data) {
                 // this.toastr.success('监控正常', 0, {
                 //     closeButton: true,

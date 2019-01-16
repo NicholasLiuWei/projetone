@@ -1101,7 +1101,7 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 		log.Println("cpuInfo spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=(1-(avg(irate(smart_cpu_seconds_total{job="+`"smart-exporter"`+",mode="+`"idle"`+"}[1m]))by(instance)))&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_cpu_seconds_total{mode!=" + `"idle"` + "}[30s]))by(instance)/sum(irate(smart_cpu_seconds_total[30s]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
 	log.Println("cpuUrl ", cpuUrl)
 	// log.Println(cpuUrl)
 	respData, err := http.Get(cpuUrl)
@@ -1494,8 +1494,8 @@ func cpuInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]Res
 		log.Println("cpuInfoByNode spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "})by(instance)/sum(smart_cpu_seconds_total)by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
-	// log.Println(cpuUrl)
+	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "}[30s]))by(instance)/sum(irate(smart_cpu_seconds_total{instance="+`"`+ node +`"`+"}[30s]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=15"
+	log.Println("cpuInfoByNode",cpuUrl)
 	respData, err := http.Get(cpuUrl)
 	if respData != nil {
 		defer respData.Body.Close()
