@@ -172,7 +172,7 @@ export default class NodeCardController {
                         "max": 100,
                     },
                     "series": [{
-                        "name": data["baseinfo"]["cpu"][0]["metric"]["name"],
+                        "name": data["baseinfo"]["cpu"][0]["metric"]["instance"],
                         "data": data["baseinfo"]["cpu"][0]["values"].map(function(item) {
                             return [item[0] * 1000, (100 * (item[1] - 0)).toFixed(3)];
                         }),
@@ -266,7 +266,7 @@ export default class NodeCardController {
                         "max": 100,
                     },
                     "series": [{
-                        "name": data["baseinfo"]["memory"][0]["metric"]["name"],
+                        "name": data["baseinfo"]["memory"][0]["metric"]["instance"],
                         "data": data["baseinfo"]["memory"][0]["values"].map(function(item) {
                             return [item[0] * 1000, (item[1] - 0).toFixed(3)];
                         }),

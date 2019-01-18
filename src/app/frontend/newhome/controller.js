@@ -12,142 +12,152 @@ export class homeController {
      * @param {!angular.$timeout} $timeout
      * @ngInject
      */
-    constructor($interval, $rootScope, kdCephResource, kdFsmonResource, kdPanelResource, kdReleaseResource, $mdDialog, kdNamespaceService, kdPaginationService, $timeout, $filter, $scope, $resource) {
-            /** @private {!angular.Scope} */
-            this.scope_ = $scope;
-            /** @export {!angular.Scope}*/
-            this.rootScope_ = $rootScope;
-            /** @export */
-            this.echarts = window["echarts"];
-            /** @export */
-            this.$ = window["$"];
-            /** @private {!angular.$timeout} */
-            this.timeout_ = $timeout;
-            /** @private {!angular.$interval} */
-            this.interval_ = $interval;
-            this.i18n = i18n;
-            this.$filter = $filter;
-            this.events = [];
-            this.kdFsmonResource = kdFsmonResource;
-            this.kdPanelResource = kdPanelResource;
-            this.kdReleaseResource = kdReleaseResource;
-            this.kdCephResource = kdCephResource;
-            this.resource_ = $resource;
-            /** @export */
-            $rootScope.alertsnum = 0;
-            /** @export */
-            this.cmRate = [0, 100];
-            /** @export */
-            this.fsmonMes = {};
-            /** @export */
-            this.panelMes = {};
-            /** @export */
-            this.statusCodes = {
-                8: i18n.MSG_HOME_GOOD_STATUS,
-                9: i18n.MSG_HOME_ERROE_STATUS,
-            };
-            /** @export */
-            this.amdnodelist = [];
-            /** @export */
-            this.armnodelist = [];
-            /** @export */
-            this.nodelist = {
-                "nodes": []
-            };
-            /** @export */
-            this.releaselist = {};
-            /** @export */
-            this.releasenum = {
-                "normal": 0,
-                "abnormal": 0,
-            };
-            /** @export */
-            this.nodenum = {
-                "amdnormal": 0,
-                "amdabnormal": 0,
-                "armnormal": 0,
-                "armabnormal": 0,
-            };
-            /** @export */
-            this.releasestatus = [{
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }];
-            /** @export */
-            this.nodestatus = [{
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }, {
-                "status": "none",
-            }];
-        }
-        /**
-         * 计算CPU,内存利用率
-         */
+    constructor($interval, $rootScope, kdCephResource, kdFsmonResource, kdPanelResource, kdReleaseResource, $mdDialog, kdNamespaceService, kdPaginationService, $timeout, $filter, $scope, $resource, $state) {
+        /** @private {!angular.Scope} */
+        this.scope_ = $scope;
+        /** @export {!angular.Scope}*/
+        this.rootScope_ = $rootScope;
+        /** @export */
+        this.echarts = window["echarts"];
+        /** @export */
+        this.$ = window["$"];
+        /** @private {!angular.$timeout} */
+        this.timeout_ = $timeout;
+        /** @private {!angular.$interval} */
+        this.interval_ = $interval;
+        this.i18n = i18n;
+        this.$filter = $filter;
+        this.events = [];
+        this.kdFsmonResource = kdFsmonResource;
+        this.kdPanelResource = kdPanelResource;
+        this.kdReleaseResource = kdReleaseResource;
+        this.kdCephResource = kdCephResource;
+        this.resource_ = $resource;
+        this.state = $state;
+        /** @export */
+        $rootScope.alertsnum = 0;
+        /** @export */
+        this.cmRate = [0, 0];
+        /** @export */
+        this.fsmonMes = {};
+        /** @export */
+        this.panelMes = {};
+        /** @export */
+        this.statusCodes = {
+            8: i18n.MSG_HOME_GOOD_STATUS,
+            9: i18n.MSG_HOME_ERROE_STATUS,
+        };
+        /** @export */
+        this.amdnodelist = [];
+        /** @export */
+        this.armnodelist = [];
+        /** @export */
+        this.nodelist = {
+            "nodes": []
+        };
+        /** @export */
+        this.releaselist = {};
+        /** @export */
+        this.releasenum = {
+            "normal": 0,
+            "abnormal": 0,
+        };
+        /** @export */
+        this.nodenum = {
+            "amdnormal": 0,
+            "amdabnormal": 0,
+            "armnormal": 0,
+            "armabnormal": 0,
+        };
+        /** @export */
+        this.releasestatus = [{
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }];
+        /** @export */
+        this.nodestatus = [{
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }, {
+            "status": "none",
+        }];
+    }
+
+    /**
+     * 跳转到告警
+     * @export
+     */
+    warn() {
+        this.state.go("chrome.monitoring.list");
+    }
+
+    /**
+     * 计算CPU,内存利用率
+     */
     countRate(data) {
             let cpuusage = (data["cpuUseRate"] - 0) * 100;
             let memusage = 100 - (data["memoryUseRate"] - 0) * 100;
@@ -739,15 +749,6 @@ export class homeController {
                 option1['series'][1]['data'][1]['value'] = 100 - fsusage;
                 tu1["setOption"](option1);
             }, () => {});
-            //CPU 内存  网络
-            this.kdPanelResource.get().$promise.then((data) => {
-                this.panelMes = data;
-                getcpuData();
-                cpuuse["setOption"](cpuoption);
-                memuse["setOption"](memoption);
-                receive["setOption"](qianoption);
-                send["setOption"](wanoption);
-            }, () => {});
             //应用
             this.kdReleaseResource.get().$promise.then((data) => {
                 if (data['releases'] == null) {
@@ -758,7 +759,7 @@ export class homeController {
                 }
             }, () => {});
             //获取告警数量
-            let getWarnCount = this.resource_('alertsnum');
+            let getWarnCount = this.resource_('alert/alertsnum');
             getWarnCount.get().$promise.then(
                 (data) => {
                     // console.log(data);
@@ -814,6 +815,15 @@ export class homeController {
                     this.nodenum["armabnormal"] = list[3];
                     // this.formatstatus('node', list);
                     // console.log(data);
+                    //CPU 内存  网络
+                    this.kdPanelResource.get().$promise.then((data) => {
+                        this.panelMes = data;
+                        getcpuData();
+                        cpuuse["setOption"](cpuoption);
+                        memuse["setOption"](memoption);
+                        receive["setOption"](qianoption);
+                        send["setOption"](wanoption);
+                    }, () => {});
                 },
                 (res) => {
                     // console.log(res);
