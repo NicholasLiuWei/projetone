@@ -150,13 +150,22 @@ func main() {
 		servingCerts = []tls.Certificate{servingCert}
 	}
 
+	//循环获取node信息
+	go func() {
+		for{
+			handler.GetBaseInfo()
+			handler.GetBaseInfoAllNode()
+			time.Sleep(10*time.Second)
+		}
+	}()
+
 	// Run a HTTP server that serves static public files from './public' and handles API calls.
 	// TODO(bryk): Disable directory listing.
 	http.Handle("/", handler.MakeGzipHandler(handler.CreateLocaleHandler()))
 	http.Handle("/api/", apiHandler)
 	// TODO(maciaszczykm): Move to /appConfig.json as it was discussed in #640.
 	http.Handle("/api/appConfig.json", handler.AppHandler(handler.ConfigHandler))
-	http.Handle("/api/sockjs/", handler.CreateAttachHandler("/api/sockjs"))
+	http.Handle("/api/sockjs", websocket.Handler(alert.AlertHandler))
 	http.Handle("/metrics", prometheus.Handler())
 
 	//helm request
@@ -188,7 +197,7 @@ func main() {
 	alertWs.Route(alertWs.GET("/alert/email").To(alert.EmailHandler))
 	alertWs.Route(alertWs.POST("/alert/email").To(alert.EmailHandler))
 	alertWs.Route(alertWs.POST("/alert/add/email").To(alert.AddEmailHandler))
-	alertContainer.ServeMux.Handle("/alert/sockjs", websocket.Handler(alert.AlertHandler))
+	// alertContainer.ServeMux.Handle("/alert/sockjs", websocket.Handler(alert.AlertHandler))
 
 	/*alert_mux := http.NewServeMux()
 	// alertmanager webhook
