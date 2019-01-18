@@ -249,7 +249,7 @@ export class homeController {
                 //内存
                 for (let i = 0; i < this.panelMes["memory"].length; i++) {
                     for (let j = 0; j < this.nodelist["nodes"].length; j++) {
-                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["memory"][i]["metric"]["instance"]) {
                             memoption["series"][i] = {
                                 "name": this.panelMes["memory"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
                                 "data": this.panelMes["memory"][i]["values"].map(function(item) {
@@ -272,7 +272,7 @@ export class homeController {
                 //千兆网卡
                 for (let i = 0; i < this.panelMes["net1000"].length; i++) {
                     for (let j = 0; j < this.nodelist["nodes"].length; j++) {
-                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["net1000"][i]["metric"]["instance"]) {
                             qianoption["series"][i] = {
                                 "name": this.panelMes["net1000"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
                                 "data": this.panelMes["net1000"][i]["values"].map(function(item) {
@@ -295,7 +295,7 @@ export class homeController {
                 //万兆网卡
                 for (let i = 0; i < this.panelMes["net10000"].length; i++) {
                     for (let j = 0; j < this.nodelist["nodes"].length; j++) {
-                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["cpu"][i]["metric"]["instance"]) {
+                        if (this.nodelist["nodes"][j]["objectMeta"]["name"] == this.panelMes["net10000"][i]["metric"]["instance"]) {
                             wanoption["series"][i] = {
                                 "name": this.panelMes["net10000"][i]["metric"]["instance"] + "(" + this.nodelist["nodes"][j]["objectMeta"]["labels"]["beta.kubernetes.io/arch"] + ")",
                                 "data": this.panelMes["net10000"][i]["values"].map(function(item) {
