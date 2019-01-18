@@ -1248,8 +1248,8 @@
   <translation id="2872020467602887390" key="MSG_STORAGE_PV_PV_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="2535854113910838278" key="MSG_STORAGE_STORAGECLASS_STORAGECLASS_0" desc="\u6682\u65E0\u4FE1\u606F">No data</translation>
   <translation id="7871062562617503964" key="MSG_STORAGE_STORAGE_0" desc="\u5B58\u50A8\u7C7B">StorageClass</translation>
-  <translation id="4247160797730973959" key="MSG_STORAGE_STORAGE_1" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377">持久化存储卷</translation>
-  <translation id="2206587782300213730" key="MSG_STORAGE_STORAGE_2" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377\u58F0\u660E">持久化存储卷声明</translation>
+  <translation id="4247160797730973959" key="MSG_STORAGE_STORAGE_1" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377">Persistent Volume</translation>
+  <translation id="2206587782300213730" key="MSG_STORAGE_STORAGE_2" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377\u58F0\u660E">Persistent Volume Claims</translation>
   <translation id="4455224191195228523" key="MSG_THIRDPARTYRESOURCEDETAIL_DETAIL_0" desc="Title for objects card zerostate in third party resource details page.">There is nothing to display here</translation>
   <translation id="1909818214822603215" key="MSG_THIRDPARTYRESOURCEDETAIL_DETAIL_1" desc="Text for objects card zerostate in third party resource details page.">There are currently no instances of Third Party Resource.</translation>
   <translation id="8145942852314005903" key="MSG_THIRDPARTYRESOURCEDETAIL_INFO_0" desc="Header in a detail view">Details</translation>
