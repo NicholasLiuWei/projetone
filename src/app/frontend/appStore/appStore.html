@@ -42,14 +42,18 @@
                 </kd-help-section> -->
 
                 <kd-help-section ng-show="ctrl.selectedRepos != 'None'">
-                    <md-grid-list md-cols="3" md-row-height="250px" md-gutter="2em" required>
+                    <md-grid-list md-cols="3" md-row-height="122px" md-gutter="2em" required>
                         <md-grid-tile ng-repeat="chart in ctrl.charts" ng-value="chart">
                             <md-card class="kd-chart-card {{chart.selected}}" ng-click="ctrl.selectChart(chart.fullURL)">
-                                <md-card-content>
-                                    <img class="kd-chart-card-icon-image" ng-src="{{chart.icon}}" />
-                                    <h2 class="kd-chart-card-text-name">{{chart.name}}</h2>
-                                    <div class="kd-chart-color-secondary">{{chart.version}}</div>
-                                    <p class="kd-chart-card-text-description kd-chart-color-secondary">{{chart.description}}</p>
+                                <md-card-content layout="row" style="padding:5px 16px;">
+                                    <div class="kd-chart-card-icon-image" layout="row" layout-align="center center">
+                                        <img ng-src="{{chart.icon}}" />
+                                    </div>
+                                    <div class="chartmes">
+                                        <h2 class="kd-chart-card-text-name">{{chart.name}}</h2>
+                                        <div class="kd-chart-color-secondary">{{chart.version}}</div>
+                                        <p class="kd-chart-card-text-description kd-chart-color-secondary">{{chart.description}}</p>
+                                    </div>
                                 </md-card-content>
                             </md-card>
                         </md-grid-tile>

@@ -11,50 +11,42 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-$chart-color-white: #fff;
-$chart-border-color: #e7e7e7;
-$selected-chart-color: #3b78e7;
-
-$box-shadow-color: rgba(0, 0, 0, .12);
-$chart-desc-color: rgba(0, 0, 0, .54);
-
-.kd-chart-card {
-  -webkit-border-radius: 2px;
-  background: $chart-color-white;;
-  border: 1.1px solid $chart-border-color;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px $box-shadow-color;
-  height: 245px;
-  width: 250px;
-}
-
-.kd-chart-card-selected {
-  border: 2.1px solid $selected-chart-color;
-}
-
-.kd-chart-card-icon-image {
-  display: block;
-  height: 60px;
-  margin: 8px;
-  width: 60px;
-}
-
-.kd-chart-card-text-name {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 18px;
-  margin: 0;
-  max-height: 36px;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.kd-chart-card-description {
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.kd-chart-color-secondary {
-  color: $chart-desc-color !important;
-}
+// $chart-color-white: #fff;
+// $chart-border-color: #e7e7e7;
+// $selected-chart-color: #3b78e7;
+// $box-shadow-color: rgba(0, 0, 0, .12);
+// $chart-desc-color: rgba(0, 0, 0, .54);
+// .kd-chart-card {
+//   -webkit-border-radius: 2px;
+//   background: $chart-color-white;;
+//   border: 1.1px solid $chart-border-color;
+//   border-radius: 2px;
+//   box-shadow: 0 1px 3px $box-shadow-color;
+//   height: 245px;
+//   width: 250px;
+// }
+// .kd-chart-card-selected {
+//   border: 2.1px solid $selected-chart-color;
+// }
+// .kd-chart-card-icon-image {
+//   display: block;
+//   height: 60px;
+//   margin: 8px;
+//   width: 60px;
+// }
+// .kd-chart-card-text-name {
+//   font-size: 15px;
+//   font-weight: 500;
+//   line-height: 18px;
+//   margin: 0;
+//   max-height: 36px;
+//   overflow-x: auto;
+//   overflow-y: hidden;
+// }
+// .kd-chart-card-description {
+//   font-size: 13px;
+//   line-height: 18px;
+// }
+// .kd-chart-color-secondary {
+//   color: $chart-desc-color !important;
+// }
