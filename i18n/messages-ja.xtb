@@ -65,11 +65,6 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">Sign out</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">Sign in</translation>
-  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
-  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
-  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
-  <translation id="4039929196642814375" key="MSG_CHROME_NAV_NAV1_4" desc="AppStore menu entry.">AppStore</translation>
-  <translation id="7083028001351850780" key="MSG_CHROME_NAV_NAV1_5" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">Release</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">AppStore</translation>
@@ -1286,9 +1281,11 @@
     <ph name="CREATION_DATE"> ?????????</ph>
   </translation>
   <translation id="8862931483362562781" key="MSG_STORAGE_PVC_PVC_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
+  <translation id="2872020467602887390" key="MSG_STORAGE_PV_PV_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="2535854113910838278" key="MSG_STORAGE_STORAGECLASS_STORAGECLASS_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="7871062562617503964" key="MSG_STORAGE_STORAGE_0" desc="\u5B58\u50A8\u7C7B">存储类</translation>
   <translation id="4247160797730973959" key="MSG_STORAGE_STORAGE_1" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377">持久化存储卷</translation>
+  <translation id="2206587782300213730" key="MSG_STORAGE_STORAGE_2" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377\u58F0\u660E">持久化存储卷声明</translation>
   <translation id="4455224191195228523" key="MSG_THIRDPARTYRESOURCEDETAIL_DETAIL_0" desc="Title for objects card zerostate in third party resource details page.">????????????????????????????????????</translation>
   <translation id="1909818214822603215" key="MSG_THIRDPARTYRESOURCEDETAIL_DETAIL_1" desc="Text for objects card zerostate in third party resource details page.">There are currently no instances of Third Party Resource.</translation>
   <translation id="8145942852314005903" key="MSG_THIRDPARTYRESOURCEDETAIL_INFO_0" desc="Header in a detail view">??????</translation>

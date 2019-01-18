@@ -74,6 +74,9 @@ export class NavService {
                 case "chrome.storage.pvc":
                     lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
                     break;
+		 case "chrome.storage.pv":
+                    lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
+                    break;
                 case "chrome.net.service":
                     lastIndex = this.states_.lastIndexOf("chrome.net.service");
                     break;

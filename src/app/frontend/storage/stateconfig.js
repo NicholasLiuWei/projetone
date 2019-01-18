@@ -4,8 +4,10 @@ import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_ser
 import { stateName as storageName, stateUrl } from './state';
 import { storageController } from './controller';
 import { stateName as pvcStateName } from './pvc/state';
+import { stateName as pvStateName } from './pv/state';
 import { stateName as storageclassStateName } from './storageclass/state';
 import { pvcConfig } from './pvc/stateconfig';
+import { pvConfig } from './pv/stateconfig';
 import { storageclassConfig } from './storageclass/stateconfig';
 
 /**
@@ -32,6 +34,7 @@ export default function stateConfig($stateProvider) {
             },
         },
     });
+    $stateProvider.state(pvStateName, pvConfig);
     $stateProvider.state(pvcStateName, pvcConfig);
     $stateProvider.state(storageclassStateName, storageclassConfig);
 }

@@ -19,6 +19,7 @@ export default angular
     .config(stateConfig)
     .service('kdNamespaceService1', NamespaceService)
     .factory('kdStorageResource', storageClassListResource)
+    .factory('kdPVResource', persistentVolumeListResource)
     .factory('kdPVCResource', persistentVolumeClaimListResource);
 
 /**
@@ -37,4 +38,13 @@ function storageClassListResource($resource) {
  */
 function persistentVolumeClaimListResource($resource) {
     return $resource('api/v1/persistentvolumeclaim/default');
+}
+
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function persistentVolumeListResource($resource) {
+    return $resource('api/v1/persistentvolume');
 }
