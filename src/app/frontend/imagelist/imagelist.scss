@@ -9,3 +9,131 @@ md-card>md-card-header img {
     height: 100px;
     margin-left: 50px;
 }
+
+.md-block {
+    &>div {
+        color: red;
+    }
+}
+
+.add-workload {
+    text-align: right;
+    color: skyblue;
+    &>p {
+        display: inline-block;
+        cursor: pointer;
+        &>span {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin-right: 10px;
+            color: #ffffff;
+            background-color: #cccccc;
+            border-radius: 3px;
+        }
+    }
+}
+
+// -----------------------------------
+.md-padding {
+    background-color: #ffffff;
+    .content-box {
+        &>.create-tips {
+            margin: 20px 0;
+            padding: 20px 20px;
+            border: 1px solid #000000;
+        }
+        &>.creat {
+            background-color: #f0f0f0;
+            padding: 20px;
+            &>.custom-process,
+            &>.base-process {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 100%;
+                    border: 0.5px solid #000000;
+                    box-sizing: border-box;
+                }
+                &>p {
+                    background-color: #ffffff;
+                    padding: 10px 20px;
+                    z-index: 99;
+                }
+                &>.base-process-children-background,
+                &>.custom-process-children-background {
+                    background-color: rgb(204, 255, 255);
+                }
+            }
+        }
+    }
+}
+
+.layout-row,
+.layout-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    &>md-card {
+        width: 18% !important;
+        height: fit-content !important;
+        &>.list-content {
+            display: flex;
+            padding: 0;
+            &>div:first-child {
+                display: flex;
+                align-items: center;
+                width: 70px;
+                img {
+                    display: block;
+                    width: 100%;
+                }
+            }
+            &>div:nth-of-type(2) {
+                flex: 1;
+                padding: 10px;
+                &>p {
+                    margin: 0;
+                }
+                &>p:nth-of-type(1) {
+                    line-height: 30px;
+                }
+                &>.kd-chart-card-text-description {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                    height: 43px;
+                }
+            }
+        }
+    }
+}
+
+.name-color {
+    color: skyblue;
+}
+
+.ng-invalid {
+    padding: 10px 20px;
+    background-color: #ffffff;
+}
+
+.delete-btn {
+    padding: 5px 10px;
+    color: skyblue;
+    cursor: pointer;
+}
+
+.disable-class {
+    color: #cccccc;
+}
+
+md-input-container {
+    display: block;
+}

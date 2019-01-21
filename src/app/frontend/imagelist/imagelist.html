@@ -1,102 +1,272 @@
-<kd-content-card ng-if="!ctrl.showDeploynow">
-    <kd-title>[[基础镜像|基础镜像]]</kd-title>
-    <kd-content layout="row">
-        <!-- {{ctrl.choicedBaseimage.name}} -->
-        <!-- <md-radio-group ng-change="ctrl.choiceBaseimage(event)" ng-model="ctrl.choicedBaseimage" layout="row"> -->
-        <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" ng-click="ctrl.choiceBaseimage(image)">
-            <!-- <img ng-src="{{image.icon}}" class="md-card-image" alt="Washed Out"> -->
-            <md-card-content>
-                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
-                <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
-                <div class="kd-chart-color-secondary">{{image.tag}}</div>
-                <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
-            </md-card-content>
-            <!-- <md-radio-button flex ng-value="image" class="md-primary" aria-label="image.name">
-                </md-radio-button> -->
-        </md-card>
-        <!-- <md-radio-button ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" style="width:200px" flex ng-value="image" class="md-primary" aria-label="image.name">
-                <md-card style="wdith:200px;">
-                    <img ng-src="aaaaa" class="md-card-image" alt="Washed Out">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">{{image.name}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                </md-card>
-            </md-radio-button> -->
-        <!-- </md-radio-group> -->
-    </kd-content>
-    <kd-footer layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="ctrl.kdService.showS2IDialog(ctrl.choicedBaseimage)">[[S2I|S2I]]</md-button>
-    </kd-footer>
-</kd-content-card>
-<kd-content-card ng-if="!ctrl.showDeploynow">
-    <kd-title>[[自定义镜像|自定义镜像]]</kd-title>
-    <kd-content layout="row" layout-wrap>
-        <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
-            <!-- <img ng-src="{{image.icon}}" class="md-card-image" alt="Washed Out"> -->
-            <md-card-content>
-                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
-                <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
-                <div class="kd-chart-color-secondary">{{image.tag}}</div>
-                <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
-            </md-card-content>
-        </md-card>
-    </kd-content>
-    <kd-footer layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="ctrl.deploypre()">[[创建应用|创建应用]]</md-button>
-    </kd-footer>
-</kd-content-card>
-<form name="ctrl.form" ng-if="ctrl.showDeploynow" ng-submit="ctrl.deploynow()">
-    <kd-content-card>
-        <kd-content class="kd-content-padded">
-            <md-input-container class="md-block">
-                <label>[[应用名称|应用名称]]</label>
-                <input name="releasename" type="text" required repeat ng-model="ctrl.releasename">
-                <div ng-messages="ctrl.form.releasename.$error">
-                    <div ng-message="repeat">
-                        [[名字重复|部署应用名字重复提示]]
-                    </div>
-                </div>
-            </md-input-container>
-            <md-button class="md-raised" type="submit">[[创建|创建]]</md-button>
-            <md-button class="md-raised" ng-click="ctrl.showadvanced()">[[显示高级|显示高级]]</md-button>
-        </kd-content>
-    </kd-content-card>
-    <kd-app-panel ng-if="ctrl.kdService.show" ng-repeat="com in ctrl.kdService.value.content.components track by $index" component="com" index="$index"></kd-app-panel>
-    <kd-service ng-if="ctrl.kdService.show" ng-repeat="service in ctrl.kdService.value.content.services track by $index" index="$index" service="service"></kd-service>
-    <kd-content-card ng-if="ctrl.kdService.show">
-        <kd-title>ingress</kd-title>
-        <kd-content class="kd-content-padded">
-            <kd-help-section>
-                <md-input-container class="md-block">
-                    <label>[[是否配置|是否配置]]</label>
-                    <md-select name="type" ng-model="ctrl.kdService.value.content.ingress.enabled">
-                        <md-option value="true">是</md-option>
-                        <md-option value="false">否</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container class="md-block" ng-if="ctrl.kdService.value.content.ingress.enabled=='true'">
-                    <label>[[地址|地址]]</label>
-                    <input type="text" required ng-model="ctrl.kdService.value.content.ingress.host" />
-                </md-input-container>
-                <md-input-container class="md-block" ng-if="ctrl.kdService.value.content.ingress.enabled=='true'">
-                    <label>[[服务端口|服务端口]]</label>
-                    <input type="number" required ng-model="ctrl.kdService.value.content.ingress.servicePort" />
-                </md-input-container>
-                <md-input-container class="md-block" ng-if="ctrl.kdService.value.content.ingress.enabled=='true'">
-                    <label>[[服务名字|服务名字]]</label>
-                    <md-select ng-model="ctrl.kdService.value.content.ingress.servicename" multiple="false">
-                        <md-option selected ng-repeat="service in ctrl.kdService.value.content.services track by $index" ng-value="service.name">{{service.name}}</md-option>
-                    </md-select>
-                    <!-- <input type="text" required ng-model="ctrl.kdService.value.content.ingress.servicename" /> -->
-                </md-input-container>
-                <kd-user-help style="width: 40%;">
-                </kd-user-help>
-            </kd-help-section>
-        </kd-content>
-    </kd-content-card>
-    <div>
+<md-content class="md-padding">
+    <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="ctrl.currentNavItem">
+        <md-nav-item md-nav-click="ctrl.tablesBaseClick()" name="base">
+            [[基础镜像|基础镜像imagelist]]
+        </md-nav-item>
+        <md-nav-item md-nav-click="ctrl.tablesCustomClick()" name="custom">
+            [[自定义镜像|自定义镜像imagelist]]
+        </md-nav-item>
+    </md-nav-bar>
+    <div class="content-box" ng-if="ctrl.show">
+        <div class="create-tips">
+            [[创建镜像|创建镜像imagelist]]： 用户可以使用基础镜像创建自定义镜像，xxxxxxxxxx1
+        </div>
+        <div class="creat">
+            <div class="base-process">
+                <p class="base-process-children-background">[[第一步：选择基础镜像|第一步：选择基础镜像imagelist]]</p>
+                <p>[[第二步：选择git库地址和分支|第二步：选择git库地址和分支imagelist]]</p>
+                <p>[[第三步：输入自定义镜像名称，开始创建|第三步：输入自定义镜像名称，开始创建imagelist]]</p>
+            </div>
+            <div ng-if="ctrl.baseShowNum == 1? true:false">
+                <kd-content layout="row">
+                    <md-card class="kd-chart-card" ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" ng-click="ctrl.choiceBaseimage(image)">
+                        <md-card-content class="list-content">
+                            <div>
+                                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
+                            </div>
+                            <div>
+                                <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
+                                <p class="kd-chart-color-secondary">{{image.tag}}</p>
+                                <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </kd-content>
 
+                <kd-footer layout="row" layout-align="end center">
+                    <md-button class="md-raised" ng-click="ctrl.fCreateBaseImagePre(ctrl.choicedBaseimage)">[[下一步|下一步imagelist]]</md-button>
+                    <!-- <md-button class="md-raised" ng-click="ctrl.kdService.showS2IDialog(ctrl.choicedBaseimage)">[[S2I|S2I]]</md-button> -->
+                </kd-footer>
+            </div>
+            <div ng-if="ctrl.baseShowNum == 2? true:false">
+                <md-input-container class="md-block">
+                    <label>[[仓库地址|仓库地址imagelist]]</label>
+                    <input name="releasename" type="text" ng-change="ctrl.fInputChangeUrl(ctrl.baseImages.url)" required repeat ng-model="ctrl.baseImages.url">
+                    <div ng-if="ctrl.oBaseFillInFields.url">
+                        [[请填写此字段|请填写此字段imagelist]]
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>[[仓库分支|仓库分支imagelist]]</label>
+                    <input name="releasename" type="text" ng-change="ctrl.fInputChangeBranch(ctrl.baseImages.branch)" required repeat ng-model="ctrl.baseImages.branch">
+                    <div ng-if="ctrl.oBaseFillInFields.branch">
+                        [[请填写此字段|请填写此字段imagelist]]
+                    </div>
+                    <!-- <div ng-messages="ctrl.form.releasename.$error">
+                        <div ng-message="repeat">
+                            [[名字重复|部署应用名字重复提示]]
+                        </div>
+                    </div> -->
+                </md-input-container>
+                <kd-footer layout="row" layout-align="end center">
+                    <md-button class="md-raised" ng-click="ctrl.fPreviousStep()">[[上一步|上一步imagelist]]</md-button>
+                    <md-button class="md-raised" ng-click="ctrl.fInputMsgPre()">[[下一步|下一步imagelist]]</md-button>
+                </kd-footer>
+            </div>
+            <div ng-if="ctrl.baseShowNum == 3? true:false">
+                <md-input-container class="md-block">
+                    <label>[[输入自定义镜像名称|输入自定义镜像名称imagelist]]</label>
+                    <input name="releasename" type="text" ng-change="ctrl.fInputChangeName(ctrl.baseImages.name)" required repeat ng-model="ctrl.baseImages.name">
+                    <div ng-if="ctrl.oBaseFillInFields.name">
+                        [[请填写此字段|请填写此字段imagelist]]
+                    </div>
+                </md-input-container>
+                <kd-footer layout="row" layout-align="end center">
+                    <md-button class="md-raised" ng-click="ctrl.fPreviousStep()">[[上一步|上一步imagelist]]</md-button>
+                    <md-button class="md-raised" ng-click="ctrl.fBaseImagePre()">[[开始创建|开始创建imagelist]]</md-button>
+                </kd-footer>
+            </div>
+        </div>
     </div>
-</form>
+    <div class="content-box" ng-if="!ctrl.show">
+        <div class="create-tips">
+            [[创建应用|创建应用imagelist]]： 用户可以使用基础镜像创建自定义镜像，xxxxxxxxxx2
+        </div>
+        <div class="creat">
+            <div class="custom-process">
+                <p class="custom-process-children-background">[[第一步：输入应用名称|第一步：输入应用名称imagelist]]</p>
+                <p>[[第二步：创建工作负载|第二步：创建工作负载imagelist]]</p>
+                <p>[[第三步：创建服务|第三步：创建服务imagelist]]</p>
+                <p>[[第四步：创建服务入口|第四步：创建服务入口imagelist]]</p>
+            </div>
+            <div ng-if="ctrl.customShowNum == 1? true:false">
+                <!-- <kd-content-card ng-if="ctrl.showNum == 1? true:false"> -->
+                <kd-content layout="row" layout-wrap>
+                    <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
+                        <md-card-content class="list-content">
+                            <div>
+                                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
+                            </div>
+                            <div>
+                                <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
+                                <p class="kd-chart-color-secondary">{{image.tag}}</p>
+                                <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </kd-content>
+                <!-- </kd-content-card> -->
+
+                <md-input-container class="md-block">
+                    <label>[[应用名称|应用名称]]</label>
+                    <input name="releasename" type="text" ng-change="ctrl.fCustomInputChangeName(ctrl.customImages.name)" required repeat ng-model="ctrl.customImages.name">
+                    <div ng-if="ctrl.oCustomFillInFields.name">
+                        [[请填写此字段|请填写此字段imagelist]]
+                    </div>
+                    <div ng-messages="ctrl.form.releasename.$error">
+                        <div ng-message="repeat">
+                            [[名字重复|部署应用名字重复提示]]
+                        </div>
+                    </div>
+                </md-input-container>
+                <!-- <md-input-container class="md-block">
+                    <label>输入应用名称</label>
+                    <input>
+                </md-input-container> -->
+                <kd-footer layout="row" layout-align="end center">
+                    <md-button class="md-raised" ng-click="ctrl.deploypre(ctrl.customImages.name)">[[创建应用|创建应用]]</md-button>
+                </kd-footer>
+            </div>
+            <div ng-if="ctrl.customShowNum == 2? true:false">
+                <kd-resource-card-list ng-if="ctrl.creatWorkloadNum==1?true:false" selectable="false" with-statuses="false" object-meta="{name:'alert'}">
+                    <kd-resource-card-header-columns>
+                        <kd-resource-card-header-column size="medium">
+                            [[工作负载名称|工作负载名称imagelist]]
+                        </kd-resource-card-header-column>
+                        <kd-resource-card-header-column size="small">
+                            [[类型|类型]]
+                        </kd-resource-card-header-column>
+                        <kd-resource-card-header-column size="small">
+                            [[镜像|镜像imagelist]]
+                        </kd-resource-card-header-column>
+                        <kd-resource-card-header-column size="medium">
+                            [[是否自动扩容|是否自动扩容imagelist]]
+                        </kd-resource-card-header-column>
+                        <kd-resource-card-header-column size="medium">
+                            [[操作|操作]]
+                        </kd-resource-card-header-column>
+                    </kd-resource-card-header-columns>
+                    <kd-resource-card ng-repeat="msg in ctrl.kdService.value.content.components track by $index" index="$index" object-meta="{name:'alert'}" type-meta="{name:'alert'}">
+                        <!-- <kd-resource-card ng-repeat="email in $ctrl.emailList track by $index"> -->
+                        <kd-resource-card-columns>
+                            <kd-resource-card-column class="name-color" ng-click="ctrl.fSeeMsg(msg)">
+                                <!-- {{email}} -->{{msg.name}}
+                            </kd-resource-card-column>
+                            <kd-resource-card-column>
+                                <!-- {{email}} -->{{msg.appType}}
+                            </kd-resource-card-column>
+                            <kd-resource-card-column>
+                                <!-- {{email}} -->{{msg.images[0].repository}}
+                            </kd-resource-card-column>
+                            <kd-resource-card-column>
+                                <!-- {{email}} -->{{msg.hpa.enabled == true?"是":"否"}}
+                            </kd-resource-card-column>
+                            <kd-resource-card-column>
+                                <div>
+                                    <span class="delete-btn" ng-class="ctrl.kdService.value.content.components.length<=1? 'disable-class':''" ng-click="ctrl.fDeleteComponent($event,$index)" class="md-raised">[[删除|删除]]</span>
+                                    <!-- <md-button ng-click="ctrl.delete(email)" class="md-raised">[[删除|删除]]</md-button> -->
+                                </div>
+                            </kd-resource-card-column>
+                        </kd-resource-card-columns>
+                    </kd-resource-card>
+                    <div class="add-workload">
+                        <p ng-click="ctrl.fAddWorkloadInit()">
+                            <span>+</span>[[添加工作负载|添加工作负载imagelist]]
+                        </p>
+                    </div>
+                    <kd-footer layout="row" layout-align="end center">
+                        <md-button class="md-raised" ng-click="ctrl.fCustomPreviousStep()">[[上一步|上一步imagelist]]</md-button>
+                        <md-button class="md-raised" ng-click="ctrl.deployWorkload()">[[下一步|下一步imagelist]]</md-button>
+                    </kd-footer>
+                </kd-resource-card-list>
+                <div ng-if="ctrl.creatWorkloadNum==2?true:false">
+                    <kd-app-panel ng-repeat="com in ctrl.oWorkloadComponent track by $index" component="com" index="$index"></kd-app-panel>
+                    <kd-footer layout="row" layout-align="end center" style="margin-top: 20px;">
+                        <md-button class="md-raised" ng-click="ctrl.fWorkloadInit()">[[确定|确定imagelist]]</md-button>
+                    </kd-footer>
+                </div>
+                <form validate name="ctrl.oWorkload" ng-if="ctrl.creatWorkloadNum==3?true:false">
+                    <md-input-container>
+                        <label>[[工作负载名称|工作负载名称imagelist]]</label>
+                        <input name="name" ng-model="ctrl.oWorkloadName" required>
+                        <div ng-messages="ctrl.oWorkload.name.$error">
+                            <div ng-message="required">[[This is required!|This is required!imagelist]]</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>[[工作负载类型|工作负载类型imagelist]]</label>
+                        <md-select ng-model="ctrl.selectedUser">
+                            <md-option ng-value="opt" ng-repeat="opt in ctrl.types">{{ opt }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>[[镜像地址|镜像地址imagelist]]</label>
+                        <input name="url" ng-model="ctrl.oWorkloadUrl" required>
+                        <div ng-messages="ctrl.oWorkload.url.$error">
+                            <div ng-message="required">[[This is required!|This is required!imagelist]]</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>[[版本号|版本号imagelist]]</label>
+                        <input name="version" ng-model="ctrl.oWorkloadVersion" required>
+                        <div ng-messages="ctrl.oWorkload.version.$error">
+                            <div ng-message="required">[[This is required!|This is required!imagelist]]</div>
+                        </div>
+                    </md-input-container>
+                    <kd-footer layout="row" layout-align="end center">
+                        <md-button class="md-raised" ng-click="ctrl.fCancelCreatWorkload()">[[取消|取消imagelist]]</md-button>
+                        <md-button class="md-raised" ng-click="ctrl.fAddWorkload()">[[确定|确定imagelist]]</md-button>
+                    </kd-footer>
+                </form>
+            </div>
+            <div ng-if="ctrl.customShowNum == 3? true:false">
+                <!-- <kd-service ng-repeat="service in ctrl.aWorkloadServices track by $index" index="$index" service="service"></kd-service> -->
+                <kd-service ng-repeat="service in ctrl.kdService.value.content.services track by $index" index="$index" service="service"></kd-service>
+                <kd-footer layout="row" layout-align="end center" style="margin-top: 20px;">
+                    <md-button class="md-raised" ng-click="ctrl.fCustomPreviousStep()">[[上一步|上一步imagelist]]</md-button>
+                    <md-button class="md-raised" ng-click="ctrl.deployService()">[[下一步|下一步imagelist]]</md-button>
+                </kd-footer>
+            </div>
+            <div ng-if="ctrl.customShowNum == 4? true:false">
+                <kd-content-card>
+                    <kd-title>ingress</kd-title>
+                    <kd-content class="kd-content-padded">
+                        <kd-help-section layout="row">
+                            <md-input-container class="md-block">
+                                <label>[[是否配置|是否配置]]</label>
+                                <md-select name="type" ng-model="ctrl.oWorkloadIngress.enabled">
+                                    <md-option value="true">[[是|是imagelist]]</md-option>
+                                    <md-option value="false">[[否|否imagelist]]</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
+                                <label>[[地址|地址]]</label>
+                                <input type="text" required ng-model="ctrl.oWorkloadIngress.host" />
+                            </md-input-container>
+                            <md-input-container class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
+                                <label>[[服务端口|服务端口]]</label>
+                                <input type="number" required ng-model="ctrl.oWorkloadIngress.servicePort" />
+                            </md-input-container>
+                            <md-input-container class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
+                                <label>[[服务名字|服务名字]]</label>
+                                <md-select ng-model="ctrl.oWorkloadIngress.servicename" multiple="false">
+                                    <md-option selected ng-repeat="service in ctrl.kdService.value.content.services track by $index" ng-value="service.name">{{service.name}}</md-option>
+                                </md-select>
+                                <!-- <input type="text" required ng-model="ctrl.oWorkloadIngress.servicename" /> -->
+                            </md-input-container>
+                            <kd-user-help style="width: 40%;">
+                            </kd-user-help>
+                        </kd-help-section>
+                    </kd-content>
+                </kd-content-card>
+                <kd-footer layout="row" layout-align="end center" style="margin-top: 20px;">
+                    <md-button class="md-raised" ng-click="ctrl.fCustomPreviousStep()">[[上一步|上一步imagelist]]</md-button>
+                    <md-button class="md-raised" ng-click="ctrl.deployServiceAfter()">[[下一步|下一步imagelist]]</md-button>
+                </kd-footer>
+            </div>
+
+            <!-- <kd-service ng-repeat="service in ctrl.kdService.value.content.services track by $index" index="$index" service="service"></kd-service> -->
+
+        </div>
+    </div>
+</md-content>

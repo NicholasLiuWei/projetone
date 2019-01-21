@@ -29,7 +29,7 @@ export default class AppController {
     $onInit() {
         /** @type {string} */
         this.initvalue = JSON.stringify(this.component);
-        console.log(this.component);
+        // console.log(this.component);
     }
 
     /** @export */
