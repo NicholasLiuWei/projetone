@@ -981,7 +981,7 @@ func (apiHandler *APIHandler) handleUseRate(equest *restful.Request, response *r
 //cpu_use_rate
 func cpuUseRate() (interface{}, error) {
 	var cephResp = &CephRespFloat{}
-	respData, err := http.Get(`http://127.0.0.1:30090/api/v1/query?query=sum(smart_cpu_seconds_total{mode!="idle"})/sum(smart_cpu_seconds_total)`)
+	respData, err := http.Get(`http://127.0.0.1:30090/api/v1/query?query=sum(irate(smart_cpu_seconds_total{mode!="idle"}[1m]))/sum(irate(smart_cpu_seconds_total[1m]))`)
 	if respData != nil {
 		defer respData.Body.Close()
 	}
