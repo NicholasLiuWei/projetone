@@ -5,9 +5,9 @@
         <div ng-class="ctrl.active('chrome.monitoring.setting')?'warn-list-item router-link-exact-active active':'warn-list-item'">
             <a href="#!/monitoring/setting?namespace=default">[[告警设置|告警设置]]</a></div>
     </div>
-    <kd-content-card flex-offset="5" flex="80">
-        <kd-content>
-            <ui-view></ui-view>
-        </kd-content>
-    </kd-content-card>
+    <div flex-offset="5" flex="80" style="border:1px solid rgba(0,0,0,0.12);border-radius:2px;">
+        <!-- <kd-content> -->
+        <ui-view></ui-view>
+        <!-- </kd-content> -->
+    </div>
 </div>

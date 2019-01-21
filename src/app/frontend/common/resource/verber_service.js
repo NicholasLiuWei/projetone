@@ -124,9 +124,13 @@
      * @return {string}
      */
     function getRawResourceUrl(typeMeta, objectMeta) {
+        console.log(typeMeta, objectMeta)
         let resourceUrl = `api/v1/_raw/${typeMeta.kind}`;
         if (typeMeta.kind == "release") {
             resourceUrl = `api/v1/helm/_raw/${typeMeta.kind}`;
+        }
+        if (typeMeta.kind == "repository") {
+            resourceUrl = `api/v1/helm/${typeMeta.kind}/namespace/default`;
         }
         if (objectMeta.namespace !== undefined) {
             resourceUrl += `/namespace/${objectMeta.namespace}`;
