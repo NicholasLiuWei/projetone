@@ -61,11 +61,6 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">退出</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">登录</translation>
-  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
-  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">服务器</translation>
-  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">应用</translation>
-  <translation id="4039929196642814375" key="MSG_CHROME_NAV_NAV1_4" desc="AppStore menu entry.">应用商店</translation>
-  <translation id="7083028001351850780" key="MSG_CHROME_NAV_NAV1_5" desc="Repositories menu entry.">仓库设置</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">应用</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">应用商店</translation>
@@ -879,7 +874,7 @@
   <translation id="4669931994584774261" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARDLIST_5" desc="Label \'Age\' which appears as a column label in the table of persistent volume claims (persistent volume claim list view).">已创建</translation>
   <translation id="5605513756759404025" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARD_0" desc="Tooltip text which appears on error icon hover.">This claim is in lost state</translation>
   <translation id="7813004235196632560" key="MSG_PERSISTENTVOLUMECLAIMLIST_PERSISTENTVOLUMECLAIMCARD_1" desc="Tooltip text which appears on pending icon hover.">This claim is in pending state</translation>
-  <translation id="5690741977032012793" key="MSG_PERSISTENTVOLUMEDETAIL_ACTIONBAR_0" desc="Label \'Persistent Volume\' which appears at the top of the delete dialog, opened from a config map details page.">Persistent Volume</translation>
+  <translation id="5690741977032012793" key="MSG_PERSISTENTVOLUMEDETAIL_ACTIONBAR_0" desc="Label \'Persistent Volume\' which appears at the top of the delete dialog, opened from a config map details page.">持久化存储卷</translation>
   <translation id="531832117748275245" key="MSG_PERSISTENTVOLUMEDETAIL_PERSISTENTVOLUMEINFO_0" desc="Header in a detail view">Details</translation>
   <translation id="1042932866818648035" key="MSG_PERSISTENTVOLUMEDETAIL_PERSISTENTVOLUMEINFO_1" desc="Persistent volume info details section status entry.">Status</translation>
   <translation id="3081126042784159012" key="MSG_PERSISTENTVOLUMEDETAIL_PERSISTENTVOLUMEINFO_2" desc="Persistent volume info details section claim entry.">Claim</translation>
@@ -932,17 +927,17 @@
   <translation id="1466148946164734921" key="MSG_PERSISTENTVOLUMEDETAIL_PERSISTENTVOLUMESOURCEINFO_7" desc="Persistent volume source info GCE persistent disk section read only entry.">Read only</translation>
   <translation id="6954190418538076190" key="MSG_PERSISTENTVOLUMEDETAIL_PERSISTENTVOLUMESOURCEINFO_8" desc="Persistent volume source info AWS block storage title.">AWS block storage</translation>
   <translation id="3089720526397196800" key="MSG_PERSISTENTVOLUMEDETAIL_PERSISTENTVOLUMESOURCEINFO_9" desc="Persistent volume source info AWS block storage section volume ID entry.">Volume ID</translation>
-  <translation id="2627082729510018572" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_0" desc="Label which appears above the list of such objects.">Persistent Volumes</translation>
-  <translation id="7472422284700775984" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_1" desc="Persistent volume list header: name.">Name</translation>
+  <translation id="2627082729510018572" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_0" desc="Label which appears above the list of such objects.">持久化存储卷</translation>
+  <translation id="7472422284700775984" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_1" desc="Persistent volume list header: name.">名称</translation>
   <translation id="9011785450606292423" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_2" desc="Persistent volume list header: labels.">标签</translation>
-  <translation id="4446374425136765370" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_3" desc="Persistent volume list header: capacity.">Capacity</translation>
-  <translation id="4735181473292260665" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_4" desc="Persistent volume list header: access modes.">Access modes</translation>
-  <translation id="8441317291018454797" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_5" desc="Persistent volume list header: status.">Status</translation>
+  <translation id="4446374425136765370" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_3" desc="Persistent volume list header: capacity.">容量</translation>
+  <translation id="4735181473292260665" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_4" desc="Persistent volume list header: access modes.">访问模式</translation>
+  <translation id="8441317291018454797" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_5" desc="Persistent volume list header: status.">状态</translation>
   <translation id="1065531234461755448" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_6" desc="Persistent volume list header: claim.">Claim</translation>
   <translation id="8185353957042898352" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_7" desc="Persistent volume list header: reason.">Reason</translation>
   <translation id="2604157972664563506" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_8" desc="Persistent volume list header: age.">Age</translation>
-  <translation id="4506741016926991795" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARD_0" desc="Label \'Persistent Volume\' which will appear in the persistent volume delete dialog opened from a persistentvolume card on the list page.">Persistent Volume</translation>
-  <translation id="6677838767738117816" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARD_1" desc="Label \'Persistent Volume\' which will appear in the persistent volume delete dialog opened from a persistentvolume card on the list page.">Persistent Volume</translation>
+  <translation id="4506741016926991795" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARD_0" desc="Label \'Persistent Volume\' which will appear in the persistent volume delete dialog opened from a persistentvolume card on the list page.">持久化存储卷</translation>
+  <translation id="6677838767738117816" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARD_1" desc="Label \'Persistent Volume\' which will appear in the persistent volume delete dialog opened from a persistentvolume card on the list page.">持久化存储卷</translation>
   <translation id="6860347532246002287" key="MSG_PERSISTENT_VOLUME_CLAIM_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of persistent volume claim.">创建于 <ph name="CREATION_DATE"/></translation>
   <translation id="7869718532150162176" key="MSG_PERSISTENT_VOLUME_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of persistent volume.">创建于 <ph name="CREATION_DATE"/></translation>
   <translation id="2274539880532747000" key="MSG_PODDETAIL_ACTIONBAR_0" desc="Label \'Pod\' which appears at the top of the delete dialog, opened from a pod details page.">容器</translation>
@@ -1250,9 +1245,11 @@
   <translation id="310605795325552510" key="MSG_STORAGECLASSLIST_CARD_1" desc="Label \'Storage Class\' which will appear in the storage class delete dialog opened from a storageclass card on the list page.">Storage Class</translation>
   <translation id="2857396329294182623" key="MSG_STORAGE_CLASS_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of storage class.">创建于 <ph name="CREATION_DATE"/></translation>
   <translation id="8862931483362562781" key="MSG_STORAGE_PVC_PVC_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
+  <translation id="2872020467602887390" key="MSG_STORAGE_PV_PV_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="2535854113910838278" key="MSG_STORAGE_STORAGECLASS_STORAGECLASS_0" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="7871062562617503964" key="MSG_STORAGE_STORAGE_0" desc="\u5B58\u50A8\u7C7B">存储类</translation>
   <translation id="4247160797730973959" key="MSG_STORAGE_STORAGE_1" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377">持久化存储卷</translation>
+  <translation id="2206587782300213730" key="MSG_STORAGE_STORAGE_2" desc="\u6301\u4E45\u5316\u5B58\u50A8\u5377\u58F0\u660E">持久化存储卷声明</translation>
   <translation id="4455224191195228523" key="MSG_THIRDPARTYRESOURCEDETAIL_DETAIL_0" desc="Title for objects card zerostate in third party resource details page.">没有内容显示</translation>
   <translation id="1909818214822603215" key="MSG_THIRDPARTYRESOURCEDETAIL_DETAIL_1" desc="Text for objects card zerostate in third party resource details page.">There are currently no instances of Third Party Resource.</translation>
   <translation id="8145942852314005903" key="MSG_THIRDPARTYRESOURCEDETAIL_INFO_0" desc="Header in a detail view">Details</translation>
