@@ -192,6 +192,7 @@ func (s *AlertStore) postHandler(w http.ResponseWriter, r *http.Request) {
 		//log.Printf("after alert postHandler writeDB!")
 	}
 
+	log.Println("write messages to alert channel!")
         sendChan <- &m
 }
 
