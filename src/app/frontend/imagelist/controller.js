@@ -189,12 +189,12 @@ export class imagelistController {
                 this.oBaseFillInFields.branch = false;
                 this.baseShowNum++;
                 this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-                let msg = {
-                    "gitUrl": this.baseImages.url,
-                    "gitBranch": this.baseImages.branch,
-                    "builderImg": this.oBaseImageMsg["url"],
-                    "imageTag": this.baseImages.name
-                }
+                // let msg = {
+                //     "gitUrl": this.baseImages.url,
+                //     "gitBranch": this.baseImages.branch,
+                //     "builderImg": this.oBaseImageMsg["url"],
+                //     "imageTag": this.baseImages.name
+                // }
             }
         }
         /**
@@ -376,6 +376,8 @@ export class imagelistController {
                 "releaseName": this.deploymentSpec.releaseName,
                 "content": JSON.stringify(content)
             }
+            this.customShowNum = 1;
+            this.nextClassNameShow(document.getElementsByClassName("custom-process-children-background")[0]);
             let resource = this.resource('api/v1/helm/deploychartnow', {}, { save: { method: 'POST', } });
             resource.save(
                 deploynowData,
@@ -407,8 +409,6 @@ export class imagelistController {
                         name: ""
                     };
                 })
-            this.customShowNum = 1;
-            this.nextClassNameShow(document.getElementsByClassName("custom-process-children-background")[0]);
         }
         /**
          * @private
@@ -416,8 +416,8 @@ export class imagelistController {
     onEditReleaseSuccess_() {
         this.log_.info(`Successfully update release`);
         /** @type {string} @desc release 更新成功 */
-        let MSG_image_s2i_success_title = goog.getMsg('更新成功');
-        this.toastr["success"](MSG_image_s2i_success_title, 0, {
+        let MSG_image_imagelist_success_title = goog.getMsg('更新成功');
+        this.toastr["success"](MSG_image_imagelist_success_title, 0, {
             closeButton: true,
             timeOut: 10000,
         });
@@ -434,8 +434,8 @@ export class imagelistController {
     onEditReleaseError_(err) {
         this.log_.error(err);
         /** @type {string} @desc release 更新失败 */
-        let MSG_image_s2i_error_title = goog.getMsg('更新失败');
-        this.toastr["warning"](MSG_image_s2i_error_title, 0, {
+        let MSG_image_imagelist_error_title = goog.getMsg('更新失败');
+        this.toastr["warning"](MSG_image_imagelist_error_title, 0, {
             closeButton: true,
             timeOut: 10000,
         });
@@ -468,5 +468,5 @@ export class imagelistController {
 
 const i18n = {
     /** @export {string} @desc imagelist */
-    MSG_IMAGELIST_TEST: goog.getMsg('imagelist'),
+    MSG_IMAGELIST_TEST: goog.getMsg('imagelist')
 };
