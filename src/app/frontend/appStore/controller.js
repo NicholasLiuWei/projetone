@@ -18,7 +18,7 @@ export class AppStoreController {
      * @ngInject
      */
 
-    constructor($log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout) {
+    constructor($log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
             this.form = 'form';
 
             this.file = { name: '', content: '' };
@@ -49,6 +49,7 @@ export class AppStoreController {
             this.repos = [];
 
             this.getRepos();
+            this.state = $state;
             /** @export */
             this.selectedRepos = '';
             /** @export */
@@ -158,7 +159,7 @@ export class AppStoreController {
                                 if (response.error > 0) {
                                     this.errorDialog_.open(MSG_chart_deployment_partly, response.error);
                                 }
-                                this.kdHistoryService_.back(release);
+                                this.state.go(release);
                             },
                             (err) => {
                                 this.disable = false;
