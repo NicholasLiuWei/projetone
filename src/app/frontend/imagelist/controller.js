@@ -1,4 +1,3 @@
-import { timingSafeEqual } from "crypto";
 /**
  * Controller for the imagelist view. The view shows base images and user images.
  * The image can be used when creating release.
@@ -13,7 +12,7 @@ export class imagelistController {
      * @param {!Object} errorDialog
      * @ngInject
      */
-    constructor($state, $log, $mdDialog, $resource, $q, errorDialog, kdService, baseimageList, normalimageList) {
+    constructor($state, $log, $mdDialog, $resource, toastr, $q, errorDialog, kdService, baseimageList, normalimageList) {
             /** @export */
             this.i18n = i18n;
 
@@ -39,6 +38,7 @@ export class imagelistController {
             this.kdService = kdService;
 
             /** @export */
+            this.toastr = toastr;
             // this.showDeploynow = false;
 
             /** @export {string} */
@@ -57,7 +57,7 @@ export class imagelistController {
             /** @export */
             this.show = true;
             /** @export */
-            this.oBaseImageMsg;
+            this.oBaseImageMsg = {};
             /** @export */
             this.baseImages = {
                 branch: "",
@@ -118,7 +118,7 @@ export class imagelistController {
                     servicename: "bbb11"
                 }
                 /** @export */
-            this.deploymentSpec;
+            this.deploymentSpec = {};
             /** @export */
             this.oWorkloadIngress;
         }
@@ -325,7 +325,7 @@ export class imagelistController {
                 currrentComponent.appType = this.selectedUser;
                 currrentComponent.url = this.oWorkloadUrl;
                 currrentComponent.version = this.oWorkloadVersion;
-                this.kdService.value["content"].components.push(currrentComponent);
+                this.kdService.value["content"]["components"].push(currrentComponent);
                 this.oWorkloadName = "";
                 this.oWorkloadUrl = "";
                 this.oWorkloadVersion = "";
@@ -364,7 +364,7 @@ export class imagelistController {
          */
     deployServiceAfter() {
             let content = {};
-            content['components'] = this.kdService.value["content"].components;
+            content['components'] = this.kdService.value["content"]["components"];
             content['ingress'] = this.oWorkloadIngress;
             content['services'] = this.kdService.value.content.services;
             let deploynowData = {
