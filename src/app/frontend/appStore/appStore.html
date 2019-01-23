@@ -192,17 +192,17 @@
                     </kd-content>
                 </kd-content-card>
             </div>
-            <div>
+            <div ng-if="ctrl.deployCon.hasOwnProperty('platform')">
                 <kd-content-card>
                     <kd-title>[[Deployment platform|App Store 部署平台]]</kd-title>
                     <kd-content class="kd-content-padded">
                         <kd-help-section>
                             <md-input-container>
                                 <label>[[Deployment platform|App Store 部署平台]]</label>
-                                <md-select ng-model="ctrl.platform">
-                                    <md-option selected value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
-                                    <md-option value="ARM64">[[ARM64|App Store ARM64]]</md-option>
-                                    <md-option value="X86">[[X86|App Store X86]]</md-option>
+                                <md-select ng-model="ctrl.deployCon.platform">
+                                    <md-option ng-disabled="ctrl.platform=='ARM64'||ctrl.platform=='X86'" value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
+                                    <md-option ng-disabled="ctrl.platform=='X86'" value="ARM64">[[ARM64|App Store ARM64]]</md-option>
+                                    <md-option ng-disabled="ctrl.platform=='ARM64'" value="X86">[[X86|App Store X86]]</md-option>
                                 </md-select>
                             </md-input-container>
                             <kd-user-help style="width: 40%;">

@@ -64,7 +64,8 @@ export class AppStoreController {
             this.deployCon = {};
             /** @export */
             this.namespaceList = [];
-
+            /** @export platform */
+            this.platform = 'auto';
             this.getNamespaceList();
             /** @public */
             this.commitmes;
@@ -134,6 +135,20 @@ export class AppStoreController {
          */
     deploynow() {
             if (this.comform.$valid) {
+                switch this.deployCon["platform"] {
+                    case "X86":
+                        this.deployCon["arch"]["amd64"] = 'yes';
+                        this.deployCon["arch"]["arm64"] = 'no';
+                        break;
+                    case "ARM64":
+                        this.deployCon["arch"]["amd64"] = 'no';
+                        this.deployCon["arch"]["arm64"] = 'yes';
+                        break;
+                    case "auto":
+                        this.deployCon["arch"]["amd64"] = 'yes';
+                        this.deployCon["arch"]["arm64"] = 'yes';
+                        break;
+                }
                 this.commitmes.content = JSON.stringify(this.deployCon);
                 let mes = this.commitmes;
                 //console.log(mes);
@@ -281,6 +296,7 @@ export class AppStoreController {
                                 delete this.commitmes["$resolved"];
                                 delete this.commitmes["error"];
                                 let con = JSON.parse(response.content);
+                                this.platform = con["platform"];
                                 //delete con["resources"];
                                 //delete con["service"];
                                 //delete con["resourcesset"];
