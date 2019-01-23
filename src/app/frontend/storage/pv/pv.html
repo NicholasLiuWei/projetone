@@ -1,5 +1,4 @@
-<kd-persistent-volume-card-list persistent-volume-list="$ctrl.persistentVolumeList"
-                                        persistent-volume-list-resource="$ctrl.persistentVolumeListResource">
+<kd-persistent-volume-card-list persistent-volume-list="$ctrl.persistentVolumeList" persistent-volume-list-resource="$ctrl.persistentVolumeListResource">
 </kd-persistent-volume-card-list>
 
-<div style="height:200px;" ng-if="$ctrl.storageClassList.items.length==0">[[暂无信息|暂无信息]]</div>
+<div style="height:200px;" ng-if="$ctrl.persistentVolumeList.items.length==0">[[暂无信息|暂无信息]]</div>

@@ -933,9 +933,9 @@
   <translation id="4446374425136765370" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_3" desc="Persistent volume list header: capacity.">容量</translation>
   <translation id="4735181473292260665" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_4" desc="Persistent volume list header: access modes.">访问模式</translation>
   <translation id="8441317291018454797" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_5" desc="Persistent volume list header: status.">状态</translation>
-  <translation id="1065531234461755448" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_6" desc="Persistent volume list header: claim.">Claim</translation>
-  <translation id="8185353957042898352" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_7" desc="Persistent volume list header: reason.">Reason</translation>
-  <translation id="2604157972664563506" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_8" desc="Persistent volume list header: age.">Age</translation>
+  <translation id="1065531234461755448" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_6" desc="Persistent volume list header: claim.">声明</translation>
+  <translation id="8185353957042898352" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_7" desc="Persistent volume list header: reason.">原因</translation>
+  <translation id="2604157972664563506" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARDLIST_8" desc="Persistent volume list header: age.">时间</translation>
   <translation id="4506741016926991795" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARD_0" desc="Label \'Persistent Volume\' which will appear in the persistent volume delete dialog opened from a persistentvolume card on the list page.">持久化存储卷</translation>
   <translation id="6677838767738117816" key="MSG_PERSISTENTVOLUMELIST_PERSISTENTVOLUMECARD_1" desc="Label \'Persistent Volume\' which will appear in the persistent volume delete dialog opened from a persistentvolume card on the list page.">持久化存储卷</translation>
   <translation id="6860347532246002287" key="MSG_PERSISTENT_VOLUME_CLAIM_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of persistent volume claim.">创建于 <ph name="CREATION_DATE"/></translation>
