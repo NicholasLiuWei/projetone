@@ -66,6 +66,8 @@ export class AppStoreController {
             this.namespaceList = [];
             /** @export platform */
             this.platform = 'auto';
+            /** @export 支持的平台字符串 */
+            this.platformstr = "";
             this.getNamespaceList();
             /** @public */
             this.commitmes;
@@ -135,7 +137,7 @@ export class AppStoreController {
          */
     deploynow() {
             if (this.comform.$valid) {
-                switch this.deployCon["platform"] {
+                switch (this.deployCon["platform"]) {
                     case "X86":
                         this.deployCon["arch"]["amd64"] = 'yes';
                         this.deployCon["arch"]["arm64"] = 'no';
@@ -468,8 +470,27 @@ export class AppStoreController {
         }
         this.selectedChart = chartName;
         this.selectedCharts = chartName;
-    }
+        let deploymentSpec = {
+            chartURL: this.selectedChart,
+            releaseName: "test",
+            namespace: this.namespace,
+        };
 
+
+        /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
+        let resource = this.resource_('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST' } });
+        resource.save(
+            deploymentSpec,
+            (response) => {
+                let con = JSON.parse(response.content);
+                this.platformstr = con["platform"];
+                if (this.platformstr == 'auto') {
+                    this.platformstr = "ARM64 X86";
+                }
+            },
+            () => {});
+
+    }
 }
 
 const i18n = {
