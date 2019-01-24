@@ -82,6 +82,7 @@ export default class S2IDialogController {
                 "builderImg": this.image["url"],
                 "imageTag": this.imageTag,
             }
+            console.log(s2idata)
 
             let resource = this.resource_(`api/v1/helm/s2i`, {}, { save: { method: 'POST' } });
             resource.save(
