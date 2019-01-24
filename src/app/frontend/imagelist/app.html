@@ -16,18 +16,18 @@
         </md-menu>
     </kd-title>
     <kd-content class="kd-content-padded">
-        <kd-help-section>
-            <md-input-container class="md-block">
+        <div layout="row">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>[[应用类型|应用类型]]</label>
                 <input type="text" ng-model="$ctrl.component.appType" required>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>[[名称|应用名称]]</label>
                 <input type="text" ng-model="$ctrl.component.name" required>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>[[重启策略|重启策略]]</label>
                 <!-- <input type="text" ng-model="$ctrl.component.restartPolicy" required> -->
@@ -37,40 +37,40 @@
                     <md-option value="Never">Never</md-option>
                 </md-select>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>[[初始份数|初始份数]]</label>
                 <input type="number" ng-model="$ctrl.component.replicaCount" required>
             </md-input-container>
-            <kd-user-help style="width: 40%;">
-            </kd-user-help>
-        </kd-help-section>
+            <!-- <kd-user-help style="width: 40%;">
+            </kd-user-help> -->
+        </div>
         <kd-content-card>
             <kd-title>[[自动扩容|自动扩容]]</kd-title>
             <kd-content class="kd-content-padded">
-                <kd-help-section>
-                    <md-input-container class="md-block">
+                <div layout="row">
+                    <md-input-container flex class="md-block">
                         <label>[[是否配置|是否配置]]</label>
                         <md-select ng-model="$ctrl.component.hpa.enabled">
                             <md-option value="true">是</md-option>
                             <md-option value="false">否</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <label>[[最大份数|最大份数]]</label>
                         <input type="number" required ng-model="$ctrl.component.hpa.maxReplicas" />
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <label>[[最小份数|最小份数]]</label>
                         <input type="number" required ng-model="$ctrl.component.hpa.minReplicas" />
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <label>[[目标CPU利用率|目标CPU利用率]]</label>
                         <input type="number" required ng-model="$ctrl.component.hpa.targetAvgUtil" />
                     </md-input-container>
-                    <kd-user-help style="width: 40%;">
-                    </kd-user-help>
-                </kd-help-section>
+                    <!-- <kd-user-help style="width: 40%;">
+                    </kd-user-help> -->
+                </div>
             </kd-content>
         </kd-content-card>
         <kd-content-card ng-repeat="image in $ctrl.component.images track by $index" ng-init="outerIndex = $index;">
@@ -91,13 +91,13 @@
                 </md-menu>
             </kd-title>
             <kd-content class="kd-content-padded">
-                <kd-help-section>
+                <div layout="row">
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <label>[[地址|地址]]</label>
                         <input type="text" required ng-model="image.repository" />
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <label>[[拉取策略|拉取策略]]</label>
                         <!-- <input type="text" required ng-model="image.pullPolicy" /> -->
                         <md-select ng-model="image.pullPolicy">
@@ -106,48 +106,48 @@
                             <md-option value="Never">Never</md-option>
                         </md-select>
                     </md-input-container>
-                    <kd-user-help style="width: 40%;">
-                    </kd-user-help>
-                </kd-help-section>
-                <kd-help-section>
-                    <md-input-container class="md-block">
+                    <!-- <kd-user-help style="width: 40%;">
+                    </kd-user-help> -->
+                </div>
+                <div layout="row">
+                    <md-input-container flex class="md-block">
                         <label>[[参数|参数]]</label>
                         <textarea ng-model="image.args" md-maxlength="150" rows="2" required></textarea>
                     </md-input-container>
-                    <kd-user-help style="width: 10%;">
-                    </kd-user-help>
-                </kd-help-section>
-                <kd-help-section>
-                    <md-input-container class="md-block">
+                    <!-- <kd-user-help style="width: 10%;">
+                    </kd-user-help> -->
+                </div>
+                <div layout="row">
+                    <md-input-container flex class="md-block">
                         <label>[[命令|命令]]</label>
                         <textarea ng-model="image.command" md-maxlength="150" rows="2" required></textarea>
                     </md-input-container>
-                    <kd-user-help style="width: 10%;">
-                    </kd-user-help>
-                </kd-help-section>
+                    <!-- <kd-user-help style="width: 10%;">
+                    </kd-user-help> -->
+                </div>
                 <kd-content-card>
                     <kd-title>[[资源|资源]]</kd-title>
                     <kd-content class="kd-content-padded">
-                        <kd-help-section>
-                            <md-input-container class="md-block">
+                        <div layout="row">
+                            <md-input-container flex class="md-block">
                                 <label>[[限额CPU|限额CPU]]</label>
                                 <input type="text" required ng-model="image.resources.limits.cpu" />
                             </md-input-container>
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[限额内存|限额内存]]</label>
                                 <input type="text" required ng-model="image.resources.limits.memory" />
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[配额CPU|配额CPU]]</label>
                                 <input type="text" required ng-model="image.resources.requests.cpu" />
                             </md-input-container>
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[配额内存|配额内存]]</label>
                                 <input type="text" required ng-model="image.resources.requests.memory" />
                             </md-input-container>
-                        </kd-help-section>
+                        </div>
                     </kd-content>
                 </kd-content-card>
                 <kd-content-card>
@@ -165,36 +165,36 @@
                         </md-menu>
                     </kd-title>
                     <kd-content class="kd-content-padded">
-                        <kd-help-section ng-repeat="pvc in image.pvcs track by $index">
-                            <md-input-container class="md-block">
+                        <div layout="row" ng-repeat="pvc in image.pvcs track by $index">
+                            <md-input-container flex class="md-block">
                                 <label>[[名称|名称]]</label>
                                 <input type="text" required ng-model="pvc.name" />
                             </md-input-container>
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[模式|模式]]</label>
                                 <input type="text" required ng-model="pvc.accessModes" />
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[挂载路径|挂载路径]]</label>
                                 <input type="text" required ng-model="pvc.mountpoint" />
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[大小|大小]]</label>
                                 <input type="text" required ng-model="pvc.requestStorage" />
                             </md-input-container>
-                            <md-input-container class="md-block">
+                            <md-input-container flex class="md-block">
                                 <label>[[类型|类型]]</label>
                                 <input type="text" readonly required ng-model="pvc.storageClassName" />
                             </md-input-container>
                             <kd-user-help style="width: 10%;">
                                 <md-button class="material-icons md-icon-button md-raised md-button" ng-disabled="image.pvcs.length<=1" ng-click="$ctrl.deletePvc(outerIndex,$index)">delete</md-button>
                             </kd-user-help>
-                        </kd-help-section>
+                        </div>
                     </kd-content>
                 </kd-content-card>
                 <div style="overflow:hidden" layout="row">
-                    <kd-content-card style="width: 50%">
+                    <kd-content-card style="width: 50%" flex>
                         <kd-title layout="row" layout-align="space-between">[[环境变量|环境变量]]
                             <md-menu>
                                 <md-button ng-click="$mdMenu.open($event)" class="md-icon-button">
@@ -209,23 +209,23 @@
                             </md-menu>
                         </kd-title>
                         <kd-content class="kd-content-padded">
-                            <kd-help-section ng-repeat="env in image.env track by $index">
-                                <md-input-container class="md-block">
+                            <div layout="row" ng-repeat="env in image.env track by $index">
+                                <md-input-container flex class="md-block">
                                     <label>[[名称|名称]]</label>
                                     <input type="text" required ng-model="env.name" />
                                 </md-input-container>
                                 </md-input-container>
-                                <md-input-container class="md-block">
+                                <md-input-container flex class="md-block">
                                     <label>[[值|值]]</label>
                                     <input type="text" required ng-model="env.value" />
                                 </md-input-container>
                                 <kd-user-help style="width: 10%;">
                                     <md-button class="material-icons md-icon-button md-raised md-button" ng-click="$ctrl.deleteEnv(outerIndex,$index)">delete</md-button>
                                 </kd-user-help>
-                            </kd-help-section>
+                            </div>
                         </kd-content>
                     </kd-content-card>
-                    <kd-content-card style="width: 50%">
+                    <kd-content-card style="width: 50%" flex>
                         <kd-title layout="row" layout-align="space-between">[[端口|端口]]
                             <md-menu>
                                 <md-button ng-click="$mdMenu.open($event)" class="md-icon-button">
@@ -240,13 +240,13 @@
                             </md-menu>
                         </kd-title>
                         <kd-content class="kd-content-padded">
-                            <kd-help-section ng-repeat="port in image.ports track by $index">
-                                <md-input-container class="md-block">
+                            <div layout="row" ng-repeat="port in image.ports track by $index">
+                                <md-input-container flex class="md-block">
                                     <label>[[容器端口|容器端口]]</label>
                                     <input type="text" required ng-model="port.containerPort" />
                                 </md-input-container>
                                 </md-input-container>
-                                <md-input-container class="md-block">
+                                <md-input-container flex class="md-block">
                                     <label>[[模式|模式]]</label>
                                     <md-select ng-model="port.protocol">
                                         <md-option value="TCP">TCP</md-option>
@@ -256,7 +256,7 @@
                                 <kd-user-help style="width: 10%;">
                                     <md-button class="material-icons md-icon-button md-raised md-button" ng-disabled="image.ports.length<=1" ng-click="$ctrl.deletePort(outerIndex,$index)">delete</md-button>
                                 </kd-user-help>
-                            </kd-help-section>
+                            </div>
                         </kd-content>
                     </kd-content-card>
                 </div>

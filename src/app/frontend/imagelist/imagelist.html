@@ -21,8 +21,8 @@
                 <kd-content layout="row">
                     <md-card class="kd-chart-card" ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" ng-click="ctrl.choiceBaseimage(image)">
                         <md-card-content class="list-content">
-                            <div>
-                                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
+                            <div class="kd-chart-card-icon-image">
+                                <img ng-src="{{image.icon}}" />
                             </div>
                             <div>
                                 <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
@@ -94,8 +94,8 @@
                 <kd-content layout="row" layout-wrap>
                     <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
                         <md-card-content class="list-content">
-                            <div>
-                                <img class="kd-chart-card-icon-image" ng-src="{{image.icon}}" />
+                            <div class="kd-chart-card-icon-image">
+                                <img ng-src="{{image.icon}}" />
                             </div>
                             <div>
                                 <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
@@ -231,32 +231,34 @@
                 <kd-content-card>
                     <kd-title>ingress</kd-title>
                     <kd-content class="kd-content-padded">
-                        <kd-help-section layout="row">
-                            <md-input-container class="md-block">
+                        <!-- <kd-help-section layout="row"> -->
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
                                 <label>[[是否配置|是否配置]]</label>
                                 <md-select name="type" ng-model="ctrl.oWorkloadIngress.enabled">
                                     <md-option value="true">[[是|是imagelist]]</md-option>
                                     <md-option value="false">[[否|否imagelist]]</md-option>
                                 </md-select>
                             </md-input-container>
-                            <md-input-container class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
+                            <md-input-container flex class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
                                 <label>[[地址|地址]]</label>
                                 <input type="text" required ng-model="ctrl.oWorkloadIngress.host" />
                             </md-input-container>
-                            <md-input-container class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
+                            <md-input-container flex class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
                                 <label>[[服务端口|服务端口]]</label>
                                 <input type="number" required ng-model="ctrl.oWorkloadIngress.servicePort" />
                             </md-input-container>
-                            <md-input-container class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
+                            <md-input-container flex class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
                                 <label>[[服务名字|服务名字]]</label>
                                 <md-select ng-model="ctrl.oWorkloadIngress.servicename" multiple="false">
                                     <md-option selected ng-repeat="service in ctrl.kdService.value.content.services track by $index" ng-value="service.name">{{service.name}}</md-option>
                                 </md-select>
                                 <!-- <input type="text" required ng-model="ctrl.oWorkloadIngress.servicename" /> -->
                             </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
+                        </div>
+                        <!-- <kd-user-help style="width: 40%;">
+                            </kd-user-help> -->
+                        <!-- </kd-help-section> -->
                     </kd-content>
                 </kd-content-card>
                 <kd-footer layout="row" layout-align="end center" style="margin-top: 20px;">

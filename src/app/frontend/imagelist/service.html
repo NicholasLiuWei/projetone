@@ -17,22 +17,22 @@
         </md-menu>
     </kd-title>
     <kd-content class="kd-content-padded">
-        <kd-help-section>
-            <md-input-container class="md-block">
+        <div layout="row">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>name</label>
                 <div>
                     <input ng-model="$ctrl.service.name" required>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>pods</label>
                 <div>
                     <input ng-model="$ctrl.service.pods" required>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container flex class="md-block">
                 <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                 <label>type</label>
                 <md-select name="type" ng-model="$ctrl.service.type">
@@ -40,9 +40,9 @@
                     <md-option value="NodePort">NodePort</md-option>
                 </md-select>
             </md-input-container>
-            <kd-user-help style="width: 40%;">
-            </kd-user-help>
-        </kd-help-section>
+            <!-- <kd-user-help style="width: 40%;">
+            </kd-user-help> -->
+        </div>
         <kd-content-card>
             <kd-title layout="row" layout-align="space-between">port
                 <md-menu>
@@ -58,32 +58,32 @@
                 </md-menu>
             </kd-title>
             <kd-content class="kd-content-padded">
-                <kd-help-section ng-repeat="port in $ctrl.service.ports track by $index">
-                    <md-input-container class="md-block">
+                <div layout="row" ng-repeat="port in $ctrl.service.ports track by $index">
+                    <md-input-container flex class="md-block">
                         <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                         <label>protocol</label>
                         <div>
                             <input ng-model="port.protocol" required>
                         </div>
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                         <label>targetPort</label>
                         <div>
                             <input ng-model="port.targetPort" required>
                         </div>
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container flex class="md-block">
                         <!-- <label>{{ctrl.tanslate(key)}}</label> -->
                         <label>port</label>
                         <div>
                             <input ng-model="port.port" required>
                         </div>
                     </md-input-container>
-                    <kd-user-help style="width: 40%;">
+                    <kd-user-help style="width: 10%;">
                         <md-button class="material-icons md-icon-button md-raised md-button" ng-disabled="$ctrl.service.ports.length<=1" ng-click="$ctrl.deleteport($index)">delete</md-button>
                     </kd-user-help>
-                </kd-help-section>
+                </div>
             </kd-content>
         </kd-content-card>
     </kd-content>
