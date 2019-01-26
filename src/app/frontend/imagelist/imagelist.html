@@ -13,12 +13,12 @@
         </div>
         <div class="creat">
             <div class="base-process">
-                <p class="base-process-children-background">[[第一步：选择基础镜像|第一步：选择基础镜像imagelist]]</p>
-                <p>[[第二步：选择git库地址和分支|第二步：选择git库地址和分支imagelist]]</p>
-                <p>[[第三步：输入自定义镜像名称，开始创建|第三步：输入自定义镜像名称，开始创建imagelist]]</p>
+                <p class="base-process-children-background"><span>1</span><span>[[选择基础镜像|选择基础镜像imagelist]]</span></p>
+                <p><span>2</span><span>[[选择git库地址和分支|选择git库地址和分支imagelist]]</span></p>
+                <p><span>3</span><span>[[输入自定义镜像名称，开始创建|输入自定义镜像名称，开始创建imagelist]]</span></p>
             </div>
             <div ng-if="ctrl.baseShowNum == 1? true:false">
-                <kd-content layout="row">
+                <kd-content layout="row" class="kd-content-style">
                     <md-card class="kd-chart-card" ng-class="image.name==ctrl.choicedBaseimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.baseimageList track by $index" ng-click="ctrl.choiceBaseimage(image)">
                         <md-card-content class="list-content">
                             <div class="kd-chart-card-icon-image">
@@ -84,14 +84,14 @@
         </div>
         <div class="creat">
             <div class="custom-process">
-                <p class="custom-process-children-background">[[第一步：输入应用名称|第一步：输入应用名称imagelist]]</p>
-                <p>[[第二步：创建工作负载|第二步：创建工作负载imagelist]]</p>
-                <p>[[第三步：创建服务|第三步：创建服务imagelist]]</p>
-                <p>[[第四步：创建服务入口|第四步：创建服务入口imagelist]]</p>
+                <p class="custom-process-children-background"><span>1</span><span>[[输入应用名称|第一步：输入应用名称imagelist]]</span></p>
+                <p><span>2</span><span>[[创建工作负载|第二步：创建工作负载imagelist]]</span></p>
+                <p><span>3</span><span>[[创建服务|第三步：创建服务imagelist]]</span></p>
+                <p><span>4</span><span>[[创建服务入口|第四步：创建服务入口imagelist]]</span></p>
             </div>
             <div ng-if="ctrl.customShowNum == 1? true:false">
                 <!-- <kd-content-card ng-if="ctrl.showNum == 1? true:false"> -->
-                <kd-content layout="row" layout-wrap>
+                <kd-content layout="row" class="kd-content-style" layout-wrap>
                     <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
                         <md-card-content class="list-content">
                             <div class="kd-chart-card-icon-image">
@@ -185,7 +185,7 @@
                         <md-button class="md-raised" ng-click="ctrl.fWorkloadInit()">[[确定|确定imagelist]]</md-button>
                     </kd-footer>
                 </div>
-                <form validate name="ctrl.oWorkload" ng-if="ctrl.creatWorkloadNum==3?true:false">
+                <form validate name="ctrl.oWorkload" class="form-md-input-container-style-display-block" ng-if="ctrl.creatWorkloadNum==3?true:false">
                     <md-input-container>
                         <label>[[工作负载名称|工作负载名称imagelist]]</label>
                         <input name="name" ng-model="ctrl.oWorkloadName" required>
@@ -230,7 +230,7 @@
             <div ng-if="ctrl.customShowNum == 4? true:false">
                 <kd-content-card>
                     <kd-title>ingress</kd-title>
-                    <kd-content class="kd-content-padded">
+                    <kd-content class="kd-content-padded kd-content-style">
                         <!-- <kd-help-section layout="row"> -->
                         <div layout="row">
                             <md-input-container class="md-block" flex>

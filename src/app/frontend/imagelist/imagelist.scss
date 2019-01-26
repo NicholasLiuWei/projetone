@@ -46,7 +46,7 @@ md-card>md-card-header img {
             border: 1px solid #000000;
         }
         &>.creat {
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             padding: 20px;
             &>.custom-process,
             &>.base-process {
@@ -66,18 +66,29 @@ md-card>md-card-header img {
                     background-color: #ffffff;
                     padding: 10px 20px;
                     z-index: 99;
+                    display: flex;
+                    line-height: 30px;
+                    &>span:first-child {
+                        width: 30px;
+                        margin-right: 10px;
+                        text-align: center;
+                        background: #cccccc;
+                        color: #ffffff;
+                        border-radius: 2px;
+                    }
                 }
                 &>.base-process-children-background,
                 &>.custom-process-children-background {
-                    background-color: rgb(204, 255, 255);
+                    &>span:first-child {
+                        background: rgb(51, 153, 255);
+                    }
                 }
             }
         }
     }
 }
 
-.layout-row,
-.layout-wrap {
+.kd-content-style {
     display: flex;
     flex-wrap: wrap;
     &>md-card {
@@ -119,11 +130,10 @@ md-card>md-card-header img {
     color: skyblue;
 }
 
-.ng-invalid {
-    padding: 10px 20px;
-    background-color: #ffffff;
-}
-
+// .ng-invalid {
+//     padding: 10px 20px;
+//     background-color: #ffffff;
+// }
 .delete-btn {
     padding: 5px 10px;
     color: skyblue;
@@ -134,6 +144,8 @@ md-card>md-card-header img {
     color: #cccccc;
 }
 
-md-input-container {
-    display: block;
+.form-md-input-container-style-display-block {
+    &>md-input-container {
+        display: block;
+    }
 }

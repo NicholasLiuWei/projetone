@@ -60,27 +60,27 @@ export class imagelistController {
             this.oBaseImageMsg = {};
             /** @export */
             this.baseImages = {
-                branch: "",
-                url: "",
-                name: ""
+                "branch": "",
+                "url": "",
+                "name": ""
             };
             /** @export */
             this.customImages = {
-                branch: "",
-                url: "",
-                name: ""
+                "branch": "",
+                "url": "",
+                "name": ""
             };
             /** @export */
             this.oBaseFillInFields = {
-                    url: false,
-                    branch: false,
-                    name: false
+                    "url": false,
+                    "branch": false,
+                    "name": false
                 }
                 /** @export */
             this.oCustomFillInFields = {
-                    url: false,
-                    branch: false,
-                    name: false
+                    "url": false,
+                    "branch": false,
+                    "name": false
                 }
                 /** @export */
             this.baseShowNum = 1;
@@ -88,9 +88,9 @@ export class imagelistController {
             this.customShowNum = 1;
             /** @export */
             this.workloadType = [
-                { id: 1, name: 'Deployment' },
-                { id: 2, name: 'Statefulset' },
-                { id: 3, name: 'DaemonSet' }
+                { "id": "1", "name": 'Deployment' },
+                { "id": "2", "name": 'Statefulset' },
+                { "id": "3", "name": 'DaemonSet' }
             ];
             /** @export */
             this.creatWorkloadNum = 1;
@@ -112,10 +112,10 @@ export class imagelistController {
             this.oWorkloadComponent = [];
             /** @export */
             this.oWorkloadIngress = {
-                    enabled: "true",
-                    host: "k8s.com",
-                    servicePort: 90,
-                    servicename: "bbb11"
+                    "enabled": "true",
+                    "host": "k8s.com",
+                    "servicePort": "90",
+                    "servicename": "bbb11"
                 }
                 /** @export */
             this.deploymentSpec = {};
@@ -124,9 +124,11 @@ export class imagelistController {
         }
         /** @export */
     $onInit() {}
+        /** @export */
     tablesBaseClick() {
-        this.show = true;
-    }
+            this.show = true;
+        }
+        /** @export */
     tablesCustomClick() {
             this.show = false;
         }
@@ -141,31 +143,35 @@ export class imagelistController {
          * @export
          */
     fCreateBaseImagePre(msg) {
-        this.baseShowNum++;
-        this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-        this.oBaseImageMsg = msg;
-    }
+            this.baseShowNum++;
+            this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+            this.oBaseImageMsg = msg;
+        }
+        /** @export */
     fInputChangeUrl(value) {
-        if (value == undefined) {
-            this.oBaseFillInFields.url = true;
-        } else {
-            this.oBaseFillInFields.url = false;
+            if (value == undefined) {
+                this.oBaseFillInFields.url = true;
+            } else {
+                this.oBaseFillInFields.url = false;
+            }
         }
-    }
+        /** @export */
     fInputChangeBranch(value) {
-        if (value == undefined) {
-            this.oBaseFillInFields.branch = true;
-        } else {
-            this.oBaseFillInFields.branch = false;
+            if (value == undefined) {
+                this.oBaseFillInFields.branch = true;
+            } else {
+                this.oBaseFillInFields.branch = false;
+            }
         }
-    }
+        /** @export */
     fInputChangeName(value) {
-        if (value == undefined) {
-            this.oBaseFillInFields.name = true;
-        } else {
-            this.oBaseFillInFields.name = false;
+            if (value == undefined) {
+                this.oBaseFillInFields.name = true;
+            } else {
+                this.oBaseFillInFields.name = false;
+            }
         }
-    }
+        /** @export */
     fCustomInputChangeName(value) {
             if (value == undefined) {
                 this.oCustomFillInFields.name = true;
@@ -404,9 +410,9 @@ export class imagelistController {
                         .title(MSG_image_deployment_failed_title)
                         .textContent(MSG_image_deployment_failed_con));
                     this.customImages = {
-                        branch: "",
-                        url: "",
-                        name: ""
+                        "branch": "",
+                        "url": "",
+                        "name": ""
                     };
                 })
         }
