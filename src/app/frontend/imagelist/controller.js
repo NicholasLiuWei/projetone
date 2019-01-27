@@ -185,14 +185,14 @@ export class imagelistController {
     fInputMsgPre() {
             if (this.baseImages.url == "" || this.baseImages.branch == "" || this.baseImages.url == undefined || this.baseImages.branch == undefined) {
                 if (this.baseImages.url == "" || this.baseImages.url == undefined) {
-                    this.oBaseFillInFields.url = true;
+                    this.baseImages.url = true;
                 } else {
-                    this.oBaseFillInFields.branch = true;
+                    this.baseImages.branch = true;
                 }
                 return;
             } else {
-                this.oBaseFillInFields.url = false;
-                this.oBaseFillInFields.branch = false;
+                this.baseImages.url = false;
+                this.baseImages.branch = false;
                 this.baseShowNum++;
                 this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
             }
@@ -202,7 +202,7 @@ export class imagelistController {
          */
     fBaseImagePre() {
             if (this.baseImages.name == "" || this.baseImages.name == undefined) {
-                this.oBaseFillInFields.name = true;
+                this.baseImages.name = true;
                 return;
             }
             this.baseShowNum = 1;
