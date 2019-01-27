@@ -183,7 +183,9 @@ export class imagelistController {
          * @export
          */
     fInputMsgPre() {
+            console.log("zhixing")
             if (this.baseImages.url == "" || this.baseImages.branch == "" || this.baseImages.url == undefined || this.baseImages.branch == undefined) {
+                console.log("if")
                 if (this.baseImages.url == "" || this.baseImages.url == undefined) {
                     this.oBaseFillInFields.url = true;
                 } else {
