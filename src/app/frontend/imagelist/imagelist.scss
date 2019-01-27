@@ -98,7 +98,17 @@ md-card>md-card-header img {
                 }
             }
             &>.base-process {
-                width: 850px;
+                &>p {
+                    width: 25%;
+                    display: flex;
+                    justify-content: center;
+                    &>.details-content {
+                        position: absolute;
+                        left: 25%;
+                        top: 55px;
+                        width: 50%;
+                    }
+                }
             }
         }
     }

@@ -182,23 +182,16 @@ export class imagelistController {
         /**
          * @export
          */
-    fInputMsgPre() {
-            console.log("zhixing")
-            if (this.baseImages.url == "" || this.baseImages.branch == "" || this.baseImages.url == undefined || this.baseImages.branch == undefined) {
-                console.log("if")
+    fInputMsgPreNext() {
+            if (this.oBaseFillInFields.url == false && this.oBaseFillInFields.branch == false) {
+                this.baseShowNum++;
+                this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+            } else {
                 if (this.baseImages.url == "" || this.baseImages.url == undefined) {
                     this.oBaseFillInFields.url = true;
                 } else {
                     this.oBaseFillInFields.branch = true;
                 }
-                return;
-            } else {
-                console.log("else")
-                this.oBaseFillInFields.url = false;
-                this.oBaseFillInFields.branch = false;
-                this.baseShowNum++;
-                console.log(this.baseShowNum)
-                this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
             }
         }
         /**
