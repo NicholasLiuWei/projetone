@@ -191,9 +191,11 @@ export class imagelistController {
                 }
                 return;
             } else {
+                console.log("else")
                 this.oBaseFillInFields.url = false;
                 this.oBaseFillInFields.branch = false;
                 this.baseShowNum++;
+                console.log(this.baseShowNum)
                 this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
             }
         }
