@@ -1,21 +1,21 @@
 <md-content class="md-padding">
     <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="ctrl.currentNavItem">
         <md-nav-item md-nav-click="ctrl.tablesBaseClick()" name="base">
-            [[基础镜像|基础镜像imagelist]]
+            [[镜像构建|镜像构建imagelist]]
         </md-nav-item>
         <md-nav-item md-nav-click="ctrl.tablesCustomClick()" name="custom">
-            [[自定义镜像|自定义镜像imagelist]]
+            [[应用编排|应用编排imagelist]]
         </md-nav-item>
     </md-nav-bar>
     <div class="content-box" ng-if="ctrl.show">
         <div class="create-tips">
-            [[创建镜像|创建镜像imagelist]]： 用户可以使用基础镜像创建自定义镜像，xxxxxxxxxx1
+            [[创建镜像|创建镜像imagelist]]： 用户可以基于基础镜像创建对外提供服务的普通镜像。
         </div>
         <div class="creat">
             <div class="base-process">
-                <p class="base-process-children-background"><span>1</span><span>[[选择基础镜像|选择基础镜像imagelist]]</span></p>
-                <p><span>2</span><span>[[选择git库地址和分支|选择git库地址和分支imagelist]]</span></p>
-                <p><span>3</span><span>[[输入自定义镜像名称，开始创建|输入自定义镜像名称，开始创建imagelist]]</span></p>
+                <p class="base-process-children-background"><span>1</span><span>[[选择基础镜像|选择基础镜像imagelist]]</span><span class="details-content">根据用户项目的编程语言选择对应的基础镜像</span></p>
+                <p><span>2</span><span>[[选择git库地址和分支|选择git库地址和分支imagelist]]</span><span class="details-content">按照所选基础镜的要求和规范，配置源码库和具体分支</span></p>
+                <p><span>3</span><span>[[输入普通镜像的名称，开始构建|输入普通镜像的名称，开始构建imagelist]]</span><span class="details-content"></span></p>
             </div>
             <div ng-if="ctrl.baseShowNum == 1? true:false">
                 <kd-content layout="row" class="kd-content-style">
@@ -52,11 +52,6 @@
                     <div ng-if="ctrl.oBaseFillInFields.branch">
                         [[请填写此字段|请填写此字段imagelist]]
                     </div>
-                    <!-- <div ng-messages="ctrl.form.releasename.$error">
-                        <div ng-message="repeat">
-                            [[名字重复|部署应用名字重复提示]]
-                        </div>
-                    </div> -->
                 </md-input-container>
                 <kd-footer layout="row" layout-align="end center">
                     <md-button class="md-raised" ng-click="ctrl.fPreviousStep()">[[上一步|上一步imagelist]]</md-button>
@@ -80,14 +75,14 @@
     </div>
     <div class="content-box" ng-if="!ctrl.show">
         <div class="create-tips">
-            [[创建应用|创建应用imagelist]]： 用户可以使用基础镜像创建自定义镜像，xxxxxxxxxx2
+            [[创建应用|创建应用imagelist]]： 以普通镜像为基础, 用户可以编排、构建多组件的复杂应用。
         </div>
         <div class="creat">
             <div class="custom-process">
-                <p class="custom-process-children-background"><span>1</span><span>[[输入应用名称|第一步：输入应用名称imagelist]]</span></p>
-                <p><span>2</span><span>[[创建工作负载|第二步：创建工作负载imagelist]]</span></p>
-                <p><span>3</span><span>[[创建服务|第三步：创建服务imagelist]]</span></p>
-                <p><span>4</span><span>[[创建服务入口|第四步：创建服务入口imagelist]]</span></p>
+                <p class="custom-process-children-background"><span>1</span><span>[[选择普通镜像，输入应用名称|选择普通镜像，输入应用名称imagelist]]</span><span class="details-content">基于指定的镜像开始编排应用</span></p>
+                <p><span>2</span><span>[[编辑应用组件|编辑应用组件imagelist]]</span><span class="details-content">编辑、增加、删除应用组件</span></p>
+                <p><span>3</span><span>[[创建服务|创建服务imagelist]]</span><span class="details-content">各组件可以对外提供网络服务</span></p>
+                <p><span>4</span><span>[[创建服务入口|创建服务入口imagelist]]</span><span class="details-content">配置应用访问入口</span></p>
             </div>
             <div ng-if="ctrl.customShowNum == 1? true:false">
                 <!-- <kd-content-card ng-if="ctrl.showNum == 1? true:false"> -->
