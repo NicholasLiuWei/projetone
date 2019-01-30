@@ -33,7 +33,7 @@
                 <!-- <kd-help-section ng-show="ctrl.selectedRepos == 'None'">
                     <md-input-container class="md-block">
                         <label>{{::ctrl.i18n.MSG_CHART_URL_LABEL1}}</label>
-                        <input ng-model="ctrl.selectedChart" name="selectedChart" namespace="ctrl.namespace" required ng-pattern="ctrl.namePattern" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" md-maxlength="{{ctrl.nameMaxLength}}">
+                        <input ng-model="ctrl.selectedChart" name="selectedChart" namespace="ctrl.namespace" required >
                     </md-input-container>
 
                     <kd-user-help style="width: 40%;">
@@ -51,8 +51,14 @@
                                     </div>
                                     <div class="chartmes">
                                         <h2 class="kd-chart-card-text-name">{{chart.name}}</h2>
-                                        <div class="kd-chart-color-secondary">{{chart.version}}</div>
-                                        <div class="kd-chart-color-secondary kd-chart-platform">{{ctrl.platformstr}}</div>
+                                        <div class="kd-chart-color-secondary" style="height:20px;" layout="row" layout-align="space-between center">
+                                            <span>{{chart.version}}</span>
+                                            <div layout="row" class="kd-chart-platform">
+                                                <img ng-if="ctrl.platformstr=='X86' || ctrl.platformstr=='auto'" height="20" src="assets/images/x86.png" alt="">
+                                                <img ng-if="ctrl.platformstr=='ARM64' || ctrl.platformstr=='auto'" height="20" src="assets/images/arm.png" alt="">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="kd-chart-color-secondary kd-chart-platform">{{ctrl.platformstr}}</div> -->
                                         <p class="kd-chart-card-text-description kd-chart-color-secondary">{{chart.description}}</p>
                                     </div>
                                 </md-card-content>
@@ -105,114 +111,119 @@
     </kd-content>
 </kd-content-card>
 <kd-content-card ng-show="ctrl.commit">
-    <kd-title>{{ctrl.name}}</kd-title>
+    <kd-title layout="row" layout-align="space-between">
+        {{ctrl.name}}
+        <md-button class="md-primary" ng-click="ctrl.showAdvanced()">{{ctrl.advanced?ctrl.i18n.MSG_DEPLOY_CHART_NOADVANCED:ctrl.i18n.MSG_DEPLOY_CHART_ADVANCED}}</md-button>
+    </kd-title>
     <kd-content class="kd-content-padded">
         <form name="ctrl.comform" validate ng-submit="ctrl.deploynow()">
-            <div ng-if="ctrl.deployCon.hasOwnProperty('image')">
-                <kd-content-card>
-                    <kd-title>{{ctrl.tanslate('image')}}</kd-title>
-                    <kd-content class="kd-content-padded">
-                        <kd-help-section ng-repeat="(key,value) in ctrl.deployCon.image">
-                            <md-input-container class="md-block">
-                                <label>{{ctrl.tanslate(key)}}</label>
-                                <div>
-                                    <input disabled ng-value="ctrl.deployCon.image[key]" namespace="ctrl.namespace" required>
-                                </div>
-                            </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
-                    </kd-content>
-                </kd-content-card>
+            <div ng-if="!ctrl.advanced">
+                <div ng-if="ctrl.deployCon.hasOwnProperty('image')">
+                    <kd-content-card>
+                        <kd-title>{{ctrl.tanslate('image')}}</kd-title>
+                        <kd-content class="kd-content-padded">
+                            <kd-help-section ng-repeat="(key,value) in ctrl.deployCon.image">
+                                <md-input-container class="md-block">
+                                    <label>{{ctrl.tanslate(key)}}</label>
+                                    <div>
+                                        <input disabled ng-value="ctrl.deployCon.image[key]" namespace="ctrl.namespace" required>
+                                    </div>
+                                </md-input-container>
+                                <kd-user-help style="width: 40%;">
+                                </kd-user-help>
+                            </kd-help-section>
+                        </kd-content>
+                    </kd-content-card>
+                </div>
+                <div ng-if="ctrl.deployCon.hasOwnProperty('storage')">
+                    <kd-content-card>
+                        <kd-title>{{ctrl.tanslate('storage')}}</kd-title>
+                        <kd-content class="kd-content-padded">
+                            <kd-help-section>
+                                <md-input-container class="md-block">
+                                    <label>{{ctrl.tanslate("storagesize")}}</label>
+                                    <div>
+                                        <input ng-model="ctrl.deployCon.storage.storagesize" namespace="ctrl.namespace" required>
+                                    </div>
+                                </md-input-container>
+                                <kd-user-help style="width: 40%;">
+                                </kd-user-help>
+                            </kd-help-section>
+                        </kd-content>
+                    </kd-content-card>
+                </div>
+                <div ng-if="ctrl.deployCon.hasOwnProperty('hpa')">
+                    <kd-content-card>
+                        <kd-title>{{ctrl.tanslate('hpa')}}</kd-title>
+                        <kd-content class="kd-content-padded">
+                            <kd-help-section ng-repeat="(key,value) in ctrl.deployCon.hpa">
+                                <md-input-container class="md-block">
+                                    <label>{{ctrl.tanslate(key)}}</label>
+                                    <div>
+                                        <input type="number" step="1" min="{{key=='minpods'?1:ctrl.deployCon.hpa.minpods}}" ng-model="ctrl.deployCon.hpa[key]" namespace="ctrl.namespace" required>
+                                    </div>
+                                </md-input-container>
+                                <kd-user-help style="width: 40%;">
+                                </kd-user-help>
+                            </kd-help-section>
+                        </kd-content>
+                    </kd-content-card>
+                </div>
+                <div ng-if="ctrl.deployCon.hasOwnProperty('replicaCount')">
+                    <kd-content-card>
+                        <kd-title>{{ctrl.tanslate("replicaCount")}}</kd-title>
+                        <kd-content class="kd-content-padded">
+                            <kd-help-section>
+                                <md-input-container class="md-block">
+                                    <label>{{ctrl.tanslate("replicaCount")}}</label>
+                                    <div>
+                                        <input type="number" step="1" min="1" ng-model="ctrl.deployCon.replicaCount" namespace="ctrl.namespace" required>
+                                    </div>
+                                </md-input-container>
+                                <kd-user-help style="width: 40%;">
+                                </kd-user-help>
+                            </kd-help-section>
+                        </kd-content>
+                    </kd-content-card>
+                </div>
+                <div>
+                    <kd-content-card>
+                        <kd-title>{{::ctrl.i18n.MSG_DEPLOY_CHART_DOMAIN_SERVICE}}</kd-title>
+                        <kd-content class="kd-content-padded">
+                            <kd-help-section>
+                                <md-input-container class="md-block">
+                                    <label>{{::ctrl.i18n.MSG_DEPLOY_CHART_DOMAIN}}</label>
+                                    <div>
+                                        <input type="text" readonly value="k8s.com" />
+                                    </div>
+                                </md-input-container>
+                                <kd-user-help style="width: 40%;">
+                                </kd-user-help>
+                            </kd-help-section>
+                        </kd-content>
+                    </kd-content-card>
+                </div>
+                <div ng-if="ctrl.deployCon.hasOwnProperty('platform')">
+                    <kd-content-card>
+                        <kd-title>[[Deployment platform|App Store 部署平台]]</kd-title>
+                        <kd-content class="kd-content-padded">
+                            <kd-help-section>
+                                <md-input-container>
+                                    <label>[[Deployment platform|App Store 部署平台]]</label>
+                                    <md-select ng-model="ctrl.deployCon.platform">
+                                        <md-option ng-disabled="ctrl.platform=='ARM64'||ctrl.platform=='X86'" value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
+                                        <md-option ng-disabled="ctrl.platform=='X86'" value="ARM64">[[ARM64|App Store ARM64]]</md-option>
+                                        <md-option ng-disabled="ctrl.platform=='ARM64'" value="X86">[[X86|App Store X86]]</md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <kd-user-help style="width: 40%;">
+                                </kd-user-help>
+                            </kd-help-section>
+                        </kd-content>
+                    </kd-content-card>
+                </div>
             </div>
-            <div ng-if="ctrl.deployCon.hasOwnProperty('storage')">
-                <kd-content-card>
-                    <kd-title>{{ctrl.tanslate('storage')}}</kd-title>
-                    <kd-content class="kd-content-padded">
-                        <kd-help-section>
-                            <md-input-container class="md-block">
-                                <label>{{ctrl.tanslate("storagesize")}}</label>
-                                <div>
-                                    <input ng-model="ctrl.deployCon.storage.storagesize" namespace="ctrl.namespace" required>
-                                </div>
-                            </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
-                    </kd-content>
-                </kd-content-card>
-            </div>
-            <div ng-if="ctrl.deployCon.hasOwnProperty('hpa')">
-                <kd-content-card>
-                    <kd-title>{{ctrl.tanslate('hpa')}}</kd-title>
-                    <kd-content class="kd-content-padded">
-                        <kd-help-section ng-repeat="(key,value) in ctrl.deployCon.hpa">
-                            <md-input-container class="md-block">
-                                <label>{{ctrl.tanslate(key)}}</label>
-                                <div>
-                                    <input type="number" step="1" min="{{key=='minpods'?1:ctrl.deployCon.hpa.minpods}}" ng-model="ctrl.deployCon.hpa[key]" namespace="ctrl.namespace" required>
-                                </div>
-                            </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
-                    </kd-content>
-                </kd-content-card>
-            </div>
-            <div ng-if="ctrl.deployCon.hasOwnProperty('replicaCount')">
-                <kd-content-card>
-                    <kd-title>{{ctrl.tanslate("replicaCount")}}</kd-title>
-                    <kd-content class="kd-content-padded">
-                        <kd-help-section>
-                            <md-input-container class="md-block">
-                                <label>{{ctrl.tanslate("replicaCount")}}</label>
-                                <div>
-                                    <input type="number" step="1" min="1" ng-model="ctrl.deployCon.replicaCount" namespace="ctrl.namespace" required>
-                                </div>
-                            </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
-                    </kd-content>
-                </kd-content-card>
-            </div>
-            <div>
-                <kd-content-card>
-                    <kd-title>{{::ctrl.i18n.MSG_DEPLOY_CHART_DOMAIN_SERVICE}}</kd-title>
-                    <kd-content class="kd-content-padded">
-                        <kd-help-section>
-                            <md-input-container class="md-block">
-                                <label>{{::ctrl.i18n.MSG_DEPLOY_CHART_DOMAIN}}</label>
-                                <div>
-                                    <input type="text" readonly value="k8s.com" />
-                                </div>
-                            </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
-                    </kd-content>
-                </kd-content-card>
-            </div>
-            <div ng-if="ctrl.deployCon.hasOwnProperty('platform')">
-                <kd-content-card>
-                    <kd-title>[[Deployment platform|App Store 部署平台]]</kd-title>
-                    <kd-content class="kd-content-padded">
-                        <kd-help-section>
-                            <md-input-container>
-                                <label>[[Deployment platform|App Store 部署平台]]</label>
-                                <md-select ng-model="ctrl.deployCon.platform">
-                                    <md-option ng-disabled="ctrl.platform=='ARM64'||ctrl.platform=='X86'" value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
-                                    <md-option ng-disabled="ctrl.platform=='X86'" value="ARM64">[[ARM64|App Store ARM64]]</md-option>
-                                    <md-option ng-disabled="ctrl.platform=='ARM64'" value="X86">[[X86|App Store X86]]</md-option>
-                                </md-select>
-                            </md-input-container>
-                            <kd-user-help style="width: 40%;">
-                            </kd-user-help>
-                        </kd-help-section>
-                    </kd-content>
-                </kd-content-card>
-            </div>
-            <!-- <div ng-repeat="(key,value) in ctrl.deployCon">
+            <div ng-repeat="(key,value) in ctrl.allDeployCon" ng-if="ctrl.advanced">
                 <kd-content-card ng-if="!ctrl.type(value)">
                     <kd-title>{{ctrl.tanslate(key)}}</kd-title>
                     <kd-content class="kd-content-padded">
@@ -220,7 +231,7 @@
                             <md-input-container class="md-block">
                                 <label>{{ctrl.tanslate(key)}}</label>
                                 <div>
-                                    <input ng-disabled="key=='image'" ng-model="ctrl.deployCon[key]" namespace="ctrl.namespace" required ng-pattern="ctrl.namePattern" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" md-maxlength="{{ctrl.nameMaxLength}}">
+                                    <input ng-model="ctrl.allDeployCon[key]" namespace="ctrl.namespace" required>
                                 </div>
                             </md-input-container>
                             <kd-user-help style="width: 40%;">
@@ -235,7 +246,7 @@
                             <md-input-container class="md-block">
                                 <label>{{ctrl.tanslate(key1)}}</label>
                                 <div>
-                                    <input ng-disabled="key=='image'" ng-model="ctrl.deployCon[key][key1]" namespace="ctrl.namespace" required ng-pattern="ctrl.namePattern" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" md-maxlength="{{ctrl.nameMaxLength}}">
+                                    <input ng-model="ctrl.allDeployCon[key][key1]" namespace="ctrl.namespace" required>
                                 </div>
                             </md-input-container>
                             <kd-user-help style="width: 40%;">
@@ -251,7 +262,7 @@
                                     <md-input-container class="md-block">
                                         <label>{{ctrl.tanslate(key2)}}</label>
                                         <div>
-                                            <input ng-disabled="key=='image'" ng-model="ctrl.deployCon[key][key1][key2]" namespace="ctrl.namespace" required ng-pattern="ctrl.namePattern" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" md-maxlength="{{ctrl.nameMaxLength}}">
+                                            <input ng-model="ctrl.allDeployCon[key][key1][key2]" namespace="ctrl.namespace" required>
                                         </div>
                                     </md-input-container>
                                     <kd-user-help style="width: 40%;">
@@ -261,7 +272,7 @@
                         </kd-content-card>
                     </kd-content>
                 </kd-content-card>
-            </div> -->
+            </div>
             <div style="text-align:right;">
                 <md-button class="md-raised md-primary kd-deploy-submit-button" type="submit" ng-disabled="ctrl.isSureDisabled()">
                     {{::ctrl.i18n.MSG_DEPLOY_CHART_ACTION_NOW_OK}}

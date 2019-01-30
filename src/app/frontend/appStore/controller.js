@@ -19,106 +19,118 @@ export class AppStoreController {
      */
 
     constructor($log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
-            this.form = 'form';
+        this.form = 'form';
 
-            this.file = { name: '', content: '' };
+        this.file = { name: '', content: '' };
 
-            this.q_ = $q;
+        this.q_ = $q;
 
-            this.resource_ = $resource;
+        this.resource_ = $resource;
 
-            this.log_ = $log;
+        this.log_ = $log;
 
-            this.errorDialog_ = errorDialog;
-            this.mdDialog_ = $mdDialog;
-            this.isDeployInProgress_ = false;
+        this.errorDialog_ = errorDialog;
+        this.mdDialog_ = $mdDialog;
+        this.isDeployInProgress_ = false;
 
-            this.kdHistoryService_ = kdHistoryService;
+        this.kdHistoryService_ = kdHistoryService;
 
-            this.timeout = $timeout;
+        this.timeout = $timeout;
 
-            /** @private {!angular.$q.Promise} */
-            this.tokenPromise = kdCsrfTokenService.getTokenForAction('deploychart');
+        /** @private {!angular.$q.Promise} */
+        this.tokenPromise = kdCsrfTokenService.getTokenForAction('deploychart');
 
-            this.selectedClass = 'kd-chart-card-selected';
+        this.selectedClass = 'kd-chart-card-selected';
 
-            this.selectedChart = '';
+        this.selectedChart = '';
 
-            this.name = '';
+        this.name = '';
 
-            this.repos = [];
+        this.repos = [];
 
-            this.getRepos();
-            this.state = $state;
-            /** @export */
-            this.selectedRepos = '';
-            /** @export */
-            this.selectedCharts = '';
-            /** @export */
-            this.choice = true;
-            /** @export */
-            this.commit = false;
-            /** @export */
-            this.charts = [];
-            /** @export */
-            this.deployCon = {};
-            /** @export */
-            this.namespaceList = [];
-            /** @export platform */
-            this.platform = 'auto';
-            /** @export 支持的平台字符串 */
-            this.platformstr = "";
-            this.getNamespaceList();
-            /** @public */
-            this.commitmes;
-            /** @public */
-            this.repo = '';
-            /** @public */
-            this.namespace = 'default';
-            /** @export */
-            this.comform = 'comform';
+        this.getRepos();
+        this.state = $state;
+        /** @export */
+        this.allDeployCon = {};
+        /** @export */
+        this.advanced = false;
+        /** @export */
+        this.selectedRepos = '';
+        /** @export */
+        this.selectedCharts = '';
+        /** @export */
+        this.choice = true;
+        /** @export */
+        this.commit = false;
+        /** @export */
+        this.charts = [];
+        /** @export */
+        this.deployCon = {};
+        /** @export */
+        this.namespaceList = [];
+        /** @export platform */
+        this.platform = 'auto';
+        /** @export 支持的平台字符串 */
+        this.platformstr = "";
+        this.getNamespaceList();
+        /** @public */
+        this.commitmes;
+        /** @public */
+        this.repo = '';
+        /** @public */
+        this.namespace = 'default';
+        /** @export */
+        this.comform = 'comform';
 
-            // this.getCharts('testtest');
-            this.i18n = i18n;
-            /** @export {boolean} */
-            this.disable = false;
-            this.translate = true;
-            this.translateobj = {
-                "image": "容器镜像地址",
-                "pullPolicy": "镜像拉取策略",
-                "repositorybase": "基础镜像",
-                "repositorymonitor": "监控器镜像",
-                "repositoryubuntu": "Ubuntu镜像",
-                "tagbase": "基础镜像标签",
-                "tagmonitor": "监控器镜像标签",
-                "tagubuntu": "Ubuntu镜像标签",
-                "resources": "资源",
-                "limits": "配额",
-                "memory": "内存",
-                "requests": "请求",
-                "resourcesset": "设置资源",
-                "service": "服务",
-                "name": "名称",
-                "storage": "存储",
-                "storageclassname": "存储库",
-                "storagesize": "存储大小",
-                "hpa": "自动扩容",
-                "maxpods": "最大份数",
-                "minpods": "最小份数",
-                "targetcpupercent": "目标CPU利用率",
-                "replicaCount": "初始份数",
-                "externalPort": "外部端口",
-                "internalPort": "内部端口",
-                "type": "类型",
-                "repository": "仓库",
-                "tag": "标签",
-            };
-        }
-        /**
-         * translate the response content.
-         *
-         * @export
-         */
+        // this.getCharts('testtest');
+        this.i18n = i18n;
+        /** @export {boolean} */
+        this.disable = false;
+        this.translate = true;
+        this.translateobj = {
+            "image": "容器镜像地址",
+            "pullPolicy": "镜像拉取策略",
+            "repositorybase": "基础镜像",
+            "repositorymonitor": "监控器镜像",
+            "repositoryubuntu": "Ubuntu镜像",
+            "tagbase": "基础镜像标签",
+            "tagmonitor": "监控器镜像标签",
+            "tagubuntu": "Ubuntu镜像标签",
+            "resources": "资源",
+            "limits": "配额",
+            "memory": "内存",
+            "requests": "请求",
+            "resourcesset": "设置资源",
+            "service": "服务",
+            "name": "名称",
+            "storage": "存储",
+            "storageclassname": "存储库",
+            "storagesize": "存储大小",
+            "hpa": "自动扩容",
+            "maxpods": "最大份数",
+            "minpods": "最小份数",
+            "targetcpupercent": "目标CPU利用率",
+            "replicaCount": "初始份数",
+            "externalPort": "外部端口",
+            "internalPort": "内部端口",
+            "type": "类型",
+            "repository": "仓库",
+            "tag": "标签",
+        };
+    }
+
+    /**
+     * @export
+     */
+    showAdvanced() {
+        this.advanced ? this.advanced = false : this.advanced = true;
+    }
+
+    /**
+     * translate the response content.
+     *
+     * @export
+     */
     tanslate(str) {
             if (this.translate) {
                 if (this.translateobj.hasOwnProperty(str)) {
@@ -137,23 +149,27 @@ export class AppStoreController {
          */
     deploynow() {
             if (this.comform.$valid) {
-                switch (this.deployCon["platform"]) {
-                    case "X86":
-                        this.deployCon["arch"]["amd64"] = 'yes';
-                        this.deployCon["arch"]["arm64"] = 'no';
-                        break;
-                    case "ARM64":
-                        this.deployCon["arch"]["amd64"] = 'no';
-                        this.deployCon["arch"]["arm64"] = 'yes';
-                        break;
-                    case "auto":
-                        this.deployCon["arch"]["amd64"] = 'yes';
-                        this.deployCon["arch"]["arm64"] = 'yes';
-                        break;
+                if (this.advanced) {
+                    this.commitmes.content = JSON.stringify(this.allDeployCon);
+                } else {
+                    switch (this.deployCon["platform"]) {
+                        case "X86":
+                            this.deployCon["arch"]["amd64"] = 'yes';
+                            this.deployCon["arch"]["arm64"] = 'no';
+                            break;
+                        case "ARM64":
+                            this.deployCon["arch"]["amd64"] = 'no';
+                            this.deployCon["arch"]["arm64"] = 'yes';
+                            break;
+                        case "auto":
+                            this.deployCon["arch"]["amd64"] = 'yes';
+                            this.deployCon["arch"]["arm64"] = 'yes';
+                            break;
+                    }
+                    this.commitmes.content = JSON.stringify(this.deployCon);
                 }
-                this.commitmes.content = JSON.stringify(this.deployCon);
                 let mes = this.commitmes;
-                //console.log(mes);
+                console.log(mes);
                 let defer = this.q_.defer();
 
                 this.tokenPromise.then(
@@ -297,6 +313,8 @@ export class AppStoreController {
                                 delete this.commitmes["$promise"];
                                 delete this.commitmes["$resolved"];
                                 delete this.commitmes["error"];
+                                this.allDeployCon = JSON.parse(response.content);
+                                console.log(this.allDeployCon);
                                 let con = JSON.parse(response.content);
                                 this.platform = con["platform"];
                                 //delete con["resources"];
@@ -461,7 +479,8 @@ export class AppStoreController {
          */
     selectChart(chartName) {
         //console.log(chartName)
-        window['$']('#name').eq(0).focus();
+        // window['$']('#name').eq(0).focus();
+        this.platformstr = '';
         for (let i = 0; i < this.charts.length; i++) {
             this.charts[i]['selected'] = '';
             if (this.charts[i]['fullURL'] === chartName) {
@@ -484,9 +503,6 @@ export class AppStoreController {
             (response) => {
                 let con = JSON.parse(response.content);
                 this.platformstr = con["platform"];
-                if (this.platformstr == 'auto') {
-                    this.platformstr = "ARM64 X86";
-                }
             },
             () => {});
 
@@ -543,6 +559,14 @@ const i18n = {
     /** @export {string} @desc 域名
      * page. */
     MSG_DEPLOY_CHART_DOMAIN: goog.getMsg('域名'),
+
+    /** @export {string} @desc 显示高级选项
+     * page. */
+    MSG_DEPLOY_CHART_ADVANCED: goog.getMsg('显示高级选项'),
+
+    /** @export {string} @desc 隐藏高级选项
+     * page. */
+    MSG_DEPLOY_CHART_NOADVANCED: goog.getMsg('隐藏高级选项'),
 
     /** @export {string} @desc The text is put on the 'OK' button at the end of the chart deploy
      * page. */
