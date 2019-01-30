@@ -182,25 +182,16 @@ export class imagelistController {
         /**
          * @export
          */
-    fInputMsgPre() {
-            if (this.baseImages.url == "" || this.baseImages.branch == "" || this.baseImages.branch == undefined || this.baseImages.url == undefined) {
+    fInputMsgPreNext() {
+            if (this.oBaseFillInFields.url == false && this.oBaseFillInFields.branch == false) {
+                this.baseShowNum++;
+                this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+            } else {
                 if (this.baseImages.url == "" || this.baseImages.url == undefined) {
                     this.oBaseFillInFields.url = true;
                 } else {
                     this.oBaseFillInFields.branch = true;
                 }
-                return;
-            } else {
-                this.oBaseFillInFields.url = false;
-                this.oBaseFillInFields.branch = false;
-                this.baseShowNum++;
-                this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-                // let msg = {
-                //     "gitUrl": this.baseImages.url,
-                //     "gitBranch": this.baseImages.branch,
-                //     "builderImg": this.oBaseImageMsg["url"],
-                //     "imageTag": this.baseImages.name
-                // }
             }
         }
         /**

@@ -41,17 +41,17 @@ md-card>md-card-header img {
     background-color: #ffffff;
     .content-box {
         &>.create-tips {
-            margin: 20px 0;
+            margin: 20px 20px;
             padding: 20px 20px;
-            border: 1px solid #000000;
         }
         &>.creat {
             background-color: #ffffff;
             padding: 20px;
-            &>.custom-process,
-            &>.base-process {
+            &>.base-process,
+            &>.custom-process {
                 position: relative;
                 display: flex;
+                margin-bottom: 80px;
                 justify-content: space-between;
                 &::before {
                     content: "";
@@ -59,14 +59,16 @@ md-card>md-card-header img {
                     top: 50%;
                     left: 0;
                     width: 100%;
-                    border: 0.5px solid #000000;
+                    border: 1px solid rgb(51, 153, 255);
                     box-sizing: border-box;
                 }
                 &>p {
+                    position: relative;
                     background-color: #ffffff;
                     padding: 10px 20px;
                     z-index: 99;
                     display: flex;
+                    height: 30px;
                     line-height: 30px;
                     &>span:first-child {
                         width: 30px;
@@ -76,11 +78,35 @@ md-card>md-card-header img {
                         color: #ffffff;
                         border-radius: 2px;
                     }
+                    &>.details-content {
+                        position: absolute;
+                        left: 35px;
+                        top: 55px;
+                        line-height: 20px;
+                        font-size: 13px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        height: 80px;
+                        color: #cccccc;
+                    }
                 }
                 &>.base-process-children-background,
                 &>.custom-process-children-background {
                     &>span:first-child {
                         background: rgb(51, 153, 255);
+                    }
+                }
+            }
+            &>.base-process {
+                &>p {
+                    width: 25%;
+                    display: flex;
+                    justify-content: center;
+                    &>.details-content {
+                        position: absolute;
+                        left: 25%;
+                        top: 55px;
+                        width: 50%;
                     }
                 }
             }
