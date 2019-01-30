@@ -61,6 +61,11 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">退出</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">登录</translation>
+  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
+  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
+  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
+  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
+  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">应用</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">应用商店</translation>
@@ -322,10 +327,12 @@
   <translation id="6920608533826325721" key="MSG_DEPLOY_CHART_ACTION_CANCEL1" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">取消</translation>
   <translation id="6047119575436867857" key="MSG_DEPLOY_CHART_ACTION_NOW_CANCLE1" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">取消</translation>
   <translation id="5820726949487796151" key="MSG_DEPLOY_CHART_ACTION_NOW_OK" desc="The text is put on the 'OK' button at the end of the chart deploy page.">确定</translation>
+  <translation id="789080124903681187" key="MSG_DEPLOY_CHART_ADVANCED" desc="显示高级选项 page.">显示高级选项</translation>
   <translation id="1353833315557551831" key="MSG_DEPLOY_CHART_CUSTOM_VALUES_USER_HELP" desc="User help for chart custom values on the deploy from chart page.">Optionally, specify a custom values file.</translation>
   <translation id="6792200156395350165" key="MSG_DEPLOY_CHART_CUSTOM_VALUES_USER_HELP1" desc="User help for chart custom values on the deploy from chart page.">Optionally, specify a custom values file.</translation>
   <translation id="7285206683020507090" key="MSG_DEPLOY_CHART_DOMAIN" desc="域名 page.">域名</translation>
   <translation id="52245934032520754" key="MSG_DEPLOY_CHART_DOMAIN_SERVICE" desc="域名服务 page.">域名服务</translation>
+  <translation id="2737723555404208856" key="MSG_DEPLOY_CHART_NOADVANCED" desc="隐藏高级选项 page.">隐藏高级选项</translation>
   <translation id="2962158407862517441" key="MSG_DEPLOY_CHART_RELEASE_NAME_LABEL" desc="Label &quot;Release Name&quot; label, for the release name on the deploy from chart page.">发布的名字</translation>
   <translation id="616047337773472461" key="MSG_DEPLOY_CHART_RELEASE_NAME_LABEL1" desc="Label &quot;Release Name&quot; label, for the release name on the deploy from chart page.">发布的名字</translation>
   <translation id="1983035032872423844" key="MSG_DEPLOY_CHART_RELEASE_NAME_USER_HELP" desc="User help for chart release name on the deploy from chart page.">发布的名字</translation>
@@ -700,13 +707,13 @@
   <translation id="3486408524945578218" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
   <translation id="5139034434813169361" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u786E\u5B9Aimagelist">确定</translation>
   <translation id="4722010155987137364" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
-  <translation id="7882563763634747729" key="MSG_IMAGELIST_IMAGELIST_37" desc="This is required!imagelist">This is required!</translation>
+  <translation id="7882563763634747729" key="MSG_IMAGELIST_IMAGELIST_37" desc="This is required!imagelist">必填</translation>
   <translation id="5164214919382972085" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">工作负载类型</translation>
   <translation id="3454984822181218089" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u955C\u50CF\u5730\u5740imagelist">镜像地址</translation>
   <translation id="7579144868271480626" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u9009\u62E9git\u5E93\u5730\u5740\u548C\u5206\u652Fimagelist">选择git库地址和分支</translation>
-  <translation id="1391934213490690762" key="MSG_IMAGELIST_IMAGELIST_40" desc="This is required!imagelist">This is required!</translation>
+  <translation id="1391934213490690762" key="MSG_IMAGELIST_IMAGELIST_40" desc="This is required!imagelist">必填</translation>
   <translation id="697331715631154402" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u7248\u672C\u53F7imagelist">版本号</translation>
-  <translation id="3928302596157576710" key="MSG_IMAGELIST_IMAGELIST_42" desc="This is required!imagelist">This is required!</translation>
+  <translation id="3928302596157576710" key="MSG_IMAGELIST_IMAGELIST_42" desc="This is required!imagelist">必填</translation>
   <translation id="7007147973584620018" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u53D6\u6D88imagelist">取消</translation>
   <translation id="2937969355996697021" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u786E\u5B9Aimagelist">确定</translation>
   <translation id="50285236971551187" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>

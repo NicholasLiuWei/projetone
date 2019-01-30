@@ -61,6 +61,11 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">Sign out</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">Sign in</translation>
+  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
+  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
+  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
+  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
+  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">Release</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">AppStore</translation>
@@ -322,10 +327,12 @@
   <translation id="6920608533826325721" key="MSG_DEPLOY_CHART_ACTION_CANCEL1" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">Cancel</translation>
   <translation id="6047119575436867857" key="MSG_DEPLOY_CHART_ACTION_NOW_CANCLE1" desc="The text is put on the 'Cancel' button at the end of the chart deploy page.">Cancel</translation>
   <translation id="5820726949487796151" key="MSG_DEPLOY_CHART_ACTION_NOW_OK" desc="The text is put on the 'OK' button at the end of the chart deploy page.">OK</translation>
+  <translation id="789080124903681187" key="MSG_DEPLOY_CHART_ADVANCED" desc="显示高级选项 page.">Show Advanced</translation>
   <translation id="1353833315557551831" key="MSG_DEPLOY_CHART_CUSTOM_VALUES_USER_HELP" desc="User help for chart custom values on the deploy from chart page.">Optionally, specify a custom values file.</translation>
   <translation id="6792200156395350165" key="MSG_DEPLOY_CHART_CUSTOM_VALUES_USER_HELP1" desc="User help for chart custom values on the deploy from chart page.">Optionally, specify a custom values file.</translation>
   <translation id="7285206683020507090" key="MSG_DEPLOY_CHART_DOMAIN" desc="域名 page.">Domain</translation>
   <translation id="52245934032520754" key="MSG_DEPLOY_CHART_DOMAIN_SERVICE" desc="域名服务 page.">Domain Service</translation>
+  <translation id="2737723555404208856" key="MSG_DEPLOY_CHART_NOADVANCED" desc="隐藏高级选项 page.">Hide Advanced</translation>
   <translation id="2962158407862517441" key="MSG_DEPLOY_CHART_RELEASE_NAME_LABEL" desc="Label &quot;Release Name&quot; label, for the release name on the deploy from chart page.">Release Name</translation>
   <translation id="616047337773472461" key="MSG_DEPLOY_CHART_RELEASE_NAME_LABEL1" desc="Label &quot;Release Name&quot; label, for the release name on the deploy from chart page.">Release Name</translation>
   <translation id="1983035032872423844" key="MSG_DEPLOY_CHART_RELEASE_NAME_USER_HELP" desc="User help for chart release name on the deploy from chart page.">Optionally, specify a release name.</translation>
@@ -629,101 +636,101 @@
   <translation id="9182587734524448852" key="MSG_HORIZONTAL_POD_AUTOSCALER_LIST_CREATED_AT_TOOLTIP" desc="Tooltip 'Created at [some date]' showing the exact creation time of the horizontal pod autoscaler.">Created at <ph name="CREATION_DATE"/></translation>
   <translation id="2429738413060384411" key="MSG_IMAGELIST_APP_0" desc="component">component</translation>
   <translation id="6692832471990130704" key="MSG_IMAGELIST_APP_1" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
-  <translation id="7745563901122159147" key="MSG_IMAGELIST_APP_10" desc="\u76EE\u6807CPU\u5229\u7528\u7387">目标CPU利用率</translation>
-  <translation id="2287520774624659004" key="MSG_IMAGELIST_APP_11" desc="\u955C\u50CF">镜像</translation>
-  <translation id="2478929419047968454" key="MSG_IMAGELIST_APP_12" desc="\u6DFB\u52A0\u955C\u50CF">添加镜像</translation>
-  <translation id="6314658554900926762" key="MSG_IMAGELIST_APP_13" desc="\u5220\u9664\u955C\u50CF">删除镜像</translation>
+  <translation id="7745563901122159147" key="MSG_IMAGELIST_APP_10" desc="\u76EE\u6807CPU\u5229\u7528\u7387">targetcpupercent</translation>
+  <translation id="2287520774624659004" key="MSG_IMAGELIST_APP_11" desc="\u955C\u50CF">image</translation>
+  <translation id="2478929419047968454" key="MSG_IMAGELIST_APP_12" desc="\u6DFB\u52A0\u955C\u50CF">Add Image</translation>
+  <translation id="6314658554900926762" key="MSG_IMAGELIST_APP_13" desc="\u5220\u9664\u955C\u50CF">Delete Image</translation>
   <translation id="4626682706612387959" key="MSG_IMAGELIST_APP_14" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
-  <translation id="7568899959531019532" key="MSG_IMAGELIST_APP_15" desc="\u5730\u5740">地址</translation>
-  <translation id="3211589112022955917" key="MSG_IMAGELIST_APP_16" desc="\u62C9\u53D6\u7B56\u7565">拉取策略</translation>
-  <translation id="6129597545436569537" key="MSG_IMAGELIST_APP_17" desc="\u53C2\u6570">参数</translation>
-  <translation id="8718366604669416724" key="MSG_IMAGELIST_APP_18" desc="\u547D\u4EE4">命令</translation>
-  <translation id="4850688163859587974" key="MSG_IMAGELIST_APP_19" desc="\u8D44\u6E90">资源</translation>
-  <translation id="2215259332284708961" key="MSG_IMAGELIST_APP_2" desc="\u5E94\u7528\u7C7B\u578B">应用类型</translation>
-  <translation id="3904133437258444134" key="MSG_IMAGELIST_APP_20" desc="\u9650\u989DCPU">限额CPU</translation>
-  <translation id="5298725228593050100" key="MSG_IMAGELIST_APP_21" desc="\u9650\u989D\u5185\u5B58">限额内存</translation>
-  <translation id="4619531784186755962" key="MSG_IMAGELIST_APP_22" desc="\u914D\u989DCPU">配额CPU</translation>
-  <translation id="636931114835755950" key="MSG_IMAGELIST_APP_23" desc="\u914D\u989D\u5185\u5B58">配额内存</translation>
-  <translation id="2834554834247898277" key="MSG_IMAGELIST_APP_24" desc="\u5B58\u50A8">存储</translation>
-  <translation id="9083070857462008528" key="MSG_IMAGELIST_APP_25" desc="\u6DFB\u52A0\u5B58\u50A8">添加存储</translation>
-  <translation id="7830937930404047918" key="MSG_IMAGELIST_APP_26" desc="\u540D\u79F0">名称</translation>
+  <translation id="7568899959531019532" key="MSG_IMAGELIST_APP_15" desc="\u5730\u5740">Address</translation>
+  <translation id="3211589112022955917" key="MSG_IMAGELIST_APP_16" desc="\u62C9\u53D6\u7B56\u7565">pullPolicy</translation>
+  <translation id="6129597545436569537" key="MSG_IMAGELIST_APP_17" desc="\u53C2\u6570">Args</translation>
+  <translation id="8718366604669416724" key="MSG_IMAGELIST_APP_18" desc="\u547D\u4EE4">Commond</translation>
+  <translation id="4850688163859587974" key="MSG_IMAGELIST_APP_19" desc="\u8D44\u6E90">resources</translation>
+  <translation id="2215259332284708961" key="MSG_IMAGELIST_APP_2" desc="\u5E94\u7528\u7C7B\u578B">App Type</translation>
+  <translation id="3904133437258444134" key="MSG_IMAGELIST_APP_20" desc="\u9650\u989DCPU">Limit CPU</translation>
+  <translation id="5298725228593050100" key="MSG_IMAGELIST_APP_21" desc="\u9650\u989D\u5185\u5B58">Limit Memory</translation>
+  <translation id="4619531784186755962" key="MSG_IMAGELIST_APP_22" desc="\u914D\u989DCPU">Request CPU</translation>
+  <translation id="636931114835755950" key="MSG_IMAGELIST_APP_23" desc="\u914D\u989D\u5185\u5B58">Request Memory</translation>
+  <translation id="2834554834247898277" key="MSG_IMAGELIST_APP_24" desc="\u5B58\u50A8">Storage</translation>
+  <translation id="9083070857462008528" key="MSG_IMAGELIST_APP_25" desc="\u6DFB\u52A0\u5B58\u50A8">Add Storage</translation>
+  <translation id="7830937930404047918" key="MSG_IMAGELIST_APP_26" desc="\u540D\u79F0">Name</translation>
   <translation id="6809866505991311048" key="MSG_IMAGELIST_APP_27" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
-  <translation id="1972730428375634384" key="MSG_IMAGELIST_APP_28" desc="\u6A21\u5F0F">模式</translation>
-  <translation id="3533951868853739962" key="MSG_IMAGELIST_APP_29" desc="\u6302\u8F7D\u8DEF\u5F84">挂载路径</translation>
-  <translation id="1267047310268178502" key="MSG_IMAGELIST_APP_3" desc="\u5E94\u7528\u540D\u79F0">名称</translation>
-  <translation id="8402530617029640210" key="MSG_IMAGELIST_APP_30" desc="\u5927\u5C0F">大小</translation>
-  <translation id="3019834135396679699" key="MSG_IMAGELIST_APP_31" desc="\u7C7B\u578B">类型</translation>
-  <translation id="6614945189203853911" key="MSG_IMAGELIST_APP_32" desc="\u73AF\u5883\u53D8\u91CF">环境变量</translation>
-  <translation id="3359220765501713509" key="MSG_IMAGELIST_APP_33" desc="\u6DFB\u52A0">添加</translation>
-  <translation id="7594782943417272914" key="MSG_IMAGELIST_APP_34" desc="\u540D\u79F0">名称</translation>
+  <translation id="1972730428375634384" key="MSG_IMAGELIST_APP_28" desc="\u6A21\u5F0F">Mode</translation>
+  <translation id="3533951868853739962" key="MSG_IMAGELIST_APP_29" desc="\u6302\u8F7D\u8DEF\u5F84">Volume Mount</translation>
+  <translation id="1267047310268178502" key="MSG_IMAGELIST_APP_3" desc="\u5E94\u7528\u540D\u79F0">Name</translation>
+  <translation id="8402530617029640210" key="MSG_IMAGELIST_APP_30" desc="\u5927\u5C0F">Size</translation>
+  <translation id="3019834135396679699" key="MSG_IMAGELIST_APP_31" desc="\u7C7B\u578B">Type</translation>
+  <translation id="6614945189203853911" key="MSG_IMAGELIST_APP_32" desc="\u73AF\u5883\u53D8\u91CF">Environment Variables </translation>
+  <translation id="3359220765501713509" key="MSG_IMAGELIST_APP_33" desc="\u6DFB\u52A0">Add</translation>
+  <translation id="7594782943417272914" key="MSG_IMAGELIST_APP_34" desc="\u540D\u79F0">Name</translation>
   <translation id="7785144864603706893" key="MSG_IMAGELIST_APP_35" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
-  <translation id="4427026232777311282" key="MSG_IMAGELIST_APP_36" desc="\u503C">值</translation>
-  <translation id="1645956755285575981" key="MSG_IMAGELIST_APP_37" desc="\u7AEF\u53E3">端口</translation>
-  <translation id="3023431902772067225" key="MSG_IMAGELIST_APP_38" desc="\u6DFB\u52A0">添加</translation>
-  <translation id="4101451520783491777" key="MSG_IMAGELIST_APP_39" desc="\u5BB9\u5668\u7AEF\u53E3">容器端口</translation>
-  <translation id="6287501829880114260" key="MSG_IMAGELIST_APP_4" desc="\u91CD\u542F\u7B56\u7565">重启策略</translation>
+  <translation id="4427026232777311282" key="MSG_IMAGELIST_APP_36" desc="\u503C">Value</translation>
+  <translation id="1645956755285575981" key="MSG_IMAGELIST_APP_37" desc="\u7AEF\u53E3">Port</translation>
+  <translation id="3023431902772067225" key="MSG_IMAGELIST_APP_38" desc="\u6DFB\u52A0">Add</translation>
+  <translation id="4101451520783491777" key="MSG_IMAGELIST_APP_39" desc="\u5BB9\u5668\u7AEF\u53E3">Port</translation>
+  <translation id="6287501829880114260" key="MSG_IMAGELIST_APP_4" desc="\u91CD\u542F\u7B56\u7565">RestartPolicy</translation>
   <translation id="1925615256949762554" key="MSG_IMAGELIST_APP_40" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">Actions</translation>
-  <translation id="3554229355383407130" key="MSG_IMAGELIST_APP_41" desc="\u6A21\u5F0F">模式</translation>
-  <translation id="5438780701275044111" key="MSG_IMAGELIST_APP_5" desc="\u521D\u59CB\u4EFD\u6570">初始份数</translation>
-  <translation id="4919540269153291461" key="MSG_IMAGELIST_APP_6" desc="\u81EA\u52A8\u6269\u5BB9">自动扩容</translation>
-  <translation id="5533488617728815279" key="MSG_IMAGELIST_APP_7" desc="\u662F\u5426\u914D\u7F6E">是否配置</translation>
-  <translation id="3074575285921261822" key="MSG_IMAGELIST_APP_8" desc="\u6700\u5927\u4EFD\u6570">最大份数</translation>
-  <translation id="8532502828461371773" key="MSG_IMAGELIST_APP_9" desc="\u6700\u5C0F\u4EFD\u6570">最小份数</translation>
-  <translation id="971846479361508260" key="MSG_IMAGELIST_IMAGELIST_0" desc="\u955C\u50CF\u6784\u5EFAimagelist">镜像构建</translation>
-  <translation id="6161506128850165929" key="MSG_IMAGELIST_IMAGELIST_1" desc="\u5E94\u7528\u7F16\u6392imagelist">应用编排</translation>
-  <translation id="3326611401254846834" key="MSG_IMAGELIST_IMAGELIST_10" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="9185570986590688925" key="MSG_IMAGELIST_IMAGELIST_11" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="5956737627764757452" key="MSG_IMAGELIST_IMAGELIST_12" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="5886136414338861844" key="MSG_IMAGELIST_IMAGELIST_13" desc="\u8F93\u5165\u81EA\u5B9A\u4E49\u955C\u50CF\u540D\u79F0imagelist">输入自定义镜像名称</translation>
-  <translation id="2349918411040302098" key="MSG_IMAGELIST_IMAGELIST_14" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="4803870401386686135" key="MSG_IMAGELIST_IMAGELIST_15" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="4190205573536933625" key="MSG_IMAGELIST_IMAGELIST_16" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
-  <translation id="214783470935553100" key="MSG_IMAGELIST_IMAGELIST_17" desc="\u521B\u5EFA\u5E94\u7528imagelist">创建应用</translation>
-  <translation id="3107714278713416020" key="MSG_IMAGELIST_IMAGELIST_18" desc="\u9009\u62E9\u666E\u901A\u955C\u50CF\uFF0C\u8F93\u5165\u5E94\u7528\u540D\u79F0imagelist">选择普通镜像，输入应用名称</translation>
-  <translation id="5847040855412509571" key="MSG_IMAGELIST_IMAGELIST_19" desc="\u7F16\u8F91\u5E94\u7528\u7EC4\u4EF6imagelist">编辑应用组件</translation>
-  <translation id="9057152056335733475" key="MSG_IMAGELIST_IMAGELIST_2" desc="\u521B\u5EFA\u955C\u50CFimagelist">创建镜像</translation>
-  <translation id="1124202682239854042" key="MSG_IMAGELIST_IMAGELIST_20" desc="\u521B\u5EFA\u670D\u52A1imagelist">创建服务</translation>
-  <translation id="4877735869036286594" key="MSG_IMAGELIST_IMAGELIST_21" desc="\u521B\u5EFA\u670D\u52A1\u5165\u53E3imagelist">创建服务入口</translation>
-  <translation id="1836409781915412702" key="MSG_IMAGELIST_IMAGELIST_22" desc="\u5E94\u7528\u540D\u79F0">应用名称</translation>
-  <translation id="7509649943137144380" key="MSG_IMAGELIST_IMAGELIST_23" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="4935390151384675470" key="MSG_IMAGELIST_IMAGELIST_24" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
-  <translation id="7661431321182696732" key="MSG_IMAGELIST_IMAGELIST_25" desc="\u521B\u5EFA\u5E94\u7528">创建应用</translation>
-  <translation id="1843163013738203276" key="MSG_IMAGELIST_IMAGELIST_26" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
-  <translation id="5709161226495946636" key="MSG_IMAGELIST_IMAGELIST_27" desc="\u7C7B\u578B">类型</translation>
-  <translation id="7680740342940875557" key="MSG_IMAGELIST_IMAGELIST_28" desc="\u955C\u50CFimagelist">镜像</translation>
-  <translation id="7396021714737794179" key="MSG_IMAGELIST_IMAGELIST_29" desc="\u662F\u5426\u81EA\u52A8\u6269\u5BB9imagelist">是否自动扩容</translation>
-  <translation id="1988270669925583729" key="MSG_IMAGELIST_IMAGELIST_3" desc="\u9009\u62E9\u57FA\u7840\u955C\u50CFimagelist">选择基础镜像</translation>
-  <translation id="754971632117984926" key="MSG_IMAGELIST_IMAGELIST_30" desc="\u64CD\u4F5C">操作</translation>
-  <translation id="5273594682823052990" key="MSG_IMAGELIST_IMAGELIST_31" desc="\u5220\u9664">删除</translation>
-  <translation id="4009885105033985394" key="MSG_IMAGELIST_IMAGELIST_32" desc="\u6DFB\u52A0\u5DE5\u4F5C\u8D1F\u8F7Dimagelist">添加工作负载</translation>
-  <translation id="1652849280876218332" key="MSG_IMAGELIST_IMAGELIST_33" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="3486408524945578218" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="5139034434813169361" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u786E\u5B9Aimagelist">确定</translation>
-  <translation id="4722010155987137364" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
+  <translation id="3554229355383407130" key="MSG_IMAGELIST_APP_41" desc="\u6A21\u5F0F">Mode</translation>
+  <translation id="5438780701275044111" key="MSG_IMAGELIST_APP_5" desc="\u521D\u59CB\u4EFD\u6570">ReplicaCount</translation>
+  <translation id="4919540269153291461" key="MSG_IMAGELIST_APP_6" desc="\u81EA\u52A8\u6269\u5BB9">HPA</translation>
+  <translation id="5533488617728815279" key="MSG_IMAGELIST_APP_7" desc="\u662F\u5426\u914D\u7F6E">Use</translation>
+  <translation id="3074575285921261822" key="MSG_IMAGELIST_APP_8" desc="\u6700\u5927\u4EFD\u6570">Maxpods</translation>
+  <translation id="8532502828461371773" key="MSG_IMAGELIST_APP_9" desc="\u6700\u5C0F\u4EFD\u6570">Minpods</translation>
+  <translation id="971846479361508260" key="MSG_IMAGELIST_IMAGELIST_0" desc="\u955C\u50CF\u6784\u5EFAimagelist">Image building</translation>
+  <translation id="6161506128850165929" key="MSG_IMAGELIST_IMAGELIST_1" desc="\u5E94\u7528\u7F16\u6392imagelist">Application Orchestral</translation>
+  <translation id="3326611401254846834" key="MSG_IMAGELIST_IMAGELIST_10" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field</translation>
+  <translation id="9185570986590688925" key="MSG_IMAGELIST_IMAGELIST_11" desc="\u4E0A\u4E00\u6B65imagelist">Previous</translation>
+  <translation id="5956737627764757452" key="MSG_IMAGELIST_IMAGELIST_12" desc="\u4E0B\u4E00\u6B65imagelist">Next</translation>
+  <translation id="5886136414338861844" key="MSG_IMAGELIST_IMAGELIST_13" desc="\u8F93\u5165\u81EA\u5B9A\u4E49\u955C\u50CF\u540D\u79F0imagelist">Enter a custom image name</translation>
+  <translation id="2349918411040302098" key="MSG_IMAGELIST_IMAGELIST_14" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field</translation>
+  <translation id="4803870401386686135" key="MSG_IMAGELIST_IMAGELIST_15" desc="\u4E0A\u4E00\u6B65imagelist">Previous</translation>
+  <translation id="4190205573536933625" key="MSG_IMAGELIST_IMAGELIST_16" desc="\u5F00\u59CB\u521B\u5EFAimagelist">Create</translation>
+  <translation id="214783470935553100" key="MSG_IMAGELIST_IMAGELIST_17" desc="\u521B\u5EFA\u5E94\u7528imagelist">Create Release</translation>
+  <translation id="3107714278713416020" key="MSG_IMAGELIST_IMAGELIST_18" desc="\u9009\u62E9\u666E\u901A\u955C\u50CF\uFF0C\u8F93\u5165\u5E94\u7528\u540D\u79F0imagelist">Select the normal image and enter the name of the application</translation>
+  <translation id="5847040855412509571" key="MSG_IMAGELIST_IMAGELIST_19" desc="\u7F16\u8F91\u5E94\u7528\u7EC4\u4EF6imagelist">Edit application components</translation>
+  <translation id="9057152056335733475" key="MSG_IMAGELIST_IMAGELIST_2" desc="\u521B\u5EFA\u955C\u50CFimagelist">Create image</translation>
+  <translation id="1124202682239854042" key="MSG_IMAGELIST_IMAGELIST_20" desc="\u521B\u5EFA\u670D\u52A1imagelist">Create service</translation>
+  <translation id="4877735869036286594" key="MSG_IMAGELIST_IMAGELIST_21" desc="\u521B\u5EFA\u670D\u52A1\u5165\u53E3imagelist">create Ingress</translation>
+  <translation id="1836409781915412702" key="MSG_IMAGELIST_IMAGELIST_22" desc="\u5E94\u7528\u540D\u79F0">Release Name</translation>
+  <translation id="7509649943137144380" key="MSG_IMAGELIST_IMAGELIST_23" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field</translation>
+  <translation id="4935390151384675470" key="MSG_IMAGELIST_IMAGELIST_24" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">Name repeat</translation>
+  <translation id="7661431321182696732" key="MSG_IMAGELIST_IMAGELIST_25" desc="\u521B\u5EFA\u5E94\u7528">Create Release</translation>
+  <translation id="1843163013738203276" key="MSG_IMAGELIST_IMAGELIST_26" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">Workload name</translation>
+  <translation id="5709161226495946636" key="MSG_IMAGELIST_IMAGELIST_27" desc="\u7C7B\u578B">Type</translation>
+  <translation id="7680740342940875557" key="MSG_IMAGELIST_IMAGELIST_28" desc="\u955C\u50CFimagelist">Image</translation>
+  <translation id="7396021714737794179" key="MSG_IMAGELIST_IMAGELIST_29" desc="\u662F\u5426\u81EA\u52A8\u6269\u5BB9imagelist">HPA</translation>
+  <translation id="1988270669925583729" key="MSG_IMAGELIST_IMAGELIST_3" desc="\u9009\u62E9\u57FA\u7840\u955C\u50CFimagelist">Select the base image</translation>
+  <translation id="754971632117984926" key="MSG_IMAGELIST_IMAGELIST_30" desc="\u64CD\u4F5C">Action</translation>
+  <translation id="5273594682823052990" key="MSG_IMAGELIST_IMAGELIST_31" desc="\u5220\u9664">Delete</translation>
+  <translation id="4009885105033985394" key="MSG_IMAGELIST_IMAGELIST_32" desc="\u6DFB\u52A0\u5DE5\u4F5C\u8D1F\u8F7Dimagelist">Add Workload</translation>
+  <translation id="1652849280876218332" key="MSG_IMAGELIST_IMAGELIST_33" desc="\u4E0A\u4E00\u6B65imagelist">Previous</translation>
+  <translation id="3486408524945578218" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u4E0B\u4E00\u6B65imagelist">Next</translation>
+  <translation id="5139034434813169361" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u786E\u5B9Aimagelist">Sure</translation>
+  <translation id="4722010155987137364" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">Workload name</translation>
   <translation id="7882563763634747729" key="MSG_IMAGELIST_IMAGELIST_37" desc="This is required!imagelist">This is required!</translation>
-  <translation id="5164214919382972085" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">工作负载类型</translation>
-  <translation id="3454984822181218089" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u955C\u50CF\u5730\u5740imagelist">镜像地址</translation>
-  <translation id="7579144868271480626" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u9009\u62E9git\u5E93\u5730\u5740\u548C\u5206\u652Fimagelist">选择git库地址和分支</translation>
+  <translation id="5164214919382972085" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">Workload Type</translation>
+  <translation id="3454984822181218089" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u955C\u50CF\u5730\u5740imagelist">Image Address</translation>
+  <translation id="7579144868271480626" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u9009\u62E9git\u5E93\u5730\u5740\u548C\u5206\u652Fimagelist">Select the git repository address and branch</translation>
   <translation id="1391934213490690762" key="MSG_IMAGELIST_IMAGELIST_40" desc="This is required!imagelist">This is required!</translation>
-  <translation id="697331715631154402" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u7248\u672C\u53F7imagelist">版本号</translation>
+  <translation id="697331715631154402" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u7248\u672C\u53F7imagelist">Version</translation>
   <translation id="3928302596157576710" key="MSG_IMAGELIST_IMAGELIST_42" desc="This is required!imagelist">This is required!</translation>
-  <translation id="7007147973584620018" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u53D6\u6D88imagelist">取消</translation>
-  <translation id="2937969355996697021" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u786E\u5B9Aimagelist">确定</translation>
-  <translation id="50285236971551187" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="2257219502820130497" key="MSG_IMAGELIST_IMAGELIST_46" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="7713763596666023092" key="MSG_IMAGELIST_IMAGELIST_47" desc="\u662F\u5426\u914D\u7F6E">是否配置</translation>
-  <translation id="5140455710225745143" key="MSG_IMAGELIST_IMAGELIST_48" desc="\u662Fimagelist">是</translation>
-  <translation id="7679423488100825030" key="MSG_IMAGELIST_IMAGELIST_49" desc="\u5426imagelist">否</translation>
-  <translation id="2728506618725263228" key="MSG_IMAGELIST_IMAGELIST_5" desc="\u8F93\u5165\u666E\u901A\u955C\u50CF\u7684\u540D\u79F0\uFF0C\u5F00\u59CB\u6784\u5EFAimagelist">输入普通镜像的名称，开始构建</translation>
-  <translation id="7299587668262340934" key="MSG_IMAGELIST_IMAGELIST_50" desc="\u5730\u5740">地址</translation>
-  <translation id="3189972231371503587" key="MSG_IMAGELIST_IMAGELIST_51" desc="\u670D\u52A1\u7AEF\u53E3">服务端口</translation>
-  <translation id="5604523828030586655" key="MSG_IMAGELIST_IMAGELIST_52" desc="\u670D\u52A1\u540D\u5B57">服务名字</translation>
-  <translation id="8735470790091281243" key="MSG_IMAGELIST_IMAGELIST_53" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="577254406130090624" key="MSG_IMAGELIST_IMAGELIST_54" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
-  <translation id="434019069897910112" key="MSG_IMAGELIST_IMAGELIST_6" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="8015883821794606244" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u4ED3\u5E93\u5730\u5740imagelist">仓库地址</translation>
-  <translation id="6114156362604968860" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="7430934666527146455" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u4ED3\u5E93\u5206\u652Fimagelist">仓库分支</translation>
+  <translation id="7007147973584620018" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u53D6\u6D88imagelist">Cancel</translation>
+  <translation id="2937969355996697021" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u786E\u5B9Aimagelist">Sure</translation>
+  <translation id="50285236971551187" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u4E0A\u4E00\u6B65imagelist">Previous</translation>
+  <translation id="2257219502820130497" key="MSG_IMAGELIST_IMAGELIST_46" desc="\u4E0B\u4E00\u6B65imagelist">Next</translation>
+  <translation id="7713763596666023092" key="MSG_IMAGELIST_IMAGELIST_47" desc="\u662F\u5426\u914D\u7F6E">Use</translation>
+  <translation id="5140455710225745143" key="MSG_IMAGELIST_IMAGELIST_48" desc="\u662Fimagelist">Yes</translation>
+  <translation id="7679423488100825030" key="MSG_IMAGELIST_IMAGELIST_49" desc="\u5426imagelist">No</translation>
+  <translation id="2728506618725263228" key="MSG_IMAGELIST_IMAGELIST_5" desc="\u8F93\u5165\u666E\u901A\u955C\u50CF\u7684\u540D\u79F0\uFF0C\u5F00\u59CB\u6784\u5EFAimagelist">Enter the name of the normal image to begin the build</translation>
+  <translation id="7299587668262340934" key="MSG_IMAGELIST_IMAGELIST_50" desc="\u5730\u5740">Address</translation>
+  <translation id="3189972231371503587" key="MSG_IMAGELIST_IMAGELIST_51" desc="\u670D\u52A1\u7AEF\u53E3">Service Port</translation>
+  <translation id="5604523828030586655" key="MSG_IMAGELIST_IMAGELIST_52" desc="\u670D\u52A1\u540D\u5B57">Service Name</translation>
+  <translation id="8735470790091281243" key="MSG_IMAGELIST_IMAGELIST_53" desc="\u4E0A\u4E00\u6B65imagelist">Previous</translation>
+  <translation id="577254406130090624" key="MSG_IMAGELIST_IMAGELIST_54" desc="\u5F00\u59CB\u521B\u5EFAimagelist">Create</translation>
+  <translation id="434019069897910112" key="MSG_IMAGELIST_IMAGELIST_6" desc="\u4E0B\u4E00\u6B65imagelist">Next</translation>
+  <translation id="8015883821794606244" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u4ED3\u5E93\u5730\u5740imagelist">Respository</translation>
+  <translation id="6114156362604968860" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field</translation>
+  <translation id="7430934666527146455" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u4ED3\u5E93\u5206\u652Fimagelist">Branch</translation>
   <translation id="1937389621995341440" key="MSG_IMAGELIST_S2I_0" desc="\u4ED3\u5E93\u5730\u5740">Repository Address</translation>
   <translation id="7567721771210862521" key="MSG_IMAGELIST_S2I_1" desc="\u5206\u652F">Branch</translation>
   <translation id="4607351051458982671" key="MSG_IMAGELIST_S2I_2" desc="\u955C\u50CF\u540D\u79F0">Image Name</translation>

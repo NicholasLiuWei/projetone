@@ -131,6 +131,7 @@ export class AppStoreController {
      *
      * @export
      */
+
     tanslate(str) {
             if (this.translate) {
                 if (this.translateobj.hasOwnProperty(str)) {
@@ -147,336 +148,352 @@ export class AppStoreController {
          *
          * @export
          */
+
     deploynow() {
-            if (this.comform.$valid) {
-                if (this.advanced) {
-                    this.commitmes.content = JSON.stringify(this.allDeployCon);
-                } else {
-                    switch (this.deployCon["platform"]) {
-                        case "X86":
-                            this.deployCon["arch"]["amd64"] = 'yes';
-                            this.deployCon["arch"]["arm64"] = 'no';
-                            break;
-                        case "ARM64":
-                            this.deployCon["arch"]["amd64"] = 'no';
-                            this.deployCon["arch"]["arm64"] = 'yes';
-                            break;
-                        case "auto":
-                            this.deployCon["arch"]["amd64"] = 'yes';
-                            this.deployCon["arch"]["arm64"] = 'yes';
-                            break;
-                    }
-                    this.commitmes.content = JSON.stringify(this.deployCon);
+        if (this.comform.$valid) {
+            if (this.advanced) {
+                this.commitmes.content = JSON.stringify(this.allDeployCon);
+            } else {
+                switch (this.deployCon["platform"]) {
+                    case "X86":
+                        this.deployCon["arch"]["amd64"] = 'yes';
+                        this.deployCon["arch"]["arm64"] = 'no';
+                        break;
+                    case "ARM64":
+                        this.deployCon["arch"]["amd64"] = 'no';
+                        this.deployCon["arch"]["arm64"] = 'yes';
+                        break;
+                    case "auto":
+                        this.deployCon["arch"]["amd64"] = 'yes';
+                        this.deployCon["arch"]["arm64"] = 'yes';
+                        break;
                 }
-                let mes = this.commitmes;
-                console.log(mes);
-                let defer = this.q_.defer();
-
-                this.tokenPromise.then(
-                    (token) => {
-                        /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
-                        let resource = this.resource_('api/v1/helm/deploychartnow', {}, { save: { method: 'POST', headers: { 'X-CSRF-TOKEN': token } } });
-                        this.disable = true;
-                        resource.save(
-                            mes,
-                            (response, req) => {
-                                this.choice = false;
-                                this.commit = true;
-                                //console.log(response);
-                                //console.log(JSON.parse(response.content));
-                                this.deployCon = JSON.parse(response.content);
-                                defer.resolve(response); // Progress ends
-                                this.log_.info('Chart deployment completed: ', response);
-                                /** @type {string} @desc Chart deployment has partly completed. 应用部署未完成 */
-                                let MSG_chart_deployment_partly = goog.getMsg('Chart deployment has partly completed');
-                                if (response.error > 0) {
-                                    this.errorDialog_.open(MSG_chart_deployment_partly, response.error);
-                                }
-                                this.state.go(release);
-                            },
-                            (err) => {
-                                this.disable = false;
-                                defer.reject(err); // Progress ends
-                                this.log_.error('Error deploying chart:', err);
-                                /** @type {string} @desc appstore 部署失败提示 */
-                                let MSG_chart_deployment_failed_button = goog.getMsg('确定');
-                                /** @type {string} @desc appstore 部署失败提示 */
-                                let MSG_chart_deployment_failed_title = goog.getMsg('服务器错误');
-                                /** @type {string} @desc appstore 部署失败提示 */
-                                let MSG_chart_deployment_failed_con = goog.getMsg('部署失败，请重试');
-                                this.mdDialog_.show(this.mdDialog_.alert()
-                                    .ok(MSG_chart_deployment_failed_button)
-                                    .title(MSG_chart_deployment_failed_title)
-                                    .textContent(MSG_chart_deployment_failed_con));
-                            });
-                    },
-                    (err) => {
-                        defer.reject(err);
-                        this.log_.error('Error deploying application:', err);
-                    });
-
-                defer.promise.finally(() => {
-                    this.isDeployInProgress_ = false;
-                });
-                return defer.promise;
+                this.commitmes.content = JSON.stringify(this.deployCon);
             }
-            // return undefined;
+            let mes = this.commitmes;
+            console.log(mes);
+            let defer = this.q_.defer();
+
+            this.tokenPromise.then(
+                (token) => {
+                    /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
+                    let resource = this.resource_('api/v1/helm/deploychartnow', {}, { save: { method: 'POST', headers: { 'X-CSRF-TOKEN': token } } });
+                    this.disable = true;
+                    resource.save(
+                        mes,
+                        (response, req) => {
+                            this.choice = false;
+                            this.commit = true;
+                            //console.log(response);
+                            //console.log(JSON.parse(response.content));
+                            this.deployCon = JSON.parse(response.content);
+                            defer.resolve(response); // Progress ends
+                            this.log_.info('Chart deployment completed: ', response);
+                            /** @type {string} @desc Chart deployment has partly completed. 应用部署未完成 */
+                            let MSG_chart_deployment_partly = goog.getMsg('Chart deployment has partly completed');
+                            if (response.error > 0) {
+                                this.errorDialog_.open(MSG_chart_deployment_partly, response.error);
+                            }
+                            this.state.go(release);
+                        },
+                        (err) => {
+                            this.disable = false;
+                            defer.reject(err); // Progress ends
+                            this.log_.error('Error deploying chart:', err);
+                            /** @type {string} @desc appstore 部署失败提示 */
+                            let MSG_chart_deployment_failed_button = goog.getMsg('确定');
+                            /** @type {string} @desc appstore 部署失败提示 */
+                            let MSG_chart_deployment_failed_title = goog.getMsg('服务器错误');
+                            /** @type {string} @desc appstore 部署失败提示 */
+                            let MSG_chart_deployment_failed_con = goog.getMsg('部署失败，请重试');
+                            this.mdDialog_.show(this.mdDialog_.alert()
+                                .ok(MSG_chart_deployment_failed_button)
+                                .title(MSG_chart_deployment_failed_title)
+                                .textContent(MSG_chart_deployment_failed_con));
+                        });
+                },
+                (err) => {
+                    defer.reject(err);
+                    this.log_.error('Error deploying application:', err);
+                });
+
+            defer.promise.finally(() => {
+                this.isDeployInProgress_ = false;
+            });
+            return defer.promise;
         }
-        /**
-         * commitmes the application based on the state of the controller.
-         *
-         * @export
-         */
+        // return undefined;
+    }
+
+    /**
+     * commitmes the application based on the state of the controller.
+     *
+     * @export
+     */
     commitmes() {
-            // if(this.comform.$valid){
-            //     this.commitmes.deployCon = this.deployCon;
-            //     let mes = this.commitmes;
-            //     console.log(mes);
-            //     let defer = this.q_.defer();
+        // if(this.comform.$valid){
+        //     this.commitmes.deployCon = this.deployCon;
+        //     let mes = this.commitmes;
+        //     console.log(mes);
+        //     let defer = this.q_.defer();
 
-            //     this.tokenPromise.then(
-            //         (token) => {
+        //     this.tokenPromise.then(
+        //         (token) => {
 
 
-            //             /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
-            //             let resource = this.resource_('api/v1/deploychartcommit',{},
-            //                 {save: {method: 'POST', headers: {'X-CSRF-TOKEN': token}}});
-            //             this.isDeployInProgress_ = true;
-            //             resource.save(
-            //                 mes,
-            //                 (response) => {
-            //                     console.log(response);
-            //                     console.log(JSON.parse(response.content));
-            //                     this.deployCon = JSON.parse(response.content);
-            //                     defer.resolve(response);  // Progress ends
-            //                     this.log_.info('Chart deployment completed: ', response);
-            //                     if (response.error > 0) {
-            //                         this.errorDialog_.open('Chart deployment has partly completed', response.error);
-            //                     }
-            //                     // this.kdHistoryService_.back(workloads);
-            //                 },
-            //                 (err) => {
-            //                     defer.reject(err);  // Progress ends
-            //                     this.log_.error('Error deploying chart:', err);
-            //                     this.errorDialog_.open('Deploying chart has failed', err.data);
-            //                 });
-            //         },
-            //         (err) => {
-            //             defer.reject(err);
-            //             this.log_.error('Error deploying application:', err);
-            //         });
+        //             /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
+        //             let resource = this.resource_('api/v1/deploychartcommit',{},
+        //                 {save: {method: 'POST', headers: {'X-CSRF-TOKEN': token}}});
+        //             this.isDeployInProgress_ = true;
+        //             resource.save(
+        //                 mes,
+        //                 (response) => {
+        //                     console.log(response);
+        //                     console.log(JSON.parse(response.content));
+        //                     this.deployCon = JSON.parse(response.content);
+        //                     defer.resolve(response);  // Progress ends
+        //                     this.log_.info('Chart deployment completed: ', response);
+        //                     if (response.error > 0) {
+        //                         this.errorDialog_.open('Chart deployment has partly completed', response.error);
+        //                     }
+        //                     // this.kdHistoryService_.back(workloads);
+        //                 },
+        //                 (err) => {
+        //                     defer.reject(err);  // Progress ends
+        //                     this.log_.error('Error deploying chart:', err);
+        //                     this.errorDialog_.open('Deploying chart has failed', err.data);
+        //                 });
+        //         },
+        //         (err) => {
+        //             defer.reject(err);
+        //             this.log_.error('Error deploying application:', err);
+        //         });
 
-            //     defer.promise.finally(() => {
-            //         this.isDeployInProgress_ = false;
-            //     });
-            //     return defer.promise;
-            // }
-            // return undefined;
-        }
-        /**
-         * Deploys the application based on the state of the controller.
-         *
-         * @export
-         */
+        //     defer.promise.finally(() => {
+        //         this.isDeployInProgress_ = false;
+        //     });
+        //     return defer.promise;
+        // }
+        // return undefined;
+    }
+
+    /**
+     * Deploys the application based on the state of the controller.
+     *
+     * @export
+     */
     deploy() {
-            if (this.form.$valid && this.form["name"]["$valid"]) {
-                let deploymentSpec = {
-                    chartURL: this.selectedChart,
-                    releaseName: this.name,
-                    namespace: this.namespace,
-                };
-                let defer = this.q_.defer();
+        if (this.form.$valid && this.form["name"]["$valid"]) {
+            let deploymentSpec = {
+                chartURL: this.selectedChart,
+                releaseName: this.name,
+                namespace: this.namespace,
+            };
+            let defer = this.q_.defer();
 
-                this.tokenPromise.then(
-                    (token) => {
+            this.tokenPromise.then(
+                (token) => {
 
 
-                        /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
-                        let resource = this.resource_('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST', headers: { 'X-CSRF-TOKEN': token } } });
-                        this.isDeployInProgress_ = true;
-                        resource.save(
-                            deploymentSpec,
-                            (response, headers) => {
-                                this.choice = false;
-                                this.commit = true;
-                                this.disable = false;
-                                // if (headers().hasOwnProperty("content-language")) {
-                                if (headers()["content-language"].indexOf("zh-CN") != -1) {
-                                    this.translate = true;
-                                } else {
-                                    this.translate = false;
-                                }
-                                // }
-                                //console.log(response);
-                                //console.log(JSON.parse(response.content));
-                                this.commitmes = response;
-                                delete this.commitmes["$promise"];
-                                delete this.commitmes["$resolved"];
-                                delete this.commitmes["error"];
-                                this.allDeployCon = JSON.parse(response.content);
-                                console.log(this.allDeployCon);
-                                let con = JSON.parse(response.content);
-                                this.platform = con["platform"];
-                                //delete con["resources"];
-                                //delete con["service"];
-                                //delete con["resourcesset"];
-                                // if (con.hasOwnProperty('storage')) {
-                                //     delete con["storage"]["storageclassname"];
-                                // }
-                                delete con["image"]["tagbase"];
-                                delete con["image"]["pullPolicy"];
-                                delete con["image"]["tagubuntu"];
-                                delete con["image"]["tag"];
-                                delete con["image"]["tagmonitor"];
-                                this.deployCon = con;
-                            },
-                            (err) => {
-                                defer.reject(err); // Progress ends
-                                this.log_.error('Error deploying chart:', err);
-                                /** @type {string} @desc Deploying chart has failed. 应用部署失败 */
-                                let MSG_chart_deploypre_failed = goog.getMsg('Deploying chart has failed');
-                                this.errorDialog_.open(MSG_chart_deploypre_failed, err.data);
-                            });
-                    },
-                    (err) => {
-                        defer.reject(err);
-                        this.log_.error('Error deploying application:', err);
-                    });
-
-                defer.promise.finally(() => {
-                    this.isDeployInProgress_ = false;
+                    /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
+                    let resource = this.resource_('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST', headers: { 'X-CSRF-TOKEN': token } } });
+                    this.isDeployInProgress_ = true;
+                    resource.save(
+                        deploymentSpec,
+                        (response, headers) => {
+                            this.choice = false;
+                            this.commit = true;
+                            this.disable = false;
+                            // if (headers().hasOwnProperty("content-language")) {
+                            if (headers()["content-language"].indexOf("zh-CN") != -1) {
+                                this.translate = true;
+                            } else {
+                                this.translate = false;
+                            }
+                            // }
+                            //console.log(response);
+                            //console.log(JSON.parse(response.content));
+                            this.commitmes = response;
+                            delete this.commitmes["$promise"];
+                            delete this.commitmes["$resolved"];
+                            delete this.commitmes["error"];
+                            this.allDeployCon = JSON.parse(response.content);
+                            console.log(this.allDeployCon);
+                            let con = JSON.parse(response.content);
+                            this.platform = con["platform"];
+                            //delete con["resources"];
+                            //delete con["service"];
+                            //delete con["resourcesset"];
+                            // if (con.hasOwnProperty('storage')) {
+                            //     delete con["storage"]["storageclassname"];
+                            // }
+                            delete con["image"]["tagbase"];
+                            delete con["image"]["pullPolicy"];
+                            delete con["image"]["tagubuntu"];
+                            delete con["image"]["tag"];
+                            delete con["image"]["tagmonitor"];
+                            this.deployCon = con;
+                        },
+                        (err) => {
+                            defer.reject(err); // Progress ends
+                            this.log_.error('Error deploying chart:', err);
+                            /** @type {string} @desc Deploying chart has failed. 应用部署失败 */
+                            let MSG_chart_deploypre_failed = goog.getMsg('Deploying chart has failed');
+                            this.errorDialog_.open(MSG_chart_deploypre_failed, err.data);
+                        });
+                },
+                (err) => {
+                    defer.reject(err);
+                    this.log_.error('Error deploying application:', err);
                 });
-                return defer.promise;
-            }
-            return undefined;
+
+            defer.promise.finally(() => {
+                this.isDeployInProgress_ = false;
+            });
+            return defer.promise;
         }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+        return undefined;
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
     isDeployDisabled() {
-            return this.isDeployInProgress_;
-        }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+        return this.isDeployInProgress_;
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
+
     isSureDisabled() {
-            return this.disable;
-        }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+        return this.disable;
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
+
     cancel() {
-            if (this.name != '') {
-                window['$']('#name').eq(0).focus().val('');
-            }
-            // this.kdHistoryService_.back(workloads);
+        if (this.name != '') {
+            window['$']('#name').eq(0).focus().val('');
         }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+        // this.kdHistoryService_.back(workloads);
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
     cancell() {
-            this.commit = false;
-            this.choice = true;
-            this.isDeployInProgress_ = false;
-        }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+        this.commit = false;
+        this.choice = true;
+        this.isDeployInProgress_ = false;
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
     getRepos() {
-            /** @type {!angular.Resource<!backendApi.RepositoryList>} */
-            let resource = this.resource_(`api/v1/helm/repository`);
-            resource.get(
-                (res) => {
-                    this.repos = [].concat(res.repositories.map((e) => e.name));
-                    if (this.repos.length > 0) {
-                        this.getCharts(res.repositories[0]['name']);
-                    }
-                },
-                (err) => {
-                    this.log_.log(`Error getting repos: ${err}`);
-                });
-        }
-        /**
-         * get namespacelist.
-         * @export
-         */
+        /** @type {!angular.Resource<!backendApi.RepositoryList>} */
+        let resource = this.resource_(`api/v1/helm/repository`);
+        resource.get(
+            (res) => {
+                this.repos = [].concat(res.repositories.map((e) => e.name));
+                if (this.repos.length > 0) {
+                    this.getCharts(res.repositories[0]['name']);
+                }
+            },
+            (err) => {
+                this.log_.log(`Error getting repos: ${err}`);
+            });
+    }
+
+    /**
+     * get namespacelist.
+     * @export
+     */
     getNamespaceList() {
-            /** @type {!angular.Resource<!backendApi.NamespaceList>} */
-            let resource = this.resource_(`api/v1/namespace`);
-            resource.get(
-                (res) => {
-                    //console.log(res);
-                    this.namespaceList = [].concat(res.namespaces.map((e) => e.objectMeta.name));
-                },
-                (err) => {
-                    this.log_.log(`Error getting repos: ${err}`);
-                });
-        }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+        /** @type {!angular.Resource<!backendApi.NamespaceList>} */
+        let resource = this.resource_(`api/v1/namespace`);
+        resource.get(
+            (res) => {
+                //console.log(res);
+                this.namespaceList = [].concat(res.namespaces.map((e) => e.objectMeta.name));
+            },
+            (err) => {
+                this.log_.log(`Error getting repos: ${err}`);
+            });
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
     getCharts(repo) {
-            //console.log('get charts');
-            /** @type {!angular.Resource<!backendApi.ChartList>} */
-            let resource = this.resource_(`api/v1/helm/repository/${repo}`);
-            resource.get(
-                (res) => {
-                    this.charts = res.charts.sort(function(a, b) {
-                        let nameA = a.name.toUpperCase();
-                        let nameB = b.name.toUpperCase();
-                        return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
-                    });
-                },
-                (err) => {
-                    this.log_.log(`Error getting charts: ${err}`);
+        //console.log('get charts');
+        /** @type {!angular.Resource<!backendApi.ChartList>} */
+        let resource = this.resource_(`api/v1/helm/repository/${repo}`);
+        resource.get(
+            (res) => {
+                this.charts = res.charts.sort(function(a, b) {
+                    let nameA = a.name.toUpperCase();
+                    let nameB = b.name.toUpperCase();
+                    return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
                 });
-        }
-        /**
-         * 默认选择的repo
-         * @export
-         */
+            },
+            (err) => {
+                this.log_.log(`Error getting charts: ${err}`);
+            });
+    }
+
+    /**
+     * 默认选择的repo
+     * @export
+     */
     defaultrepo(value) {
-            if (value == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
-    selectRepos(repoName) {
-            if (repoName === 'None') {
-                //console.log('none');
-                this.charts = [];
-            } else {
-                //console.log('charts');
-                this.getCharts(repoName);
-            }
-            this.selectedChart = null;
-            this.selectedRepos = repoName;
-        }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
-    type(value) {
-            if (typeof(value) == 'object') {
-                return true;
-            }
+        if (value == 0) {
+            return true;
+        } else {
             return false;
         }
-        /**
-         * Selects a chart to deploy.
-         * @export
-         */
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
+    selectRepos(repoName) {
+        if (repoName === 'None') {
+            //console.log('none');
+            this.charts = [];
+        } else {
+            //console.log('charts');
+            this.getCharts(repoName);
+        }
+        this.selectedChart = null;
+        this.selectedRepos = repoName;
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
+    type(value) {
+        if (typeof(value) == 'object') {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Selects a chart to deploy.
+     * @export
+     */
     selectChart(chartName) {
         //console.log(chartName)
         // window['$']('#name').eq(0).focus();
