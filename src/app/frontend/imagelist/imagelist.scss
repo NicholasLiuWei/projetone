@@ -119,7 +119,12 @@ md-card>md-card-header img {
     flex-wrap: wrap;
     &>md-card {
         width: 18% !important;
-        height: fit-content !important;
+        height: 120px !important;
+        padding: 10px;
+        cursor: pointer;
+        .kd-chart-card-icon-image {
+            height: initial;
+        }
         &>.list-content {
             display: flex;
             padding: 0;
