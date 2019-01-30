@@ -58,6 +58,7 @@
   <translation id="8473002622551161689" key="MSG_CHART_REPOSITORY_LABEL1" desc="Label &quot;Chart Repository&quot; label, for the chart repository on the deploy from chart page.">应用仓库</translation>
   <translation id="7283414261848281229" key="MSG_CHART_URL_LABEL" desc="Label &quot;Chart URL&quot; label, for the chart to deploy.">应用地址</translation>
   <translation id="3593502127559023266" key="MSG_CHART_URL_LABEL1" desc="Label &quot;Chart URL&quot; label, for the chart to deploy.">应用地址</translation>
+  <translation id="8692065931920044273" key="MSG_CHART_VERSION_LABEL" desc="Label &quot;Version&quot; label, for the chart to deploy.">版本</translation>
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">退出</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">登录</translation>
@@ -740,6 +741,7 @@
   <translation id="1434920064714811801" key="MSG_IMAGELIST_SERVICE_3" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">操作</translation>
   <translation id="5286928070794584496" key="MSG_IMAGELIST_SERVICE_4" desc="\u6DFB\u52A0\u7AEF\u53E3">添加端口</translation>
   <translation id="5696228969575516677" key="MSG_IMAGELIST_TEST" desc="imagelist">镜像列表</translation>
+  <translation id="3392399497543137717" key="MSG_IMAGELIST_VERSION" desc="imagelist version">版本</translation>
   <translation id="4313229714437574636" key="MSG_IMAGE_LABEL" desc="Label 'Releases' that appears as a breadcrumbs on the action bar.">镜像</translation>
   <translation id="9187405739901697345" key="MSG_INGRESSDETAIL_ACTIONBAR_0" desc="Label \'Ingress\' which appears at the top of the delete dialog, opened from an ingress details page.">Ingress</translation>
   <translation id="2640165037560914246" key="MSG_INGRESSDETAIL_INFO_0" desc="Header in a detail view">Details</translation>
