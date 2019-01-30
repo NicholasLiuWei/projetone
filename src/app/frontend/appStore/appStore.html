@@ -52,7 +52,7 @@
                                     <div class="chartmes">
                                         <h2 class="kd-chart-card-text-name">{{chart.name}}</h2>
                                         <div class="kd-chart-color-secondary" style="height:20px;" layout="row" layout-align="space-between center">
-                                            <span>{{chart.version}}</span>
+                                            <span>{{ctrl.i18n.MSG_CHART_VERSION_LABEL}}:&nbsp;&nbsp;{{chart.version}}</span>
                                             <div layout="row" class="kd-chart-platform">
                                                 <img ng-if="ctrl.platformstr=='X86' || ctrl.platformstr=='auto'" height="20" src="assets/images/x86.png" alt="">
                                                 <img ng-if="ctrl.platformstr=='ARM64' || ctrl.platformstr=='auto'" height="20" src="assets/images/arm.png" alt="">

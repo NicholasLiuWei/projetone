@@ -465,5 +465,8 @@ export class imagelistController {
 
 const i18n = {
     /** @export {string} @desc imagelist */
-    MSG_IMAGELIST_TEST: goog.getMsg('imagelist')
+    MSG_IMAGELIST_TEST: goog.getMsg('imagelist'),
+
+    /** @export {string} @desc imagelist version */
+    MSG_IMAGELIST_VERSION: goog.getMsg('Ver')
 };

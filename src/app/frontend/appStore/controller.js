@@ -541,6 +541,9 @@ const i18n = {
     /** @export {string} @desc Label "Chart URL" label, for the chart to deploy. */
     MSG_CHART_URL_LABEL1: goog.getMsg('Chart URL'),
 
+    /** @export {string} @desc Label "Version" label, for the chart to deploy. */
+    MSG_CHART_VERSION_LABEL: goog.getMsg('Ver'),
+
     /** @export {string} @desc User helm for chart URL to deploy
      */
     MSG_DEPLOY_CHART_URL_USER_HELP1: goog.getMsg(`Specify the URL of the chart to deploy.`),

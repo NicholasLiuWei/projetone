@@ -45,8 +45,9 @@
 kd-release-card-list {
     .listitem {
         width: 352px;
-        height: 156px;
-        padding: 20px;
+        height: 140px;
+        padding: 10px;
+        padding-bottom: 0;
         overflow: hidden;
         float: left;
         margin-bottom: 30px;
@@ -63,7 +64,7 @@ kd-release-card-list {
             height: 116px;
             overflow: hidden;
             &>img {
-                width: 100%;
+                width: 75%;
             }
         }
         .ritemmes {
