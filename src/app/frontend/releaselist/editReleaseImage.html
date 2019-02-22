@@ -30,7 +30,7 @@ limitations under the License.
             </md-input-container> -->
             <md-input-container class="md-block" ng-repeat="(key,value) in ctrl.imageMes">
                 <label>{{key}}</label>
-                <input type="text" ng-model="ctrl.imageMes[key]" required onKeydown="if(value.length <= value.indexOf('/')+1){return false}">
+                <input type="text" ng-model="ctrl.imageMes[key]" required>
                 <!-- <ng-messages for="ctrl.updateReleaseForm.minpods.$error" role="alert">
                             <ng-message when="required">{{::ctrl.i18n.MSG_REPO_LIST_REPOSITORY_NAME_REQUIRED_WARNING}}</ng-message>
                         </ng-messages> -->
