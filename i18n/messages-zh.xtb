@@ -602,6 +602,7 @@
   <translation id="2029236165141474072" key="MSG_GRAPH_MEMORY_AXIS_LABEL" desc="Name of Y axis showing memory usage.">内存 (字节)</translation>
   <translation id="6525531670828842343" key="MSG_GRAPH_MEMORY_USAGE_LEGEND_LABEL" desc="Name of the memory usage metric as displayed in the legend.">内存占用</translation>
   <translation id="185015236199417198" key="MSG_GRAPH_TIME_AXIS_LABEL" desc="Name of time axis.">时间</translation>
+  <translation id="1667320085786350083" key="MSG_HOME_CREATE_STATUS" desc="Creating">创建中</translation>
   <translation id="4475122443688912494" key="MSG_HOME_ERROE_STATUS" desc="Abnormal">异常</translation>
   <translation id="5468779524245425957" key="MSG_HOME_GOOD_STATUS" desc="Normal">正常</translation>
   <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">系统警告</translation>

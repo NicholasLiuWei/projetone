@@ -46,6 +46,7 @@ export class homeController {
         this.statusCodes = {
             8: i18n.MSG_HOME_GOOD_STATUS,
             9: i18n.MSG_HOME_ERROE_STATUS,
+            10: i18n.MSG_HOME_CREATE_STATUS
         };
         /** @export */
         this.amdnodelist = [];
@@ -857,6 +858,8 @@ const i18n = {
     MSG_HOME_GOOD_STATUS: goog.getMsg('正常'),
     /** @export {string} @desc Abnormal */
     MSG_HOME_ERROE_STATUS: goog.getMsg('异常'),
+    /** @export {string} @desc Creating */
+    MSG_HOME_CREATE_STATUS: goog.getMsg('创建中'),
     /** @export {string} @desc No Warning */
     MSG_HOME_NO_WARN: goog.getMsg('系统无警告'),
     /** @export {string} @desc Serious Warning */
