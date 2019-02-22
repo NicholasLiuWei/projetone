@@ -110,7 +110,7 @@ limitations under the License.
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$ctrl.update()" ng-disabled="!$ctrl.stateful">
+                        <md-button ng-click="$ctrl.update()" ng-disabled="$ctrl.stateful">
                             <md-icon>edit</md-icon>
                             {{$ctrl.i18n.MSG_RELEASE_EDIT}}
                             <!-- <md-tooltip>[[更新|release Update]]{{$ctrl.release.name}}</md-tooltip> -->

@@ -96,7 +96,7 @@ export default class ReleaseCardController {
          * @export
          */
     isStatefulRelease() {
-            if (this.release.chart["values"]["raw"].indexOf('storagesize') != -1) {
+            if (this.release.chart["values"]["raw"].indexOf('hpa') != -1 || this.release.chart["values"]["raw"].indexOf('storagesize') != -1) {
                 this.stateful = false;
             } else {
                 this.stateful = true;
