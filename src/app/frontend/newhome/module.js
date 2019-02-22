@@ -37,7 +37,7 @@ function panelResource($resource) {
  * @ngInject
  */
 function cephResource($resource) {
-    return $resource('/api/v1/storage/info');
+    return $resource('api/v1/storage/info');
 }
 /**
  * @param {!angular.$resource} $resource

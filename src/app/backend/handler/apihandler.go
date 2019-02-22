@@ -717,7 +717,7 @@ func (apiHandler *APIHandler) handleGetStorageInfo(request *restful.Request, res
 //storage_status
 func storageStatus() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=count(ceph_health_status)")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=count(ceph_health_status)")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -744,7 +744,7 @@ func storageStatus() (interface{}, error) {
 //storage_use_rate
 func storageUseRate() (interface{}, error) {
 	var cephResp = &CephRespFloat{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_cluster_available_bytes/ceph_cluster_capacity_bytes")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_available_bytes/ceph_cluster_capacity_bytes")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -771,7 +771,7 @@ func storageUseRate() (interface{}, error) {
 //storage_total
 func storageTotal() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_cluster_capacity_bytes")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_capacity_bytes")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -798,7 +798,7 @@ func storageTotal() (interface{}, error) {
 //storage_available
 func storageAvailable() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_cluster_available_bytes")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_available_bytes")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -825,7 +825,7 @@ func storageAvailable() (interface{}, error) {
 //storage_used
 func storageUsed() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_cluster_used_bytes")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_cluster_used_bytes")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -852,7 +852,7 @@ func storageUsed() (interface{}, error) {
 //storage_read_bytes
 func storageReadBytes() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_client_io_read_bytes")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_read_bytes")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -879,7 +879,7 @@ func storageReadBytes() (interface{}, error) {
 //storage_read_ops
 func storageReadOps() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_client_io_read_ops")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_read_ops")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -906,7 +906,7 @@ func storageReadOps() (interface{}, error) {
 //storage_write_bytes
 func storageWriteBytes() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_client_io_write_bytes")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_write_bytes")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -933,7 +933,7 @@ func storageWriteBytes() (interface{}, error) {
 //storage_write_ops
 func storageWriteOps() (interface{}, error) {
 	var cephResp = &CephRespInt{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query?query=ceph_client_io_write_ops")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query?query=ceph_client_io_write_ops")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -981,7 +981,7 @@ func (apiHandler *APIHandler) handleUseRate(equest *restful.Request, response *r
 //cpu_use_rate
 func cpuUseRate() (interface{}, error) {
 	var cephResp = &CephRespFloat{}
-	respData, err := http.Get(`http://127.0.0.1:30090/api/v1/query?query=sum(irate(smart_cpu_seconds_total{mode!="idle"}[1m]))/sum(irate(smart_cpu_seconds_total[1m]))`)
+	respData, err := http.Get(`http://prometheus.monitoring:9090/api/v1/query?query=sum(irate(smart_cpu_seconds_total{mode!="idle"}[1m]))/sum(irate(smart_cpu_seconds_total[1m]))`)
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -1008,7 +1008,7 @@ func cpuUseRate() (interface{}, error) {
 //memory_userate
 func memoryUseRate() (interface{}, error) {
 	var cephResp = &CephRespFloat{}
-	respData, err := http.Get(`http://127.0.0.1:30090/api/v1/query?query=sum(smart_memory_MemFree_bytes)/sum(smart_memory_MemTotal_bytes)`)
+	respData, err := http.Get(`http://prometheus.monitoring:9090/api/v1/query?query=sum(smart_memory_MemFree_bytes)/sum(smart_memory_MemTotal_bytes)`)
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -1163,7 +1163,7 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 		log.Println("cpuInfo spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_cpu_seconds_total{mode!=" + `"idle"` + "}[30s]))by(instance)/sum(irate(smart_cpu_seconds_total[30s]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	var cpuUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_cpu_seconds_total{mode!=" + `"idle"` + "}[30s]))by(instance)/sum(irate(smart_cpu_seconds_total[30s]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	log.Println("cpuUrl ", cpuUrl)
 	// log.Println(cpuUrl)
 	respData, err := http.Get(cpuUrl)
@@ -1203,7 +1203,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		log.Println("memoryInfo spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=(smart_memory_MemTotal_bytes-smart_memory_MemFree_bytes)/smart_memory_MemTotal_bytes*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=(smart_memory_MemTotal_bytes-smart_memory_MemFree_bytes)/smart_memory_MemTotal_bytes*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -1266,9 +1266,9 @@ func netName() (error, string, string){
 //networ_info
 func networkInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 	var rangeResp = &RangeResp{}
-	respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,isVirtual,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
-	// respData, err := http.Get("http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
-	// log.Println("http://127.0.0.1:30090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,isVirtual,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
+	// respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
+	// log.Println("http://prometheus.monitoring:9090/api/v1/query_range?query=sum(smart_network_receive_bytes_total{device=~"+ `"` + netType + `"` + "}+smart_network_transmit_bytes_total{device=~"+ `"` + netType + `"` + "})by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
@@ -1350,10 +1350,10 @@ func GetBaseInfoAllNode(){
 	//network-info 
 
 	//network info 千万兆网卡接收
-	url := "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	url := "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	go networkInfoByNode(t1, t2, url, "node", ch[0])
 	//network info 千万兆网卡发送
-	url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	url = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000'}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	go networkInfoByNode(t1, t2, url, "node", ch[1])
 
 	//get 千兆接收
@@ -1428,26 +1428,26 @@ func (apiHandler *APIHandler) handleBaseInfoByNode(request *restful.Request, res
 	//network-info 
 
 	// //network info 千万兆网卡接收
-	// url := "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	// url := "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_receive_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	// go networkInfoByNode(t1, t2, url, node, ch[2])
 	// //network info 千万兆网卡发送
-	// url = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	// url = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_network_transmit_bytes_total{isVirtual='false',speed=~'1000|10000',instance=" + `"` + node + `"` + "}[1m]))by(instance,speed)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	// go networkInfoByNode(t1, t2, url, node, ch[3])
 
 	//node cpu info 
-	url := "http://127.0.0.1:30090/api/v1/query?query=smart_info_cpu_info{instance=" + `"` + node + `"` +"}"
+	url := "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_cpu_info{instance=" + `"` + node + `"` +"}"
 	go nodeInfos(url,ch[4])
 
 	//node memory info 
-	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_memory_info{instance=" + `"` + node + `"` +"}"
+	url = "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_memory_info{instance=" + `"` + node + `"` +"}"
 	go nodeInfos(url,ch[5])
 
 	//node disk info 
-	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_disk_info{instance=" + `"` + node + `"` +"}"
+	url = "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_disk_info{instance=" + `"` + node + `"` +"}"
 	go nodeInfos(url,ch[6])
 
 	//node net info 
-	url = "http://127.0.0.1:30090/api/v1/query?query=smart_info_network_info{instance=" + `"` + node + `"` +"}"
+	url = "http://prometheus.monitoring:9090/api/v1/query?query=smart_info_network_info{instance=" + `"` + node + `"` +"}"
 	go nodeInfos(url,ch[7])
 
 	// //get cpu info
@@ -1631,7 +1631,7 @@ func cpuInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]Res
 		log.Println("cpuInfoByNode spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var cpuUrl = "http://127.0.0.1:30090/api/v1/query_range?query=sum(irate(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "}[30s]))by(instance)/sum(irate(smart_cpu_seconds_total{instance="+`"`+ node +`"`+"}[30s]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	var cpuUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=sum(irate(smart_cpu_seconds_total{mode!=" + `"idle"` + ",instance=" + `"` + node + `"` + "}[30s]))by(instance)/sum(irate(smart_cpu_seconds_total{instance="+`"`+ node +`"`+"}[30s]))by(instance)&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	log.Println("cpuInfoByNode",cpuUrl)
 	respData, err := http.Get(cpuUrl)
 	if respData != nil {
@@ -1671,7 +1671,7 @@ func memoryInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]
 		log.Println("memoryInfoByNode spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	var memoryUrl = "http://127.0.0.1:30090/api/v1/query_range?query=(smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}-smart_memory_MemFree_bytes{instance=" + `"` + node + `"` + "})/smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
+	var memoryUrl = "http://prometheus.monitoring:9090/api/v1/query_range?query=(smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}-smart_memory_MemFree_bytes{instance=" + `"` + node + `"` + "})/smart_memory_MemTotal_bytes{instance=" + `"` + node + `"` + "}*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60"
 	log.Println(memoryUrl)
 	respData, err := http.Get(memoryUrl)
 	if respData != nil {

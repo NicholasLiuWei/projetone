@@ -46,7 +46,7 @@
                         <md-grid-tile ng-repeat="chart in ctrl.charts" ng-value="chart">
                             <md-card class="kd-chart-card {{chart.selected}}" ng-click="ctrl.selectChart(chart.fullURL)">
                                 <md-card-content layout="row" style="padding:5px 16px;">
-                                    <div class="kd-chart-card-icon-image" layout="row" layout-align="center center">
+                                    <div flex="none" class="kd-chart-card-icon-image" layout="row" layout-align="center center">
                                         <img ng-src="{{chart.icon}}" />
                                     </div>
                                     <div class="chartmes">

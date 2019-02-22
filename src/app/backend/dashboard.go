@@ -175,7 +175,7 @@ func main() {
 
 	// Create a new influxdb HTTPClient
 	influxdbclient, err := influxdbclient.NewHTTPClient(influxdbclient.HTTPConfig{
-		Addr:     "http://127.0.0.1:32086",
+		Addr:     "http://alert-influxdb.monitoring:8086",
 		Username: "admin",
 		Password: "admin",
 	})

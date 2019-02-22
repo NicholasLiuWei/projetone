@@ -48,22 +48,22 @@ kd-nav-item {
         color: #4CB19C;
     }
     .dashboard {
-        background: url('/assets/images/data.png') no-repeat center center;
+        background: url('../assets/images/data.png') no-repeat center center;
     }
     .desktop_windows {
-        background: url('/assets/images/node.png') no-repeat center center;
+        background: url('../assets/images/node.png') no-repeat center center;
     }
     .shop_two {
-        background: url('/assets/images/release.png') no-repeat center center;
+        background: url('../assets/images/release.png') no-repeat center center;
     }
     .apps {
-        background: url('/assets/images/appstore.png') no-repeat center center;
+        background: url('../assets/images/appstore.png') no-repeat center center;
     }
     .repo {
-        background: url('/assets/images/repo.png') no-repeat center center;
+        background: url('../assets/images/repo.png') no-repeat center center;
     }
     .storage {
-        background: url('/assets/images/storage.png') no-repeat center center;
+        background: url('../assets/images/storage.png') no-repeat center center;
     }
     .itemicon {
         width: 34px;
@@ -82,22 +82,22 @@ kd-nav-item {
         // border-style: solid;
         // border-color: whitesmoke transparent whitesmoke #03a9f4;
         .dashboard {
-            background: url('/assets/images/dataactive.png') no-repeat center center;
+            background: url('../assets/images/dataactive.png') no-repeat center center;
         }
         .desktop_windows {
-            background: url('/assets/images/nodeactive.png') no-repeat center center;
+            background: url('../assets/images/nodeactive.png') no-repeat center center;
         }
         .shop_two {
-            background: url('/assets/images/releaseactive.png') no-repeat center center;
+            background: url('../assets/images/releaseactive.png') no-repeat center center;
         }
         .apps {
-            background: url('/assets/images/appstoreactive.png') no-repeat center center;
+            background: url('../assets/images/appstoreactive.png') no-repeat center center;
         }
         .repo {
-            background: url('/assets/images/repoactive.png') no-repeat center center;
+            background: url('../assets/images/repoactive.png') no-repeat center center;
         }
         .storage {
-            background: url('/assets/images/storageactive.png') no-repeat center center;
+            background: url('../assets/images/storageactive.png') no-repeat center center;
         }
     }
 }
