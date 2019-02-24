@@ -170,7 +170,6 @@
                                 <label>[[名称|名称]]</label>
                                 <input type="text" required ng-model="pvc.name" />
                             </md-input-container>
-                            </md-input-container>
                             <md-input-container flex class="md-block">
                                 <label>[[模式|模式]]</label>
                                 <input type="text" required ng-model="pvc.accessModes" />
@@ -188,7 +187,7 @@
                                 <input type="text" readonly required ng-model="pvc.storageClassName" />
                             </md-input-container>
                             <kd-user-help style="width: 10%;">
-                                <md-button class="material-icons md-icon-button md-raised md-button" ng-disabled="image.pvcs.length<=1" ng-click="$ctrl.deletePvc(outerIndex,$index)">delete</md-button>
+                                <md-button class="material-icons md-icon-button md-raised md-button" ng-click="$ctrl.deletePvc(outerIndex,$index)">delete</md-button>
                             </kd-user-help>
                         </div>
                     </kd-content>

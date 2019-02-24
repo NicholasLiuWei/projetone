@@ -257,6 +257,7 @@ export class imagelistController {
      * @export
      */
     deploypre(value) {
+            this.oDefaultWorkloadComponent.images[0]["repository"] = this.choicedNormalimage["url"];
             if (this.customImages.name == "" || this.customImages.name == undefined) {
                 this.oCustomFillInFields.name = true;
                 return;
@@ -277,6 +278,8 @@ export class imagelistController {
                     this.deploymentSpec = deploymentSpec;
                     this.kdService.value = response;
                     this.kdService.value["content"] = JSON.parse(this.kdService.value["content"]);
+                    this.kdService.value["content"]["components"][0]["name"] = value;
+                    this.kdService.value.content["components"][0].images[0]["repository"] = this.choicedNormalimage["url"];
                     // this.value = this.kdService.value.content.services;
                 }
             )
