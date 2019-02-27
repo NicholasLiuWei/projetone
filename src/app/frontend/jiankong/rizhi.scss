@@ -12,7 +12,14 @@
         width: 116px;
         height: 116px;
         &>img {
-            width: 75%;
+            width: 60%;
+        }
+    }
+    &:nth-last-of-type(1) {
+        .jkimagebox {
+            &>img {
+                width: 75%;
+            }
         }
     }
     .jkdescbox {
