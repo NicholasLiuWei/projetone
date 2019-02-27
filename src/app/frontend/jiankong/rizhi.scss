@@ -1,3 +1,38 @@
 .rizhi {
     line-height: 30px;
 }
+
+.jkbox {
+    width: 342px;
+    height: 116px;
+    box-shadow: 0 1px 2px 0 rgba(33, 45, 48, .09);
+    margin: 20px;
+    border: 1px solid #F6F7F7;
+    .jkimagebox {
+        width: 116px;
+        height: 116px;
+        &>img {
+            width: 75%;
+        }
+    }
+    .jkdescbox {
+        width: 226px;
+        padding-top: 15px;
+        padding-left: 18px;
+        .jktitle {
+            height: 40px;
+            font-size: 20px;
+            color: #717171;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .jkdesc {
+            height: 19px;
+            line-height: 19px;
+            font-size: 14px;
+            color: #9B9B9B;
+        }
+    }
+}

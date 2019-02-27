@@ -1,9 +1,65 @@
-<kd-content-card>
+<!-- <kd-content-card>
     <kd-content>
         <div class="rizhi" style="height:100%;">
             &nbsp;&nbsp;&nbsp;[[详细监控信息请访问一体式监控中心:|详细监控信息请访问一体式监控中心:]]
             <br/> &nbsp;&nbsp;&nbsp;
             <a target="_blank" ng-href="{{$ctrl.url()}}">{{$ctrl.url()}}</a>
-        </div>
-    </kd-content>
-</kd-content-card>
+        </div> -->
+<div>
+    <kd-content-card>
+        <kd-title>[[ceph监控|jiankong ceph监控]]</kd-title>
+        <kd-content layout="row">
+            <div class="jkbox" layout="row">
+                <div class="jkimagebox">
+                    <img src="" alt="">
+                </div>
+                <div class="jkdescbox">
+                    <a ng-href="{{$ctrl.url()+'/d/ceph-cluster/ceph-cluster?refresh=1m&orgId=1'}}" target="_blank">
+                        <div class="jktitle">[[Ceph-Cluster|jiankong Ceph-Cluster]]</div>
+                    </a>
+                    <div class="jkdesc">[[监控Ceph集群信息，集群状态，存储状态等信息|jiankong 监控ceph集群信息，集群状态，存储状态等信息]]</div>
+                </div>
+            </div>
+            <div class="jkbox" layout="row">
+                <div class="jkimagebox">
+                    <img src="" alt="">
+                </div>
+                <div class="jkdescbox">
+                    <a ng-href="{{$ctrl.url()+'/d/ceph-pools/ceph-pools?refresh=1m&orgId=1'}}" target="_blank">
+                        <div class="jktitle">[[Ceph-Pools|jiankong ceph-Pools]]</div>
+                    </a>
+                    <div class="jkdesc">[[监控Ceph-Pools信息，object数，ops等信息|监控Ceph-Pools信息，object数，ops等信息]]</div>
+                </div>
+            </div>
+            <div class="jkbox" layout="row">
+                <div class="jkimagebox">
+                    <img src="" alt="">
+                </div>
+                <div class="jkdescbox">
+                    <a ng-href="{{$ctrl.url()+'/d/ceph-osd/ceph-osd?refresh=15m&orgId=1'}}" target="_blank">
+                        <div class="jktitle">[[Ceph-OSD|jiankong ceph-cluster]]</div>
+                    </a>
+                    <div class="jkdesc">[[监控Ceph-OSD信息|jiankong 监控Ceph-OSD信息]]</div>
+                </div>
+            </div>
+        </kd-content>
+    </kd-content-card>
+    <kd-content-card>
+        <kd-title>[[Kubernetes 集群监控|jiankong Kubernetes 集群监控]]</kd-title>
+        <kd-content>
+            <div class="jkbox" layout="row">
+                <div class="jkimagebox" layout="row" layout-align="center center">
+                    <img src="assets/images/kubernetes.png" alt="kubernetes">
+                </div>
+                <div class="jkdescbox">
+                    <a ng-href="{{$ctrl.url()+'/d/k8s/kubernetes-cluster-monitoring-via-prometheus?refresh=10s&orgId=1'}}" target="_blank">
+                        <div class="jktitle">[[Kubernetes|jiankong Kubernetes]]</div>
+                    </a>
+                    <div class="jkdesc">[[监控Kubernetes集群信息|jiankong 监控Kubernetes集群信息]]</div>
+                </div>
+            </div>
+        </kd-content>
+    </kd-content-card>
+</div>
+<!-- </kd-content>
+</kd-content-card> -->

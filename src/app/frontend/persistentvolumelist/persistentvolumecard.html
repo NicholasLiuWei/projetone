@@ -19,8 +19,9 @@ limitations under the License.
         <kd-resource-card-column>
             <div>
                 <!-- <a ng-href="{{::$ctrl.getPersistentVolumeDetailHref()}}" class="kd-middle-ellipsised-link"> -->
-                <kd-middle-ellipsis display-string="{{$ctrl.persistentVolume.objectMeta.name}}">
-                </kd-middle-ellipsis>
+                <!-- <kd-middle-ellipsis display-string="{{$ctrl.persistentVolume.objectMeta.name}}">
+                </kd-middle-ellipsis> -->
+                {{$ctrl.persistentVolume.objectMeta.name}}
                 <!-- </a> -->
             </div>
         </kd-resource-card-column>
@@ -43,8 +44,9 @@ limitations under the License.
             <div ng-hide="::$ctrl.persistentVolume.status">-</div>
         </kd-resource-card-column>
         <kd-resource-card-column>
-            <kd-middle-ellipsis display-string="{{$ctrl.persistentVolume.claim}}">
-            </kd-middle-ellipsis>
+            <!-- <kd-middle-ellipsis display-string="{{$ctrl.persistentVolume.claim}}">
+            </kd-middle-ellipsis> -->
+            <div>{{$ctrl.persistentVolume.claim}}</div>
             <div ng-hide="::$ctrl.persistentVolume.claim">-</div>
         </kd-resource-card-column>
         <kd-resource-card-column>

@@ -14,6 +14,7 @@ export default angular
         ])
     .config(stateConfig)
     .factory('kdloginStatus', loginStatus);
+
 /**
  * 检查登录状态
  *

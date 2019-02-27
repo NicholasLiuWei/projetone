@@ -645,8 +645,8 @@
   <translation id="4626682706612387959" key="MSG_IMAGELIST_APP_14" desc="Tooltip &quot;Actions&quot;, which appears when you hover over the menu icon on any resource card.">操作</translation>
   <translation id="7568899959531019532" key="MSG_IMAGELIST_APP_15" desc="\u5730\u5740">地址</translation>
   <translation id="3211589112022955917" key="MSG_IMAGELIST_APP_16" desc="\u62C9\u53D6\u7B56\u7565">拉取策略</translation>
-  <translation id="6129597545436569537" key="MSG_IMAGELIST_APP_17" desc="\u53C2\u6570">参数</translation>
-  <translation id="8718366604669416724" key="MSG_IMAGELIST_APP_18" desc="\u547D\u4EE4">命令</translation>
+  <translation id="684896007781547475" key="MSG_IMAGELIST_APP_17" desc="\u547D\u4EE4">命令</translation>
+  <translation id="4939696105469662978" key="MSG_IMAGELIST_APP_18" desc="\u53C2\u6570">参数</translation>
   <translation id="4850688163859587974" key="MSG_IMAGELIST_APP_19" desc="\u8D44\u6E90">资源</translation>
   <translation id="2215259332284708961" key="MSG_IMAGELIST_APP_2" desc="\u5E94\u7528\u7C7B\u578B">应用类型</translation>
   <translation id="3904133437258444134" key="MSG_IMAGELIST_APP_20" desc="\u9650\u989DCPU">限额CPU</translation>
@@ -756,7 +756,16 @@
   <translation id="6970100075274497061" key="MSG_INGRESSLIST_CARDLIST_3" desc="Label \'endpoints\' which appears as a column label in the table of ingresses (ingress list view).">端点</translation>
   <translation id="8202258406797150740" key="MSG_INGRESSLIST_CARDLIST_4" desc="Label \'Age\' which appears as a column label in the table of ingresses (ingress list view).">时间</translation>
   <translation id="6014322650743882966" key="MSG_INGRESS_LIST_STARTED_AT_TOOLTIP" desc="Tooltip 'Started at [some date]' showing the exact start time of the ingress.">创建于 <ph name="START_DATE"> UTC</ph></translation>
-  <translation id="4499447363651929542" key="MSG_JIANKONG_RIZHI_0" desc="\u8BE6\u7EC6\u76D1\u63A7\u4FE1\u606F\u8BF7\u8BBF\u95EE\u4E00\u4F53\u5F0F\u76D1\u63A7\u4E2D\u5FC3:">详细监控信息请访问一体式监控中心:</translation>
+  <translation id="1688417057363296815" key="MSG_JIANKONG_RIZHI_0" desc="jiankong ceph\u76D1\u63A7">ceph监控</translation>
+  <translation id="399868909027095843" key="MSG_JIANKONG_RIZHI_1" desc="jiankong Ceph-Cluster">Ceph-Cluster</translation>
+  <translation id="1886148860411510032" key="MSG_JIANKONG_RIZHI_2" desc="jiankong \u76D1\u63A7ceph\u96C6\u7FA4\u4FE1\u606F\uFF0C\u96C6\u7FA4\u72B6\u6001\uFF0C\u5B58\u50A8\u72B6\u6001\u7B49\u4FE1\u606F">监控Ceph集群信息，集群状态，存储状态等信息</translation>
+  <translation id="4281952765852155926" key="MSG_JIANKONG_RIZHI_3" desc="jiankong ceph-Pools">Ceph-Pools</translation>
+  <translation id="5592548296787612084" key="MSG_JIANKONG_RIZHI_4" desc="\u76D1\u63A7Ceph-Pools\u4FE1\u606F\uFF0Cobject\u6570\uFF0Cops\u7B49\u4FE1\u606F">监控Ceph-Pools信息，object数，ops等信息</translation>
+  <translation id="438868781937206199" key="MSG_JIANKONG_RIZHI_5" desc="jiankong ceph-cluster">Ceph-OSD</translation>
+  <translation id="2737439275425719832" key="MSG_JIANKONG_RIZHI_6" desc="jiankong \u76D1\u63A7Ceph-OSD\u4FE1\u606F">监控Ceph-OSD信息</translation>
+  <translation id="4537034408188664751" key="MSG_JIANKONG_RIZHI_7" desc="jiankong Kubernetes \u96C6\u7FA4\u76D1\u63A7">Kubernetes 集群监控</translation>
+  <translation id="8478432366656679914" key="MSG_JIANKONG_RIZHI_8" desc="jiankong Kubernetes">Kubernetes</translation>
+  <translation id="3467578657925497846" key="MSG_JIANKONG_RIZHI_9" desc="jiankong \u76D1\u63A7Kubernetes\u96C6\u7FA4\u4FE1\u606F">监控Kubernetes集群信息</translation>
   <translation id="6315518507776012285" key="MSG_JOBDETAIL_ACTIONBAR_0" desc="Label \'Job\' which appears at the top of the dialog, opened from a job details page.">Job</translation>
   <translation id="3137266053437967990" key="MSG_JOBDETAIL_JOBDETAIL_0" desc="Title for graph card displaying CPU metric of one job.">CPU usage</translation>
   <translation id="3929486061329485708" key="MSG_JOBDETAIL_JOBDETAIL_1" desc="Title for graph card displaying memory metric of one job.">Memory usage</translation>

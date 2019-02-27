@@ -54,7 +54,7 @@ export class ChromeController {
 
     /** @export */
     $onInit() {
-        // this.kdloginStatus["checkLogin"]();
+        this.kdloginStatus["checkLogin"]();
         this.registerStateChangeListeners(this.scope_);
     }
 
