@@ -108,7 +108,7 @@ export class warningListController {
         let confirm = this.mdDialog.confirm()
             .title(this.i18n.MSG_DELETE_ALERT_TITLE)
             .textContent(MSG_DELETE_ALERT_CONTENT)
-            .ariaLabel('Lucky day')
+            .ariaLabel('delete alert')
             .targetEvent(ev)
             .ok(this.i18n.MSG_DELETE_ALERT_OK)
             .cancel(this.i18n.MSG_DELETE_ALERT_CENCEl);
@@ -116,10 +116,39 @@ export class warningListController {
         this.mdDialog.show(confirm).then(() => {
             let a = this.resource('alert/alertsdelete');
             a.save(this.selected, (res) => {
-                this.toastr["success"]("删除成功");
+                this.toastr["success"](this.i18n.MSG_DELETE_ALERT_SUCCESS);
                 this.state.reload();
             }, () => {
-                this.toastr["success"]("删除失败");
+                this.toastr["error"](this.i18n.MSG_DELETE_ALERT_ERROR);
+            })
+        }, function() {
+
+        });
+    }
+
+    /**
+     * @export
+     * delete all alert
+     */
+    deleteAllAlert(ev) {
+        /** @type {string} @desc 删除全部告警提示*/
+        let MSG_DELETE_ALL_ALERT_CONTENT =
+            goog.getMsg('确定删除全部告警吗？');
+        let confirm = this.mdDialog.confirm()
+            .title(this.i18n.MSG_DELETE_ALERT_TITLE)
+            .textContent(MSG_DELETE_ALL_ALERT_CONTENT)
+            .ariaLabel('delete all alert')
+            .targetEvent(ev)
+            .ok(this.i18n.MSG_DELETE_ALERT_OK)
+            .cancel(this.i18n.MSG_DELETE_ALERT_CENCEl);
+
+        this.mdDialog.show(confirm).then(() => {
+            let a = this.resource('alert/alertsclear');
+            a.save(this.selected, (res) => {
+                this.toastr["success"](this.i18n.MSG_DELETE_ALERT_SUCCESS);
+                this.state.reload();
+            }, () => {
+                this.toastr["success"](this.i18n.MSG_DELETE_ALERT_ERROR);
             })
         }, function() {
 
@@ -146,4 +175,8 @@ const i18n = {
     MSG_DELETE_ALERT_OK: goog.getMsg(`确定`),
     /** @export {string} @desc 取消 */
     MSG_DELETE_ALERT_CENCEl: goog.getMsg(`取消`),
+    /** @export {string} @desc 告警删除成功 */
+    MSG_DELETE_ALERT_SUCCESS: goog.getMsg(`删除成功`),
+    /** @export {string} @desc 告警删除失败 */
+    MSG_DELETE_ALERT_ERROR: goog.getMsg(`删除失败`),
 };
