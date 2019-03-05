@@ -1335,10 +1335,10 @@
   <translation id="4037658160328783864" key="MSG_UNKNOWN_SERVER_ERROR" desc="String to display when error object has invalid structure.">未知服务器错误</translation>
   <translation id="8857121172489219067" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_0" desc="\u7528\u6237\u5217\u8868-usermanegement">用户列表</translation>
   <translation id="3623914895053977431" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_1" desc="\u6DFB\u52A0\u65B0\u7528\u6237-usermanegement">添加新用户</translation>
-  <translation id="4054589239211528946" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_2" desc="Name-usermanegement">Name</translation>
-  <translation id="5407830911340212701" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_3" desc="Email-usermanegement">Email</translation>
-  <translation id="4653080174128454732" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_4" desc="Root-usermanegement">Root</translation>
-  <translation id="1033744044554013176" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_5" desc="Actions-usermanegement">Actions</translation>
+  <translation id="4054589239211528946" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_2" desc="Name-usermanegement">用户名</translation>
+  <translation id="5407830911340212701" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_3" desc="Email-usermanegement">邮箱</translation>
+  <translation id="4653080174128454732" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_4" desc="Root-usermanegement">类型</translation>
+  <translation id="1033744044554013176" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARDLIST_5" desc="Actions-usermanegement">操作</translation>
   <translation id="8292390178171145151" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARD_0" desc="\u91CD\u7F6E\u5BC6\u7801-usermanagement">重置密码</translation>
   <translation id="6127965661585188947" key="MSG_USERMANAGEMENT_USERMANAGEMENTCARD_1" desc="\u5220\u9664-usermanagement">删除</translation>
   <translation id="3977825376138296843" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_0" desc="\u521B\u5EFA\u65B0\u7528\u6237-usermanagement">创建新用户</translation>
@@ -1346,15 +1346,15 @@
   <translation id="1418762959846163248" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_10" desc="\u4E24\u6B21\u8F93\u5165\u5BC6\u7801\u4E0D\u4E00\u81F4\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165-usermanagement">两次输入密码不一致，请重新输入</translation>
   <translation id="5422674273165258561" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_11" desc="\u521B\u5EFA-usermanagement">创建</translation>
   <translation id="5809309375421299127" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_12" desc="\u53D6\u6D88-usermanagement">取消</translation>
-  <translation id="2151055878011208288" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_2" desc="This is required-usermanagement">This is required</translation>
+  <translation id="2151055878011208288" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_2" desc="This is required-usermanagement">必填</translation>
   <translation id="1351276836002967583" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_3" desc="\u90AE\u7BB1-usermanagement">邮箱</translation>
-  <translation id="3227160774734851925" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_4" desc="This is required-usermanagement">This is required</translation>
+  <translation id="3227160774734851925" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_4" desc="This is required-usermanagement">必填</translation>
   <translation id="855250263306322515" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_5" desc="\u6743\u9650-usermanagement">权限</translation>
   <translation id="6900208466430339491" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_6" desc="\u5BC6\u7801-usermanagement">密码</translation>
-  <translation id="3945894862812534430" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_7" desc="This is required-usermanagement">This is required</translation>
+  <translation id="3945894862812534430" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_7" desc="This is required-usermanagement">必填</translation>
   <translation id="6728823990883240431" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_8" desc="\u786E\u8BA4\u5BC6\u7801-usermanagement">确认密码</translation>
-  <translation id="2242395424472998763" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_9" desc="This is required-usermanagement">This is required</translation>
-  <translation id="5887222560247795921" key="MSG_WARNING_LABEL" desc="Label 'Warning' that appears as a breadcrumbs on the action bar.">Warning</translation>
+  <translation id="2242395424472998763" key="MSG_USERMANAGEMENT_USERMANAGEMENTLIST_9" desc="This is required-usermanagement">必填</translation>
+  <translation id="5887222560247795921" key="MSG_WARNING_LABEL" desc="Label 'Warning' that appears as a breadcrumbs on the action bar.">警告</translation>
   <translation id="1751156908882161640" key="MSG_WARNING_LIST_LIST_0" desc="\u7CFB\u7EDF\u544A\u8B66">系统告警</translation>
   <translation id="1429427665370591345" key="MSG_WARNING_LIST_LIST_1" desc="\u5220\u9664">删除</translation>
   <translation id="197528397527393710" key="MSG_WARNING_LIST_LIST_10" desc="\u5DF2\u77E5\u6089">已知悉</translation>
