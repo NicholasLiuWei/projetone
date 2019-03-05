@@ -225,8 +225,11 @@
   <translation id="8141242969054628436" key="MSG_DEFAULT_NAMESPACES" desc="Text for dropdown item that indicates that default namespace was selected">default</translation>
   <translation id="9156340645950580933" key="MSG_DELETE_ALERT_CENCEl" desc="取消">Cancel</translation>
   <translation id="1033922780548717752" key="MSG_DELETE_ALERT_CONTENT" desc="删除告警提示">you are deleting<ph name="NUMBER">warn messages, confirm?</ph></translation>
+  <translation id="3143074404020193736" key="MSG_DELETE_ALERT_ERROR" desc="告警删除失败">Delete error</translation>
   <translation id="3915597890815183135" key="MSG_DELETE_ALERT_OK" desc="确定">OK</translation>
+  <translation id="7870926894629011716" key="MSG_DELETE_ALERT_SUCCESS" desc="告警删除成功">Delete success</translation>
   <translation id="4519670967000916823" key="MSG_DELETE_ALERT_TITLE" desc="删除告警">Delete Warn</translation>
+  <translation id="8181518179371465024" key="MSG_DELETE_ALL_ALERT_CONTENT" desc="删除全部告警提示">Are you sure to delete all the alarms?</translation>
   <translation id="4053635060615677386" key="MSG_DEPLOYMENTDETAIL_ACTIONBAR_0" desc="Label \'Deployment\' which will appear in the deployment delete dialog opened from the deployment details page.">Deployment</translation>
   <translation id="1190053946078776500" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_0" desc="Title for graph card displaying CPU metric of one deployment.">CPU usage</translation>
   <translation id="6583176718896419422" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_1" desc="Title for graph card displaying memory metric of one deployment.">Memory usage</translation>
@@ -1354,15 +1357,16 @@
   <translation id="5887222560247795921" key="MSG_WARNING_LABEL" desc="Label 'Warning' that appears as a breadcrumbs on the action bar.">Warning</translation>
   <translation id="1751156908882161640" key="MSG_WARNING_LIST_LIST_0" desc="\u7CFB\u7EDF\u544A\u8B66">Warn</translation>
   <translation id="1429427665370591345" key="MSG_WARNING_LIST_LIST_1" desc="\u5220\u9664">Delete</translation>
-  <translation id="8961546642107190100" key="MSG_WARNING_LIST_LIST_10" desc="\u6682\u65E0\u544A\u8B66">No Warn</translation>
-  <translation id="8462341737608490143" key="MSG_WARNING_LIST_LIST_2" desc="\u540D\u79F0">Name</translation>
-  <translation id="6374300499359619699" key="MSG_WARNING_LIST_LIST_3" desc="\u7C7B\u578B">Type</translation>
-  <translation id="2474708781326243691" key="MSG_WARNING_LIST_LIST_4" desc="\u76EE\u6807">Target</translation>
-  <translation id="8615550496482594433" key="MSG_WARNING_LIST_LIST_5" desc="\u65F6\u95F4">Time</translation>
-  <translation id="3583560653993047958" key="MSG_WARNING_LIST_LIST_6" desc="\u64CD\u4F5C">Action</translation>
-  <translation id="1393770128441724470" key="MSG_WARNING_LIST_LIST_7" desc="\u544A\u8B66">warn</translation>
-  <translation id="8418700994499490822" key="MSG_WARNING_LIST_LIST_8" desc="\u9519\u8BEF">error</translation>
-  <translation id="6186569074642098265" key="MSG_WARNING_LIST_LIST_9" desc="\u5DF2\u77E5\u6089">know</translation>
+  <translation id="197528397527393710" key="MSG_WARNING_LIST_LIST_10" desc="\u5DF2\u77E5\u6089">Know</translation>
+  <translation id="9187273293065228116" key="MSG_WARNING_LIST_LIST_11" desc="\u6682\u65E0\u544A\u8B66">No Warn</translation>
+  <translation id="6480473271935916961" key="MSG_WARNING_LIST_LIST_2" desc="\u5168\u90E8\u5220\u9664">Delete All</translation>
+  <translation id="2714733052893842786" key="MSG_WARNING_LIST_LIST_3" desc="\u540D\u79F0">Name</translation>
+  <translation id="6761083022897180596" key="MSG_WARNING_LIST_LIST_4" desc="\u7C7B\u578B">Type</translation>
+  <translation id="5502950164591532507" key="MSG_WARNING_LIST_LIST_5" desc="\u76EE\u6807">Target</translation>
+  <translation id="5671147037051573230" key="MSG_WARNING_LIST_LIST_6" desc="\u65F6\u95F4">Time</translation>
+  <translation id="2271295527026784177" key="MSG_WARNING_LIST_LIST_7" desc="\u64CD\u4F5C">Action</translation>
+  <translation id="4065502911134972463" key="MSG_WARNING_LIST_LIST_8" desc="\u544A\u8B66">Warn</translation>
+  <translation id="637468477912903507" key="MSG_WARNING_LIST_LIST_9" desc="\u9519\u8BEF">Error</translation>
   <translation id="4552044874744119007" key="MSG_WARNING_SETTINGS_LIST_0" desc="\u544A\u8B66\u901A\u77E5\u5217\u8868">Email List</translation>
   <translation id="8076359133279423019" key="MSG_WARNING_SETTINGS_LIST_1" desc="\u65B0\u589E\u90AE\u4EF6\u6536\u4EF6\u4EBA">Add Email</translation>
   <translation id="5370016247057744346" key="MSG_WARNING_SETTINGS_LIST_2" desc="\u90AE\u7BB1">Email</translation>
@@ -1380,11 +1384,11 @@
   <translation id="3418347109217776066" key="MSG_chart_deployment_failed_title" desc="appstore 部署失败提示">Server error</translation>
   <translation id="2159949066931242059" key="MSG_chart_deployment_partly" desc="Chart deployment has partly completed. 应用部署未完成">Chart deployment has partly completed</translation>
   <translation id="1254252880229322045" key="MSG_chart_deploypre_failed" desc="Deploying chart has failed. 应用部署失败">Deploying chart has failed</translation>
-  <translation id="7634709554037056826" key="MSG_image_deployment_failed_button" desc="image 部署失败提示">确定</translation>
-  <translation id="6571388540812573885" key="MSG_image_deployment_failed_con" desc="image 部署失败提示">部署失败，请重试</translation>
-  <translation id="2746713520527501031" key="MSG_image_deployment_failed_title" desc="image 部署失败提示">服务器错误</translation>
-  <translation id="6082626850385368780" key="MSG_image_imagelist_error_title" desc="release 更新失败">更新失败</translation>
-  <translation id="4390877576403583900" key="MSG_image_imagelist_success_title" desc="release 更新成功">更新成功</translation>
+  <translation id="7634709554037056826" key="MSG_image_deployment_failed_button" desc="image 部署失败提示">Sure</translation>
+  <translation id="6571388540812573885" key="MSG_image_deployment_failed_con" desc="image 部署失败提示">Deployment failed. Please try again</translation>
+  <translation id="2746713520527501031" key="MSG_image_deployment_failed_title" desc="image 部署失败提示">Server error</translation>
+  <translation id="6082626850385368780" key="MSG_image_imagelist_error_title" desc="release 更新失败">Update failed</translation>
+  <translation id="4390877576403583900" key="MSG_image_imagelist_success_title" desc="release 更新成功">The update is successful</translation>
   <translation id="2483598429205640983" key="MSG_image_s2i_error_title" desc="release 更新失败">Update failed</translation>
   <translation id="6408231948271223670" key="MSG_image_s2i_success_title" desc="release 更新成功">Update Success</translation>
   <translation id="3491360723330747422" key="MSG_login_jiqun_error" desc="集群异常 Cluster anomaly">Cluster anomaly</translation>

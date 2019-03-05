@@ -1,7 +1,10 @@
 <kd-resource-card-list selectable="false" with-statuses="false" object-meta="{name:'alert'}">
     <kd-resource-card-list-header>
         [[系统告警|系统告警]]
-        <md-button ng-if="$ctrl.selected.length!=0" class="md-button md-raised md-primary" ng-click="$ctrl.deleteAlert($event)">[[删除|删除]]</md-button>
+        <div>
+            <md-button ng-disabled="$ctrl.selected.length==0" class="md-button md-raised md-primary" ng-click="$ctrl.deleteAlert($event)">[[删除|删除]]</md-button>
+            <md-button ng-disabled="$ctrl.alertList.listMeta.totalItems==0" class="md-button md-raised md-primary" ng-click="$ctrl.deleteAllAlert($event)">[[全部删除|全部删除]]</md-button>
+        </div>
     </kd-resource-card-list-header>
     <kd-resource-card-header-columns>
         <div style="border-bottom:1px solid rgba(0, 0, 0, 0.12)">

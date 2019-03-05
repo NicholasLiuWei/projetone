@@ -233,8 +233,11 @@
   <translation id="8141242969054628436" key="MSG_DEFAULT_NAMESPACES" desc="Text for dropdown item that indicates that default namespace was selected">default</translation>
   <translation id="9156340645950580933" key="MSG_DELETE_ALERT_CENCEl" desc="取消">取消</translation>
   <translation id="1033922780548717752" key="MSG_DELETE_ALERT_CONTENT" desc="删除告警提示">确定删除<ph name="NUMBER">条告警吗？</ph></translation>
+  <translation id="3143074404020193736" key="MSG_DELETE_ALERT_ERROR" desc="告警删除失败">删除失败</translation>
   <translation id="3915597890815183135" key="MSG_DELETE_ALERT_OK" desc="确定">确定</translation>
+  <translation id="7870926894629011716" key="MSG_DELETE_ALERT_SUCCESS" desc="告警删除成功">删除成功</translation>
   <translation id="4519670967000916823" key="MSG_DELETE_ALERT_TITLE" desc="删除告警">删除告警</translation>
+  <translation id="8181518179371465024" key="MSG_DELETE_ALL_ALERT_CONTENT" desc="删除全部告警提示">确定删除全部告警吗？</translation>
   <translation id="4053635060615677386" key="MSG_DEPLOYMENTDETAIL_ACTIONBAR_0" desc="Label \'Deployment\' which will appear in the deployment delete dialog opened from the deployment details page.">?????????????????????</translation>
   <translation id="1190053946078776500" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_0" desc="Title for graph card displaying CPU metric of one deployment.">CPU usage</translation>
   <translation id="6583176718896419422" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_1" desc="Title for graph card displaying memory metric of one deployment.">Memory usage</translation>
@@ -1392,15 +1395,16 @@
   <translation id="5887222560247795921" key="MSG_WARNING_LABEL" desc="Label 'Warning' that appears as a breadcrumbs on the action bar.">Warning</translation>
   <translation id="1751156908882161640" key="MSG_WARNING_LIST_LIST_0" desc="\u7CFB\u7EDF\u544A\u8B66">系统告警</translation>
   <translation id="1429427665370591345" key="MSG_WARNING_LIST_LIST_1" desc="\u5220\u9664">删除</translation>
-  <translation id="8961546642107190100" key="MSG_WARNING_LIST_LIST_10" desc="\u6682\u65E0\u544A\u8B66">暂无告警</translation>
-  <translation id="8462341737608490143" key="MSG_WARNING_LIST_LIST_2" desc="\u540D\u79F0">名称</translation>
-  <translation id="6374300499359619699" key="MSG_WARNING_LIST_LIST_3" desc="\u7C7B\u578B">类型</translation>
-  <translation id="2474708781326243691" key="MSG_WARNING_LIST_LIST_4" desc="\u76EE\u6807">目标</translation>
-  <translation id="8615550496482594433" key="MSG_WARNING_LIST_LIST_5" desc="\u65F6\u95F4">时间</translation>
-  <translation id="3583560653993047958" key="MSG_WARNING_LIST_LIST_6" desc="\u64CD\u4F5C">操作</translation>
-  <translation id="1393770128441724470" key="MSG_WARNING_LIST_LIST_7" desc="\u544A\u8B66">告警</translation>
-  <translation id="8418700994499490822" key="MSG_WARNING_LIST_LIST_8" desc="\u9519\u8BEF">错误</translation>
-  <translation id="6186569074642098265" key="MSG_WARNING_LIST_LIST_9" desc="\u5DF2\u77E5\u6089">已知悉</translation>
+  <translation id="197528397527393710" key="MSG_WARNING_LIST_LIST_10" desc="\u5DF2\u77E5\u6089">已知悉</translation>
+  <translation id="9187273293065228116" key="MSG_WARNING_LIST_LIST_11" desc="\u6682\u65E0\u544A\u8B66">暂无告警</translation>
+  <translation id="6480473271935916961" key="MSG_WARNING_LIST_LIST_2" desc="\u5168\u90E8\u5220\u9664">全部删除</translation>
+  <translation id="2714733052893842786" key="MSG_WARNING_LIST_LIST_3" desc="\u540D\u79F0">名称</translation>
+  <translation id="6761083022897180596" key="MSG_WARNING_LIST_LIST_4" desc="\u7C7B\u578B">类型</translation>
+  <translation id="5502950164591532507" key="MSG_WARNING_LIST_LIST_5" desc="\u76EE\u6807">目标</translation>
+  <translation id="5671147037051573230" key="MSG_WARNING_LIST_LIST_6" desc="\u65F6\u95F4">时间</translation>
+  <translation id="2271295527026784177" key="MSG_WARNING_LIST_LIST_7" desc="\u64CD\u4F5C">操作</translation>
+  <translation id="4065502911134972463" key="MSG_WARNING_LIST_LIST_8" desc="\u544A\u8B66">告警</translation>
+  <translation id="637468477912903507" key="MSG_WARNING_LIST_LIST_9" desc="\u9519\u8BEF">错误</translation>
   <translation id="4552044874744119007" key="MSG_WARNING_SETTINGS_LIST_0" desc="\u544A\u8B66\u901A\u77E5\u5217\u8868">告警通知列表</translation>
   <translation id="8076359133279423019" key="MSG_WARNING_SETTINGS_LIST_1" desc="\u65B0\u589E\u90AE\u4EF6\u6536\u4EF6\u4EBA">新增邮件收件人</translation>
   <translation id="5370016247057744346" key="MSG_WARNING_SETTINGS_LIST_2" desc="\u90AE\u7BB1">邮箱</translation>
