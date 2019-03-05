@@ -65,6 +65,7 @@ import appStoreModule from './appStore/module';
 import newhomeModule from './newhome/module';
 import releaseModule from './releaselist/releaselist_module';
 import imagelistModule from './imagelist/module';
+import usermanagementModule from './usermanagement/usermanagementlist_module';
 import warningModule from './warning/module';
 import storageModule from './storage/module';
 import networkModule from './network/module';
@@ -131,6 +132,7 @@ export default angular
             storageModule.name,
             newhomeModule.name,
             imagelistModule.name,
+            usermanagementModule.name,
             warningModule.name,
             networkModule.name,
             rizhiModule.name,

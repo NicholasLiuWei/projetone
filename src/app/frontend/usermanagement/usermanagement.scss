@@ -1,0 +1,20 @@
+.action-button-style {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-frame-width-style {
+    width: 550px;
+}
+
+.password-error-style {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.table-header-first-padding-left {
+    padding-left: 16px !important;
+}

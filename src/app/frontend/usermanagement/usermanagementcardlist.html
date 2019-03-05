@@ -1,0 +1,42 @@
+<!--
+Copyright 2015 Google Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<kd-resource-card-list selectable="false" with-statuses="false">
+    <kd-resource-card-list-header ng-transclude="header">
+        [[用户列表|用户列表-usermanagement]]
+        <md-button class="md-raised md-primary" ng-click="$ctrl.fAddNewUser()">[[添加新用户|添加新用户-usermanegement]]</md-button>
+    </kd-resource-card-list-header>
+
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column size="small" grow="2" class="table-header-first-padding-left">
+            [[Name|Name-usermanagement]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[Email|Email-usermanagement]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[Root|Root-usermanagement]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[Actions|Actions-usermanagement]]
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <kd-usermanagement-card ng-if="::$ctrl.usermanagementListResource" usermanagement="usermanagement" dir-paginate="usermanagement in $ctrl.usermanagementList.items | itemsPerPage: default" pagination-id="usermanagements" total-items="$ctrl.usermanagementList.listMeta.totalItems">
+    </kd-usermanagement-card>
+
+    <kd-usermanagement-card ng-if="::!$ctrl.usermanagementListResource" usermanagement="usermanagement" dir-paginate="usermanagement in $ctrl.usermanagementList.items | itemsPerPage: default" pagination-id="usermanagements">
+    </kd-usermanagement-card>
+</kd-resource-card-list>

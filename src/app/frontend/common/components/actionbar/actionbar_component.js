@@ -99,6 +99,13 @@ export class ActionbarComponent {
             this.state_.go('password');
         }
         /**
+         * 用户管理
+         * @export
+         */
+    usermanagement() {
+            this.state_.go('chrome.usermanagement');
+        }
+        /**
          * Handles change of email using dialog.
          * @export
          */

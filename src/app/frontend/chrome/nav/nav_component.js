@@ -38,6 +38,7 @@ import { stateName as appStore } from 'appStore/state';
 import { stateName as home } from 'newhome/state';
 import { stateName as release } from 'releaselist/releaselist_state';
 import { stateName as image } from 'imagelist/state';
+// import { stateName as usermanagement } from 'usermanagement/state';
 import { stateName as warning } from 'warning/list/state';
 import { stateName as storage } from 'storage/pvc/state';
 import { stateName as network } from 'network/service/state';
@@ -96,6 +97,7 @@ export class NavController {
             'home': home,
             'release': release,
             'image': image,
+            // 'usermanagement': usermanagement,
             'warning': warning,
             'storage': storage,
             'net': network,
