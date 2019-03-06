@@ -68,6 +68,18 @@ kd-nav-item {
     .images {
         background: url('../assets/images/image.png') no-repeat center center;
     }
+    .net {
+        background: url('../assets/images/net.png') no-repeat center center;
+    }
+    .warn {
+        background: url('../assets/images/warn.png') no-repeat center center;
+    }
+    .jiankong {
+        background: url('../assets/images/jiankong.png') no-repeat center center;
+    }
+    .log {
+        background: url('../assets/images/log.png') no-repeat center center;
+    }
     .itemicon {
         width: 34px;
         height: 58px;
@@ -104,6 +116,18 @@ kd-nav-item {
         }
         .images {
             background: url('../assets/images/imageactive.png') no-repeat center center;
+        }
+        .net {
+            background: url('../assets/images/netactive.png') no-repeat center center;
+        }
+        .warn {
+            background: url('../assets/images/warnactive.png') no-repeat center center;
+        }
+        .jiankong {
+            background: url('../assets/images/jiankongactive.png') no-repeat center center;
+        }
+        .log {
+            background: url('../assets/images/logactive.png') no-repeat center center;
         }
     }
 }
