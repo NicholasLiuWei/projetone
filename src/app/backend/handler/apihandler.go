@@ -69,6 +69,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/search"
 	"github.com/kubernetes/dashboard/src/app/backend/settings"
 	"github.com/kubernetes/dashboard/src/app/backend/systembanner"
+	"github.com/kubernetes/dashboard/src/app/backend/user"
 	"github.com/kubernetes/dashboard/src/app/backend/validation"
 	"golang.org/x/net/xsrftoken"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -636,6 +637,28 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 	apiV1Ws.Route(
 		apiV1Ws.GET("/baseinfo/{node}").
 			To(apiHandler.handleBaseInfoByNode))
+
+	apiV1Ws.Route(
+		apiV1Ws.GET("/user/login").
+			To(apiHandler.handleUserLogin).
+			Reads(user.LoginSpec{}).
+			Writes(user.AuthResponse{})))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/user").
+			To(apiHandler.handleListUser).
+			Writes(user.UserList{}))
+	apiV1Ws.Route(
+		apiV1Ws.POST("/user").
+			To(apiHandler.handleCreateUser).
+			Reads(user.UserSpec{}).
+			Writes(user.UserSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.PUT("/user/chgpwd").
+			To(apiHandler.handleUserChgpwd).
+			Reads(user.UserSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.DELETE("/user/{userid}").
+			To(apiHandler.handleDeleteUser))
 
 	return wsContainer, nil
 }
@@ -3443,4 +3466,24 @@ func parseDataSelectPathParameter(request *restful.Request) *dataselect.DataSele
 	filterQuery := parseFilterPathParameter(request)
 	metricQuery := parseMetricPathParameter(request)
 	return dataselect.NewDataSelectQuery(paginationQuery, sortQuery, filterQuery, metricQuery)
+}
+
+func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response *restful.Response) {
+
+}
+
+func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
+
+}
+
+func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
+
+}
+
+func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
+
+}
+
+func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
+
 }
