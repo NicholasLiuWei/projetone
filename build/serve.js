@@ -98,8 +98,8 @@ function browserSyncInit(baseDir) {
 
     let apiRoute = '/api';
     let proxyMiddlewareOptions = {
-        target: "https://172.16.116.1:30008",
-        // target: "https://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/",
+        // target: "https://172.16.116.1:30008",
+        target: "https://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/",
         // target: conf.frontend.serveHttps ? `https://localhost:${conf.backend.secureDevServerPort}` :
         //                                    `http://localhost:${conf.backend.devServerPort}`,
         changeOrigin: true,
