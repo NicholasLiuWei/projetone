@@ -92,9 +92,19 @@
   <translation id="3032438273792216799" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBARNAMESPACEOVERVIEW_1" desc="(no description provided)">Overview</translation>
   <translation id="4089620624906747934" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_0" desc="caidan Admin">Admin</translation>
   <translation id="9044428715504897578" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_1" desc="\u7248\u672C\u4FE1\u606F">Version v1.0.0</translation>
+  <translation id="615118310740688785" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_10" desc="\u65B0\u5BC6\u7801\u786E\u8BA4-changepassword">Confirm the new password</translation>
+  <translation id="6933660363348079368" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_11" desc="This is required-changepassword">This is required</translation>
+  <translation id="8038813062140354621" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_12" desc="\u4E24\u6B21\u8F93\u5165\u5BC6\u7801\u4E0D\u4E00\u81F4\uFF0C\u8BF7\u91CD\u65B0\u8F93\u5165-changepassword">Input password is inconsistent. Please re-enter it.</translation>
+  <translation id="2010894834435671682" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_13" desc="\u786E\u8BA4-changepassword">confirm</translation>
+  <translation id="7638761069747612468" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_14" desc="\u53D6\u6D88-changepassword">cancel</translation>
   <translation id="975074091884772067" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_2" desc="caidan User Management">用户管理</translation>
   <translation id="1663180074691228338" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_3" desc="caidan Change Password">修改密码</translation>
   <translation id="6075303535494724499" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_4" desc="caidan Logout">退出</translation>
+  <translation id="2197073913801379734" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_5" desc="\u4FEE\u6539\u7BA1\u7406\u5458\u5BC6\u7801-changepassword">Modify Administrator Password</translation>
+  <translation id="953912072367225891" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_6" desc="\u539F\u59CB\u5BC6\u7801-changepassword">Original password</translation>
+  <translation id="3114743344509995858" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_7" desc="This is required-changepassword">This is required</translation>
+  <translation id="7006483516974778210" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_8" desc="\u65B0\u5BC6\u7801-changepassword">New password</translation>
+  <translation id="4004649004975043179" key="MSG_COMMON_COMPONENTS_ACTIONBAR_ACTIONBAR_9" desc="This is required-changepassword">This is required</translation>
   <translation id="4246093411879805828" key="MSG_COMMON_COMPONENTS_ACTIONBAR_SHELL_0" desc="Exec button tooltip located on pod detail page actionbar">Exec into Pod</translation>
   <translation id="1980816672340986356" key="MSG_COMMON_COMPONENTS_ACTIONBAR_SHELL_1" desc="Execute shell in the container">Exec</translation>
   <translation id="1745702155571319443" key="MSG_COMMON_COMPONENTS_ANNOTATIONS_ANNOTATIONS_0" desc="Friendly name of the kubernetes.io/created-by annotation">Created by:</translation>

@@ -53,10 +53,9 @@ export class NavController {
      * @param {!./nav_service.NavService} kdNavService
      * @ngInject
      */
-    constructor(kdNavService, $rootScope, $http, $scope, $resource, $state) {
+    constructor(kdNavService, $rootScope, $http, $scope, $resource) {
         /** @export {boolean} */
         this.isVisible = true;
-
         /** @private {!./nav_service.NavService} */
         this.kdNavService_ = kdNavService;
 
@@ -104,6 +103,7 @@ export class NavController {
             'rizhi': rizhi,
             'jiankong': jiankong
         };
+
         /** cunchu */
         this.getNav();
 

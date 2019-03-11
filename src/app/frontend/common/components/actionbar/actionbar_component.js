@@ -24,7 +24,8 @@ export class ActionbarComponent {
      * @param {!./email_service.EmailService} kdEmailService
      * @ngInject
      */
-    constructor($cookies, $state, $rootScope, $http, $scope, $resource, toastr, kdEmailService) {
+    constructor($cookies, $state, $rootScope, $http, $scope, $resource, toastr, kdEmailService, $mdDialog) {
+            this.$mdDialog = $mdDialog;
             /** @private {!ui.router.$state} */
             this.state_ = $state;
             /** @export {!angular.Scope}*/
@@ -40,6 +41,20 @@ export class ActionbarComponent {
             /** fasdfa */
             this.$http_ = $http;
             this.cookies = $cookies;
+
+
+            /** @export  */
+            this.$mdDialog = $mdDialog;
+
+            /** @export  */
+            this.bPasswordError = false;
+
+            /** @export  */
+            this.oResetPasswordAge = {
+                "currentPassword": "",
+                "newPassword": "",
+                "confirmPassword": ""
+            }
 
             document.addEventListener("click", function() {
                 this.showWarning = false;
@@ -96,7 +111,12 @@ export class ActionbarComponent {
          * @export
          */
     changemima() {
-            this.state_.go('password');
+            this.$mdDialog.show({
+                contentElement: '#changeDialog',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true
+            });
+            // this.state_.go('password');
         }
         /**
          * 用户管理
@@ -211,6 +231,27 @@ export class ActionbarComponent {
                     // console.log(err);
                 });
         }
+    }
+
+
+    /**
+     *@export
+     */
+    fChangePassword() {
+            if (this.oResetPasswordAge.newPassword !== this.oResetPasswordAge.confirmPassword) {
+                this.bPasswordError = true;
+            } else {
+                this.bPasswordError = false;
+                this.$mdDialog.hide();
+                document.getElementById("reset-password-id").reset()
+                console.log(this.oResetPasswordAge)
+            }
+        }
+        /**
+         * @export
+         */
+    cancel() {
+        this.$mdDialog.cancel();
     }
 }
 

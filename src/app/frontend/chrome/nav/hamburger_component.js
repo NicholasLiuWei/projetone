@@ -16,23 +16,23 @@
  * @final
  */
 export class HamburgerController {
-  /**
-   * @param {!./nav_service.NavService} kdNavService
-   * @ngInject
-   */
-  constructor(kdNavService) {
-    /** @private {!./nav_service.NavService} */
-    this.kdNavService_ = kdNavService;
-  }
+    /**
+     * @param {!./nav_service.NavService} kdNavService
+     * @ngInject
+     */
+    constructor(kdNavService) {
+        /** @private {!./nav_service.NavService} */
+        this.kdNavService_ = kdNavService;
+    }
 
-  /** @export */
-  toggle() {
-    this.kdNavService_.toggle();
-  }
+    /** @export */
+    toggle() {
+        this.kdNavService_.toggle();
+    }
 }
 
 /** @type {!angular.Component} */
 export const hamburgerComponent = {
-  controller: HamburgerController,
-  templateUrl: 'chrome/nav/hamburger.html',
+    controller: HamburgerController,
+    templateUrl: 'chrome/nav/hamburger.html',
 };

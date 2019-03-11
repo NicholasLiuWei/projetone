@@ -12,54 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateName} from '../../search/state';
+import { stateName } from '../../search/state';
 
 /**
  * @final
  */
 export class SearchController {
-  /**
-   * @param {!ui.router.$state} $state
-   * @param {!kdUiRouter.$transitions} $transitions
-   * @ngInject
-   */
-  constructor($state, $transitions) {
-    /** @private {!ui.router.$state} */
-    this.state_ = $state;
+    /**
+     * @param {!ui.router.$state} $state
+     * @param {!kdUiRouter.$transitions} $transitions
+     * @ngInject
+     */
+    constructor($state, $transitions) {
+        /** @private {!ui.router.$state} */
+        this.state_ = $state;
 
-    /** @private {!kdUiRouter.$transitions} */
-    this.transitions_ = $transitions;
+        /** @private {!kdUiRouter.$transitions} */
+        this.transitions_ = $transitions;
 
-    /** @export {string} */
-    this.query = '';
-  }
+        /** @export {string} */
+        this.query = '';
+    }
 
-  /**
-   * Register state change listener to empty search bar with every state change.
-   */
-  $onInit() {
-    this.transitions_.onStart({}, () => {
-      this.clear();
-    });
-  }
+    /**
+     * Register state change listener to empty search bar with every state change.
+     */
+    $onInit() {
+        this.transitions_.onStart({}, () => {
+            this.clear();
+        });
+    }
 
-  /**
-   * @export
-   */
-  clear() {
-    this.query = '';
-  }
+    /**
+     * @export
+     */
+    clear() {
+        this.query = '';
+    }
 
-  /**
-   * @export
-   */
-  submit() {
-    this.state_.go(stateName, {q: this.query});
-  }
+    /**
+     * @export
+     */
+    submit() {
+        this.state_.go(stateName, { q: this.query });
+    }
 }
 
 /** @type {!angular.Component} */
 export const searchComponent = {
-  controller: SearchController,
-  templateUrl: 'chrome/search/search.html',
+    controller: SearchController,
+    templateUrl: 'chrome/search/search.html',
 };

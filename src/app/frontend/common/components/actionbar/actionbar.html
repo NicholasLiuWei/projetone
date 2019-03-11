@@ -52,6 +52,45 @@ limitations under the License.
         </md-menu-content>
     </md-menu>
 </div>
+<div style="visibility: hidden;">
+    <div class="md-dialog-container" id="changeDialog">
+        <md-dialog layout-padding>
+            <p style="width: 400px;">[[修改管理员密码|修改管理员密码-changepassword]]</p>
+            <form name="projectForm" id="reset-password-id" ng-submit="$ctrl.fChangePassword()">
+                <md-input-container class="md-block">
+                    <label>[[原始密码|原始密码-changepassword]]</label>
+                    <input required type="password" ng-model="$ctrl.oResetPasswordAge.currentPassword">
+                    <div ng-messages="projectForm.userName.$error">
+                        <div ng-message="required">[[This is required|This is required-changepassword]].</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>[[新密码|新密码-changepassword]]</label>
+                    <input required type="password" ng-model="$ctrl.oResetPasswordAge.newPassword">
+                    <div ng-messages="projectForm.userEmail.$error">
+                        <div ng-message="required">[[This is required|This is required-changepassword]].</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>[[新密码确认|新密码确认-changepassword]]</label>
+                    <input required type="password" ng-model="$ctrl.oResetPasswordAge.confirmPassword">
+                    <div ng-messages="projectForm.userEmail.$error">
+                        <div ng-message="required">[[This is required|This is required-changepassword]].</div>
+                    </div>
+                    <div class="password-error-style" ng-if="$ctrl.bPasswordError">[[两次输入密码不一致，请重新输入|两次输入密码不一致，请重新输入-changepassword]]*</div>
+                </md-input-container>
+                <div style="text-align:right;">
+                    <md-button class="md-raised md-primary" type="submit">
+                        [[确认|确认-changepassword]]
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$ctrl.cancel()">
+                        [[取消|取消-changepassword]]
+                    </md-button>
+                </div>
+            </form>
+        </md-dialog>
+    </div>
+</div>
 <!-- <div ng-if="$ctrl.showWarning" ng-switch="$ctrl.loading" style="overflow:hidden;width:500px;height:500px; border:1px solid #ccc;box-shadow:0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);background:#fff;position:absolute;top:65px;right:0; z-index:
 10; color:#000;" ng-click="$ctrl.stopPropagation($event)">
     <div class="alertstitle" layout="row" layout-align="space-between">

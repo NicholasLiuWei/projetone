@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 /**
  * Controller for the replica set list view.
  *
@@ -65,12 +64,11 @@ export class UsermanagementListController {
          * @export
          */
     shouldShowZeroState() {
-        return this.usermanagementList.items.length === 0;
-    }
-
-    /**
-     * @export 
-     */
+            return this.usermanagementList.items.length === 0;
+        }
+        /**
+         * @export 
+         */
     fCreateNewUser() {
             if (this.oNewUserMsg.password !== this.oNewUserMsg.confirmPassword) {
                 this.bPasswordError = true;
@@ -85,7 +83,7 @@ export class UsermanagementListController {
                     //     "password": "",
                     //     "confirmPassword": "",
                     // };
-                document.getElementById("aaa").reset()
+                document.getElementById("reset-id").reset()
                 console.log(this.oNewUserMsg)
             }
         }

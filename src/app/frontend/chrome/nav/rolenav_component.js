@@ -12,53 +12,53 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateName as roleState} from '../../role/list/state';
+import { stateName as roleState } from '../../role/list/state';
 
 /**
  * @final
  */
 export class RoleNavController {
-  /**
-   * @param {!angular.$resource} $resource
-   * @ngInject
-   */
-  constructor($resource) {
-    /** @export */
-    this.isVisible = false;
+    /**
+     * @param {!angular.$resource} $resource
+     * @ngInject
+     */
+    constructor($resource) {
+        /** @export */
+        this.isVisible = false;
 
-    /** @private {!angular.$resource} */
-    this.resource_ = $resource;
+        /** @private {!angular.$resource} */
+        this.resource_ = $resource;
+
+        /**
+         * Initialized from binding.
+         *
+         * @export {!Object<string, string>}
+         */
+        this.states;
+    }
 
     /**
-     * Initialized from binding.
+     * Check status of rbacs in the cluster to show/hide Role menu entry.
      *
-     * @export {!Object<string, string>}
+     * @export
      */
-    this.states;
-  }
-
-  /**
-   * Check status of rbacs in the cluster to show/hide Role menu entry.
-   *
-   * @export
-   */
-  $onInit() {
-    this.resource_('api/v1/rbac/status').get().$promise.then((result) => {
-      if (result && result.enabled) {
-        Object.assign(this.states, {'role': roleState});
-        this.isVisible = true;
-      }
-    });
-  }
+    $onInit() {
+        this.resource_('api/v1/rbac/status').get().$promise.then((result) => {
+            if (result && result.enabled) {
+                Object.assign(this.states, { 'role': roleState });
+                this.isVisible = true;
+            }
+        });
+    }
 }
 
 /**
  * @type {!angular.Component}
  */
 export const roleNavComponent = {
-  controller: RoleNavController,
-  templateUrl: 'chrome/nav/rolenav.html',
-  bindings: {
-    'states': '=',
-  },
+    controller: RoleNavController,
+    templateUrl: 'chrome/nav/rolenav.html',
+    bindings: {
+        'states': '=',
+    },
 };

@@ -12,35 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {deployAppStateName} from 'deploy/deploy_state';
+import { deployAppStateName } from 'deploy/deploy_state';
 
 /**
  * @final
  */
 export class ZeroStateController {
-  /**
-   * @param {!ui.router.$state} $state
-   * @ngInject
-   */
-  constructor($state) {
-    /** @private {!ui.router.$state} */
-    this.state_ = $state;
-  }
+    /**
+     * @param {!ui.router.$state} $state
+     * @ngInject
+     */
+    constructor($state) {
+        /** @private {!ui.router.$state} */
+        this.state_ = $state;
+    }
 
-  /**
-   * @return {string}
-   * @export
-   */
-  getStateHref() {
-    return this.state_.href(deployAppStateName);
-  }
+    /**
+     * @return {string}
+     * @export
+     */
+    getStateHref() {
+        return this.state_.href(deployAppStateName);
+    }
 }
 
 /**
  * @return {!angular.Component}
  */
 export const zeroStateComponent = {
-  templateUrl: 'common/components/zerostate/zerostate.html',
-  transclude: true,
-  controller: ZeroStateController,
+    templateUrl: 'common/components/zerostate/zerostate.html',
+    transclude: true,
+    controller: ZeroStateController,
 };

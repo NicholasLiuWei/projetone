@@ -12,23 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateName as loginState} from './login/state';
+import { stateName as loginState } from './login/state';
 
 /** @final */
 export class Controller {
-  /**
-   * @param {!ui.router.$state} $state
-   * @ngInject
-   */
-  constructor($state) {
-    this.state_ = $state;
-  }
+    /**
+     * @param {!ui.router.$state} $state
+     * @ngInject
+     */
+    constructor($state) {
+        this.state_ = $state;
+    }
 
-  /**
-   * @export
-   * @return {boolean}
-   */
-  isLoginState() {
-    return this.state_.current.name === loginState;
-  }
+    /**
+     * @export
+     * @return {boolean}
+     */
+    isLoginState() {
+        return this.state_.current.name === loginState;
+    }
+
 }

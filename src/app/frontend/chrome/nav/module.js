@@ -1,4 +1,3 @@
-
 // Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,23 +14,21 @@
 
 import stateModule from 'common/state/module';
 
-import {hamburgerComponent} from './hamburger_component';
-import {navComponent} from './nav_component';
-import {NavService} from './nav_service';
-import {navItemComponent} from './navitem_component';
-import {thirdPartyResourceNavComponent} from './thirdpartyresourcenav_component';
-
+import { hamburgerComponent } from './hamburger_component';
+import { navComponent } from './nav_component';
+import { NavService } from './nav_service';
+import { navItemComponent } from './navitem_component';
+import { thirdPartyResourceNavComponent } from './thirdpartyresourcenav_component';
 
 /**
  * Angular module containing navigation for the application.
  */
 export default angular
     .module(
-        'kubernetesDashboard.chrome.nav',
-        [
-          'ngMaterial',
-          'ui.router',
-          stateModule.name,
+        'kubernetesDashboard.chrome.nav', [
+            'ngMaterial',
+            'ui.router',
+            stateModule.name,
         ])
     .service('kdNavService', NavService)
     .component('kdNavHamburger', hamburgerComponent)

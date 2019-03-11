@@ -16,29 +16,29 @@
  * @final
  */
 export default class TextInputController {
-  /**
-   * @ngInject
-   */
-  constructor() {
-    /** @export {string} */
-    this.inputData;
-  }
+    /**
+     * @ngInject
+     */
+    constructor() {
+        /** @export {string} */
+        this.inputData;
+    }
 
-  /**
-   * Returns ui-ace editor config. Read more at https://github.com/angular-ui/ui-ace#options.
-   *
-   * @return {Object}
-   * @export
-   */
-  getEditorConfig() {
-    return {
-      useWrapMode: true,
-      mode: 'yaml',
-      advanced: {
-        fontSize: '16px',
-      },
-    };
-  }
+    /**
+     * Returns ui-ace editor config. Read more at https://github.com/angular-ui/ui-ace#options.
+     *
+     * @return {Object}
+     * @export
+     */
+    getEditorConfig() {
+        return {
+            useWrapMode: true,
+            mode: 'yaml',
+            advanced: {
+                fontSize: '16px',
+            },
+        };
+    }
 }
 
 /**
@@ -47,9 +47,9 @@ export default class TextInputController {
  * @type {!angular.Component}
  */
 export const textInputComponent = {
-  bindings: {
-    'inputData': '=',
-  },
-  controller: TextInputController,
-  templateUrl: 'common/components/textinput/textinput.html',
+    bindings: {
+        'inputData': '=',
+    },
+    controller: TextInputController,
+    templateUrl: 'common/components/textinput/textinput.html',
 };
