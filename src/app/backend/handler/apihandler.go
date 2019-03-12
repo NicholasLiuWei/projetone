@@ -735,7 +735,7 @@ func storageStatus() (interface{}, error) {
 		log.Println("storageStatus Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -762,7 +762,7 @@ func storageUseRate() (interface{}, error) {
 		log.Println("storageUseRate Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -789,7 +789,7 @@ func storageTotal() (interface{}, error) {
 		log.Println("storageTotal Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -816,7 +816,7 @@ func storageAvailable() (interface{}, error) {
 		log.Println("storageAvailable Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -843,7 +843,7 @@ func storageUsed() (interface{}, error) {
 		log.Println("storageUsed Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -870,7 +870,7 @@ func storageReadBytes() (interface{}, error) {
 		log.Println("storageReadBytes Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -897,7 +897,7 @@ func storageReadOps() (interface{}, error) {
 		log.Println("storageReadOps Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -924,7 +924,7 @@ func storageWriteBytes() (interface{}, error) {
 		log.Println("storageWriteBytes Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -951,7 +951,7 @@ func storageWriteOps() (interface{}, error) {
 		log.Println("storageWriteOps Unmarshal", err, string(respBytes))
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -999,7 +999,7 @@ func cpuUseRate() (interface{}, error) {
 		log.Println("cpuUseRate Unmarshal", err)
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0){
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -1026,7 +1026,7 @@ func memoryUseRate() (interface{}, error) {
 		log.Println("memoryUseRate Unmarshal", err)
 		return 0, err
 	}
-	if cephResp != nil && cephResp.Status == "success" {
+	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0){
 		return cephResp.Data.Result[0].Value[1], nil
 	}
 	return 0, nil
@@ -1187,7 +1187,7 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 		ch <- nil
 		return nil, err
 	}
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
@@ -1224,7 +1224,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		ch <- nil
 		return nil, err
 	}
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
@@ -1291,7 +1291,7 @@ func networkInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error)
 		return nil, err
 	}
 	log.Println(rangeResp.Status)
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
@@ -1329,7 +1329,7 @@ func networkInfoByNode(t1 int64, t2 int64, url string, node string, ch chan []Re
 		return nil, err
 	}
 	log.Println(string(respBytes))
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
@@ -1614,7 +1614,7 @@ func nodeInfos (str string, ch chan []ResultData) ([]ResultData, error) {
 		ch <- nil
 		return nil, err
 	}
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
@@ -1655,7 +1655,7 @@ func cpuInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]Res
 		ch <- nil
 		return nil, err
 	}
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
@@ -1695,7 +1695,7 @@ func memoryInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]
 		ch <- nil
 		return nil, err
 	}
-	if rangeResp != nil && rangeResp.Status == "success" {
+	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
