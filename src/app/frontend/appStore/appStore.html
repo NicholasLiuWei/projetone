@@ -79,7 +79,7 @@
                 <kd-help-section>
                     <md-input-container class="md-block">
                         <label>{{::ctrl.i18n.MSG_DEPLOY_CHART_RELEASE_NAME_LABEL1}}</label>
-                        <input id="name" repeat ng-model="ctrl.name" name="name" namespace="ctrl.namespace" required ng-pattern="/^[a-z][a-z0-9]+$/" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" maxlength="30">
+                        <input id="name" repeat ng-model="ctrl.name" name="name" namespace="ctrl.namespace" required ng-pattern="/^[a-z][a-z0-9-]+$/" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" maxlength="30">
                         <div ng-messages="ctrl.form.name.$error">
                             <!-- <div ng-message="required">[[必填,只可输入字母数字,字母开头|部署应用必填提示]]</div> -->
                             <div ng-message="pattern">[[名字非法,只可输入字母数字,字母开头|部署应用名字非法提示]]
