@@ -176,7 +176,7 @@ export class homeController {
     $onInit() {
             //格式化CPU 内存 网络速率数据
             let getcpuData = () => {
-                //echarts全局颜色设置
+                //echarts全局颜色设置#50D3E3 100%
                 let colors = [{
                     "type": 'linear',
                     "x": 0,
@@ -219,6 +219,20 @@ export class homeController {
                         "color": 'rgba(245,166,35,0.00)', // 100% 处的颜色
                     }],
                     "globalCoord": false, // 缺省为 false
+                }, {
+                    "type": 'linear',
+                    "x": 0,
+                    "y": 0,
+                    "x2": 0,
+                    "y2": 1,
+                    "colorStops": [{
+                        "offset": 0,
+                        "color": 'rgba(247,179,64,0.36)', // 0% 处的颜色
+                    }, {
+                        "offset": 0.6,
+                        "color": 'rgba(245,166,35,0.00)', // 100% 处的颜色
+                    }],
+                    "globalCoord": false, // 缺省为 false
                 }];
                 //CPU 内存 网络数据
                 // for (let i = 0; i < this.panelMes["metrics"]["MetricsList"].length; i++) {
@@ -241,7 +255,7 @@ export class homeController {
                                         "width": '3',
                                     },
                                     "areaStyle": {
-                                        "color": colors[i % 3],
+                                        "color": colors[i % 4],
                                     },
                                 };
                                 break;
@@ -267,7 +281,7 @@ export class homeController {
                                         "width": '3',
                                     },
                                     "areaStyle": {
-                                        "color": colors[i % 3],
+                                        "color": colors[i % 4],
                                     },
                                 };
                             }
@@ -292,7 +306,7 @@ export class homeController {
                                         "width": '3',
                                     },
                                     "areaStyle": {
-                                        "color": colors[i % 3],
+                                        "color": colors[i % 4],
                                     },
                                 };
                             }
@@ -317,7 +331,7 @@ export class homeController {
                                         "width": '3',
                                     },
                                     "areaStyle": {
-                                        "color": colors[i % 3],
+                                        "color": colors[i % 4],
                                     },
                                 };
                             }
@@ -327,7 +341,7 @@ export class homeController {
             };
             //echarts CPU配置
             let cpuoption = {
-                "color": ['#9CE83D', '#6CB9FF', '#50D3E3'],
+                "color": ['#9CE83D', '#6CB9FF', '#50D3E3', "#F5A623", "#9F79EE"],
                 "tooltip": {
                     "trigger": 'axis',
                     "formatter": (params) => {
@@ -389,7 +403,7 @@ export class homeController {
             };
             //echarts 内存配置
             let memoption = {
-                "color": ['#9CE83D', '#6CB9FF', '#50D3E3'],
+                "color": ['#9CE83D', '#6CB9FF', '#50D3E3', "#F5A623", "#9F79EE"],
                 "tooltip": {
                     "trigger": 'axis',
                     "formatter": (params) => {
@@ -447,7 +461,7 @@ export class homeController {
             };
             //千兆网卡速率
             let qianoption = {
-                "color": ['#9CE83D', '#6CB9FF', '#50D3E3'],
+                "color": ['#9CE83D', '#6CB9FF', '#50D3E3', "#F5A623", "#9F79EE"],
                 "tooltip": {
                     "trigger": 'axis',
                     "formatter": (params) => {
@@ -496,7 +510,7 @@ export class homeController {
             };
             //万兆网卡速率
             let wanoption = {
-                "color": ['#9CE83D', '#6CB9FF', '#50D3E3'],
+                "color": ['#9CE83D', '#6CB9FF', '#50D3E3', "#F5A623", "#9F79EE"],
                 "tooltip": {
                     "trigger": 'axis',
                     "formatter": (params) => {
