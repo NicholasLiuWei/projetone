@@ -5,7 +5,7 @@
   <translation id="1024358167652076581" key="MSG_ALL_NAMESPACES" desc="Text for dropdown item that indicates that no namespace was selected">所有命名空间</translation>
   <translation id="4765626815874675830" key="MSG_APPSTORE_APPSTORE_0" desc="Title text which appears on top of the deploy page."> 部署容器应用 </translation>
   <translation id="2194238272112050587" key="MSG_APPSTORE_APPSTORE_1" desc="App Store \u9009\u62E9\u4E00\u4E2A\u5E94\u7528\u90E8\u7F72">选择一个应用部署</translation>
-  <translation id="8408310627713654814" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">名字非法,只可输入字母数字,字母开头</translation>
+  <translation id="8408310627713654814" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">名字非法,只可输入字母数字和"-",字母开头</translation>
   <translation id="7749715521199676576" key="MSG_APPSTORE_APPSTORE_3" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
   <translation id="6673394930890065143" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">必填,只可输入字母数字,字母开头</translation>
   <translation id="1147022517078023778" key="MSG_APPSTORE_APPSTORE_5" desc="App Store \u90E8\u7F72\u5E73\u53F0">部署平台</translation>
