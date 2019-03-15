@@ -69,6 +69,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/search"
 	"github.com/kubernetes/dashboard/src/app/backend/settings"
 	"github.com/kubernetes/dashboard/src/app/backend/systembanner"
+	"github.com/kubernetes/dashboard/src/app/backend/user"
 	"github.com/kubernetes/dashboard/src/app/backend/validation"
 	"golang.org/x/net/xsrftoken"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -636,6 +637,26 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 	apiV1Ws.Route(
 		apiV1Ws.GET("/baseinfo/{node}").
 			To(apiHandler.handleBaseInfoByNode))
+
+	apiV1Ws.Route(
+		apiV1Ws.GET("/user/login").
+			To(apiHandler.handleUserLogin).
+			Reads(user.LoginSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/user").
+			To(apiHandler.handleListUser).
+			Writes(user.UserList{}))
+	apiV1Ws.Route(
+		apiV1Ws.POST("/user").
+			To(apiHandler.handleCreateUser).
+			Reads(user.UserSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.PUT("/user/chgpwd").
+			To(apiHandler.handleUserChgpwd).
+			Reads(user.UserSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.DELETE("/user/{userid}").
+			To(apiHandler.handleDeleteUser))
 
 	return wsContainer, nil
 }
@@ -3443,4 +3464,92 @@ func parseDataSelectPathParameter(request *restful.Request) *dataselect.DataSele
 	filterQuery := parseFilterPathParameter(request)
 	metricQuery := parseMetricPathParameter(request)
 	return dataselect.NewDataSelectQuery(paginationQuery, sortQuery, filterQuery, metricQuery)
+}
+
+func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	loginSpec:=new(user.LoginSpec)
+	if err := request.ReadEntity(loginSpec); err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	err=user.HandleLogin(k8sClient,loginSpec)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	response.WriteHeader(http.StatusOK)
+}
+
+func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	userlist,err:=user.HandleGetUsers(k8sClient)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	response.WriteHeaderAndEntity(http.StatusOK,userlist)
+}
+
+func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	UserSpec:=new(user.UserSpec)
+	if err := request.ReadEntity(UserSpec); err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	err =user.HandleCreatUser(k8sClient,UserSpec)
+	if err != nil{
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	response.WriteHeader(http.StatusCreated)
+
+}
+
+func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	userSpec:=new(user.UserSpec)
+	if err := request.ReadEntity(userSpec); err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	err=user.HandleUserChgpwd(k8sClient,userSpec)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	response.WriteHeader(http.StatusOK)
+}
+
+func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	username := request.PathParameter("userid")
+	err=user.HandleDeleteUser(k8sClient,username)
+
+	if err!=nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	response.WriteHeader(http.StatusNoContent)
 }
