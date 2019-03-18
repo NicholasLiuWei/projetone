@@ -314,20 +314,7 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
 
 
 
-def transfer_ssh_file1(project_name, project_images_filter, upload_flag, ip, usr, passwd, image_registry, yam_name):
-    ssh = SSHManager(ip, usr, passwd)
-    ssh.ssh_exec_cmd("ls /root/")
-    regis_ip, _ = image_registry.split(":")
-    print(regis_ip)
-    ssh_docker_registry = SSHManager(regis_ip, usr, passwd)
-    docker_matching_image = """docker rmi $(docker images | grep "none" | awk '{print $3}')"""  # 删除none镜像
-    print(ssh.ssh_exec_cmd(docker_matching_image))
-    """
-    print (ssh.ssh_exec_cmd(docker_matching_image))
-    ssh.ssh_exec_cmd("mkdir %s/%s" % (MASTER_SAVE_PATH, project_name))
-    dirs = os.listdir("%s/%s" % (GENERATE_IMAGE_PATH, project_name))
-    print(dirs)
-    """
+
 def main():
     """
     choose: check
@@ -377,7 +364,7 @@ def main():
         image_registry = sys.argv[8].strip()
         yam_name = sys.argv[9].strip()
         print(upload_flag)
-        transfer_ssh_file1(project_name,project_images_filter,upload_flag,target_IP,target_USER,target_PASSWD,image_registry,yam_name)
+        transfer_ssh_file(project_name,project_images_filter,upload_flag,target_IP,target_USER,target_PASSWD,image_registry,yam_name)
 
     elif choose == "jump":
         print ("jump")
