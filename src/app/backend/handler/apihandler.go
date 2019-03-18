@@ -639,11 +639,11 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 			To(apiHandler.handleBaseInfoByNode))
 
 	apiV1Ws.Route(
-		apiV1Ws.GET("/user/login").
+		apiV1Ws.POST("/user/login").
 			To(apiHandler.handleUserLogin).
 			Reads(user.LoginSpec{}))
 	apiV1Ws.Route(
-		apiV1Ws.GET("/user/create").
+		apiV1Ws.POST("/user/create").
 			To(apiHandler.handleCreateUser).
 			Reads(user.UserSpec{}))
 	apiV1Ws.Route(
