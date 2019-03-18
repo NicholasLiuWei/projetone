@@ -641,7 +641,12 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 	apiV1Ws.Route(
 		apiV1Ws.GET("/user/login").
 			To(apiHandler.handleUserLogin).
+<<<<<<< HEAD
 			Reads(user.LoginSpec{}))
+=======
+			Reads(user.LoginSpec{}).
+			Writes(user.AuthResponse{})))
+>>>>>>> 23cefd99f2c8311c9b2bfd8ac9591c82da82e461
 	apiV1Ws.Route(
 		apiV1Ws.GET("/user").
 			To(apiHandler.handleListUser).
@@ -649,7 +654,12 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 	apiV1Ws.Route(
 		apiV1Ws.POST("/user").
 			To(apiHandler.handleCreateUser).
+<<<<<<< HEAD
 			Reads(user.UserSpec{}))
+=======
+			Reads(user.UserSpec{}).
+			Writes(user.UserSpec{}))
+>>>>>>> 23cefd99f2c8311c9b2bfd8ac9591c82da82e461
 	apiV1Ws.Route(
 		apiV1Ws.PUT("/user/chgpwd").
 			To(apiHandler.handleUserChgpwd).
@@ -3467,6 +3477,7 @@ func parseDataSelectPathParameter(request *restful.Request) *dataselect.DataSele
 }
 
 func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response *restful.Response) {
+<<<<<<< HEAD
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3516,10 +3527,21 @@ func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, respons
 		return
 	}
 	response.WriteHeader(http.StatusCreated)
+=======
+
+}
+
+func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
+
+}
+
+func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
+>>>>>>> 23cefd99f2c8311c9b2bfd8ac9591c82da82e461
 
 }
 
 func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
+<<<<<<< HEAD
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3552,4 +3574,11 @@ func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, respons
 		return
 	}
 	response.WriteHeader(http.StatusNoContent)
+=======
+
+}
+
+func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
+
+>>>>>>> 23cefd99f2c8311c9b2bfd8ac9591c82da82e461
 }
