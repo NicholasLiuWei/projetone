@@ -279,6 +279,7 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
     images_list = docker_images.split("\n")
     for file_name in dirs:
         print (file_name)
+        """
         if os.path.splitext(file_name)[1] == '.tar':
             tmp1 = '%s/%s/%s'%(GENERATE_IMAGE_PATH,project_name,file_name)
             tmp2 = '%s/%s/%s'%(MASTER_SAVE_PATH,project_name,file_name)
@@ -309,7 +310,7 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
     #ssh.ssh_exec_shell(yam_name, "%s/%s" % (MASTER_SAVE_PATH, yam_name))
     ssh.ssh_exec_cmd("kubectl delete -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
     ssh.ssh_exec_cmd("kubectl create -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
-
+"""
 def main():
 
     """
