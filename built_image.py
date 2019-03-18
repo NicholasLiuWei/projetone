@@ -318,8 +318,8 @@ def transfer_ssh_file1(project_name, project_images_filter, upload_flag, ip, usr
     ssh.ssh_exec_cmd("ls /root/")
     regis_ip, _ = image_registry.split(":")
     print(regis_ip)
-    """
     ssh_docker_registry = SSHManager(regis_ip, usr, passwd)
+    """
     print (ssh.ssh_exec_cmd(docker_matching_image))
     ssh.ssh_exec_cmd("mkdir %s/%s" % (MASTER_SAVE_PATH, project_name))
     dirs = os.listdir("%s/%s" % (GENERATE_IMAGE_PATH, project_name))
