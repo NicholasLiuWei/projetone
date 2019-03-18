@@ -320,7 +320,6 @@ def transfer_ssh_file1(project_name, project_images_filter, upload_flag, ip, usr
     print(regis_ip)
     """
     ssh_docker_registry = SSHManager(regis_ip, usr, passwd)
-    docker_matching_image = """docker rmi $(docker images | grep "none" | awk '{print $3}')"""  # 删除none镜像
     print (ssh.ssh_exec_cmd(docker_matching_image))
     ssh.ssh_exec_cmd("mkdir %s/%s" % (MASTER_SAVE_PATH, project_name))
     dirs = os.listdir("%s/%s" % (GENERATE_IMAGE_PATH, project_name))
