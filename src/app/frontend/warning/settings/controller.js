@@ -19,6 +19,8 @@ export class warningSetController {
         this.emailService = kdEmailService;
 
         this.state_ = $state;
+
+        this.i18n = i18n;
     }
 
     /** 
@@ -30,7 +32,7 @@ export class warningSetController {
         let obj = {
             "email": email,
         };
-        let resource = this.resource_('/alert/email');
+        let resource = this.resource_('alert/email');
         resource.save(
             obj, this.onChangeEmailSuccess_.bind(this),
             this.onChangeEmailError_.bind(this));
@@ -42,7 +44,7 @@ export class warningSetController {
     onChangeEmailSuccess_() {
         // this.log_.info(`Successfully added repository`);
         // this.mdDialog_.hide();
-        this.toastr["success"]('修改成功');
+        this.toastr["success"](this.i18n.MSG_DELETE_EMAIL_SUCCESS);
         this.state_.reload();
     }
 
@@ -53,7 +55,7 @@ export class warningSetController {
     onChangeEmailError_(err) {
         // this.log_.error(err);
         // this.mdDialog_.hide();
-        this.toastr["error"]('修改失败,请重试');
+        this.toastr["error"](this.i18n.MSG_DELETE_EMAIL_ERROR);
     }
 
     /**
@@ -63,4 +65,11 @@ export class warningSetController {
     addEmailDialog() {
         this.emailService.showChangeEmailDialog();
     }
+};
+
+const i18n = {
+    /** @export {string} @desc email删除成功 */
+    MSG_DELETE_EMAIL_SUCCESS: goog.getMsg(`删除成功`),
+    /** @export {string} @desc email删除失败 */
+    MSG_DELETE_EMAIL_ERROR: goog.getMsg(`删除失败,请重试`),
 };
