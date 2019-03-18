@@ -18,7 +18,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"github.com/getlantern/errors"
+	"errors"
 )
 
 
