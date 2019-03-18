@@ -245,6 +245,7 @@ def save_images_file1(project_name,project_images_filter="kubernetes/kubernetes-
         #print (save_dockers)
         run_cmd(save_dockers)#将镜像打包
         remove_images = "docker rmi %s -f"%(image_name)#删除镜像
+        print(run_cmd("ls "+ GENERATE_IMAGE_PATH+"/"+project_name+"/"))
         #remove_images = "docker rmi %s -f" %(image_id)
         #run_cmd(remove_images)
 
