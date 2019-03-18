@@ -312,12 +312,12 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
     ssh.ssh_exec_cmd("kubectl create -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
 
 
+
 def transfer_ssh_file1(project_name, project_images_filter, upload_flag, ip, usr, passwd, image_registry, yam_name):
     ssh = SSHManager(ip, usr, passwd)
     ssh.ssh_exec_cmd("ls /root/")
 
 def main():
-
     """
     choose: check
     arg[2] :baseimage_name  基础镜像名称
