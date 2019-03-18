@@ -54,7 +54,7 @@ save_job:
   script:
     - python2 built_image.py "save" $CI_PROJECT_NAME  $(git rev-parse --short HEAD)  $UPLOAD_IMAGE_REP    #(args项目名称)  调用打包镜像脚本
 
-upload_job:
+.upload_job:
   image: $BASE_IMAGE
   stage: upload
   script:
