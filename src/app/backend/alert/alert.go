@@ -273,7 +273,7 @@ func (s *AlertStore) clearAlertsHandler(w http.ResponseWriter, r *http.Request) 
         n.AlertsNum=0
         s.alerts=[]*HookMessage{}
 
-        if err := enc.Encode(s.alerts); err != nil {
+        if err := enc.Encode(HookMessage{}); err != nil {
                 log.Printf("error encoding messages: %v", err)
         }
         log.Printf("get alerts number %d", n.AlertsNum)
