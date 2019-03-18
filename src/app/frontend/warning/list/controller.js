@@ -144,11 +144,11 @@ export class warningListController {
 
         this.mdDialog.show(confirm).then(() => {
             let a = this.resource('alert/alertsclear');
-            a.save(this.selected, (res) => {
+            a.save((res) => {
                 this.toastr["success"](this.i18n.MSG_DELETE_ALERT_SUCCESS);
                 this.state.reload();
-            }, () => {
-                this.toastr["success"](this.i18n.MSG_DELETE_ALERT_ERROR);
+            }, (res) => {
+                this.toastr["error"](this.i18n.MSG_DELETE_ALERT_ERROR);
             })
         }, function() {
 
