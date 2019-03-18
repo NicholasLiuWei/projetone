@@ -62,11 +62,6 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">退出</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">登录</translation>
-  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
-  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
-  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
-  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
-  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">应用管理</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">应用商店</translation>
@@ -696,59 +691,69 @@
   <translation id="8532502828461371773" key="MSG_IMAGELIST_APP_9" desc="\u6700\u5C0F\u4EFD\u6570">最小份数</translation>
   <translation id="971846479361508260" key="MSG_IMAGELIST_IMAGELIST_0" desc="\u955C\u50CF\u6784\u5EFAimagelist">镜像构建</translation>
   <translation id="6161506128850165929" key="MSG_IMAGELIST_IMAGELIST_1" desc="\u5E94\u7528\u7F16\u6392imagelist">应用编排</translation>
-  <translation id="3326611401254846834" key="MSG_IMAGELIST_IMAGELIST_10" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="9185570986590688925" key="MSG_IMAGELIST_IMAGELIST_11" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="5956737627764757452" key="MSG_IMAGELIST_IMAGELIST_12" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="5886136414338861844" key="MSG_IMAGELIST_IMAGELIST_13" desc="\u8F93\u5165\u81EA\u5B9A\u4E49\u955C\u50CF\u540D\u79F0imagelist">输入自定义镜像名称</translation>
-  <translation id="2349918411040302098" key="MSG_IMAGELIST_IMAGELIST_14" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="4803870401386686135" key="MSG_IMAGELIST_IMAGELIST_15" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="4190205573536933625" key="MSG_IMAGELIST_IMAGELIST_16" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
-  <translation id="214783470935553100" key="MSG_IMAGELIST_IMAGELIST_17" desc="\u521B\u5EFA\u5E94\u7528imagelist">创建应用</translation>
-  <translation id="3107714278713416020" key="MSG_IMAGELIST_IMAGELIST_18" desc="\u9009\u62E9\u666E\u901A\u955C\u50CF\uFF0C\u8F93\u5165\u5E94\u7528\u540D\u79F0imagelist">选择普通镜像，输入应用名称</translation>
-  <translation id="5847040855412509571" key="MSG_IMAGELIST_IMAGELIST_19" desc="\u7F16\u8F91\u5E94\u7528\u7EC4\u4EF6imagelist">编辑应用组件</translation>
+  <translation id="6204596857852357140" key="MSG_IMAGELIST_IMAGELIST_10" desc="\u4ED3\u5E93\u5730\u5740imagelist">仓库地址</translation>
+  <translation id="6751493283445623541" key="MSG_IMAGELIST_IMAGELIST_11" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
+  <translation id="6021201854125688471" key="MSG_IMAGELIST_IMAGELIST_12" desc="\u4ED3\u5E93\u5206\u652Fimagelist">仓库分支</translation>
+  <translation id="621895495483805603" key="MSG_IMAGELIST_IMAGELIST_13" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
+  <translation id="4783996114185367482" key="MSG_IMAGELIST_IMAGELIST_14" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="6097033506457528583" key="MSG_IMAGELIST_IMAGELIST_15" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
+  <translation id="3339020208799222973" key="MSG_IMAGELIST_IMAGELIST_16" desc="\u8F93\u5165\u81EA\u5B9A\u4E49\u955C\u50CF\u540D\u79F0imagelist">输入自定义镜像名称</translation>
+  <translation id="8044222212948187549" key="MSG_IMAGELIST_IMAGELIST_17" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
+  <translation id="7154847046530303450" key="MSG_IMAGELIST_IMAGELIST_18" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="2021631524700642178" key="MSG_IMAGELIST_IMAGELIST_19" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
   <translation id="9057152056335733475" key="MSG_IMAGELIST_IMAGELIST_2" desc="\u521B\u5EFA\u955C\u50CFimagelist">创建镜像</translation>
-  <translation id="1124202682239854042" key="MSG_IMAGELIST_IMAGELIST_20" desc="\u521B\u5EFA\u670D\u52A1imagelist">创建服务</translation>
-  <translation id="4877735869036286594" key="MSG_IMAGELIST_IMAGELIST_21" desc="\u521B\u5EFA\u670D\u52A1\u5165\u53E3imagelist">创建服务入口</translation>
-  <translation id="1836409781915412702" key="MSG_IMAGELIST_IMAGELIST_22" desc="\u5E94\u7528\u540D\u79F0">应用名称</translation>
-  <translation id="7509649943137144380" key="MSG_IMAGELIST_IMAGELIST_23" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="4935390151384675470" key="MSG_IMAGELIST_IMAGELIST_24" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
-  <translation id="7661431321182696732" key="MSG_IMAGELIST_IMAGELIST_25" desc="\u521B\u5EFA\u5E94\u7528">创建应用</translation>
-  <translation id="1843163013738203276" key="MSG_IMAGELIST_IMAGELIST_26" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
-  <translation id="5709161226495946636" key="MSG_IMAGELIST_IMAGELIST_27" desc="\u7C7B\u578B">类型</translation>
-  <translation id="7680740342940875557" key="MSG_IMAGELIST_IMAGELIST_28" desc="\u955C\u50CFimagelist">镜像</translation>
-  <translation id="7396021714737794179" key="MSG_IMAGELIST_IMAGELIST_29" desc="\u662F\u5426\u81EA\u52A8\u6269\u5BB9imagelist">是否自动扩容</translation>
-  <translation id="1988270669925583729" key="MSG_IMAGELIST_IMAGELIST_3" desc="\u9009\u62E9\u57FA\u7840\u955C\u50CFimagelist">选择基础镜像</translation>
-  <translation id="754971632117984926" key="MSG_IMAGELIST_IMAGELIST_30" desc="\u64CD\u4F5C">操作</translation>
-  <translation id="5273594682823052990" key="MSG_IMAGELIST_IMAGELIST_31" desc="\u5220\u9664">删除</translation>
-  <translation id="4009885105033985394" key="MSG_IMAGELIST_IMAGELIST_32" desc="\u6DFB\u52A0\u5DE5\u4F5C\u8D1F\u8F7Dimagelist">添加工作负载</translation>
-  <translation id="1652849280876218332" key="MSG_IMAGELIST_IMAGELIST_33" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="3486408524945578218" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="5139034434813169361" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u786E\u5B9Aimagelist">确定</translation>
-  <translation id="4722010155987137364" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
+  <translation id="6819427701029216459" key="MSG_IMAGELIST_IMAGELIST_20" desc="\u521B\u5EFA\u5E94\u7528imagelist">创建应用</translation>
+  <translation id="6044296960153132050" key="MSG_IMAGELIST_IMAGELIST_21" desc="\u4EE5\u666E\u901A\u955C\u50CF\u4E3A\u57FA\u7840, \u7528\u6237\u53EF\u4EE5\u7F16\u6392\u3001\u6784\u5EFA\u591A\u7EC4\u4EF6\u7684\u590D\u6742\u5E94\u7528imagelist">以普通镜像为基础, 用户可以编排、构建多组件的复杂应用</translation>
+  <translation id="2880004992320669217" key="MSG_IMAGELIST_IMAGELIST_22" desc="\u9009\u62E9\u666E\u901A\u955C\u50CF\uFF0C\u8F93\u5165\u5E94\u7528\u540D\u79F0imagelist">选择普通镜像，输入应用名称</translation>
+  <translation id="5350222452807751008" key="MSG_IMAGELIST_IMAGELIST_23" desc="\u57FA\u4E8E\u6307\u5B9A\u7684\u955C\u50CF\u5F00\u59CB\u7F16\u6392\u5E94\u7528imagelist">基于指定的镜像开始编排应用</translation>
+  <translation id="1694227955275439425" key="MSG_IMAGELIST_IMAGELIST_24" desc="\u7F16\u8F91\u5E94\u7528\u7EC4\u4EF6imagelist">编辑应用组件</translation>
+  <translation id="8703713756496847135" key="MSG_IMAGELIST_IMAGELIST_25" desc="\u7F16\u8F91\u3001\u589E\u52A0\u3001\u5220\u9664\u5E94\u7528\u7EC4\u4EF6imagelist">编辑、增加、删除应用组件</translation>
+  <translation id="544487059627439033" key="MSG_IMAGELIST_IMAGELIST_26" desc="\u521B\u5EFA\u670D\u52A1imagelist">创建服务</translation>
+  <translation id="317240844922630327" key="MSG_IMAGELIST_IMAGELIST_27" desc="\u5404\u7EC4\u4EF6\u53EF\u4EE5\u5BF9\u5916\u63D0\u4F9B\u7F51\u7EDC\u670D\u52A1imagelist">各组件可以对外提供网络服务</translation>
+  <translation id="4794215378279484378" key="MSG_IMAGELIST_IMAGELIST_28" desc="\u521B\u5EFA\u670D\u52A1\u5165\u53E3imagelist">创建服务入口</translation>
+  <translation id="984890951237961102" key="MSG_IMAGELIST_IMAGELIST_29" desc="\u914D\u7F6E\u5E94\u7528\u8BBF\u95EE\u5165\u53E3imagelist">配置应用访问入口</translation>
+  <translation id="4865034318252905981" key="MSG_IMAGELIST_IMAGELIST_3" desc="\u7528\u6237\u53EF\u4EE5\u57FA\u4E8E\u57FA\u7840\u955C\u50CF\u521B\u5EFA\u5BF9\u5916\u63D0\u4F9B\u670D\u52A1\u7684\u666E\u901A\u955C\u50CFimagelist">用户可以基于基础镜像创建对外提供服务的普通镜像</translation>
+  <translation id="2810406713227389520" key="MSG_IMAGELIST_IMAGELIST_30" desc="\u5E94\u7528\u540D\u79F0">应用名称</translation>
+  <translation id="2625865354243583956" key="MSG_IMAGELIST_IMAGELIST_31" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
+  <translation id="470467957454405118" key="MSG_IMAGELIST_IMAGELIST_32" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
+  <translation id="612704872573294307" key="MSG_IMAGELIST_IMAGELIST_33" desc="\u521B\u5EFA\u5E94\u7528">创建应用</translation>
+  <translation id="5979923983747989379" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
+  <translation id="4752924200738331837" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u7C7B\u578Bimagelist">类型</translation>
+  <translation id="4913277352305416003" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u955C\u50CFimagelist">镜像</translation>
   <translation id="7882563763634747729" key="MSG_IMAGELIST_IMAGELIST_37" desc="This is required!imagelist">必填</translation>
-  <translation id="5164214919382972085" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">工作负载类型</translation>
-  <translation id="3454984822181218089" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u955C\u50CF\u5730\u5740imagelist">镜像地址</translation>
-  <translation id="7579144868271480626" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u9009\u62E9git\u5E93\u5730\u5740\u548C\u5206\u652Fimagelist">选择git库地址和分支</translation>
+  <translation id="1676925596533944029" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u662F\u5426\u81EA\u52A8\u6269\u5BB9imagelist">是否自动扩容</translation>
+  <translation id="7391460082570510676" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u64CD\u4F5Cimagelist">操作</translation>
+  <translation id="1888376549594633009" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u9009\u62E9\u57FA\u7840\u955C\u50CFimagelist">选择基础镜像</translation>
   <translation id="1391934213490690762" key="MSG_IMAGELIST_IMAGELIST_40" desc="This is required!imagelist">必填</translation>
-  <translation id="697331715631154402" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u7248\u672C\u53F7imagelist">版本号</translation>
+  <translation id="8894682909772075153" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u662Fimagelist">是</translation>
   <translation id="3928302596157576710" key="MSG_IMAGELIST_IMAGELIST_42" desc="This is required!imagelist">必填</translation>
-  <translation id="7007147973584620018" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u53D6\u6D88imagelist">取消</translation>
-  <translation id="2937969355996697021" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u786E\u5B9Aimagelist">确定</translation>
-  <translation id="50285236971551187" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="2257219502820130497" key="MSG_IMAGELIST_IMAGELIST_46" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="7713763596666023092" key="MSG_IMAGELIST_IMAGELIST_47" desc="\u662F\u5426\u914D\u7F6E">是否配置</translation>
-  <translation id="5140455710225745143" key="MSG_IMAGELIST_IMAGELIST_48" desc="\u662Fimagelist">是</translation>
-  <translation id="7679423488100825030" key="MSG_IMAGELIST_IMAGELIST_49" desc="\u5426imagelist">否</translation>
-  <translation id="2728506618725263228" key="MSG_IMAGELIST_IMAGELIST_5" desc="\u8F93\u5165\u666E\u901A\u955C\u50CF\u7684\u540D\u79F0\uFF0C\u5F00\u59CB\u6784\u5EFAimagelist">输入普通镜像的名称，开始构建</translation>
-  <translation id="7299587668262340934" key="MSG_IMAGELIST_IMAGELIST_50" desc="\u5730\u5740">地址</translation>
-  <translation id="3189972231371503587" key="MSG_IMAGELIST_IMAGELIST_51" desc="\u670D\u52A1\u7AEF\u53E3">服务端口</translation>
-  <translation id="5604523828030586655" key="MSG_IMAGELIST_IMAGELIST_52" desc="\u670D\u52A1\u540D\u5B57">服务名字</translation>
-  <translation id="8735470790091281243" key="MSG_IMAGELIST_IMAGELIST_53" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
-  <translation id="577254406130090624" key="MSG_IMAGELIST_IMAGELIST_54" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
-  <translation id="434019069897910112" key="MSG_IMAGELIST_IMAGELIST_6" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
-  <translation id="8015883821794606244" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u4ED3\u5E93\u5730\u5740imagelist">仓库地址</translation>
-  <translation id="6114156362604968860" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
-  <translation id="7430934666527146455" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u4ED3\u5E93\u5206\u652Fimagelist">仓库分支</translation>
+  <translation id="8917263612055453339" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u5426imagelist">否</translation>
+  <translation id="6650313513949411435" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u5220\u9664">删除</translation>
+  <translation id="5114250454965160602" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u6DFB\u52A0\u5DE5\u4F5C\u8D1F\u8F7Dimagelist">添加工作负载</translation>
+  <translation id="964056397749288049" key="MSG_IMAGELIST_IMAGELIST_46" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="294547359603979722" key="MSG_IMAGELIST_IMAGELIST_47" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
+  <translation id="5830383993240819841" key="MSG_IMAGELIST_IMAGELIST_48" desc="\u786E\u5B9Aimagelist">确定</translation>
+  <translation id="798610475142203189" key="MSG_IMAGELIST_IMAGELIST_49" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
+  <translation id="2008554916863000188" key="MSG_IMAGELIST_IMAGELIST_5" desc="\u6839\u636E\u7528\u6237\u9879\u76EE\u7684\u7F16\u7A0B\u8BED\u8A00\u9009\u62E9\u5BF9\u5E94\u7684\u57FA\u7840\u955C\u50CFimagelist">根据用户项目的编程语言选择对应的基础镜像</translation>
+  <translation id="5023355512769271132" key="MSG_IMAGELIST_IMAGELIST_50" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">工作负载类型</translation>
+  <translation id="6127330588028371716" key="MSG_IMAGELIST_IMAGELIST_51" desc="\u955C\u50CF\u5730\u5740imagelist">镜像地址</translation>
+  <translation id="162791477646993502" key="MSG_IMAGELIST_IMAGELIST_52" desc="\u7248\u672C\u53F7imagelist">版本号</translation>
+  <translation id="8269474691597547564" key="MSG_IMAGELIST_IMAGELIST_53" desc="\u53D6\u6D88imagelist">取消</translation>
+  <translation id="2620585330018854159" key="MSG_IMAGELIST_IMAGELIST_54" desc="\u786E\u5B9Aimagelist">确定</translation>
+  <translation id="1570889057839982468" key="MSG_IMAGELIST_IMAGELIST_55" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="8967385630090961440" key="MSG_IMAGELIST_IMAGELIST_56" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
+  <translation id="1561607668559002770" key="MSG_IMAGELIST_IMAGELIST_57" desc="\u662F\u5426\u914D\u7F6Eimagelist">是否配置</translation>
+  <translation id="5474984280336946983" key="MSG_IMAGELIST_IMAGELIST_58" desc="\u662Fimagelist">是</translation>
+  <translation id="4897801886472419527" key="MSG_IMAGELIST_IMAGELIST_59" desc="\u5426imagelist">否</translation>
+  <translation id="6873143077460672448" key="MSG_IMAGELIST_IMAGELIST_6" desc="\u9009\u62E9git\u5E93\u5730\u5740\u548C\u5206\u652Fimagelist">选择git库地址和分支</translation>
+  <translation id="3844364157641311744" key="MSG_IMAGELIST_IMAGELIST_60" desc="\u5730\u5740imagelist">地址</translation>
+  <translation id="4512858331902781106" key="MSG_IMAGELIST_IMAGELIST_61" desc="\u670D\u52A1\u7AEF\u53E3imagelist">服务端口</translation>
+  <translation id="1324815177627229726" key="MSG_IMAGELIST_IMAGELIST_62" desc="\u670D\u52A1\u540D\u5B57imagelist">服务名字</translation>
+  <translation id="6564989981426038016" key="MSG_IMAGELIST_IMAGELIST_63" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="7880263278268327603" key="MSG_IMAGELIST_IMAGELIST_64" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
+  <translation id="1886844991297264559" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u6309\u7167\u6240\u9009\u57FA\u7840\u955C\u7684\u8981\u6C42\u548C\u89C4\u8303\uFF0C\u914D\u7F6E\u6E90\u7801\u5E93\u548C\u5177\u4F53\u5206\u652Fimagelist">按照所选基础镜的要求和规范，配置源码库和具体分支</translation>
+  <translation id="7135494107631123295" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u8F93\u5165\u666E\u901A\u955C\u50CF\u7684\u540D\u79F0\uFF0C\u5F00\u59CB\u6784\u5EFAimagelist">输入普通镜像的名称，开始构建</translation>
+  <translation id="7366470440166215436" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
   <translation id="1937389621995341440" key="MSG_IMAGELIST_S2I_0" desc="\u4ED3\u5E93\u5730\u5740">仓库地址</translation>
   <translation id="7567721771210862521" key="MSG_IMAGELIST_S2I_1" desc="\u5206\u652F">分支</translation>
   <translation id="4607351051458982671" key="MSG_IMAGELIST_S2I_2" desc="\u955C\u50CF\u540D\u79F0">镜像名称</translation>

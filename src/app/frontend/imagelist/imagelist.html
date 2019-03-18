@@ -9,12 +9,12 @@
     </md-nav-bar>
     <div class="content-box" ng-if="ctrl.show">
         <div class="create-tips">
-            [[创建镜像|创建镜像imagelist]]： 用户可以基于基础镜像创建对外提供服务的普通镜像。
+            [[创建镜像|创建镜像imagelist]]： [[用户可以基于基础镜像创建对外提供服务的普通镜像|用户可以基于基础镜像创建对外提供服务的普通镜像imagelist]].
         </div>
         <div class="creat">
             <div class="base-process">
-                <p class="base-process-children-background"><span>1</span><span>[[选择基础镜像|选择基础镜像imagelist]]</span><span class="details-content">根据用户项目的编程语言选择对应的基础镜像</span></p>
-                <p><span>2</span><span>[[选择git库地址和分支|选择git库地址和分支imagelist]]</span><span class="details-content">按照所选基础镜的要求和规范，配置源码库和具体分支</span></p>
+                <p class="base-process-children-background"><span>1</span><span>[[选择基础镜像|选择基础镜像imagelist]]</span><span class="details-content">[[根据用户项目的编程语言选择对应的基础镜像|根据用户项目的编程语言选择对应的基础镜像imagelist]]</span></p>
+                <p><span>2</span><span>[[选择git库地址和分支|选择git库地址和分支imagelist]]</span><span class="details-content">[[按照所选基础镜的要求和规范，配置源码库和具体分支|按照所选基础镜的要求和规范，配置源码库和具体分支imagelist]]</span></p>
                 <p><span>3</span><span>[[输入普通镜像的名称，开始构建|输入普通镜像的名称，开始构建imagelist]]</span><span class="details-content"></span></p>
             </div>
             <div ng-if="ctrl.baseShowNum == 1? true:false">
@@ -75,14 +75,14 @@
     </div>
     <div class="content-box" ng-if="!ctrl.show">
         <div class="create-tips">
-            [[创建应用|创建应用imagelist]]： 以普通镜像为基础, 用户可以编排、构建多组件的复杂应用。
+            [[创建应用|创建应用imagelist]]： [[以普通镜像为基础, 用户可以编排、构建多组件的复杂应用|以普通镜像为基础, 用户可以编排、构建多组件的复杂应用imagelist]].
         </div>
         <div class="creat">
             <div class="custom-process">
-                <p class="custom-process-children-background"><span>1</span><span>[[选择普通镜像，输入应用名称|选择普通镜像，输入应用名称imagelist]]</span><span class="details-content">基于指定的镜像开始编排应用</span></p>
-                <p><span>2</span><span>[[编辑应用组件|编辑应用组件imagelist]]</span><span class="details-content">编辑、增加、删除应用组件</span></p>
-                <p><span>3</span><span>[[创建服务|创建服务imagelist]]</span><span class="details-content">各组件可以对外提供网络服务</span></p>
-                <p><span>4</span><span>[[创建服务入口|创建服务入口imagelist]]</span><span class="details-content">配置应用访问入口</span></p>
+                <p class="custom-process-children-background"><span>1</span><span>[[选择普通镜像，输入应用名称|选择普通镜像，输入应用名称imagelist]]</span><span class="details-content">[[基于指定的镜像开始编排应用|基于指定的镜像开始编排应用imagelist]]</span></p>
+                <p><span>2</span><span>[[编辑应用组件|编辑应用组件imagelist]]</span><span class="details-content">[[编辑、增加、删除应用组件|编辑、增加、删除应用组件imagelist]]</span></p>
+                <p><span>3</span><span>[[创建服务|创建服务imagelist]]</span><span class="details-content">[[各组件可以对外提供网络服务|各组件可以对外提供网络服务imagelist]]</span></p>
+                <p><span>4</span><span>[[创建服务入口|创建服务入口imagelist]]</span><span class="details-content">[[配置应用访问入口|配置应用访问入口imagelist]]</span></p>
             </div>
             <div ng-if="ctrl.customShowNum == 1? true:false">
                 <!-- <kd-content-card ng-if="ctrl.showNum == 1? true:false"> -->
@@ -130,7 +130,7 @@
                             [[工作负载名称|工作负载名称imagelist]]
                         </kd-resource-card-header-column>
                         <kd-resource-card-header-column size="small">
-                            [[类型|类型]]
+                            [[类型|类型imagelist]]
                         </kd-resource-card-header-column>
                         <kd-resource-card-header-column size="small">
                             [[镜像|镜像imagelist]]
@@ -139,7 +139,7 @@
                             [[是否自动扩容|是否自动扩容imagelist]]
                         </kd-resource-card-header-column>
                         <kd-resource-card-header-column size="medium">
-                            [[操作|操作]]
+                            [[操作|操作imagelist]]
                         </kd-resource-card-header-column>
                     </kd-resource-card-header-columns>
                     <kd-resource-card ng-repeat="msg in ctrl.kdService.value.content.components track by $index" index="$index" object-meta="{name:'alert'}" type-meta="{name:'alert'}">
@@ -155,7 +155,8 @@
                                 <!-- {{email}} -->{{msg.images[0].repository}}
                             </kd-resource-card-column>
                             <kd-resource-card-column>
-                                <!-- {{email}} -->{{msg.hpa.enabled == true?"是":"否"}}
+                                <!-- {{email}} -->
+                                {{msg.hpa.enabled == true?"[[是|是imagelist]]":"[[否|否imagelist]]"}}
                             </kd-resource-card-column>
                             <kd-resource-card-column>
                                 <div>
@@ -230,22 +231,22 @@
                         <!-- <kd-help-section layout="row"> -->
                         <div layout="row">
                             <md-input-container class="md-block" flex>
-                                <label>[[是否配置|是否配置]]</label>
+                                <label>[[是否配置|是否配置imagelist]]</label>
                                 <md-select name="type" ng-model="ctrl.oWorkloadIngress.enabled">
                                     <md-option value="true">[[是|是imagelist]]</md-option>
                                     <md-option value="false">[[否|否imagelist]]</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container flex class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
-                                <label>[[地址|地址]]</label>
+                                <label>[[地址|地址imagelist]]</label>
                                 <input type="text" required ng-model="ctrl.oWorkloadIngress.host" />
                             </md-input-container>
                             <md-input-container flex class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
-                                <label>[[服务端口|服务端口]]</label>
+                                <label>[[服务端口|服务端口imagelist]]</label>
                                 <input type="number" required ng-model="ctrl.oWorkloadIngress.servicePort" />
                             </md-input-container>
                             <md-input-container flex class="md-block" ng-if="ctrl.oWorkloadIngress.enabled=='true'">
-                                <label>[[服务名字|服务名字]]</label>
+                                <label>[[服务名字|服务名字imagelist]]</label>
                                 <md-select ng-model="ctrl.oWorkloadIngress.servicename" multiple="false">
                                     <md-option selected ng-repeat="service in ctrl.kdService.value.content.services track by $index" ng-value="service.name">{{service.name}}</md-option>
                                 </md-select>

@@ -19,15 +19,15 @@ limitations under the License.
         <h4 class="md-title">{{::ctrl.i18n.MSG_S2I_Title}}</h4>
         <form name="ctrl.s2iForm" ng-submit="ctrl.s2i()" validate>
             <md-input-container class="md-block">
-                <label>[[仓库地址|仓库地址]]</label>
+                <label>[[仓库地址|仓库地址imagelist]]</label>
                 <input type="text" ng-model="ctrl.gitUrl" required>
             </md-input-container>
             <md-input-container class="md-block">
-                <label>[[分支|分支]]</label>
+                <label>[[分支|分支imagelist]]</label>
                 <input type="text" ng-model="ctrl.gitBranch" required>
             </md-input-container>
             <md-input-container class="md-block">
-                <label>[[镜像名称|镜像名称]]</label>
+                <label>[[镜像名称|镜像名称imagelist]]</label>
                 <input type="text" ng-model="ctrl.imageTag" required>
             </md-input-container>
             <md-dialog-actions layout="row">
