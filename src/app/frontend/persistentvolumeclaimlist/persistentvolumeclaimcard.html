@@ -34,6 +34,7 @@ limitations under the License.
                 <!-- <a ng-href="{{::$ctrl.getPersistentVolumeClaimDetailHref()}}" class="kd-middle-ellipsised-link"> -->
                 <kd-middle-ellipsis display-string="{{::$ctrl.persistentVolumeClaim.objectMeta.name}}">
                 </kd-middle-ellipsis>
+                <md-tooltip>{{$ctrl.persistentVolumeClaim.objectMeta.name}}</md-tooltip>
                 <!-- </a> -->
             </div>
         </kd-resource-card-column>

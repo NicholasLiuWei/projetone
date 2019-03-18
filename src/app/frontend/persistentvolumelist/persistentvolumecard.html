@@ -22,6 +22,7 @@ limitations under the License.
                 <!-- <kd-middle-ellipsis display-string="{{$ctrl.persistentVolume.objectMeta.name}}">
                 </kd-middle-ellipsis> -->
                 {{$ctrl.persistentVolume.objectMeta.name}}
+                <md-tooltip>{{$ctrl.persistentVolume.objectMeta.name}}</md-tooltip>
                 <!-- </a> -->
             </div>
         </kd-resource-card-column>
@@ -46,7 +47,9 @@ limitations under the License.
         <kd-resource-card-column>
             <!-- <kd-middle-ellipsis display-string="{{$ctrl.persistentVolume.claim}}">
             </kd-middle-ellipsis> -->
-            <div>{{$ctrl.persistentVolume.claim}}</div>
+            <div style="word-break:break-all;">{{$ctrl.persistentVolume.claim}}
+                <md-tooltip>{{$ctrl.persistentVolume.claim}}</md-tooltip>
+            </div>
             <div ng-hide="::$ctrl.persistentVolume.claim">-</div>
         </kd-resource-card-column>
         <kd-resource-card-column>

@@ -72,7 +72,8 @@ export class ActionbarComponent {
             /** @export */
             this.warninglist = [];
             // this.conn = new WebSocket('ws://172.16.116.1:30008' + '/alert/sockjs')
-            this.conn = new WebSocket('wss://' + location.host + '/api/sockjs');
+            // new WebSocket('wss://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/api/sockjs', ['appProtocol']);
+            this.conn = new WebSocket('wss://' + location.host + location.pathname + 'api/sockjs');
             this.conn.onopen = function(data) {
                 // this.toastr.success('监控正常', 0, {
                 //     closeButton: true,

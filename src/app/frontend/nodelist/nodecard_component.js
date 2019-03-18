@@ -396,7 +396,7 @@ export default class NodeCardController {
                             "name": this.i18n.MSG_nodecard_wan_fasong,
                             "z": 4,
                             "showSymbol": false,
-                            "data": data["baseinfo"]["tx10000"]["length"] == 0 ? data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
+                            "data": !data["baseinfo"]["tx10000"] ? data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
                                 return [item[0] * 1000, 0]
                             }) : data["baseinfo"]["tx10000"][0]["values"].map(function(item) {
                                 return [item[0] * 1000, item[1]]
@@ -412,7 +412,7 @@ export default class NodeCardController {
                             "name": this.i18n.MSG_nodecard_wan_receive,
                             "z": 3,
                             "showSymbol": false,
-                            "data": data["baseinfo"]["rx10000"]["length"] == 0 ? data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
+                            "data": !data["baseinfo"]["rx10000"] ? data["baseinfo"]["tx1000"][0]["values"].map(function(item) {
                                 return [item[0] * 1000, 0]
                             }) : data["baseinfo"]["rx10000"][0]["values"].map(function(item) {
                                 return [item[0] * 1000, item[1]]

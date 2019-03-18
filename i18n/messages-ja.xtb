@@ -9,9 +9,9 @@
   <translation id="1024358167652076581" key="MSG_ALL_NAMESPACES" desc="Text for dropdown item that indicates that no namespace was selected">?????????????????????????????????</translation>
   <translation id="4765626815874675830" key="MSG_APPSTORE_APPSTORE_0" desc="Title text which appears on top of the deploy page."> Deploy a Helm charts </translation>
   <translation id="2194238272112050587" key="MSG_APPSTORE_APPSTORE_1" desc="App Store \u9009\u62E9\u4E00\u4E2A\u5E94\u7528\u90E8\u7F72">选择一个应用部署</translation>
-  <translation id="8408310627713654814" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">名字非法,只可输入字母数字,字母开头</translation>
+  <translation id="1607067185218433903" key="MSG_APPSTORE_APPSTORE_2" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u975E\u6CD5\u63D0\u793A">名字非法,只可输入字母数字和"-",字母开头</translation>
   <translation id="7749715521199676576" key="MSG_APPSTORE_APPSTORE_3" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
-  <translation id="6673394930890065143" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">必填,只可输入字母数字,字母开头</translation>
+  <translation id="2601053092289105594" key="MSG_APPSTORE_APPSTORE_4" desc="\u90E8\u7F72\u5E94\u7528\u5FC5\u586B\u63D0\u793A">必填,只可输入字母数字和"-",字母开头</translation>
   <translation id="1147022517078023778" key="MSG_APPSTORE_APPSTORE_5" desc="App Store \u90E8\u7F72\u5E73\u53F0">Deployment platform</translation>
   <translation id="1979038432263707626" key="MSG_APPSTORE_APPSTORE_6" desc="App Store \u90E8\u7F72\u5E73\u53F0">Deployment platform</translation>
   <translation id="638196110450458660" key="MSG_APPSTORE_APPSTORE_7" desc="App Store Auto \u81EA\u52A8\u90E8\u7F72">Auto</translation>
@@ -66,6 +66,11 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">Sign out</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">Sign in</translation>
+  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
+  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
+  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
+  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
+  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">Release</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">AppStore</translation>
@@ -248,6 +253,8 @@
   <translation id="7870926894629011716" key="MSG_DELETE_ALERT_SUCCESS" desc="告警删除成功">删除成功</translation>
   <translation id="4519670967000916823" key="MSG_DELETE_ALERT_TITLE" desc="删除告警">删除告警</translation>
   <translation id="8181518179371465024" key="MSG_DELETE_ALL_ALERT_CONTENT" desc="删除全部告警提示">确定删除全部告警吗？</translation>
+  <translation id="9031069007898974899" key="MSG_DELETE_EMAIL_ERROR" desc="email删除失败">删除失败,请重试</translation>
+  <translation id="8592882378587672955" key="MSG_DELETE_EMAIL_SUCCESS" desc="email删除成功">删除成功</translation>
   <translation id="4053635060615677386" key="MSG_DEPLOYMENTDETAIL_ACTIONBAR_0" desc="Label \'Deployment\' which will appear in the deployment delete dialog opened from the deployment details page.">?????????????????????</translation>
   <translation id="1190053946078776500" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_0" desc="Title for graph card displaying CPU metric of one deployment.">CPU usage</translation>
   <translation id="6583176718896419422" key="MSG_DEPLOYMENTDETAIL_DEPLOYMENTDETAIL_1" desc="Title for graph card displaying memory metric of one deployment.">Memory usage</translation>

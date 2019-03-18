@@ -36,6 +36,7 @@
             </div>
             <kd-resource-card-column>
                 {{warn.alerts.annotations.description}}
+                <md-tooltip>{{warn.alerts.annotations.description}}</md-tooltip>
             </kd-resource-card-column>
             <kd-resource-card-column>
                 <div style="color:#f1483f" ng-if="warn.status=='firing'">
@@ -46,8 +47,10 @@
                 </div>
             </kd-resource-card-column>
             <kd-resource-card-column>
-                {{warn.alerts.labels.instance}}
-                <md-tooltip>{{{{warn.alerts.labels.instance}}}}</md-tooltip>
+                <div>
+                    {{warn.alerts.labels.instance}}
+                    <md-tooltip>{{warn.alerts.labels.instance}}</md-tooltip>
+                </div>
             </kd-resource-card-column>
             <kd-resource-card-column>
                 {{$ctrl.getTime(warn.alerts.startsAt)}}
