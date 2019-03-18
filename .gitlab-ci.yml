@@ -19,7 +19,7 @@ variables:
 before_script:
   - source /etc/profile
 
-.check_job:
+check_job:
   image: initbase:v1  #检查基础镜像所依赖的镜像
   stage: check
   script:
@@ -28,7 +28,7 @@ before_script:
     #- python2 built_image.py "check" $BASH_IMAGE  $CI_PROJECT_NAME $CHECK_FILE #检查是否需要生成基础镜像或者更新基础镜像，如果生成或者更新镜像将抛出异常
   retry: 1 #重试1次
 
-.build_job:
+build_job:
   image: $BASE_IMAGE
   stage: build
   script:
@@ -48,7 +48,7 @@ before_script:
   tags:
     - docker
 
-.save_job:
+save_job:
   image: $BASE_IMAGE
   stage: save
   script:
