@@ -16,7 +16,7 @@ package user
 
 import (
 	"k8s.io/client-go/kubernetes"
-	"app/backend/settings/api"
+	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	"k8s.io/apimachinery/pkg/labels"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
