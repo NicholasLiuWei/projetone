@@ -27,7 +27,7 @@ type UserSpec struct {
 	Username 	string 	`json:"username"`
 	Password 	string 	`json:"password"`
 	Email 		string 	`json:"email"`
-	IsAdmin 	bool 	`json:isadmin`
+	IsAdmin 	bool 	`json:"isadmin"`
 }
 
 type LoginSpec struct {
