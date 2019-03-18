@@ -23,6 +23,7 @@ import paramiko
 from functools import wraps
 from datetime import datetime
 
+
 GENERATE_IMAGE_PATH="/mnt" #本地存储项目生成镜像的根目录
 MASTER_SAVE_PATH="/home"  #压缩文件传输到远程目标主机存放文件的根目录
 tag = "v1.8.3"
