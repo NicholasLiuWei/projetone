@@ -772,7 +772,7 @@
   <translation id="6970100075274497061" key="MSG_INGRESSLIST_CARDLIST_3" desc="Label \'endpoints\' which appears as a column label in the table of ingresses (ingress list view).">端点</translation>
   <translation id="8202258406797150740" key="MSG_INGRESSLIST_CARDLIST_4" desc="Label \'Age\' which appears as a column label in the table of ingresses (ingress list view).">时间</translation>
   <translation id="6014322650743882966" key="MSG_INGRESS_LIST_STARTED_AT_TOOLTIP" desc="Tooltip 'Started at [some date]' showing the exact start time of the ingress.">创建于 <ph name="START_DATE"> UTC</ph></translation>
-  <translation id="1688417057363296815" key="MSG_JIANKONG_RIZHI_0" desc="jiankong ceph\u76D1\u63A7">ceph监控</translation>
+  <translation id="5447992502735023839" key="MSG_JIANKONG_RIZHI_0" desc="jiankong Ceph\u76D1\u63A7">Ceph监控</translation>
   <translation id="399868909027095843" key="MSG_JIANKONG_RIZHI_1" desc="jiankong Ceph-Cluster">Ceph-Cluster</translation>
   <translation id="1886148860411510032" key="MSG_JIANKONG_RIZHI_2" desc="jiankong \u76D1\u63A7ceph\u96C6\u7FA4\u4FE1\u606F\uFF0C\u96C6\u7FA4\u72B6\u6001\uFF0C\u5B58\u50A8\u72B6\u6001\u7B49\u4FE1\u606F">监控Ceph集群信息，集群状态，存储状态等信息</translation>
   <translation id="4281952765852155926" key="MSG_JIANKONG_RIZHI_3" desc="jiankong ceph-Pools">Ceph-Pools</translation>
