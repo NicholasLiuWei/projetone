@@ -17,18 +17,18 @@ package user
 import (
 	"k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
-	"k8s.io/apimachinery/pkg/labels"
-	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	API "github.com/kubernetes/dashboard/src/app/backend/api"
+	//metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func HandleGetUsers(client kubernetes.Interface) (RespData) {
 	//create a selector
-	selector:=map[string]string{"role":UserConfigMapRole}
-	var ListBySelector = metaV1.ListOptions{
-		LabelSelector: labels.FormatLabels(selector),
-	}
+	//selector:=map[string]string{"role":UserConfigMapRole}
+	//var ListBySelector = metaV1.ListOptions{
+	//	LabelSelector: labels.FormatLabels(selector),
+	//}
 	//list with filter
-	list, err :=  client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).List(ListBySelector)
+	list, err :=  client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).List(API.ListEverything)
 	if err!=nil || list==nil || len(list.Items)<=0{
 		return RespData{
 			StatusOK,
