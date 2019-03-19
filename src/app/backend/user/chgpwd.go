@@ -18,18 +18,17 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"errors"
 )
 
 
-func HandleUserChgpwd(client kubernetes.Interface,user *UserSpec)error{
+func HandleUserChgpwd(client kubernetes.Interface,user *UserSpec)ErrResponse{
 	userConfigMap:=UserConfigMapPrefix+user.Username
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
     if err !=nil||configMap==nil{
-		return errors.New(UserNotExist)
+		return ErrUserNotExist
 	}
 	if user.Password == ""{
-		return errors.New(PasswordIsNull)
+		return ErrPasswordIsNull
 	}
 	configMap.Data["password"]=user.Password
 	if user.Email != ""{
@@ -37,7 +36,7 @@ func HandleUserChgpwd(client kubernetes.Interface,user *UserSpec)error{
 	}
 	_,err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Update(configMap)
 	if err!= nil{
-		return err
+		return K8sUpdateUserErr
 	}
-	return nil
+	return StatusOK
 }

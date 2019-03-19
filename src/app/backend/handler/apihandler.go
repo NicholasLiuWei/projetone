@@ -649,7 +649,7 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 	apiV1Ws.Route(
 		apiV1Ws.GET("/user").
 			To(apiHandler.handleListUser).
-			Writes(user.UserList{}))
+			Writes(user.RespData{}))
 	apiV1Ws.Route(
 		apiV1Ws.PUT("/user/chgpwd").
 			To(apiHandler.handleUserChgpwd).
@@ -3476,12 +3476,8 @@ func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response
 		kdErrors.HandleInternalError(response, err)
 		return
 	}
-	err=user.HandleLogin(k8sClient,loginSpec)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	response.WriteHeader(http.StatusOK)
+	newErr:=user.HandleLogin(k8sClient,loginSpec)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
 }
 
 func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
@@ -3490,12 +3486,8 @@ func (apiHandler *APIHandler) handleListUser(request *restful.Request, response 
 		kdErrors.HandleInternalError(response, err)
 		return
 	}
-	userlist,err:=user.HandleGetUsers(k8sClient)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	response.WriteHeaderAndEntity(http.StatusOK,userlist)
+	resp:=user.HandleGetUsers(k8sClient)
+	response.WriteHeaderAndEntity(http.StatusOK,resp)
 }
 
 func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
@@ -3509,12 +3501,8 @@ func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, respons
 		kdErrors.HandleInternalError(response, err)
 		return
 	}
-	err =user.HandleCreatUser(k8sClient,UserSpec)
-	if err != nil{
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	response.WriteHeader(http.StatusCreated)
+	newErr:=user.HandleCreatUser(k8sClient,UserSpec)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
 }
 
 func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
@@ -3528,12 +3516,8 @@ func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, respons
 		kdErrors.HandleInternalError(response, err)
 		return
 	}
-	err=user.HandleUserChgpwd(k8sClient,userSpec)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	response.WriteHeader(http.StatusOK)
+	newErr:=user.HandleUserChgpwd(k8sClient,userSpec)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
 }
 
 func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
@@ -3543,13 +3527,8 @@ func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, respons
 		return
 	}
 	username := request.PathParameter("userid")
-	err=user.HandleDeleteUser(k8sClient,username)
-
-	if err!=nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	response.WriteHeader(http.StatusNoContent)
+	newErr:=user.HandleDeleteUser(k8sClient,username)
+	response.WriteHeaderAndEntity(http.StatusNoContent,newErr)
 
 }
 

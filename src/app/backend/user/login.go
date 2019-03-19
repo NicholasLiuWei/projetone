@@ -18,22 +18,20 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	 metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"errors"
 )
 
-func HandleLogin(client kubernetes.Interface,user *LoginSpec) error{
+func HandleLogin(client kubernetes.Interface,user *LoginSpec) ErrResponse{
 	userConfigMap:= UserConfigMapPrefix + user.Username
-	err:=errors.New(UserNotExist)
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
 	if err != nil||configMap==nil{
-		return err
+		return ErrUserNotExist
 	}
     if password,ok:=configMap.Data[user.Username]; ok{
 			if password==user.Password{
-				return nil
+				return StatusOK
 			}else{
-				return errors.New(PasswordNotCorrect)
+				return ErrPasswordNotCorrect
 			}
     }
-	return err
+	return ErrUserNotExist
 }

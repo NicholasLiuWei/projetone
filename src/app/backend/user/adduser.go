@@ -19,18 +19,16 @@ import (
 	"k8s.io/api/core/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
-	"errors"
 )
 
 
-func HandleCreatUser(client kubernetes.Interface,user *UserSpec) error{
+func HandleCreatUser(client kubernetes.Interface,user *UserSpec) ErrResponse{
 	userName:=UserConfigMapPrefix+user.Username
     //if exists
 	ConfigMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userName,metaV1.GetOptions{})
-    if err == nil||ConfigMap!=nil{
-		err = errors.New(UserAlreadyExist)
-		return err
-    }
+    if err == nil||ConfigMap!=nil {
+		return ErrUserAlreadyExist
+	}
 	UserConfig:=&v1.ConfigMap{
 		TypeMeta: metaV1.TypeMeta{
 			Kind:       api.ConfigMapKindName,
@@ -49,9 +47,9 @@ func HandleCreatUser(client kubernetes.Interface,user *UserSpec) error{
 		}
 	_, err =client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Create(UserConfig)
 	if err!=nil{
-         return err
+         return K8sCreateUserErr
 	 }
-	 return nil
+	 return ErrResponse{0,"ok"}
 	}
 
 func FormatBool(b bool) string {

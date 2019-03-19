@@ -21,7 +21,7 @@ import (
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-func HandleGetUsers(client kubernetes.Interface) (*ListUser,error) {
+func HandleGetUsers(client kubernetes.Interface) (RespData) {
 	//create a selector
 	selector:=map[string]string{"role":UserConfigMapRole}
 	var ListBySelector = metaV1.ListOptions{
@@ -29,11 +29,11 @@ func HandleGetUsers(client kubernetes.Interface) (*ListUser,error) {
 	}
 	//list with filter
 	list, err :=  client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).List(ListBySelector)
-	if err!=nil{
-     return nil,err
-	}
-	if list==nil || len(list.Items)<=0{
-		return nil,nil
+	if err!=nil || list==nil || len(list.Items)<=0{
+		return RespData{
+			StatusOK,
+			nil,
+		}
 	}
 	var filteredItems []UserSpec
 	for _, item := range list.Items {
@@ -48,7 +48,7 @@ func HandleGetUsers(client kubernetes.Interface) (*ListUser,error) {
 		ListMeta:len(filteredItems),
 		Items:filteredItems,
 	}
-   return userList,nil
+   return RespData{StatusOK,userList}
 }
 
 

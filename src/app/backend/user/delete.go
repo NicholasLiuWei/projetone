@@ -18,18 +18,17 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"errors"
 )
 
-func HandleDeleteUser(client kubernetes.Interface,username string)error{
-	userConfigMap:="thinkuser-"+username
+func HandleDeleteUser(client kubernetes.Interface,username string)ErrResponse{
+	userConfigMap:=UserConfigMapPrefix+username
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
      if err!=nil||configMap==nil{
-		 return errors.New(UserNotExist)
+		 return ErrUserNotExist
 	 }
 	 err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Delete(userConfigMap,&metaV1.DeleteOptions{})
 	 if err!=nil{
-	 	return err
+	 	return K8sDeleteUserErr
 	 }
-   return nil
+   return StatusOK
 }
