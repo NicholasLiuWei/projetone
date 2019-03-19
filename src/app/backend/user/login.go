@@ -23,10 +23,10 @@ import (
 func HandleLogin(client kubernetes.Interface,user *LoginSpec) ErrResponse{
 	userConfigMap:= UserConfigMapPrefix + user.Username
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
-	if err != nil||configMap==nil{
+	if err != nil&&configMap==nil{
 		return ErrUserNotExist
 	}
-    if password,ok:=configMap.Data[user.Username]; ok{
+    if password,ok:=configMap.Data[user.Password]; ok{
 			if password==user.Password{
 				return StatusOK
 			}else{

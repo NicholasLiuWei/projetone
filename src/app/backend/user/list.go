@@ -19,6 +19,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	API "github.com/kubernetes/dashboard/src/app/backend/api"
 	//metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"strings"
 )
 
 func HandleGetUsers(client kubernetes.Interface) (RespData) {
@@ -37,13 +38,15 @@ func HandleGetUsers(client kubernetes.Interface) (RespData) {
 	}
 	var filteredItems []UserSpec
 	for _, item := range list.Items {
-			innerItem:=UserSpec{
-				Username:item.Data["username"],
-				Email:item.Data["email"],
-				IsAdmin:FormatStringToBool(item.Data["isAdmin"]),
+		if strings.HasPrefix(item.Name, UserConfigMapPrefix) {
+			innerItem := UserSpec{
+				Username: item.Data["username"],
+				Email:    item.Data["email"],
+				IsAdmin:  FormatStringToBool(item.Data["isAdmin"]),
 			}
-			filteredItems=append(filteredItems,innerItem)
+			filteredItems = append(filteredItems, innerItem)
 		}
+	}
 	userList:=&ListUser{
 		ListMeta:len(filteredItems),
 		Items:filteredItems,

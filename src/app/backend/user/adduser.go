@@ -19,6 +19,7 @@ import (
 	"k8s.io/api/core/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
+	"log"
 )
 
 
@@ -27,6 +28,7 @@ func HandleCreatUser(client kubernetes.Interface,user *UserSpec) ErrResponse{
     //if exists
 	ConfigMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userName,metaV1.GetOptions{})
 	if err == nil && ConfigMap!=nil {
+		log.Println(err)
 		return ErrUserAlreadyExist
 	}
 	UserConfig:=&v1.ConfigMap{

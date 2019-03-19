@@ -3528,7 +3528,7 @@ func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, respons
 	}
 	username := request.PathParameter("userid")
 	newErr:=user.HandleDeleteUser(k8sClient,username)
-	response.WriteHeaderAndEntity(http.StatusNoContent,newErr)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
 
 }
 
