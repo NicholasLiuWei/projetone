@@ -90,7 +90,7 @@ export default class AddEmailDialogController {
     onChangeEmailSuccess_() {
         this.log_.info(`Successfully added repository`);
         this.mdDialog_.hide();
-        this.toastr["success"]('添加成功');
+        this.toastr["success"](this.i18n.MSG_CHANGE_EMAIL_SUCCESS);
         this.state_.reload();
     }
 
@@ -101,7 +101,7 @@ export default class AddEmailDialogController {
     onChangeEmailError_(err) {
         this.log_.error(err);
         this.mdDialog_.hide();
-        this.toastr["error"]('添加失败,请重试');
+        this.toastr["error"](this.i18n.MSG_CHANGE_EMAIL_ERROR);
     }
 }
 
@@ -126,5 +126,9 @@ function i18n() {
         /** @export {string} @desc Action 'OK' for the confirmation button on the "change email
             dialog". */
         MSG_CHANGE_EMAIL_CURRENT_EMAIL: goog.getMsg('当前接收邮箱'),
+        /** @export {string} @desc Title for the change email dialog. */
+        MSG_CHANGE_EMAIL_SUCCESS: goog.getMsg('添加成功'),
+        /** @export {string} @desc Title for the change email dialog. */
+        MSG_CHANGE_EMAIL_ERROR: goog.getMsg('添加失败，请重试'),
     };
 };

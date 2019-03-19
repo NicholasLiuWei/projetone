@@ -49,9 +49,11 @@
   <translation id="1656728804447365846" key="MSG_BREADCRUMBS_WORKLOADS_LABEL" desc="Label 'Workloads' that appears as a breadcrumbs on the action bar.">Workloads</translation>
   <translation id="380591054518508308" key="MSG_CHANGE_EMAIL_CANCEL_ACTION" desc="Action 'Cancel' for the confirmation button on the &quot;change email dialog&quot;">Cancel</translation>
   <translation id="3692276320942563511" key="MSG_CHANGE_EMAIL_CURRENT_EMAIL" desc="Action 'OK' for the confirmation button on the &quot;change email dialog&quot;.">Current receiving mailbox</translation>
+  <translation id="3900544501789872419" key="MSG_CHANGE_EMAIL_ERROR" desc="Title for the change email dialog.">Add failure</translation>
   <translation id="8924158133899232978" key="MSG_CHANGE_EMAIL_NAME_LABEL" desc="Label for the email.">Email</translation>
   <translation id="1062764936429972160" key="MSG_CHANGE_EMAIL_NAME_REQUIRED_WARNING" desc="Warning for the email.">Email required</translation>
   <translation id="7551043363205295803" key="MSG_CHANGE_EMAIL_OK_ACTION" desc="Action 'OK' for the confirmation button on the &quot;change email dialog&quot;.">OK</translation>
+  <translation id="6551740109064703399" key="MSG_CHANGE_EMAIL_SUCCESS" desc="Title for the change email dialog.">Add success</translation>
   <translation id="2224491476324446488" key="MSG_CHANGE_EMAIL_TITLE" desc="Title for the change email dialog.">Add Receiver</translation>
   <translation id="5996811769448248796" key="MSG_CHANGE_EMAIL_USER_HELP" desc="user help for email.">Email</translation>
   <translation id="3352821773496767610" key="MSG_CHART_REPOSITORY_LABEL" desc="Label &quot;Chart Repository&quot; label, for the chart repository on the deploy from chart page.">Chart Repository</translation>
@@ -62,6 +64,11 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">Sign out</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">Sign in</translation>
+  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
+  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
+  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
+  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
+  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">Release</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">AppStore</translation>
