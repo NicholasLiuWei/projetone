@@ -58,3 +58,14 @@ $chart-desc-color: rgba(0, 0, 0, .54);
 .kd-chart-color-secondary {
     color: $chart-desc-color !important;
 }
+
+.kd-chart-card-description {
+    font-family: MicrosoftYaHei;
+    &::-webkit-scrollbar {
+        background: transparent;
+        width: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #fff;
+    }
+}
