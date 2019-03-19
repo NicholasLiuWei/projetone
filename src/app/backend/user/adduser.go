@@ -26,14 +26,11 @@ import (
 func HandleCreatUser(client kubernetes.Interface,user *UserSpec) error{
 	userName:=UserConfigMapPrefix+user.Username
     //if exists
-	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userName,metaV1.GetOptions{})
-    if err!=nil{
-        return err
+	ConfigMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userName,metaV1.GetOptions{})
+    if err == nil||ConfigMap!=nil{
+		err = errors.New(UserAlreadyExist)
+		return err
     }
-	if configMap!=nil{
-      err = errors.New(UserAlreadyExist)
-      return err
-	}
 	UserConfig:=&v1.ConfigMap{
 		TypeMeta: metaV1.TypeMeta{
 			Kind:       api.ConfigMapKindName,

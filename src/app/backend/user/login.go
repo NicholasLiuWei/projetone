@@ -23,18 +23,17 @@ import (
 
 func HandleLogin(client kubernetes.Interface,user *LoginSpec) error{
 	userConfigMap:= UserConfigMapPrefix + user.Username
+	err:=errors.New(UserNotExist)
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
-	if err != nil{
+	if err != nil||configMap==nil{
 		return err
 	}
-    if configMap != nil{
-    	if password,ok:=configMap.Data[user.Username]; ok{
+    if password,ok:=configMap.Data[user.Username]; ok{
 			if password==user.Password{
 				return nil
 			}else{
 				return errors.New(PasswordNotCorrect)
 			}
-		}
-	}
-	return errors.New(UserNotExist)
+    }
+	return err
 }

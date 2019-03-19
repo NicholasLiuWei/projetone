@@ -32,6 +32,9 @@ func HandleGetUsers(client kubernetes.Interface) (*ListUser,error) {
 	if err!=nil{
      return nil,err
 	}
+	if list==nil || len(list.Items)<=0{
+		return nil,nil
+	}
 	var filteredItems []UserSpec
 	for _, item := range list.Items {
 			innerItem:=UserSpec{

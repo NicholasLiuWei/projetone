@@ -25,21 +25,18 @@ import (
 func HandleUserChgpwd(client kubernetes.Interface,user *UserSpec)error{
 	userConfigMap:=UserConfigMapPrefix+user.Username
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
-    if err!=nil{
-    	return err
-	}
-	if configMap==nil{
+    if err !=nil||configMap==nil{
 		return errors.New(UserNotExist)
 	}
 	if user.Password == ""{
 		return errors.New(PasswordIsNull)
 	}
 	configMap.Data["password"]=user.Password
-	if user.Email!=""{
+	if user.Email != ""{
 		configMap.Data["email"]=user.Email
 	}
 	_,err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Update(configMap)
-	if err!=nil{
+	if err!= nil{
 		return err
 	}
 	return nil
