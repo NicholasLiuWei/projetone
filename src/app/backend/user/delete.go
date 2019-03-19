@@ -21,6 +21,9 @@ import (
 )
 
 func HandleDeleteUser(client kubernetes.Interface,username string)ErrResponse{
+	if username==""{
+        return ErrUserNameIsNull
+	}
 	userConfigMap:=UserConfigMapPrefix+username
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
      if err!=nil||configMap==nil{
@@ -28,7 +31,7 @@ func HandleDeleteUser(client kubernetes.Interface,username string)ErrResponse{
 	 }
 	 err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Delete(userConfigMap,&metaV1.DeleteOptions{})
 	 if err!=nil{
-	 	return K8sDeleteUserErr
+	 	return ErrResponse{51000,err.Error()}
 	 }
    return StatusOK
 }

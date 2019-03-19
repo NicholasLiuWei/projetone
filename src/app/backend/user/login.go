@@ -26,7 +26,7 @@ func HandleLogin(client kubernetes.Interface,user *LoginSpec) ErrResponse{
 	if err != nil&&configMap==nil{
 		return ErrUserNotExist
 	}
-    if password,ok:=configMap.Data[user.Password]; ok{
+    if password,ok:=configMap.Data["password"]; ok{
 			if password==user.Password{
 				return StatusOK
 			}else{

@@ -36,7 +36,7 @@ func HandleUserChgpwd(client kubernetes.Interface,user *UserSpec)ErrResponse{
 	}
 	_,err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Update(configMap)
 	if err!= nil{
-		return K8sUpdateUserErr
+		return ErrResponse{51000,err.Error()}
 	}
 	return StatusOK
 }

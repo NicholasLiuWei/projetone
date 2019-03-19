@@ -49,7 +49,7 @@ func HandleCreatUser(client kubernetes.Interface,user *UserSpec) ErrResponse{
 		}
 	_, err =client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Create(UserConfig)
 	if err!=nil{
-         return K8sCreateUserErr
+         return ErrResponse{51000,err.Error()}
 	 }
 	 return ErrResponse{0,"ok"}
 	}

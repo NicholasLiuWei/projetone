@@ -19,12 +19,9 @@ var ErrUserNotExist =ErrResponse{50001,"user not exist"}
 var ErrUserAlreadyExist=ErrResponse{50002,"user already exist"}
 var ErrPasswordNotCorrect=ErrResponse{50003,"password not correct"}
 var ErrPasswordIsNull=ErrResponse{50004,"password is null"}
+var ErrUserNameIsNull=ErrResponse{50005,"username is null"}
 var StatusOK=ErrResponse{0,"ok"}
 
-var K8sGetUserErr=ErrResponse{51001,"k8s get user error"}
-var K8sCreateUserErr=ErrResponse{51002,"k8s create user error"}
-var K8sUpdateUserErr=ErrResponse{51003,"k8s get user error"}
-var K8sDeleteUserErr=ErrResponse{51004,"k8s delete user error"}
 
 
 type UserList struct {
