@@ -26,7 +26,7 @@ func HandleCreatUser(client kubernetes.Interface,user *UserSpec) ErrResponse{
 	userName:=UserConfigMapPrefix+user.Username
     //if exists
 	ConfigMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userName,metaV1.GetOptions{})
-    if err == nil||ConfigMap!=nil {
+	if err == nil && ConfigMap!=nil {
 		return ErrUserAlreadyExist
 	}
 	UserConfig:=&v1.ConfigMap{
