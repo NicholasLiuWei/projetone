@@ -23,6 +23,7 @@ import paramiko
 from functools import wraps
 from datetime import datetime
 
+
 GENERATE_IMAGE_PATH="/mnt" #本地存储项目生成镜像的根目录
 MASTER_SAVE_PATH="/home"  #压缩文件传输到远程目标主机存放文件的根目录
 tag = "v1.8.3"
@@ -245,6 +246,7 @@ def save_images_file1(project_name,project_images_filter="kubernetes/kubernetes-
         #print (save_dockers)
         run_cmd(save_dockers)#将镜像打包
         remove_images = "docker rmi %s -f"%(image_name)#删除镜像
+        print(run_cmd("ls %s/%s/"%(GENERATE_IMAGE_PATH, project_name)))
         #remove_images = "docker rmi %s -f" %(image_id)
         #run_cmd(remove_images)
 
@@ -278,6 +280,7 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
     images_list = docker_images.split("\n")
     for file_name in dirs:
         print (file_name)
+
         if os.path.splitext(file_name)[1] == '.tar':
             tmp1 = '%s/%s/%s'%(GENERATE_IMAGE_PATH,project_name,file_name)
             tmp2 = '%s/%s/%s'%(MASTER_SAVE_PATH,project_name,file_name)
@@ -309,8 +312,10 @@ def transfer_ssh_file(project_name,project_images_filter,upload_flag,ip,usr,pass
     ssh.ssh_exec_cmd("kubectl delete -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
     ssh.ssh_exec_cmd("kubectl create -f %s/%s" % (MASTER_SAVE_PATH, yam_name))
 
-def main():
 
+
+
+def main():
     """
     choose: check
     arg[2] :baseimage_name  基础镜像名称
