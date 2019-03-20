@@ -24,21 +24,23 @@ export class UsermanagementListController {
      */
     constructor(usermanagementList, kdUsermanagementListResource, $mdDialog) {
             /** @export  */
-            this.usermanagementList = {
-                "typeMeta": {
-                    "kind": "usermanagement"
-                },
-                "items": [
-                    { "name": "name1", "email": "11@163.com", "root": "普通用户" },
-                    { "name": "name2", "email": "22@163.com", "root": "普通用户" },
-                    { "name": "name3", "email": "33@163.com", "root": "普通用户" },
-                    { "name": "name4", "email": "44@163.com", "root": "普通用户" },
-                    { "name": "name5", "email": "55@163.com", "root": "普通用户" }
-                ],
-                "listMeta": {
-                    "totalitems": 5
-                }
-            };
+            this.usermanagementList = usermanagementList["Data"];
+            console.log(this.usermanagementList);
+            // {
+            //     "typeMeta": {
+            //         "kind": "usermanagement"
+            //     },
+            //     "items": [
+            //         { "name": "name1", "email": "11@163.com", "root": "普通用户" },
+            //         { "name": "name2", "email": "22@163.com", "root": "普通用户" },
+            //         { "name": "name3", "email": "33@163.com", "root": "普通用户" },
+            //         { "name": "name4", "email": "44@163.com", "root": "普通用户" },
+            //         { "name": "name5", "email": "55@163.com", "root": "普通用户" }
+            //     ],
+            //     "listMeta": {
+            //         "totalitems": 5
+            //     }
+            // };
 
             /** @export {!angular.Resource} */
             this.usermanagementListResource = kdUsermanagementListResource;

@@ -34,7 +34,9 @@ export const serviceConfig = {
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveServiceList(kdServiceListResource, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery("default");
+export function resolveServiceList(kdServiceListResource, $stateParams, kdPaginationService) {
+    console.log($stateParams);
+    let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
+    console.log(query);
     return kdServiceListResource.get(query).$promise;
 }

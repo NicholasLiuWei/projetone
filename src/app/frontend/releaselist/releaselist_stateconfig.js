@@ -52,8 +52,8 @@ export default function stateConfig($stateProvider) {
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveReleaseList(kdReleaseListResource, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery("default");
+export function resolveReleaseList(kdReleaseListResource, $stateParams, kdPaginationService) {
+    let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
     return kdReleaseListResource.get(query).$promise;
 }
 

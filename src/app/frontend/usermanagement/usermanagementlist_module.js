@@ -51,5 +51,5 @@ export default angular
  * @ngInject
  */
 function usermanagementListResource($resource) {
-    return $resource('api/v1/pod/:namespace');
+    return $resource('api/v1/user');
 }

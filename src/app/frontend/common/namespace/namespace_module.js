@@ -12,21 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {namespaceParam} from 'chrome/chrome_state';
+import { namespaceParam } from 'chrome/chrome_state';
 
-import {NamespaceService} from './namespace_service';
-import {DEFAULT_NAMESPACE, namespaceSelectComponent} from './namespaceselect_component';
+import { NamespaceService } from './namespace_service';
+import { DEFAULT_NAMESPACE, namespaceSelectComponent } from './namespaceselect_component';
 
 /**
  * Angular module global namespace selection components.
  */
 export default angular
     .module(
-        'kubernetesDashboard.common.namespace',
-        [
-          'ngMaterial',
-          'ngResource',
-          'ui.router',
+        'kubernetesDashboard.common.namespace', [
+            'ngMaterial',
+            'ngResource',
+            'ui.router',
         ])
     .component('kdNamespaceSelect', namespaceSelectComponent)
     .service('kdNamespaceService', NamespaceService)
@@ -39,20 +38,20 @@ export default angular
  * @ngInject
  */
 function ensureNamespaceParamPresent($rootScope, $location) {
-  /**
-   * Helper function which replaces namespace URL search param when the given namespace is
-   * undefined.
-   * @param {string|undefined} namespace
-   */
-  function replaceUrlIfNeeded(namespace) {
-    if (namespace === undefined) {
-      $location.search(namespaceParam, DEFAULT_NAMESPACE);
-      $location.replace();
+    /**
+     * Helper function which replaces namespace URL search param when the given namespace is
+     * undefined.
+     * @param {string|undefined} namespace
+     */
+    function replaceUrlIfNeeded(namespace) {
+        if (namespace === undefined) {
+            $location.search(namespaceParam, DEFAULT_NAMESPACE);
+            $location.replace();
+        }
     }
-  }
 
-  $rootScope.$watch(() => $location.search()[namespaceParam], replaceUrlIfNeeded);
-  $rootScope.$on('$locationChangeSuccess', () => {
-    replaceUrlIfNeeded($location.search()[namespaceParam]);
-  });
+    $rootScope.$watch(() => $location.search()[namespaceParam], replaceUrlIfNeeded);
+    $rootScope.$on('$locationChangeSuccess', () => {
+        replaceUrlIfNeeded($location.search()[namespaceParam]);
+    });
 }

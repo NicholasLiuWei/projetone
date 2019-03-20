@@ -51,5 +51,5 @@ export default angular
  * @ngInject
  */
 function releaseListResource($resource) {
-    return $resource('api/v1/helm/allrelease/default');
+    return $resource('api/v1/helm/allrelease/:namespace');
 }

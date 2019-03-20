@@ -34,7 +34,7 @@ export const ingressConfig = {
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolveIngressList(kdIngressListResource, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery("default");
+export function resolveIngressList(kdIngressListResource, $stateParams, kdPaginationService) {
+    let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
     return kdIngressListResource.get(query).$promise;
 }

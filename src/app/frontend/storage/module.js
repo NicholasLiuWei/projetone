@@ -37,7 +37,7 @@ function storageClassListResource($resource) {
  * @ngInject
  */
 function persistentVolumeClaimListResource($resource) {
-    return $resource('api/v1/persistentvolumeclaim/default');
+    return $resource('api/v1/persistentvolumeclaim/:namespace');
 }
 
 /**

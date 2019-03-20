@@ -7,9 +7,12 @@ export class storageController {
     /**
      * @ngInject
      */
-    constructor($state) {
+    constructor($state, $stateParams) {
         /** @export */
         this.state = $state;
+
+        /** @export */
+        this.stateParams = $stateParams["namespace"]
     }
 
     /**
@@ -17,9 +20,9 @@ export class storageController {
      */
     change(name) {
         if (name == 'set') {
-            this.state.go('chrome.storage.storageclass')
+            this.state.go('storage.storageclass')
         } else {
-            this.state.go('chrome.storage.pvc')
+            this.state.go('storage.pvc')
         }
     }
 

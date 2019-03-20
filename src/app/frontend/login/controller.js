@@ -33,47 +33,23 @@ export class LoginController {
         if (this.form.$valid) {
             this.cookies.put('login', true);
             this.cookies.put('username', this.username);
-            this.state.go('chrome.home');
-            // let data = {
-            //     "user": this.username,
-            //     "passwd": window["sha1"](this.password),
-            // };
-            // let login = this.$resource('authfp', {}, { save: { method: 'POST' } });
-            // login.save(data).$promise.then((res) => {
-            //     switch (res["Stat"]) {
-            //         case "AUTHPF_STATUS_USERERROR":
-            //             this.showtip = true;
-            //             break;
-            //         case "AUTHPF_STATUS_ABNORMAL":
-            //             /** @type {string} @desc 集群异常 Cluster anomaly*/
-            //             let MSG_login_jiqun_error = goog.getMsg('集群异常');
-            //             alert(MSG_login_jiqun_error);
-            //             break;
-            //         case "AUTHPF_STATUS_FIRSTLOGIN":
-            //             this.rootScope.usermes = {
-            //                 "username": this.username,
-            //                 "usertype": '管理员',
-            //             };
-            //             this.state.go('password');
-            //             break;
-            //         case "AUTHPF_STATUS_ERROR":
-            //             this.showtip = true;
-            //             break;
-            //         case "AUTHPF_STATUS_OK":
-            //             this.cookies.put('login', true);
-            //             this.cookies.put('username', this.username);
-            //             /** @export */
-            //             this.rootScope.usermes = {
-            //                 "username": this.username,
-            //                 "usertype": '管理员',
-            //             };
-            //             this.state.go('chrome.home');
-            //     }
-            // }, () => {
-            //     /** @type {string} @desc 请求失败,后端服务异常 Request failure, backend service exception*/
-            //     let MSG_login_login_error = goog.getMsg('请求失败,后端服务异常');
-            //     alert(MSG_login_login_error);
-            // });
+            // this.state.go('release', { "namespace": "_all" });
+            let data = {
+                "username": this.username,
+                "password": window["sha1"](this.password),
+            };
+            let login = this.$resource('api/v1/user/login', {}, { save: { method: 'POST' } });
+            login.save(data).$promise.then((res) => {
+                if (res["errcode"] == 0) {
+                    this.state.go('home', { "namespace": "_all" });
+                } else {
+                    alert(res["errmsg"]);
+                }
+            }, () => {
+                /** @type {string} @desc 请求失败,后端服务异常 Request failure, backend service exception*/
+                let MSG_login_login_error = goog.getMsg('请求失败,后端服务异常');
+                alert(MSG_login_login_error);
+            });
         }
     }
 }

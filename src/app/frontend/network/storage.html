@@ -1,9 +1,9 @@
 <div layout="row">
     <div flex="15" class="warn-list-group">
-        <div ng-class="$ctrl.active('chrome.net.service')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a href="#!/net/service?namespace=default">[[service|service 服务]]</a></div>
-        <div ng-class="$ctrl.active('chrome.net.ingress')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a href="#!/net/ingress?namespace=default">[[ingress|ingress 负载均衡]]</a></div>
+        <div ng-class="$ctrl.active('net.service')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/net/service?namespace='+$ctrl.stateParams}}">[[service|service 服务]]</a></div>
+        <div ng-class="$ctrl.active('net.ingress')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/net/ingress?namespace='+$ctrl.stateParams}}">[[ingress|ingress 负载均衡]]</a></div>
     </div>
     <kd-content-card flex-offset="5" flex="80">
         <kd-content>

@@ -617,7 +617,7 @@ export class homeController {
                     }
                 );
                 //应用状态
-                let getreleasestatus = this.resource_('api/v1/helm/allreleasestatus/default');
+                let getreleasestatus = this.resource_('api/v1/helm/allreleasestatus/:namespace');
                 getreleasestatus.get().$promise.then(
                     (data) => {
                         this.releasenum = data;

@@ -34,7 +34,7 @@ export const pvcConfig = {
  * @return {!angular.$q.Promise}
  * @ngInject
  */
-export function resolvePVCResource(kdPVCResource, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery("default");
+export function resolvePVCResource(kdPVCResource, $stateParams, kdPaginationService) {
+    let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
     return kdPVCResource.get(query).$promise;
 }

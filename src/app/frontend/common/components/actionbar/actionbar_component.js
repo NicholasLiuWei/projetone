@@ -124,7 +124,7 @@ export class ActionbarComponent {
          * @export
          */
     usermanagement() {
-            this.state_.go('chrome.usermanagement');
+            this.state_.go('usermanagement');
         }
         /**
          * Handles change of email using dialog.

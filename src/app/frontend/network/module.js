@@ -27,7 +27,7 @@ export default angular
  * @ngInject
  */
 function serviceListResource($resource) {
-    return $resource('api/v1/service/default');
+    return $resource('api/v1/service/:namespace');
 }
 
 /**
@@ -36,5 +36,5 @@ function serviceListResource($resource) {
  * @ngInject
  */
 function ingressListResource($resource) {
-    return $resource('api/v1/ingress/default');
+    return $resource('api/v1/ingress/:namespace');
 }

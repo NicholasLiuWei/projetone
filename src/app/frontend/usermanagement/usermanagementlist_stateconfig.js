@@ -54,8 +54,8 @@ export default function stateConfig($stateProvider) {
  * @ngInject
  */
 export function resolveUsermanagementList(kdUsermanagementListResource, $stateParams, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
-    return kdUsermanagementListResource.get(query).$promise;
+    // let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
+    return kdUsermanagementListResource.get().$promise;
 }
 
 // const i18n = {

@@ -53,5 +53,5 @@ function fsmonResource($resource) {
  * @ngInject
  */
 function releaseResource($resource) {
-    return $resource('api/v1/helm/allrelease/default');
+    return $resource('api/v1/helm/allrelease/:namespace');
 }

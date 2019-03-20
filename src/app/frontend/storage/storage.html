@@ -1,11 +1,11 @@
 <div layout="row">
     <div flex="15" class="warn-list-group">
-        <div ng-class="$ctrl.active('chrome.storage.storageclass')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a href="#!/storage/storageclass?namespace=default">[[存储类|存储类]]</a></div>
-         <div ng-class="$ctrl.active('chrome.storage.pv')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a href="#!/storage/pv?namespace=default">[[持久化存储卷|持久化存储卷]]</a></div>
-        <div ng-class="$ctrl.active('chrome.storage.pvc')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a href="#!/storage/pvc?namespace=default">[[持久化存储卷声明|持久化存储卷声明]]</a></div>
+        <div ng-class="$ctrl.active('storage.storageclass')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/storage/storageclass?namespace='+$ctrl.stateParams}}">[[存储类|存储类]]</a></div>
+        <div ng-class="$ctrl.active('storage.pv')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/storage/pv?namespace='+$ctrl.stateParams}}">[[持久化存储卷|持久化存储卷]]</a></div>
+        <div ng-class="$ctrl.active('storage.pvc')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/storage/pvc?namespace='+$ctrl.stateParams}}">[[持久化存储卷声明|持久化存储卷声明]]</a></div>
     </div>
     <kd-content-card flex-offset="5" flex="80">
         <kd-content>
