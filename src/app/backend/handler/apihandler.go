@@ -1153,6 +1153,7 @@ func (apiHandler *APIHandler) handleBaseInfo(request *restful.Request, response 
 	// cost := time.Since(start)
 	// log.Println("handleBaseInfo spend: ",cost)
 	response.WriteHeaderAndEntity(http.StatusOK, baseInfo)
+	log.Println("handleBaseInfo: ", baseInfo)
 }
 
 //cpu_info
@@ -1228,6 +1229,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
+	log.Println("memoryInfo prometheus return null!!!")
 	ch <- nil
 	return nil, nil
 }
