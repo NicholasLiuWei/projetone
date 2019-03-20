@@ -29,6 +29,10 @@ func HandleDeleteUser(client kubernetes.Interface,username string)ErrResponse{
      if err!=nil||configMap==nil{
 		 return ErrUserNotExist
 	 }
+	err = client.CoreV1().Namespaces().Delete(username,&metaV1.DeleteOptions{})
+	if err!=nil{
+		return ErrResponse{51000,err.Error()}
+	}
 	 err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Delete(userConfigMap,&metaV1.DeleteOptions{})
 	 if err!=nil{
 	 	return ErrResponse{51000,err.Error()}

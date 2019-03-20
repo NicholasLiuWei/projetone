@@ -46,7 +46,7 @@ type LoginSpec struct {
 
 
 type ListUser struct{
-	ListMeta int `json:"listMeta"`
+	ListMeta ListMeta `json:"listMeta"`
 	Items   []UserSpec `json:"items"`
 }
 
@@ -56,3 +56,6 @@ type RespData struct{
 	Data interface{}
 }
 
+type ListMeta struct{
+ TotalItems int `json:"totalItems"`
+}

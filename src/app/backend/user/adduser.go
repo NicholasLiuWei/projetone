@@ -20,6 +20,7 @@ import (
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	"log"
+	namespace2 "github.com/kubernetes/dashboard/src/app/backend/resource/namespace"
 )
 
 
@@ -31,6 +32,13 @@ func HandleCreatUser(client kubernetes.Interface,user *UserSpec) ErrResponse{
 		log.Println(err)
 		return ErrUserAlreadyExist
 	}
+    NameSpaceSpec:=&namespace2.NamespaceSpec{
+	Name:user.Username,
+    }
+    err = namespace2.CreateNamespace(NameSpaceSpec,client)
+    if err!=nil{
+	   return ErrResponse{51000,err.Error()}
+    }
 	UserConfig:=&v1.ConfigMap{
 		TypeMeta: metaV1.TypeMeta{
 			Kind:       api.ConfigMapKindName,

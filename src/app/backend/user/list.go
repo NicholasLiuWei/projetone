@@ -48,7 +48,7 @@ func HandleGetUsers(client kubernetes.Interface) (RespData) {
 		}
 	}
 	userList:=&ListUser{
-		ListMeta:len(filteredItems),
+		ListMeta:ListMeta{TotalItems:len(filteredItems)},
 		Items:filteredItems,
 	}
    return RespData{StatusOK,userList}
