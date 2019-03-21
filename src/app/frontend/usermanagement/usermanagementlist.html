@@ -35,7 +35,7 @@ limitations under the License.
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>[[权限|权限-usermanagement]]</label>
-                    <md-select ng-model="$ctrl.oNewUserMsg.root">
+                    <md-select ng-model="$ctrl.oNewUserMsg.root" disabled>
                         <md-option ng-repeat="state in $ctrl.aRootAge" value="{{state}}">
                             {{state}}
                         </md-option>

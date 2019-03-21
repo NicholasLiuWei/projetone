@@ -27,7 +27,7 @@ export default class UsermanagementCardController {
      * @param {!./../common/namespace/namespace_service.NamespaceService} kdNamespaceService
      * @ngInject
      */
-    constructor($state, $interpolate, kdNamespaceService, $mdDialog) {
+    constructor($state, $resource, $interpolate, kdNamespaceService, $mdDialog) {
             // {!backendApi.Usermanagement}
             /**
              * Initialized from the scope.
@@ -36,7 +36,9 @@ export default class UsermanagementCardController {
             this.usermanagement = {};
 
             /** @private {!ui.router.$state} */
-            this.state_ = $state;
+            this.state = $state;
+            /** @private */
+            this.resource = $resource;
 
             /** @private {!angular.$interpolate} */
             this.interpolate_ = $interpolate;
@@ -99,8 +101,8 @@ export default class UsermanagementCardController {
     /**
      * @export
      */
-    fResetPassword(ev, currentMsg) {
-            console.log(ev, currentMsg)
+    fResetPassword(ev, currentUser) {
+            console.log(ev, currentUser)
                 // Appending dialog to document.body to cover sidenav in docs app
             var confirm = this.$mdDialog.confirm()
                 .title('该用户I密码会被重置为88888888，确定重置？')
@@ -109,7 +111,27 @@ export default class UsermanagementCardController {
                 .ok('确定重置')
                 .cancel('取消');
 
-            this.$mdDialog.show(confirm).then(function() {
+            this.$mdDialog.show(confirm).then(() => {
+                let resource = this.resource(`api/v1/user/chgpwd`, {}, { save: { method: 'put' } });
+                resource.save({
+                        "username": currentUser.username,
+                        "password": window["sha1"]("88888888"),
+                        "email": currentUser.email,
+                        "isadmin": false
+                    },
+                    (res) => {
+                        if (res.errcode == "0") {
+                            console.log(res)
+                            this.state.reload();
+                            this.toastr["success"]("重置成功");
+                        } else {
+                            this.toastr["error"](res.errmsg);
+                        }
+                    },
+                    (err) => {
+                        alert("重置失败")
+                    }
+                )
                 console.log("重置成功")
             }, function() {
                 console.log("取消重置")
@@ -118,7 +140,8 @@ export default class UsermanagementCardController {
         /**
          * @export
          */
-    fDeleteUserMsg(ev) {
+    fDeleteUserMsg(ev, currentUser) {
+            console.log(ev, currentUser)
             var confirm = this.$mdDialog.confirm()
                 .title('用户删除后资源不可恢复，确定删除？')
                 .ariaLabel('Lucky day')
@@ -126,7 +149,22 @@ export default class UsermanagementCardController {
                 .ok('确定删除')
                 .cancel('取消');
 
-            this.$mdDialog.show(confirm).then(function() {
+            this.$mdDialog.show(confirm).then(() => {
+                let resource = this.resource(`api/v1/user/${currentUser.username}`, {}, { save: { method: 'delete' } });
+                resource.save(
+                    (res) => {
+                        if (res.errcode == "0") {
+                            console.log(res)
+                            this.state.reload();
+                            this.toastr["success"]("删除成功");
+                        } else {
+                            this.toastr["error"](res.errmsg);
+                        }
+                    },
+                    (err) => {
+                        alert("删除失败")
+                    }
+                )
                 console.log("删除")
             }, function() {
                 console.log("取消删除")

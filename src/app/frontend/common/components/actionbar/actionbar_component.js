@@ -239,9 +239,34 @@ export class ActionbarComponent {
      *@export
      */
     fChangePassword() {
+            console.log(this.cookies.get("username"))
             if (this.oResetPasswordAge.newPassword !== this.oResetPasswordAge.confirmPassword) {
                 this.bPasswordError = true;
             } else {
+                let bIsAdmin;
+                if (this.cookies.get("username") == "admin") {
+                    bIsAdmin = true;
+                } else {
+                    bIsAdmin = false;
+                }
+                let resource = this.resource_(`api/v1/user/chgpwd`, {}, { save: { method: 'put' } });
+                resource.save({
+                        "username": this.cookies.get("username"),
+                        "password": window["sha1"](this.oResetPasswordAge.newPassword),
+                        "email": "132@163.com",
+                        "isadmin": bIsAdmin
+                    },
+                    (res) => {
+                        if (res.errcode == "0") {
+                            this.toastr["success"]("修改成功");
+                        } else {
+                            this.toastr["error"](res.errmsg);
+                        }
+                    },
+                    (err) => {
+                        alert("修改失败")
+                    }
+                )
                 this.bPasswordError = false;
                 this.$mdDialog.hide();
                 document.getElementById("reset-password-id").reset()

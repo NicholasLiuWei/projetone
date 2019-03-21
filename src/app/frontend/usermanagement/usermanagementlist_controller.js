@@ -22,9 +22,13 @@ export class UsermanagementListController {
      * @param {!angular.Resource} kdUsermanagementListResource
      * @ngInject
      */
-    constructor(usermanagementList, kdUsermanagementListResource, $mdDialog) {
+    constructor($state, $resource, usermanagementList, kdUsermanagementListResource, $mdDialog) {
             /** @export  */
             this.usermanagementList = usermanagementList["Data"];
+            /** @private */
+            this.state = $state;
+            /** @private */
+            this.resource = $resource;
             console.log(this.usermanagementList);
             // {
             //     "typeMeta": {
@@ -78,13 +82,28 @@ export class UsermanagementListController {
                 this.bPasswordError = false;
                 this.$mdDialog.hide();
                 console.log(this.oNewUserMsg)
-                    // this.oNewUserMsg = {
-                    //     "name": "",
-                    //     "email": "",
-                    //     "root": "普通用户",
-                    //     "password": "",
-                    //     "confirmPassword": "",
-                    // };
+                let userMsg = {
+                    "username": this.oNewUserMsg.name,
+                    "password": window["sha1"](this.oNewUserMsg.password),
+                    "email": this.oNewUserMsg.email,
+                    "isadmin": false
+                };
+                let resource = this.resource(`api/v1/user/create`, {}, { save: { method: 'post' } });
+                resource.save(
+                    userMsg,
+                    (res) => {
+                        if (res.errcode == "0") {
+                            console.log(res)
+                            this.state.reload();
+                            this.toastr["success"]("创建成功");
+                        } else {
+                            this.toastr["error"](res.errmsg);
+                        }
+                    },
+                    (err) => {
+                        alert("创建失败")
+                    }
+                )
                 document.getElementById("reset-id").reset()
                 console.log(this.oNewUserMsg)
             }
@@ -94,5 +113,23 @@ export class UsermanagementListController {
          */
     cancel() {
         this.$mdDialog.cancel();
+    }
+    $onInit() {
+        // let userMsg = {
+        //     "username": "qwerasdsa",
+        //     "password": "ewqeqdada",
+        //     "email": "111@163.com",
+        //     "isadmin": false
+        // };
+
+        // let resource = this.resource(`api/v1/user/create`, {}, { save: { method: 'POST' } });
+        // resource.save(
+        //     userMsg,
+        //     (res) => {
+        //         console.log(res)
+        //     }, (err) => {
+        //         console.log(err)
+        //     }
+        // );
     }
 }
