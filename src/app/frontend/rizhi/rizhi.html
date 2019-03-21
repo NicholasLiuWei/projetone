@@ -1,9 +1,25 @@
-<kd-content-card>
+<!-- <kd-content-card>
     <kd-content>
         <div class="rizhi" style="height:100%;">
             &nbsp;&nbsp;&nbsp;[[详细日志信息请访问一体式日志中心:|详细日志信息请访问一体式日志中心:]]
             <br/> &nbsp;&nbsp;&nbsp;
             <a target="_blank" ng-href="{{$ctrl.url()}}">{{$ctrl.url()}}</a>
         </div>
+    </kd-content>
+</kd-content-card> -->
+<kd-content-card>
+    <kd-title>[[平台日志|jiankong Kubernetes 平台日志]]</kd-title>
+    <kd-content>
+        <a ng-href="{{$ctrl.url()+'/d/k8s/kubernetes-cluster-monitoring-via-prometheus?refresh=10s&orgId=1'}}" target="_blank">
+            <div class="jkbox" layout="row">
+                <div class="jkimagebox" layout="row" layout-align="center center">
+                    <img src="assets/images/logss.png" alt="平台日志">
+                </div>
+                <div class="jkdescbox">
+                    <div class="jktitle">[[平台日志|jiankong 平台日志]]</div>
+                    <div class="jkdesc">[[平台日志展示以及分析|jiankong 平台日志展示以及分析]]</div>
+                </div>
+            </div>
+        </a>
     </kd-content>
 </kd-content-card>
