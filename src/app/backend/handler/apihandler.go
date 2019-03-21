@@ -737,6 +737,8 @@ func storageStatus() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageStatus fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -764,6 +766,8 @@ func storageUseRate() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageUseRate fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -791,6 +795,8 @@ func storageTotal() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageTotal fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -818,6 +824,8 @@ func storageAvailable() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageAvailable fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -845,6 +853,8 @@ func storageUsed() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageUsed fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -872,6 +882,8 @@ func storageReadBytes() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageReadBytes fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -899,6 +911,8 @@ func storageReadOps() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageReadOps fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -926,6 +940,8 @@ func storageWriteBytes() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageWriteBytes fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -953,6 +969,8 @@ func storageWriteOps() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0) {
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("storageWriteOps fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -1001,6 +1019,8 @@ func cpuUseRate() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0){
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("cpuUseRate fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -1028,6 +1048,8 @@ func memoryUseRate() (interface{}, error) {
 	}
 	if cephResp != nil && cephResp.Status == "success" && (len(cephResp.Data.Result) > 0){
 		return cephResp.Data.Result[0].Value[1], nil
+	}else{
+		log.Println("memoryUseRate fenxi rangeResp:",cephResp)
 	}
 	return 0, nil
 }
@@ -1191,6 +1213,8 @@ func cpuInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) {
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+		log.Println("cpuInfo fenxi rangeResp:",rangeResp)
 	}
 	ch <- nil
 	return nil, nil
@@ -1225,17 +1249,13 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		ch <- nil
 		return nil, err
 	}
-	log.Println("memoryinfo fenxirespBytes:",string(respBytes))
-	log.Println("memoryinfo fenxirangeResp:",rangeResp)
-	log.Println("memoryinfo fenxirangeResp.Status:",rangeResp.Status)
-	log.Println("memoryinfo fenxirangeResp.Data.Result:",rangeResp.Data.Result)
-	log.Println("memoryinfo fenxilen(rangeResp.Data.Result):",len(rangeResp.Data.Result))
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		log.Println(string(respBytes))
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+		log.Println("memoryinfo fenxi rangeResp:",rangeResp)
 	}
-	log.Println("memoryInfo prometheus return null!!!")
 	ch <- nil
 	return nil, nil
 }
@@ -1302,6 +1322,8 @@ func networkInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error)
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+	log.Println("networkInfo fenxi rangeResp:",rangeResp)
 	}
 	ch <- nil
 	return nil, nil
@@ -1340,6 +1362,8 @@ func networkInfoByNode(t1 int64, t2 int64, url string, node string, ch chan []Re
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+		log.Println("networkInfo fenxi rangeResp:",rangeResp)
 	}
 	ch <- nil
 	return nil, nil
@@ -1625,6 +1649,8 @@ func nodeInfos (str string, ch chan []ResultData) ([]ResultData, error) {
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+		log.Println("nodeInfos fenxi rangeResp:",rangeResp)
 	}
 	ch <- nil
 	return nil, nil
@@ -1666,6 +1692,8 @@ func cpuInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]Res
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+		log.Println("cpuInfoByNode fenxi rangeResp:",rangeResp)
 	}
 	ch <- nil
 	return nil, nil
@@ -1706,6 +1734,8 @@ func memoryInfoByNode(t1 int64, t2 int64, node string, ch chan []ResultData) ([]
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0){
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
+	}else{
+		log.Println("memoryInfoByNode fenxi rangeResp:",rangeResp)
 	}
 	ch <- nil
 	return nil, nil
