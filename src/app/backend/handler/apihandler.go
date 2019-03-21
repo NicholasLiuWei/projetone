@@ -1225,6 +1225,11 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		ch <- nil
 		return nil, err
 	}
+	log.Println("memoryinfo fenxirespBytes:",string(respBytes))
+	log.Println("memoryinfo fenxirangeResp:",rangeResp)
+	log.Println("memoryinfo fenxirangeResp.Status:",rangeResp.Status)
+	log.Println("memoryinfo fenxirangeResp.Data.Result:",rangeResp.Data.Result)
+	log.Println("memoryinfo fenxilen(rangeResp.Data.Result):",len(rangeResp.Data.Result))
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		log.Println(string(respBytes))
 		ch <- rangeResp.Data.Result
