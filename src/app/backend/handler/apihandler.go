@@ -1204,7 +1204,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		log.Println("memoryInfo spend: ",cost)
 	}()
 	var rangeResp = &RangeResp{}
-	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=(smart_memory_MemTotal_bytes-(smart_memory_MemFree_bytes+smart_memory_Buffers_bytes+smart_memory_Cached_bytes))/smart_memory_MemTotal_bytes*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
+	respData, err := http.Get("http://prometheus.monitoring:9090/api/v1/query_range?query=(smart_memory_MemTotal_bytes-smart_memory_MemFree_bytes-smart_memory_Buffers_bytes-smart_memory_Cached_bytes)/smart_memory_MemTotal_bytes*100&start=" + strconv.FormatInt(t1, 10) + "&end=" + strconv.FormatInt(t2, 10) + "&step=60")
 	if respData != nil {
 		defer respData.Body.Close()
 	}
