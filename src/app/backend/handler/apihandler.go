@@ -1225,6 +1225,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		return nil, err
 	}
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
+		log.Println(string(respBytes))
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}
