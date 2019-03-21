@@ -243,18 +243,11 @@ export class ActionbarComponent {
             if (this.oResetPasswordAge.newPassword !== this.oResetPasswordAge.confirmPassword) {
                 this.bPasswordError = true;
             } else {
-                let bIsAdmin;
-                if (this.cookies.get("username") == "admin") {
-                    bIsAdmin = true;
-                } else {
-                    bIsAdmin = false;
-                }
                 let resource = this.resource_(`api/v1/user/chgpwd`, {}, { save: { method: 'put' } });
                 resource.save({
                         "username": this.cookies.get("username"),
-                        "password": window["sha1"](this.oResetPasswordAge.newPassword),
-                        "email": "132@163.com",
-                        "isadmin": bIsAdmin
+                        "password": window["sha1"](this.oResetPasswordAge.currentPassword),
+                        "newPassword": window["sha1"](this.oResetPasswordAge.newPassword)
                     },
                     (res) => {
                         if (res.errcode == "0") {
