@@ -21,19 +21,20 @@ import (
 )
 
 
-func HandleUserChgpwd(client kubernetes.Interface,user *UserSpec)ErrResponse{
+func HandleUserChgpwd(client kubernetes.Interface,user *ChgPasswordSpec)ErrResponse{
 	userConfigMap:=UserConfigMapPrefix+user.Username
 	configMap, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Get(userConfigMap,metaV1.GetOptions{})
     if err !=nil||configMap==nil{
 		return ErrUserNotExist
 	}
-	if user.Password == ""{
+	oldPassword:=configMap.Data["password"]
+	if oldPassword!=user.Password{
+		return ErrPasswordNotCorrect
+	}
+	if user.NewPassword== ""{
 		return ErrPasswordIsNull
 	}
-	configMap.Data["password"]=user.Password
-	if user.Email != ""{
-		configMap.Data["email"]=user.Email
-	}
+	configMap.Data["password"]=user.NewPassword
 	_,err=client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Update(configMap)
 	if err!= nil{
 		return ErrResponse{51000,err.Error()}

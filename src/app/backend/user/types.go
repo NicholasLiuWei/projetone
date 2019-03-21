@@ -59,3 +59,10 @@ type RespData struct{
 type ListMeta struct{
  TotalItems int `json:"totalItems"`
 }
+
+
+type ChgPasswordSpec struct {
+	Username 	string 	`json:"username"`
+	Password 	string 	`json:"password"`
+	NewPassword string  `json:"newPassword"`
+}

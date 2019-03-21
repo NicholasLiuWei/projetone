@@ -653,7 +653,7 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 	apiV1Ws.Route(
 		apiV1Ws.PUT("/user/chgpwd").
 			To(apiHandler.handleUserChgpwd).
-			Reads(user.UserSpec{}))
+			Reads(user.ChgPasswordSpec{}))
 	apiV1Ws.Route(
 		apiV1Ws.DELETE("/user/{userid}").
 			To(apiHandler.handleDeleteUser))
@@ -3511,12 +3511,12 @@ func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, respons
 		kdErrors.HandleInternalError(response, err)
 		return
 	}
-	userSpec:=new(user.UserSpec)
-	if err := request.ReadEntity(userSpec); err != nil {
+	chgPasswordSpec:=new(user.ChgPasswordSpec)
+	if err := request.ReadEntity(chgPasswordSpec); err != nil {
 		kdErrors.HandleInternalError(response, err)
 		return
 	}
-	newErr:=user.HandleUserChgpwd(k8sClient,userSpec)
+	newErr:=user.HandleUserChgpwd(k8sClient,chgPasswordSpec)
 	response.WriteHeaderAndEntity(http.StatusOK,newErr)
 }
 
