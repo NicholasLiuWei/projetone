@@ -27,7 +27,9 @@ export default class UsermanagementCardController {
      * @param {!./../common/namespace/namespace_service.NamespaceService} kdNamespaceService
      * @ngInject
      */
-    constructor($state, $resource, $interpolate, kdNamespaceService, $mdDialog) {
+    constructor($state, $resource, $interpolate, kdNamespaceService, $mdDialog, toastr) {
+            /** @export  */
+            this.toastr = toastr;
             // {!backendApi.Usermanagement}
             /**
              * Initialized from the scope.
@@ -120,12 +122,12 @@ export default class UsermanagementCardController {
                         "isadmin": false
                     },
                     (res) => {
-                        if (res.errcode == "0") {
+                        if (res['errcode'] == "0") {
                             console.log(res)
                             this.state.reload();
                             this.toastr["success"]("重置成功");
                         } else {
-                            this.toastr["error"](res.errmsg);
+                            this.toastr["error"](res['errmsg']);
                         }
                     },
                     (err) => {
@@ -153,12 +155,12 @@ export default class UsermanagementCardController {
                 let resource = this.resource(`api/v1/user/${currentUser.username}`, {}, { save: { method: 'delete' } });
                 resource.save(
                     (res) => {
-                        if (res.errcode == "0") {
+                        if (res['errcode'] == "0") {
                             console.log(res)
                             this.state.reload();
                             this.toastr["success"]("删除成功");
                         } else {
-                            this.toastr["error"](res.errmsg);
+                            this.toastr["error"](res['errmsg']);
                         }
                     },
                     (err) => {

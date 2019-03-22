@@ -250,10 +250,10 @@ export class ActionbarComponent {
                         "newPassword": window["sha1"](this.oResetPasswordAge.newPassword)
                     },
                     (res) => {
-                        if (res.errcode == "0") {
+                        if (res['errcode'] == "0") {
                             this.toastr["success"]("修改成功");
                         } else {
-                            this.toastr["error"](res.errmsg);
+                            this.toastr["error"](res['errmsg']);
                         }
                     },
                     (err) => {
