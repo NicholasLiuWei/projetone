@@ -91,20 +91,20 @@ export class UsermanagementListController {
          * @export 
          */
     fCreateNewUser() {
-            if (/^(?!\d+$)[\da-zA-Z]+$/.test(this.oNewUserMsg.name)) {
+            if (/^(?!\d+$)[\da-zA-Z]+$/.test(this.oNewUserMsg['name'])) {
                 if (this.userCheck !== false) {
                     this.userCheck = false;
                 }
-                if (this.oNewUserMsg.password !== this.oNewUserMsg.confirmPassword) {
+                if (this.oNewUserMsg['password'] !== this.oNewUserMsg['confirmPassword']) {
                     this.bPasswordError = true;
                 } else {
                     this.bPasswordError = false;
                     this.$mdDialog.hide();
                     console.log(this.oNewUserMsg)
                     let userMsg = {
-                        "username": this.oNewUserMsg.name,
-                        "password": window["sha1"](this.oNewUserMsg.password),
-                        "email": this.oNewUserMsg.email,
+                        "username": this.oNewUserMsg['name'],
+                        "password": window["sha1"](this.oNewUserMsg['password']),
+                        "email": this.oNewUserMsg['email'],
                         "isadmin": false
                     };
                     let resource = this.resource(`api/v1/user/create`, {}, { save: { method: 'post' } });

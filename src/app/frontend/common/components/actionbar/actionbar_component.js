@@ -240,14 +240,14 @@ export class ActionbarComponent {
      */
     fChangePassword() {
             console.log(this.cookies.get("username"))
-            if (this.oResetPasswordAge.newPassword !== this.oResetPasswordAge.confirmPassword) {
+            if (this.oResetPasswordAge['newPassword'] !== this.oResetPasswordAge['confirmPassword']) {
                 this.bPasswordError = true;
             } else {
                 let resource = this.resource_(`api/v1/user/chgpwd`, {}, { save: { method: 'put' } });
                 resource.save({
                         "username": this.cookies.get("username"),
-                        "password": window["sha1"](this.oResetPasswordAge.currentPassword),
-                        "newPassword": window["sha1"](this.oResetPasswordAge.newPassword)
+                        "password": window["sha1"](this.oResetPasswordAge['currentPassword']),
+                        "newPassword": window["sha1"](this.oResetPasswordAge['newPassword'])
                     },
                     (res) => {
                         if (res['errcode'] == "0") {
