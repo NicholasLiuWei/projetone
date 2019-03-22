@@ -90,11 +90,11 @@ export class ActionbarComponent {
                 }
             }.bind(this);
             this.conn.onclose = function(data) {
-                console.log(data);
+                // console.log(data);
                 // console.log('close');
             };
             this.conn.onerror = function(data) {
-                console.log(data);
+                // console.log(data);
                 // console.log('error');
             };
         }
@@ -239,7 +239,6 @@ export class ActionbarComponent {
      *@export
      */
     fChangePassword() {
-            console.log(this.cookies.get("username"))
             if (this.oResetPasswordAge['newPassword'] !== this.oResetPasswordAge['confirmPassword']) {
                 this.bPasswordError = true;
             } else {
@@ -263,7 +262,6 @@ export class ActionbarComponent {
                 this.bPasswordError = false;
                 this.$mdDialog.hide();
                 document.getElementById("reset-password-id").reset()
-                console.log(this.oResetPasswordAge)
             }
         }
         /**
