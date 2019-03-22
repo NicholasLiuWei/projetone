@@ -33,7 +33,7 @@ export class UsermanagementListController {
         this.toastr = toastr;
         this.cookies = $cookies;
 
-        console.log(this.usermanagementList);
+        // console.log(this.usermanagementList);
         // {
         //     "typeMeta": {
         //         "kind": "usermanagement"

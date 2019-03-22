@@ -104,8 +104,7 @@ export default class UsermanagementCardController {
      * @export
      */
     fResetPassword(ev, currentUser) {
-            console.log(ev, currentUser)
-                // Appending dialog to document.body to cover sidenav in docs app
+            // Appending dialog to document.body to cover sidenav in docs app
             var confirm = this.$mdDialog.confirm()
                 .title('该用户I密码会被重置为88888888，确定重置？')
                 .ariaLabel('Lucky day')
@@ -123,7 +122,6 @@ export default class UsermanagementCardController {
                     },
                     (res) => {
                         if (res['errcode'] == "0") {
-                            console.log(res)
                             this.state.reload();
                             this.toastr["success"]("重置成功");
                         } else {
@@ -134,16 +132,12 @@ export default class UsermanagementCardController {
                         alert("重置失败")
                     }
                 )
-                console.log("重置成功")
-            }, function() {
-                console.log("取消重置")
-            });
+            }, function() {});
         }
         /**
          * @export
          */
     fDeleteUserMsg(ev, currentUser) {
-            console.log(ev, currentUser)
             var confirm = this.$mdDialog.confirm()
                 .title('用户删除后资源不可恢复，确定删除？')
                 .ariaLabel('Lucky day')
@@ -156,7 +150,6 @@ export default class UsermanagementCardController {
                 resource.save(
                     (res) => {
                         if (res['errcode'] == "0") {
-                            console.log(res)
                             this.state.reload();
                             this.toastr["success"]("删除成功");
                         } else {
@@ -167,10 +160,7 @@ export default class UsermanagementCardController {
                         alert("删除失败")
                     }
                 )
-                console.log("删除")
-            }, function() {
-                console.log("取消删除")
-            });
+            }, function() {});
         }
         // /**
         //  * @export
