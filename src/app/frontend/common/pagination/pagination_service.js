@@ -123,7 +123,6 @@ export class PaginationService {
      * @return {!backendApi.PaginationQuery}
      */
     getResourceQuery(itemsPerPage, pageNr, namespace, name) {
-        console.log(namespace);
         if (this.kdNamespaceService_.isMultiNamespace(namespace)) {
             namespace = '';
         }

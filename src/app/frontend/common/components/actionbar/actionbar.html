@@ -32,15 +32,19 @@ limitations under the License.
     </md-button>
   </div> -->
     <md-menu>
+        <!-- <div ng-if="$ctrl.user!='admin'" style="font-size:16px;cursor: pointer;" ng-click="$mdMenu.open($event)">
+            <md-icon class="kd-actionbar-icon-button">account_circle</md-icon>
+            {{$ctrl.user}}
+        </div> -->
         <div style="font-size:16px;cursor: pointer;" ng-click="$mdMenu.open($event)">
             <md-icon class="kd-actionbar-icon-button">account_circle</md-icon>
-            [[管理员| caidan Admin]]
+            {{$ctrl.user=="admin"?"[[管理员| caidan Admin]]":$ctrl.user}}
         </div>
         <md-menu-content>
             <md-menu-item>
                 <md-button ng-disabled="true">[[版本 v1.0.0|版本信息]]</md-button>
             </md-menu-item>
-            <md-menu-item>
+            <md-menu-item ng-if="$ctrl.show()">
                 <md-button class="md-primary" ng-click="$ctrl.usermanagement()">[[用户管理| caidan User Management]]</md-button>
             </md-menu-item>
             <md-menu-item>

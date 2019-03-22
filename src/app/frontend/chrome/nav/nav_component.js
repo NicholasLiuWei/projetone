@@ -53,7 +53,7 @@ export class NavController {
      * @param {!./nav_service.NavService} kdNavService
      * @ngInject
      */
-    constructor(kdNavService, $rootScope, $http, $scope, $resource) {
+    constructor(kdNavService, $rootScope, $http, $scope, $resource, $cookies) {
         /** @export {boolean} */
         this.isVisible = true;
         /** @private {!./nav_service.NavService} */
@@ -66,6 +66,7 @@ export class NavController {
         this.rootScope_ = $rootScope;
         /** adfas */
         this.http_ = $http;
+        this.cookies = $cookies;
         /** @export  */
         this.navitems = {};
 
@@ -148,18 +149,20 @@ export class NavController {
      * Sets visibility of the navigation component.
      */
     setVisibility(isVisible) {
-            this.isVisible = isVisible;
-        }
-        /**
-         * Sets navitem of the navigation component.
-         *@export
-         */
-    setNavitem(state) {
-        let str = JSON.stringify(this.navitems);
+        this.isVisible = isVisible;
+    }
+
+    /**
+     * Sets navitem of the navigation component.
+     *@export
+     */
+    setNavitem() {
+        // let str = JSON.stringify(this.navitems);
+        let user = this.cookies.get('username');
         // console.log(str);
         // console.log(state);
         // console.log(str.indexOf(state));
-        if (str.toUpperCase().indexOf(state.toUpperCase()) != -1) {
+        if (user == "admin") {
             return true;
         }
         return false;

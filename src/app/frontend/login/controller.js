@@ -41,7 +41,13 @@ export class LoginController {
             let login = this.$resource('api/v1/user/login', {}, { save: { method: 'POST' } });
             login.save(data).$promise.then((res) => {
                 if (res["errcode"] == 0) {
-                    this.state.go('home', { "namespace": "_all" });
+                    let user = this.cookies.get('username');
+                    if (user == "admin") {
+                        user = "_all";
+                        this.state.go('home', { "namespace": user });
+                    } else {
+                        this.state.go('release', { "namespace": user });
+                    }
                 } else {
                     alert(res["errmsg"]);
                 }

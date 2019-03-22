@@ -25,164 +25,187 @@ export class ActionbarComponent {
      * @ngInject
      */
     constructor($cookies, $state, $rootScope, $http, $scope, $resource, toastr, kdEmailService, $mdDialog) {
-            this.$mdDialog = $mdDialog;
-            /** @private {!ui.router.$state} */
-            this.state_ = $state;
-            /** @export {!angular.Scope}*/
-            this.rootScope_ = $rootScope;
-            /** @private {!angular.$resource} */
-            this.resource_ = $resource;
-            /** @export  */
-            this.toastr = toastr;
-            /** @export  */
-            this.emailService_ = kdEmailService;
-            /** @export */
-            this.i18n = i18n();
-            /** fasdfa */
-            this.$http_ = $http;
-            this.cookies = $cookies;
+        this.$mdDialog = $mdDialog;
+        /** @private {!ui.router.$state} */
+        this.state_ = $state;
+        /** @export {!angular.Scope}*/
+        this.rootScope_ = $rootScope;
+        /** @private {!angular.$resource} */
+        this.resource_ = $resource;
+        /** @export  */
+        this.toastr = toastr;
+        /** @export  */
+        this.emailService_ = kdEmailService;
+        /** @export */
+        this.i18n = i18n();
+        /** fasdfa */
+        this.$http_ = $http;
+        this.cookies = $cookies;
 
 
-            /** @export  */
-            this.$mdDialog = $mdDialog;
+        /** @export  */
+        this.$mdDialog = $mdDialog;
 
-            /** @export  */
-            this.bPasswordError = false;
+        /** @export  */
+        this.bPasswordError = false;
 
-            /** @export  */
-            this.oResetPasswordAge = {
-                "currentPassword": "",
-                "newPassword": "",
-                "confirmPassword": ""
-            }
+        /** @export  */
+        this.oResetPasswordAge = {
+            "currentPassword": "",
+            "newPassword": "",
+            "confirmPassword": ""
+        }
 
-            document.addEventListener("click", function() {
-                this.showWarning = false;
-                $scope.$apply(); //这个一定要加,否则隐藏不了.  
-
-            }.bind(this));
-            /** @export */
-            this.rootScope_.getwarning = (event) => {
-                this.getwarning(event);
-            };
-            /** @export */
-            this.loading = true;
-            /** @export */
+        document.addEventListener("click", function() {
             this.showWarning = false;
-            /** @export */
-            this.warninglist = [];
-            // this.conn = new WebSocket('ws://172.16.116.1:30008' + '/alert/sockjs')
-            // new WebSocket('wss://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/api/sockjs', ['appProtocol']);
-            this.conn = new WebSocket('wss://' + location.host + location.pathname + 'api/sockjs');
-            this.conn.onopen = function(data) {
-                // this.toastr.success('监控正常', 0, {
-                //     closeButton: true,
-                //     timeOut: 10000
-                // });
-            }.bind(this);
-            this.conn.onmessage = function(data) {
-                let mes = JSON.parse(data.data);
-                for (let i = 0; i < mes["alerts"].length; i++) {
-                    this.toastr["warning"](mes["alerts"][i]["annotations"]["description"], 0, {
-                        closeButton: true,
-                        timeOut: 0
-                    });
-                }
-            }.bind(this);
-            this.conn.onclose = function(data) {
-                console.log(data);
-                // console.log('close');
-            };
-            this.conn.onerror = function(data) {
-                console.log(data);
-                // console.log('error');
-            };
-        }
-        /**
-         * 退出系统
-         * @export
-         */
-    logouts() {
-            this.cookies.remove('login');
-            this.cookies.remove('username');
-            this.state_.go('logins');
-        }
-        /**
-         * 退出系统
-         * @export
-         */
-    changemima() {
-            this.$mdDialog.show({
-                contentElement: '#changeDialog',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true
-            });
-            // this.state_.go('password');
-        }
-        /**
-         * 用户管理
-         * @export
-         */
-    usermanagement() {
-            this.state_.go('usermanagement');
-        }
-        /**
-         * Handles change of email using dialog.
-         * @export
-         */
-    handleChangeEmailDialog() {
-            this.emailService_.showChangeEmailDialog();
-            // console.log(this.emailService_);
-        }
-        /**
-         * 清除告警
-         * @export
-         */
-    clearAlerts() {
-            if (this.warninglist.length !== 0) {
-                this.loading = true;
-                let clearWarn = this.resource_('alertsclear');
-                clearWarn.query().$promise.then(
-                    (data) => {
-                        this.loading = false;
-                        // console.log(data);
-                        this.rootScope_["alertsnum"] = 0;
-                        this.warninglist = [];
-                    },
-                    (res) => {
-                        alert(this.i18n.MSG_warning_clear_error);
-                        // console.log(res);
-                    }
-                );
+            $scope.$apply(); //这个一定要加,否则隐藏不了.  
+
+        }.bind(this));
+        /** @export */
+        this.rootScope_.getwarning = (event) => {
+            this.getwarning(event);
+        };
+        /** @export */
+        this.loading = true;
+        /** @export */
+        this.user = $cookies.get("username");
+        /** @export */
+        this.showWarning = false;
+        /** @export */
+        this.warninglist = [];
+        // this.conn = new WebSocket('ws://172.16.116.1:30008' + '/alert/sockjs')
+        // new WebSocket('wss://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/api/sockjs', ['appProtocol']);
+        this.conn = new WebSocket('wss://' + location.host + location.pathname + 'api/sockjs');
+        this.conn.onopen = function(data) {
+            // this.toastr.success('监控正常', 0, {
+            //     closeButton: true,
+            //     timeOut: 10000
+            // });
+        }.bind(this);
+        this.conn.onmessage = function(data) {
+            let mes = JSON.parse(data.data);
+            for (let i = 0; i < mes["alerts"].length; i++) {
+                this.toastr["warning"](mes["alerts"][i]["annotations"]["description"], 0, {
+                    closeButton: true,
+                    timeOut: 0
+                });
             }
+        }.bind(this);
+        this.conn.onclose = function(data) {
+            console.log(data);
+            // console.log('close');
+        };
+        this.conn.onerror = function(data) {
+            console.log(data);
+            // console.log('error');
+        };
+    }
+
+    /**
+     * @export
+     */
+    show() {
+        let user = this.cookies.get('username');
+        if (user == "admin") {
+            return true;
+        } else {
+            return false;
         }
-        /**
-         * @return {boolean}
-         * @export
-         */
+    }
+
+    /**
+     * 退出系统
+     * @export
+     */
+    logouts() {
+        this.cookies.remove('login');
+        this.cookies.remove('username');
+        this.state_.go('logins');
+    }
+
+    /**
+     * 退出系统
+     * @export
+     */
+    changemima() {
+        this.$mdDialog.show({
+            contentElement: '#changeDialog',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        });
+        // this.state_.go('password');
+    }
+
+    /**
+     * 用户管理
+     * @export
+     */
+    usermanagement() {
+        this.state_.go('usermanagement', { "namespace": "_all" });
+    }
+
+    /**
+     * Handles change of email using dialog.
+     * @export
+     */
+    handleChangeEmailDialog() {
+        this.emailService_.showChangeEmailDialog();
+        // console.log(this.emailService_);
+    }
+
+    /**
+     * 清除告警
+     * @export
+     */
+    clearAlerts() {
+        if (this.warninglist.length !== 0) {
+            this.loading = true;
+            let clearWarn = this.resource_('alertsclear');
+            clearWarn.query().$promise.then(
+                (data) => {
+                    this.loading = false;
+                    // console.log(data);
+                    this.rootScope_["alertsnum"] = 0;
+                    this.warninglist = [];
+                },
+                (res) => {
+                    alert(this.i18n.MSG_warning_clear_error);
+                    // console.log(res);
+                }
+            );
+        }
+    }
+
+    /**
+     * @return {boolean}
+     * @export
+     */
     hasCustomActions() {
-            return !!this.state_.current.views && !!this.state_.current.views[actionbarViewName];
-        }
-        /**
-         * @export
-         */
+        return !!this.state_.current.views && !!this.state_.current.views[actionbarViewName];
+    }
+
+    /**
+     * @export
+     */
     stopPropagation(event) {
-            event = event || window.event;
-            event.stopPropagation(); //阻止事件冒泡,防止隐藏  
-        }
-        /**
-         * @export
-         */
+        event = event || window.event;
+        event.stopPropagation(); //阻止事件冒泡,防止隐藏  
+    }
+
+    /**
+     * @export
+     */
     getlocalTime(value) {
-            let timestr = '';
-            timestr += new Date(value).toLocaleDateString();
-            timestr += '   ';
-            timestr += new Date(value).toTimeString().substring(0, 8);
-            return timestr;
-        }
-        /**
-         * @export
-         */
+        let timestr = '';
+        timestr += new Date(value).toLocaleDateString();
+        timestr += '   ';
+        timestr += new Date(value).toTimeString().substring(0, 8);
+        return timestr;
+    }
+
+    /**
+     * @export
+     */
     getwarning(event) {
         if (this.showWarning) {
             this.showWarning = false;
