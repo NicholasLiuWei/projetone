@@ -13,7 +13,10 @@
                     </div>
                 </div>
                 <div class="itemlist">
-                    <div class="itemstatus" ng-repeat="release in $ctrl.releaselist.releases" ng-class="{'itemgood':release.info.status.code==8,'itemwrong':release.info.status.code==9}">
+                    <div class="itemstatus" ng-repeat="release in $ctrl.releaselist.releases" ng-if="release.info.status.code==9&&$index<21" ng-class="{'itemgood':release.info.status.code==8,'itemwrong':release.info.status.code==9}">
+                        <md-tooltip>{{release.name}}</md-tooltip>
+                    </div>
+                    <div class="itemstatus" ng-repeat="release in $ctrl.releaselist.releases" ng-if="release.info.status.code==8&&$index<21" ng-class="{'itemgood':release.info.status.code==8,'itemwrong':release.info.status.code==9}">
                         <md-tooltip>{{release.name}}</md-tooltip>
                     </div>
                     <div class="itemstatus" ng-repeat="release in $ctrl.releasestatus" ng-if="$index<21-$ctrl.releaselist.listMeta.totalItems"></div>
