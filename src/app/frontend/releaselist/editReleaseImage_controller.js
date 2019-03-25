@@ -26,86 +26,79 @@ export default class UpdateReleaseImageDialogController {
      * @ngInject
      */
     constructor($mdDialog, $log, $state, $resource, toastr, release) {
-            /** @export */
-            this.release = release;
+        /** @export */
+        this.release = release;
 
-            /** @private {!md.$dialog} */
-            this.mdDialog_ = $mdDialog;
+        /** @private {!md.$dialog} */
+        this.mdDialog_ = $mdDialog;
 
-            /** @private {!angular.$log} */
-            this.log_ = $log;
+        /** @private {!angular.$log} */
+        this.log_ = $log;
 
-            /** @private {!ui.router.$state} */
-            this.state_ = $state;
+        /** @private {!ui.router.$state} */
+        this.state_ = $state;
 
-            /** @private {!angular.$resource} */
-            this.resource_ = $resource;
+        /** @private {!angular.$resource} */
+        this.resource_ = $resource;
 
-            /** @export {!angular.FormController} Initialized from the template */
-            this.updateReleaseImageForm;
+        /** @export {!angular.FormController} Initialized from the template */
+        this.updateReleaseImageForm;
 
-            /** @export */
-            this.i18n = i18n();
+        /** @export */
+        this.i18n = i18n();
 
-            /** @export */
-            this.imageMes = {};
+        /** @export */
+        this.imageMes = {};
 
-            /** @export */
-            this.IP = '';
+        /** @export */
+        this.IP = '';
 
-            /** @export */
-            this.stateful = false;
+        /** @export */
+        this.stateful = false;
 
-            /** @export */
-            this.loading = false;
+        /** @export */
+        this.loading = false;
 
-            //is stateful release
-            this.isStatefulRelease();
+        //is stateful release
+        this.isStatefulRelease();
 
-            //get image mes
-            this.getImageMes();
+        //get image mes
+        this.getImageMes();
 
-            this.toastr = toastr;
-        }
-        /**
-         * get image mes.
-         *
-         * @export
-         */
+        this.toastr = toastr;
+    }
+
+    /**
+     * get image mes.
+     *
+     * @export
+     */
     getImageMes() {
-            let resource = this.resource_(`api/v1/helm/release/values/${this.release.name}`);
-            resource.get({}, (res) => {
-                let values = res["values"];
-                this.imageMes = values["image"];
-                if (this.imageMes["pullPolicy"]) {
-                    delete this.imageMes["pullPolicy"];
-                }
-                if (values["image"]["repository"]) {
-                    this.IP = this.imageMes["repository"].substring(0, this.imageMes["repository"].indexOf(':'));
-                } else {
-                    this.IP = this.imageMes["repositorybase"].substring(0, this.imageMes["repositorybase"].indexOf(':'));
-                }
-            }, this.onGetReleaseValuesErr.bind(this));
-        }
-        /**
-         * is stateful release.
-         *
-         * @export
-         */
+        let resource = this.resource_(`api/v1/helm/release/tags/namespace/${this.release.namespace}/name/${this.release.name}`);
+        resource.get({}, (res) => {
+            this.imageMes = res["imageList"];
+        }, this.onGetReleaseValuesErr.bind(this));
+    }
+
+    /**
+     * is stateful release.
+     *
+     * @export
+     */
     isStatefulRelease() {
-            if (this.release.chart.values.raw.indexOf('storagesize') != -1) {
-                this.stateful = false;
-            } else {
-                this.stateful = true;
-            }
+        if (this.release.chart.values.raw.indexOf('storagesize') != -1) {
+            this.stateful = false;
+        } else {
+            this.stateful = true;
         }
-        /**
-         * update release.
-         *
-         * @export
-         */
+    }
+
+    /**
+     * update release.
+     *
+     * @export
+     */
     updateRelease() {
-        console.log(this.imageMes);
         if (this.updateReleaseImageForm.$valid) {
             this.loading = true;
             let updatedata = {
@@ -114,13 +107,13 @@ export default class UpdateReleaseImageDialogController {
                 "chartpath": this.release.chart,
                 "imageInfo": [],
             }
-            for (let key in this.imageMes) {
+            for (let i = 0; i < this.imageMes.length; i++) {
                 updatedata["imageInfo"].push({
-                    "repoKey": `${key}`,
-                    "repoUrl": `${this.imageMes[key]}`,
-                    "imageIp": `${this.IP}`
+                    "repoKey": `${this.imageMes[i]["yamlPath"]}`,
+                    "repoUrl": `${this.imageMes[i]["repoUrl"]}`
                 });
             }
+            console.log(updatedata);
             // if (this.stateful) {
             //     updatedata["imageInfo"] = [{
             //         "repoKey": "repository",

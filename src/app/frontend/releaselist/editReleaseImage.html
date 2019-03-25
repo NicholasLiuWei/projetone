@@ -28,27 +28,30 @@ limitations under the License.
                                 <ng-message when="required">{{::ctrl.i18n.MSG_REPO_LIST_REPOSITORY_NAME_REQUIRED_WARNING}}</ng-message>
                             </ng-messages>
             </md-input-container> -->
-            <md-input-container class="md-block" ng-repeat="(key,value) in ctrl.imageMes">
-                <label>{{key}}</label>
-                <input type="text" ng-model="ctrl.imageMes[key]" required>
+            <md-input-container class="md-block" ng-repeat="url in ctrl.imageMes">
+                <label>{{url.yamlPath}}</label>
+                <md-select ng-model="url.repoUrl">
+                    <md-option ng-repeat="path in url.tags" ng-value="path">{{path}}</md-option>
+                </md-select>
+                <!-- <input type="text" ng-model="ctrl.imageMes[key]" required> -->
                 <!-- <ng-messages for="ctrl.updateReleaseForm.minpods.$error" role="alert">
                             <ng-message when="required">{{::ctrl.i18n.MSG_REPO_LIST_REPOSITORY_NAME_REQUIRED_WARNING}}</ng-message>
                         </ng-messages> -->
             </md-input-container>
-            <md-input-container class="md-block" ng-if="ctrl.imageMes.repository">
+            <!-- <md-input-container class="md-block" ng-if="ctrl.imageMes.repository">
                 <label>{{::ctrl.i18n.MSG_RELEASE_IMAGE_LOCATION}}</label>
                 <input type="text" ng-model="ctrl.IP" ng-value="ctrl.imageMes.repository.substring(0,ctrl.imageMes.repository.indexOf(':'))">
-                <!-- <ng-messages for="ctrl.updateReleaseForm.minpods.$error" role="alert">
+                <ng-messages for="ctrl.updateReleaseForm.minpods.$error" role="alert">
                                 <ng-message when="required">{{::ctrl.i18n.MSG_REPO_LIST_REPOSITORY_NAME_REQUIRED_WARNING}}</ng-message>
-                            </ng-messages> -->
+                            </ng-messages>
             </md-input-container>
             <md-input-container class="md-block" ng-if="!ctrl.imageMes.repository">
                 <label>{{::ctrl.i18n.MSG_RELEASE_IMAGE_LOCATION}}</label>
                 <input type="text" ng-model="ctrl.IP" ng-value="ctrl.imageMes.repositorybase.substring(0,ctrl.imageMes.repositorybase.indexOf(':'))">
-                <!-- <ng-messages for="ctrl.updateReleaseForm.minpods.$error" role="alert">
+                <ng-messages for="ctrl.updateReleaseForm.minpods.$error" role="alert">
                                     <ng-message when="required">{{::ctrl.i18n.MSG_REPO_LIST_REPOSITORY_NAME_REQUIRED_WARNING}}</ng-message>
-                                </ng-messages> -->
-            </md-input-container>
+                                </ng-messages>
+            </md-input-container> -->
             <!-- </div> -->
             <!-- <md-input-container class="md-block" ng-repeat="(key,value) in ctrl.imageMes">
                 <label>{{key}}</label>
