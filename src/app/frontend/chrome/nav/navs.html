@@ -16,10 +16,10 @@ limitations under the License.
 <div class="kd-nav" layout="column">
     <!-- <kd-namespace-select></kd-namespace-select> -->
     <!-- <div class="kd-nav-group"> -->
-    <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.home}}" icon="dashboard">[[Dashboard|Dashboard menu item in the nav.]]</kd-nav-item>
+    <kd-nav-item ng-if="$ctrl.setNavitem()" class="kd-nav-group-item" state="{{::$ctrl.states.home}}" icon="dashboard">[[Dashboard|Dashboard menu item in the nav.]]</kd-nav-item>
     <!-- <kd-nav-item class="kd-nav-group-item" state="{{::$ctrl.states.admin}}" icon="person">[[Admin|Admin menu item in the nav.]]</kd-nav-item> -->
     <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.namespace}}" icon="dns">[[Namespaces|Namespaces menu item in the nav.]]</kd-nav-item> -->
-    <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.node}}" icon="desktop_windows">[[Nodes|Nodes menu item in the nav.]]</kd-nav-item>
+    <kd-nav-item ng-if="$ctrl.setNavitem()" class="kd-nav-item" state="{{::$ctrl.states.node}}" icon="desktop_windows">[[Nodes|Nodes menu item in the nav.]]</kd-nav-item>
     <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.persistentVolume}}" icon="person">[[Persistent Volumes|Persistent Volumes menu item in the nav.]]</kd-nav-item> -->
     <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.storageClass}}" icon="add">[[Storage Classes|Storage Classes menu item in the nav.]]</kd-nav-item> -->
     <!-- <kd-nav-item class="kd-nav-item" state="{{::$ctrl.states.repository}}">[[Repositories|Repositories menu item in the nav.]]</kd-nav-item> -->

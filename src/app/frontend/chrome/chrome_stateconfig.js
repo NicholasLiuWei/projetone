@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { actionbarViewName, stateName, toolbarViewName } from './chrome_state';
+import { actionbarViewName, stateName, namespaceParam, toolbarViewName } from './chrome_state';
 import { ChromeController } from './chrome_component';
 /**
  * Namespace is an abstract state with no path, but with one parameter ?namespace= that
@@ -25,7 +25,9 @@ import { ChromeController } from './chrome_component';
  */
 export default function stateConfig($stateProvider) {
     $stateProvider.state(stateName, {
-        url: '/page',
+        // url: '/page',
+        url: `?${namespaceParam}`,
+        abstract: true,
         // onEnter: function(kdloginStatus) {
         //     console.log(kdloginStatus);
         //     kdloginStatus.checkLogin();

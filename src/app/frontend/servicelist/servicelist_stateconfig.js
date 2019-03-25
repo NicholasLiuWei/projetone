@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {stateName as chromeStateName} from 'chrome/chrome_state';
-import {breadcrumbsConfig} from 'common/components/breadcrumbs/breadcrumbs_service';
-import {stateName as parentStateName} from 'servicesanddiscovery/state';
+import { stateName as chromeStateName } from 'chrome/chrome_state';
+import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_service';
+import { stateName as parentStateName } from 'servicesanddiscovery/state';
 
-import {ServiceListController} from './servicelist_controller';
-import {stateName, stateUrl} from './servicelist_state';
+import { ServiceListController } from './servicelist_controller';
+import { stateName, stateUrl } from './servicelist_state';
 
 /**
  * Configures states for the service list view.
@@ -26,26 +26,26 @@ import {stateName, stateUrl} from './servicelist_state';
  * @ngInject
  */
 export default function stateConfig($stateProvider) {
-  $stateProvider.state(stateName, {
-    url: stateUrl,
-    parent: chromeStateName,
-    resolve: {
-      'serviceList': resolveServiceList,
-    },
-    data: {
-      [breadcrumbsConfig]: {
-        'label': i18n.MSG_BREADCRUMBS_SERVICES_LABEL,
-        'parent': parentStateName,
-      },
-    },
-    views: {
-      '': {
-        controller: ServiceListController,
-        controllerAs: 'ctrl',
-        templateUrl: 'servicelist/servicelist.html',
-      },
-    },
-  });
+    $stateProvider.state(stateName, {
+        url: stateUrl,
+        parent: chromeStateName,
+        resolve: {
+            'serviceList': resolveServiceList,
+        },
+        data: {
+            [breadcrumbsConfig]: {
+                'label': i18n.MSG_BREADCRUMBS_SERVICES_LABEL,
+                'parent': parentStateName,
+            },
+        },
+        views: {
+            '': {
+                controller: ServiceListController,
+                controllerAs: 'ctrl',
+                templateUrl: 'servicelist/servicelist.html',
+            },
+        },
+    });
 }
 
 /**
@@ -56,11 +56,11 @@ export default function stateConfig($stateProvider) {
  * @ngInject
  */
 export function resolveServiceList(kdServiceListResource, $stateParams, kdPaginationService) {
-  let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
-  return kdServiceListResource.get(query).$promise;
+    let query = kdPaginationService.getDefaultResourceQuery($stateParams.namespace);
+    return kdServiceListResource.get(query).$promise;
 }
 
 const i18n = {
-  /** @type {string} @desc Label 'Services' that appears as a breadcrumbs on the action bar. */
-  MSG_BREADCRUMBS_SERVICES_LABEL: goog.getMsg('Services'),
+    /** @type {string} @desc Label 'Services' that appears as a breadcrumbs on the action bar. */
+    MSG_BREADCRUMBS_SERVICES_LABEL: goog.getMsg('Services'),
 };

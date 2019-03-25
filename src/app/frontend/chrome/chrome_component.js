@@ -28,8 +28,9 @@ export class ChromeController {
      * @param {!angular.$timeout} $timeout
      * @ngInject
      */
-    constructor($state, $scope, $timeout, kdloginStatus) {
+    constructor($state, $scope, $timeout, kdloginStatus, kdloginUser) {
         this.kdloginStatus = kdloginStatus;
+        this.kdloginUser = kdloginUser;
         /**
          * By default this is true to show loading spinner for the first page.
          * @export {boolean}
@@ -55,6 +56,7 @@ export class ChromeController {
     /** @export */
     $onInit() {
         this.kdloginStatus["checkLogin"]();
+        this.kdloginUser["checkUser"]();
         this.registerStateChangeListeners(this.scope_);
     }
 

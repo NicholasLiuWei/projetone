@@ -7,9 +7,12 @@ export class storageController {
     /**
      * @ngInject
      */
-    constructor($state) {
+    constructor($state, $stateParams) {
         /** @export */
         this.state = $state;
+
+        /** @export */
+        this.stateParams = $stateParams["namespace"];
     }
 
     /**

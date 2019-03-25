@@ -7,9 +7,15 @@ export class storageController {
     /**
      * @ngInject
      */
-    constructor($state) {
+    constructor($state, $stateParams, $cookies) {
         /** @export */
         this.state = $state;
+
+        /** @export */
+        this.stateParams = $stateParams["namespace"];
+
+        /** @private */
+        this.cookies = $cookies;
     }
 
     /**
@@ -17,9 +23,9 @@ export class storageController {
      */
     change(name) {
         if (name == 'set') {
-            this.state.go('chrome.storage.storageclass')
+            this.state.go('storage.storageclass')
         } else {
-            this.state.go('chrome.storage.pvc')
+            this.state.go('storage.pvc')
         }
     }
 
@@ -28,6 +34,18 @@ export class storageController {
      */
     active(name) {
         if (this.state.current.name == name) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @export
+     */
+    show() {
+        let user = this.cookies.get('username');
+        if (user == "admin") {
             return true;
         } else {
             return false;

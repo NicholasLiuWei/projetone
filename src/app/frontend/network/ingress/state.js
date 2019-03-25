@@ -1,7 +1,7 @@
-import { stateName as chromeStateName } from 'chrome/chrome_state';
+// import { stateName as chromeStateName } from 'chrome/chrome_state';
 
 /** Name of the state. Can be used in, e.g., $state.go method. */
-export const stateName = `${chromeStateName}.net.ingress`;
+export const stateName = `net.ingress`;
 
 /** Absolute URL of the state. */
 export const stateUrl = '/ingress';

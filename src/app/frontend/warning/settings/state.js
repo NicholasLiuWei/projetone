@@ -1,2 +1,2 @@
-export const stateName = `chrome.monitoring.setting`;
+export const stateName = `monitoring.setting`;
 export const stateUrl = '/setting';

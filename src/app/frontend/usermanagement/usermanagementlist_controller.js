@@ -22,75 +22,130 @@ export class UsermanagementListController {
      * @param {!angular.Resource} kdUsermanagementListResource
      * @ngInject
      */
-    constructor(usermanagementList, kdUsermanagementListResource, $mdDialog) {
-            /** @export  */
-            this.usermanagementList = {
-                "typeMeta": {
-                    "kind": "usermanagement"
-                },
-                "items": [
-                    { "name": "name1", "email": "11@163.com", "root": "普通用户" },
-                    { "name": "name2", "email": "22@163.com", "root": "普通用户" },
-                    { "name": "name3", "email": "33@163.com", "root": "普通用户" },
-                    { "name": "name4", "email": "44@163.com", "root": "普通用户" },
-                    { "name": "name5", "email": "55@163.com", "root": "普通用户" }
-                ],
-                "listMeta": {
-                    "totalitems": 5
-                }
-            };
+    constructor($state, $cookies, $resource, usermanagementList, kdUsermanagementListResource, $mdDialog, toastr) {
+        /** @export  */
+        this.usermanagementList = usermanagementList["Data"];
+        /** @private */
+        this.state = $state;
+        /** @private */
+        this.resource = $resource;
+        /** @export  */
+        this.toastr = toastr;
+        this.cookies = $cookies;
 
-            /** @export {!angular.Resource} */
-            this.usermanagementListResource = kdUsermanagementListResource;
+        // console.log(this.usermanagementList);
+        // {
+        //     "typeMeta": {
+        //         "kind": "usermanagement"
+        //     },
+        //     "items": [
+        //         { "name": "name1", "email": "11@163.com", "root": "普通用户" },
+        //         { "name": "name2", "email": "22@163.com", "root": "普通用户" },
+        //         { "name": "name3", "email": "33@163.com", "root": "普通用户" },
+        //         { "name": "name4", "email": "44@163.com", "root": "普通用户" },
+        //         { "name": "name5", "email": "55@163.com", "root": "普通用户" }
+        //     ],
+        //     "listMeta": {
+        //         "totalitems": 5
+        //     }
+        // };
 
-            /**@export */
-            this.$mdDialog = $mdDialog;
+        /** @export {!angular.Resource} */
+        this.usermanagementListResource = kdUsermanagementListResource;
 
-            /**@export */
-            this.oNewUserMsg = {
-                "name": "",
-                "email": "",
-                "root": "普通用户",
-                "password": "",
-                "confirmPassword": "",
-            };
-            /**@export */
-            this.aRootAge = ["普通用户", "管理员"];
-            /**@export */
-            this.bPasswordError = false;
-        }
-        /**
-         * @return {boolean}
-         * @export
-         */
+        /**@export */
+        this.$mdDialog = $mdDialog;
+
+        /**@export */
+        this.oNewUserMsg = {
+            "name": "",
+            "email": "",
+            "root": "普通用户",
+            "password": "",
+            "confirmPassword": "",
+        };
+        /**@export */
+        this.aRootAge = ["普通用户", "管理员"];
+        /**@export */
+        this.bPasswordError = false;
+        /**@export */
+        this.userCheck = false;
+    }
+
+    /**
+     * @return {boolean}
+     * @export
+     */
     shouldShowZeroState() {
-            return this.usermanagementList.items.length === 0;
+        return this.usermanagementList.items.length === 0;
+    }
+
+    /**
+     * @export 
+     */
+    fMonitorUsername() {
+        if (/^(?!\d+$)[\da-zA-Z]+$/.test(this.oNewUserMsg.name)) {
+            if (this.userCheck !== false) {
+                this.userCheck = false;
+            }
         }
-        /**
-         * @export 
-         */
+    }
+
+    /**
+     * @export 
+     */
     fCreateNewUser() {
-            if (this.oNewUserMsg.password !== this.oNewUserMsg.confirmPassword) {
+        if (/^(?!\d+$)[\da-zA-Z]+$/.test(this.oNewUserMsg['name'])) {
+            if (this.userCheck !== false) {
+                this.userCheck = false;
+            }
+            if (this.oNewUserMsg['password'] !== this.oNewUserMsg['confirmPassword']) {
                 this.bPasswordError = true;
             } else {
                 this.bPasswordError = false;
                 this.$mdDialog.hide();
                 console.log(this.oNewUserMsg)
-                    // this.oNewUserMsg = {
-                    //     "name": "",
-                    //     "email": "",
-                    //     "root": "普通用户",
-                    //     "password": "",
-                    //     "confirmPassword": "",
-                    // };
+                let userMsg = {
+                    "username": this.oNewUserMsg['name'],
+                    "password": window["sha1"](this.oNewUserMsg['password']),
+                    "email": this.oNewUserMsg['email'],
+                    "isadmin": false
+                };
+                let resource = this.resource(`api/v1/user/create`, {}, { save: { method: 'post' } });
+                resource.save(
+                    userMsg,
+                    (res) => {
+                        if (res['errcode'] == "0") {
+                            console.log(res)
+                            this.state.reload();
+                            this.toastr["success"]("创建成功");
+                        } else {
+                            this.toastr["error"](res['errmsg']);
+                        }
+                    },
+                    (err) => {
+                        alert("创建失败")
+                    }
+                )
                 document.getElementById("reset-id").reset()
                 console.log(this.oNewUserMsg)
             }
+        } else {
+            this.userCheck = true;
         }
-        /**
-         * @export
-         */
+
+    }
+
+    /**
+     * @export
+     */
     cancel() {
         this.$mdDialog.cancel();
+    }
+
+    $onInit() {
+        if (this.cookies.get("username") != "admin") {
+            this.state.go("release", { "namespace": this.cookies.get("username") });
+        }
     }
 }

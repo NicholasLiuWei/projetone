@@ -13,6 +13,7 @@ export default angular
             'ui.router',
         ])
     .config(stateConfig)
+    .factory('kdloginUser', loginUser)
     .factory('kdloginStatus', loginStatus);
 
 /**
@@ -25,6 +26,30 @@ function loginStatus($state, $cookies) {
         "checkLogin": () => {
             if (!$cookies.get('login')) {
                 $state.go('logins');
+            }
+        },
+    };
+};
+
+/**
+ * 检查登录用户
+ *
+ * @ngInject
+ */
+function loginUser($state, $cookies, $stateParams) {
+    return {
+        "checkUser": () => {
+            let user = $cookies.get('username');
+            let namespace = $stateParams.namespace;
+            if (user == "admin") {
+                user = "_all";
+            }
+            if (namespace != user) {
+                if (user == "_all") {
+                    $state.go($state.current.name, { "namespace": user });
+                } else {
+                    $state.go($state.current.name, { "namespace": user });
+                }
             }
         },
     };

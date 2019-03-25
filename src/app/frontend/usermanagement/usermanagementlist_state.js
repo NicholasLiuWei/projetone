@@ -14,6 +14,6 @@
 
 /** Name of the state. Can be used in, e.g., $state.go method. */
 
-import { stateName as chromeStateName } from 'chrome/chrome_state';
-export const stateName = `${chromeStateName}.usermanagement`;
-export const stateUrl = '^/usermanagement';
+// import { stateName as chromeStateName } from 'chrome/chrome_state';
+export const stateName = `usermanagement`;
+export const stateUrl = '/usermanagement';
