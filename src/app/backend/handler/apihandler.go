@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	restful "github.com/emicklei/go-restful"
+	"github.com/emicklei/go-restful"
 	"github.com/ghw"
 	"github.com/kubernetes/dashboard/src/app/backend/api"
 	"github.com/kubernetes/dashboard/src/app/backend/auth"
@@ -69,6 +69,7 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/search"
 	"github.com/kubernetes/dashboard/src/app/backend/settings"
 	"github.com/kubernetes/dashboard/src/app/backend/systembanner"
+	"github.com/kubernetes/dashboard/src/app/backend/user"
 	"github.com/kubernetes/dashboard/src/app/backend/validation"
 	"golang.org/x/net/xsrftoken"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -637,6 +638,25 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.GET("/baseinfo/{node}").
 			To(apiHandler.handleBaseInfoByNode))
 
+	apiV1Ws.Route(
+		apiV1Ws.POST("/user/login").
+			To(apiHandler.handleUserLogin).
+			Reads(user.LoginSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.POST("/user/create").
+			To(apiHandler.handleCreateUser).
+			Reads(user.UserSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/user").
+			To(apiHandler.handleListUser).
+			Writes(user.RespData{}))
+	apiV1Ws.Route(
+		apiV1Ws.PUT("/user/chgpwd").
+			To(apiHandler.handleUserChgpwd).
+			Reads(user.ChgPasswordSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.DELETE("/user/{userid}").
+			To(apiHandler.handleDeleteUser))
 	return wsContainer, nil
 }
 
@@ -3444,3 +3464,71 @@ func parseDataSelectPathParameter(request *restful.Request) *dataselect.DataSele
 	metricQuery := parseMetricPathParameter(request)
 	return dataselect.NewDataSelectQuery(paginationQuery, sortQuery, filterQuery, metricQuery)
 }
+
+func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	loginSpec:=new(user.LoginSpec)
+	if err := request.ReadEntity(loginSpec); err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	newErr:=user.HandleLogin(k8sClient,loginSpec)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+}
+
+func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	resp:=user.HandleGetUsers(k8sClient)
+	response.WriteHeaderAndEntity(http.StatusOK,resp)
+}
+
+func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	UserSpec:=new(user.UserSpec)
+	if err := request.ReadEntity(UserSpec); err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	newErr:=user.HandleCreatUser(k8sClient,UserSpec)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+}
+
+func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	chgPasswordSpec:=new(user.ChgPasswordSpec)
+	if err := request.ReadEntity(chgPasswordSpec); err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	newErr:=user.HandleUserChgpwd(k8sClient,chgPasswordSpec)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+}
+
+func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	username := request.PathParameter("userid")
+	newErr:=user.HandleDeleteUser(k8sClient,username)
+	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+
+}
+

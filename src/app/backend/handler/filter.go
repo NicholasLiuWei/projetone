@@ -132,7 +132,7 @@ func shouldDoCsrfValidation(req *restful.Request) bool {
 
 	// Validation handlers are idempotent functions, and not actual data
 	// modification operations
-	if strings.HasPrefix(req.SelectedRoutePath(), "/api/v1/appdeployment/validate/") {
+	if strings.HasPrefix(req.SelectedRoutePath(), "/api/v1/appdeployment/validate/")||strings.HasPrefix(req.SelectedRoutePath(), "/api/v1/user"){
 		return false
 	}
 
