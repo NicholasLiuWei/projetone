@@ -2013,6 +2013,43 @@ func (apiHandler *APIHandler) handleGetNodeList(request *restful.Request, respon
 	response.WriteHeaderAndEntity(http.StatusOK, result)
 }
 
+func (apiHandler *APIHandler) handleGetClusterArch(request *restful.Request, response *restful.Response) {
+	k8sClient, err := apiHandler.cManager.Client(request)
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+
+	dataSelect := parseDataSelectPathParameter(request)
+	dataSelect.MetricQuery = dataselect.StandardMetrics
+	result, err := node.GetNodeList(k8sClient, dataSelect, apiHandler.iManager.Metric().Client())
+	var archMes ClusterArch
+	archMes.Arch = 0
+	var amd,arm = 0,0
+	for _,node := range result.Nodes{
+		if node.ObjectMeta.Labels["beta.kubernetes.io/arch"] == "amd64"{
+			amd++
+		}
+		if node.ObjectMeta.Labels["beta.kubernetes.io/arch"] == "arm64"{
+			arm++
+		}
+	}
+	if amd == 0 {
+		archMes.Arch = 1
+	}
+	if arm == 0 {
+		archMes.Arch = 2
+	}
+	if arm != 0 && arm != 0{
+		archMes.Arch = 0
+	}
+	if err != nil {
+		kdErrors.HandleInternalError(response, err)
+		return
+	}
+	response.WriteHeaderAndEntity(http.StatusOK, archMes)
+}
+
 func (apiHandler *APIHandler) handleGetCluster(request *restful.Request, response *restful.Response) {
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {

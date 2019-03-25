@@ -145,3 +145,7 @@ type NetInfo struct {
 	Model        string `json:"model"`
 	Name         string `json:"name"`
 }
+
+type ClusterArch struct {
+	Arch         int `json:"arch"`
+}
