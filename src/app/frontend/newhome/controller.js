@@ -603,6 +603,9 @@ export class homeController {
                         data['releases'] = [];
                         this.releaselist = data;
                     } else {
+                        data['releases'].sort(function(a, b) {
+                            return b["info"]["status"]["code"] - a["info"]["status"]["code"]
+                        });
                         this.releaselist = data;
                     }
                 }, () => {});
@@ -778,6 +781,9 @@ export class homeController {
                     data['releases'] = [];
                     this.releaselist = data;
                 } else {
+                    data['releases'].sort(function(a, b) {
+                        return b["info"]["status"]["code"] - a["info"]["status"]["code"]
+                    });
                     this.releaselist = data;
                 }
             }, () => {});
@@ -793,7 +799,7 @@ export class homeController {
                 }
             );
             //获取应用健康状态
-            let getreleasestatus = this.resource_('api/v1/helm/allreleasestatus/default');
+            let getreleasestatus = this.resource_('api/v1/helm/allreleasestatus/:namespace');
             getreleasestatus.get().$promise.then(
                 (data) => {
                     this.releasenum = data;
