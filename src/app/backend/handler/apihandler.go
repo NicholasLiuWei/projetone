@@ -501,9 +501,11 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.GET("/node").
 			To(apiHandler.handleGetNodeList).
 			Writes(node.NodeList{}))
+
 	apiV1Ws.Route(
 		apiV1Ws.GET("/clusterArch").
-			To(apiHandler.handleGetClusterArch)
+			To(apiHandler.handleGetClusterArch))
+
 	apiV1Ws.Route(
 		apiV1Ws.GET("/node/{name}").
 			To(apiHandler.handleGetNodeDetail).
