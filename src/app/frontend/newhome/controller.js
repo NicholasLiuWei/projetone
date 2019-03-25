@@ -12,7 +12,7 @@ export class homeController {
      * @param {!angular.$timeout} $timeout
      * @ngInject
      */
-    constructor($interval, $rootScope, kdCephResource, kdFsmonResource, kdPanelResource, kdReleaseResource, $mdDialog, kdNamespaceService, kdPaginationService, $timeout, $filter, $scope, $resource, $state) {
+    constructor($interval, $rootScope, kdArchResource, kdCephResource, kdFsmonResource, kdPanelResource, kdReleaseResource, $mdDialog, kdNamespaceService, kdPaginationService, $timeout, $filter, $scope, $resource, $state) {
         /** @private {!angular.Scope} */
         this.scope_ = $scope;
         /** @export {!angular.Scope}*/
@@ -32,6 +32,7 @@ export class homeController {
         this.kdPanelResource = kdPanelResource;
         this.kdReleaseResource = kdReleaseResource;
         this.kdCephResource = kdCephResource;
+        this.kdArchResource = kdArchResource;
         this.resource_ = $resource;
         this.state = $state;
         /** @export */
@@ -55,6 +56,10 @@ export class homeController {
         /** @export */
         this.nodelist = {
             "nodes": []
+        };
+        /** @export */
+        this.arch = {
+            "arch": 1
         };
         /** @export */
         this.releaselist = {};
@@ -153,7 +158,7 @@ export class homeController {
      * @export
      */
     warn() {
-        this.state.go("chrome.monitoring.list");
+        this.state.go("monitoring.list");
     }
 
     /**
@@ -564,6 +569,11 @@ export class homeController {
             let send = this.echarts["init"](this.$('.send_rate').get(0));
             //实时获取数据
             let interreq = this.interval_(() => {
+                //平台体系 arm  amd  或者混合
+                this.kdArchResource.get().$promise.then((data) => {
+                    this.arch["arch"] = data["arch"]
+                }, () => {});
+
                 //CPU，内存利用率
                 this.kdFsmonResource.get().$promise.then((data) => {
                     // this.fsmonMes = data;
@@ -764,6 +774,10 @@ export class homeController {
             this.kdFsmonResource.get().$promise.then((data) => {
                 this.cmRate = this.countRate(data);
             }, () => {});
+            //平台体系 arm  amd  或者混合
+            this.kdArchResource.get().$promise.then((data) => {
+                this.arch["arch"] = data["arch"]
+            }, () => {});
             //存储
             this.kdCephResource.get().$promise.then((data) => {
                 this.fsmonMes = data;
@@ -892,4 +906,10 @@ const i18n = {
     MSG_HOME_NO_WARN: goog.getMsg('系统无警告'),
     /** @export {string} @desc Serious Warning */
     MSG_HOME_HAVE_WARN: goog.getMsg('系统警告'),
+    /** @export {string} @desc Serious Warning */
+    MSG_HOME_NODE_GOOD: goog.getMsg('正常'),
+    /** @export {string} @desc Serious Warning */
+    MSG_HOME_NODE_ERR: goog.getMsg('异常'),
+    /** @export {string} @desc Serious Warning */
+    MSG_HOME_NODE_NAME: goog.getMsg('服务器'),
 };

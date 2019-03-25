@@ -21,7 +21,8 @@ export default angular
     .factory('kdPanelResource', panelResource)
     .factory('kdFsmonResource', fsmonResource)
     .factory('kdCephResource', cephResource)
-    .factory('kdReleaseResource', releaseResource);
+    .factory('kdReleaseResource', releaseResource)
+    .factory('kdArchResource', archResource);
 
 /**
  * @param {!angular.$resource} $resource
@@ -54,4 +55,13 @@ function fsmonResource($resource) {
  */
 function releaseResource($resource) {
     return $resource('api/v1/helm/allrelease/:namespace');
+}
+
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function archResource($resource) {
+    return $resource('api/v1/clusterArch');
 }

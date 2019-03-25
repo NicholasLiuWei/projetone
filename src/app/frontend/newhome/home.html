@@ -27,7 +27,32 @@
                     <div layout="row">[[正常: |newhome normal]]&nbsp; <span> {{$ctrl.releasenum.normal}}</span> </div>
                 </div>
             </div>
-            <div class="sitem" layout="row">
+            <div ng-if="$ctrl.arch.arch!=0" class="nitem">
+                <!-- <div style="width: 173px;margin: 0 auto;"> -->
+                <div class="num" layout="row">
+                    <div>
+                        <img src="assets/images/server.png" alt="">
+                    </div>
+                    <div>
+                        {{$ctrl.nodelist.nodes.length}}
+                    </div>
+                </div>
+                <div class="itemlist">
+                    <div class="itemstatus" ng-repeat="node in $ctrl.nodelist.nodes" ng-if="$index<21" ng-class="{'itemgood':node.ready=='True','itemwrong':node.ready!='True'}">
+                        <md-tooltip>{{node.objectMeta.name}}</md-tooltip>
+                    </div>
+                    <div class="itemstatus" ng-repeat="node in $ctrl.nodestatus" ng-if="$index<21-$ctrl.nodelist.nodes.length"></div>
+                </div>
+                <!-- </div> -->
+                <div class="statusdesc" layout="row" layout-align="space-between">
+                    <div layout="row">
+                        <b>{{$ctrl.i18n.MSG_HOME_NODE_NAME}}:</b>&nbsp;&nbsp;&nbsp;&nbsp;{{$ctrl.i18n.MSG_HOME_NODE_ERR}} &nbsp;
+                        <span>{{$ctrl.releasenum.abnormal}}</span>
+                    </div>
+                    <div layout="row">{{$ctrl.i18n.MSG_HOME_NODE_GOOD}}: &nbsp; <span> {{$ctrl.releasenum.normal}}</span> </div>
+                </div>
+            </div>
+            <div ng-if="$ctrl.arch.arch==0" class="sitem" layout="row">
                 <!-- <div style="width: 173px;margin: 0 auto;"> -->
                 <!-- <div class="num" layout="row">
                     <div>

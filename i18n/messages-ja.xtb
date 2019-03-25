@@ -68,6 +68,11 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">Sign out</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">Sign in</translation>
+  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
+  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
+  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
+  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
+  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">Release</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">AppStore</translation>
@@ -629,6 +634,9 @@
   <translation id="4475122443688912494" key="MSG_HOME_ERROE_STATUS" desc="Abnormal">异常</translation>
   <translation id="5468779524245425957" key="MSG_HOME_GOOD_STATUS" desc="Normal">正常</translation>
   <translation id="6656282499066990413" key="MSG_HOME_HAVE_WARN" desc="Serious Warning">系统警告</translation>
+  <translation id="254286159018532477" key="MSG_HOME_NODE_ERR" desc="Serious Warning">异常</translation>
+  <translation id="4264493327790965835" key="MSG_HOME_NODE_GOOD" desc="Serious Warning">正常</translation>
+  <translation id="9102567134025143691" key="MSG_HOME_NODE_NAME" desc="Serious Warning">服务器</translation>
   <translation id="8795377511802100302" key="MSG_HOME_NO_WARN" desc="No Warning">系统无警告</translation>
   <translation id="3384365793583297069" key="MSG_HOME_STORAGE_RATE" desc="dashboard存储使用率">Storage Rate</translation>
   <translation id="1585380567194471022" key="MSG_HORIZONTALPODAUTOSCALERDETAIL_ACTIONBAR_0" desc="Label \'Horizontal Pod Autoscaler\' which appears at the top of the delete dialog, opened from a horizontal pod autoscaler details page.">???????????????????????????????????????</translation>
