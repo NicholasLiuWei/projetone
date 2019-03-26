@@ -29,6 +29,9 @@ import (
 	"os"
 	"time"
 
+	"github.com/emicklei/go-restful"
+	influxdbclient "github.com/influxdata/influxdb/client/v2"
+	"github.com/kubernetes/dashboard/src/app/backend/alert"
 	"github.com/kubernetes/dashboard/src/app/backend/args"
 	"github.com/kubernetes/dashboard/src/app/backend/auth"
 	authApi "github.com/kubernetes/dashboard/src/app/backend/auth/api"
@@ -45,10 +48,8 @@ import (
 	"github.com/kubernetes/dashboard/src/app/backend/systembanner"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/pflag"
-	"github.com/kubernetes/dashboard/src/app/backend/alert"
 	"golang.org/x/net/websocket"
-	influxdbclient "github.com/influxdata/influxdb/client/v2"
-	"github.com/emicklei/go-restful"
+	_ "net/http/pprof"
 )
 
 var (
@@ -152,10 +153,10 @@ func main() {
 
 	//循环获取node信息
 	go func() {
-		for{
+		for {
 			handler.GetBaseInfo()
 			handler.GetBaseInfoAllNode()
-			time.Sleep(10*time.Second)
+			time.Sleep(10 * time.Second)
 		}
 	}()
 
@@ -220,12 +221,12 @@ func main() {
 
 	alertContainer.Add(alertWs)
 	alert_server := &http.Server{
-		Addr: ":9999",
-		ReadTimeout: 60 * time.Second,
+		Addr:         ":9999",
+		ReadTimeout:  60 * time.Second,
 		WriteTimeout: 60 * time.Second,
-		Handler: alertContainer,
+		Handler:      alertContainer,
 	}
-	go func () {
+	go func() {
 		log.Fatal(alert_server.ListenAndServe())
 	}()
 
@@ -248,7 +249,6 @@ func main() {
 	select {}
 }
 
-
 func NewReverseProxy(target string) *httputil.ReverseProxy {
 	proxy := httputil.NewSingleHostReverseProxy(&url.URL{
 		Scheme: "http",
@@ -256,7 +256,7 @@ func NewReverseProxy(target string) *httputil.ReverseProxy {
 	})
 
 	pTransport := &http.Transport{
-		Proxy:                 http.ProxyFromEnvironment,
+		Proxy: http.ProxyFromEnvironment,
 		DialContext: (&net.Dialer{
 			Timeout:   8 * time.Second,
 			KeepAlive: 8 * time.Second,
@@ -287,17 +287,17 @@ func Handle(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
 
 func initApp() {
 	appcom := "nohup /appmanager >/logs/appmanager-" + "`date +%Y%m%d%H%M%S`" + ".log 2>&1 &"
-	cmd := exec.Command("/bin/bash", "-c",appcom);
+	cmd := exec.Command("/bin/bash", "-c", appcom)
 	err := cmd.Run()
-	if err != nil{
-		fmt.Println("appmanager err:",err.Error())
+	if err != nil {
+		fmt.Println("appmanager err:", err.Error())
 		return
 	}
 	appcom = "nohup /monitor >/logs/monitor-" + "`date +%Y%m%d%H%M%S`" + ".log 2>&1 &"
-	cmd = exec.Command("/bin/bash", "-c",appcom);
+	cmd = exec.Command("/bin/bash", "-c", appcom)
 	err = cmd.Run()
-	if err != nil{
-		fmt.Println("monitor err:",err.Error())
+	if err != nil {
+		fmt.Println("monitor err:", err.Error())
 	}
 }
 
