@@ -18,7 +18,7 @@ limitations under the License.
 
 <!-- <kd-content-card ng-if="!$ctrl.shouldShowZeroState()"> -->
 <!-- <kd-content> -->
-<div style="width: calc(100% + 68px);height: 100%;overflow: scroll;">
+<div ng-if="!$ctrl.shouldShowZeroState()" style="width: calc(100% + 68px);height: 100%;overflow: scroll;">
     <kd-release-card-list release-list="$ctrl.releaseList" release-list-resource="$ctrl.releaseListResource">
     </kd-release-card-list>
 

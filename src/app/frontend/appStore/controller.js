@@ -18,7 +18,7 @@ export class AppStoreController {
      * @ngInject
      */
 
-    constructor($log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
+    constructor($stateParams, $log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
         this.form = 'form';
 
         this.file = { name: '', content: '' };
@@ -78,7 +78,7 @@ export class AppStoreController {
         /** @public */
         this.repo = '';
         /** @public */
-        this.namespace = 'default';
+        this.namespace = $stateParams.namespace;
         /** @export */
         this.comform = 'comform';
 
@@ -131,23 +131,23 @@ export class AppStoreController {
      *
      * @export
      */
-
     tanslate(str) {
-            if (this.translate) {
-                if (this.translateobj.hasOwnProperty(str)) {
-                    return this.translateobj[str];
-                } else {
-                    return str;
-                }
+        if (this.translate) {
+            if (this.translateobj.hasOwnProperty(str)) {
+                return this.translateobj[str];
             } else {
                 return str;
             }
+        } else {
+            return str;
         }
-        /**
-         * commitmes the application based on the state of the controller.
-         *
-         * @export
-         */
+    }
+
+    /**
+     * commitmes the application based on the state of the controller.
+     *
+     * @export
+     */
 
     deploynow() {
         if (this.comform.$valid) {
@@ -287,7 +287,7 @@ export class AppStoreController {
             let deploymentSpec = {
                 chartURL: this.selectedChart,
                 releaseName: this.name,
-                namespace: this.namespace,
+                namespace: this.namespace == "_all" ? "default" : this.namespace,
             };
             let defer = this.q_.defer();
 
