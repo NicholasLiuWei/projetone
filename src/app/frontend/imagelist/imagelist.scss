@@ -180,3 +180,15 @@ md-card>md-card-header img {
         display: block;
     }
 }
+
+#add-border-solid {
+    .kd-resource-card-header-columns {
+        border-right: 1px solid #e1e5e8;
+    }
+    kd-resource-card {
+        border-right: 1px solid #e1e5e8;
+    }
+    kd-resource-card:last-of-type {
+        border-bottom: 1px solid #e1e5e8;
+    }
+}
