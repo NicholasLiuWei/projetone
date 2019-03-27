@@ -271,7 +271,7 @@ export class imagelistController {
                 "imageURLs": [this.choicedNormalimage["url"]],
                 "chartURL": "",
                 "releaseName": value,
-                "namespace": this.namespace,
+                "namespace": this.namespace == "_all" ? "default" : this.namespace,
             };
             /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
             let resource = this.resource('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST' } });
@@ -375,7 +375,7 @@ export class imagelistController {
                 "chartpath": "",
                 "error": "",
                 "imageURLs": [this.choicedNormalimage["url"]],
-                "namespace": this.namespace,
+                "namespace": this.namespace == "_all" ? "default" : this.namespace,
                 "releaseName": this.deploymentSpec.releaseName,
                 "content": JSON.stringify(content)
             }
