@@ -127,7 +127,6 @@ export class AppStoreController {
         let a = archResource.get().$promise;
         a.then((res) => {
             this.arch = res["arch"];
-            this.arch = 2;
         }, () => {});
     }
 
