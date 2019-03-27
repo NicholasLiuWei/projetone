@@ -13,15 +13,8 @@ $chart-desc-color: rgba(0, 0, 0, .54);
     width: 352px;
 }
 
-.kd-chart-platform {
-    display: none;
-}
-
 .kd-chart-card-selected {
     border: 2.1px solid $selected-chart-color;
-    .kd-chart-platform {
-        display: block;
-    }
 }
 
 .kd-chart-card-icon-image {

@@ -43,7 +43,7 @@
 
                 <kd-help-section ng-show="ctrl.selectedRepos != 'None'">
                     <md-grid-list md-cols="3" md-row-height="122px" md-gutter="2em" required>
-                        <md-grid-tile ng-repeat="chart in ctrl.charts" ng-value="chart">
+                        <md-grid-tile ng-repeat="chart in ctrl.charts" ng-value="chart" ng-if="ctrl.showChart(chart.platform)">
                             <md-card class="kd-chart-card {{chart.selected}}" ng-click="ctrl.selectChart(chart.fullURL)">
                                 <md-card-content layout="row" style="padding:5px 16px;">
                                     <div flex="none" class="kd-chart-card-icon-image" layout="row" layout-align="center center">
@@ -54,11 +54,11 @@
                                         <div class="kd-chart-color-secondary" style="height:20px;" layout="row" layout-align="space-between center">
                                             <span>{{ctrl.i18n.MSG_CHART_VERSION_LABEL}}:&nbsp;&nbsp;{{chart.version}}</span>
                                             <div layout="row" class="kd-chart-platform">
-                                                <img ng-if="ctrl.platformstr=='X86' || ctrl.platformstr=='auto'" height="20" src="assets/images/x86.png" alt="">
-                                                <img ng-if="ctrl.platformstr=='ARM64' || ctrl.platformstr=='auto'" height="20" src="assets/images/arm.png" alt="">
+                                                <img ng-if="(chart.platform=='X86' || chart.platform=='auto')&&ctrl.arch!=2" height="20" src="assets/images/x86.png" alt="">
+                                                <img ng-if="(chart.platform=='ARM64' || chart.platform=='auto')&&ctrl.arch!=1" height="20" src="assets/images/arm.png" alt="">
                                             </div>
                                         </div>
-                                        <!-- <div class="kd-chart-color-secondary kd-chart-platform">{{ctrl.platformstr}}</div> -->
+                                        <!-- <div class="kd-chart-color-secondary kd-chart-platform">{{chart.platformstr}}</div> -->
                                         <p class="kd-chart-card-description kd-chart-color-secondary">{{chart.description}}</p>
                                     </div>
                                 </md-card-content>
@@ -211,9 +211,9 @@
                                 <md-input-container>
                                     <label>[[Deployment platform|App Store 部署平台]]</label>
                                     <md-select ng-model="ctrl.deployCon.platform">
-                                        <md-option ng-disabled="ctrl.platform=='ARM64'||ctrl.platform=='X86'" value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
-                                        <md-option ng-disabled="ctrl.platform=='X86'" value="ARM64">[[ARM64|App Store ARM64]]</md-option>
-                                        <md-option ng-disabled="ctrl.platform=='ARM64'" value="X86">[[X86|App Store X86]]</md-option>
+                                        <md-option ng-disabled="(ctrl.platform=='ARM64'||ctrl.platform=='X86')||ctrl.arch!=0" value="auto">[[Auto|App Store Auto 自动部署]]</md-option>
+                                        <md-option ng-disabled="ctrl.platform=='X86'||ctrl.arch==1" value="ARM64">[[ARM64|App Store ARM64]]</md-option>
+                                        <md-option ng-disabled="ctrl.platform=='ARM64'||ctrl.arch==2" value="X86">[[X86|App Store X86]]</md-option>
                                     </md-select>
                                 </md-input-container>
                                 <kd-user-help style="width: 40%;">

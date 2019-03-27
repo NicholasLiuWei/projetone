@@ -70,6 +70,8 @@ export class AppStoreController {
         this.namespaceList = [];
         /** @export platform */
         this.platform = 'auto';
+        /** @export arch */
+        this.arch = 1;
         /** @export 支持的平台字符串 */
         this.platformstr = "";
         this.getNamespaceList();
@@ -119,6 +121,16 @@ export class AppStoreController {
         };
     }
 
+    $onInit() {
+        console.log("$onInit")
+        let archResource = this.resource_("api/v1/clusterArch");
+        let a = archResource.get().$promise;
+        a.then((res) => {
+            this.arch = res["arch"];
+            this.arch = 2;
+        }, () => {});
+    }
+
     /**
      * @export
      */
@@ -140,6 +152,30 @@ export class AppStoreController {
             }
         } else {
             return str;
+        }
+    }
+
+    /**
+     * @export
+     * 根据平台架构选择是否显示当前chart
+     */
+    showChart(platform) {
+        switch (this.arch) {
+            //0auto   1  amd   2arm
+            case 0:
+                return true;
+            case 1:
+                if (platform == "ARM64") {
+                    return false;
+                } else {
+                    return true;
+                }
+            case 2:
+                if (platform == "X86") {
+                    return false;
+                } else {
+                    return true;
+                }
         }
     }
 
@@ -318,9 +354,15 @@ export class AppStoreController {
                             delete this.commitmes["$resolved"];
                             delete this.commitmes["error"];
                             this.allDeployCon = JSON.parse(response.content);
-                            console.log(this.allDeployCon);
+                            // console.log(this.allDeployCon);
                             let con = JSON.parse(response.content);
                             this.platform = con["platform"];
+                            if (this.arch == 1) {
+                                con["platform"] = "X86";
+                            }
+                            if (this.arch == 2) {
+                                con["platform"] = "ARM64";
+                            }
                             //delete con["resources"];
                             //delete con["service"];
                             //delete con["resourcesset"];
@@ -497,7 +539,6 @@ export class AppStoreController {
     selectChart(chartName) {
         //console.log(chartName)
         // window['$']('#name').eq(0).focus();
-        this.platformstr = '';
         for (let i = 0; i < this.charts.length; i++) {
             this.charts[i]['selected'] = '';
             if (this.charts[i]['fullURL'] === chartName) {
@@ -506,23 +547,6 @@ export class AppStoreController {
         }
         this.selectedChart = chartName;
         this.selectedCharts = chartName;
-        let deploymentSpec = {
-            chartURL: this.selectedChart,
-            releaseName: "test",
-            namespace: this.namespace,
-        };
-
-
-        /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
-        let resource = this.resource_('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST' } });
-        resource.save(
-            deploymentSpec,
-            (response) => {
-                let con = JSON.parse(response.content);
-                this.platformstr = con["platform"];
-            },
-            () => {});
-
     }
 }
 

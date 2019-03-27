@@ -12,7 +12,7 @@ export class imagelistController {
      * @param {!Object} errorDialog
      * @ngInject
      */
-    constructor($state, $log, $mdDialog, $resource, toastr, $q, errorDialog, kdService, baseimageList, normalimageList) {
+    constructor($stateParams, $state, $log, $mdDialog, $resource, toastr, $q, errorDialog, kdService, baseimageList, normalimageList) {
             /** @export */
             this.i18n = i18n;
 
@@ -49,6 +49,9 @@ export class imagelistController {
 
             /** @export */
             this.state = $state;
+
+            /** @export */
+            this.namespace = $stateParams.namespace;
 
             /** @export */
             this.releasename = '';
@@ -268,7 +271,7 @@ export class imagelistController {
                 "imageURLs": [this.choicedNormalimage["url"]],
                 "chartURL": "",
                 "releaseName": value,
-                "namespace": "default",
+                "namespace": this.namespace,
             };
             /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
             let resource = this.resource('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST' } });
@@ -372,7 +375,7 @@ export class imagelistController {
                 "chartpath": "",
                 "error": "",
                 "imageURLs": [this.choicedNormalimage["url"]],
-                "namespace": "default",
+                "namespace": this.namespace,
                 "releaseName": this.deploymentSpec.releaseName,
                 "content": JSON.stringify(content)
             }
