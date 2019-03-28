@@ -130,7 +130,7 @@
             resourceUrl = `api/v1/helm/_raw/${typeMeta.kind}`;
         }
         if (typeMeta.kind == "repository") {
-            resourceUrl = `api/v1/helm/${typeMeta.kind}/namespace/default`;
+            resourceUrl = `api/v1/helm/${typeMeta.kind}`;
         }
         if (objectMeta.namespace !== undefined) {
             resourceUrl += `/namespace/${objectMeta.namespace}`;
