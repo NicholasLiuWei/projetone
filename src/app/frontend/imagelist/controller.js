@@ -116,7 +116,7 @@ export class imagelistController {
             /** @export */
             this.deploymentSpec = {};
             /** @export */
-            this.oWorkloadIngress;
+            this.oWorkloadIngress = {};
         }
         /** @export */
     $onInit() {}
