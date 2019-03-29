@@ -64,11 +64,6 @@
   <translation id="8711874778657823772" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_0" desc="Tooltip for the control panel displayed in the right top corner.">Control panel</translation>
   <translation id="5588778838458035939" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_1" desc="Sign out menu item.">退出</translation>
   <translation id="3494123731165126874" key="MSG_CHROME_CONTROLPANEL_CONTROLPANEL_2" desc="Sign in menu item.">登录</translation>
-  <translation id="6779659746955175333" key="MSG_CHROME_NAV_NAV1_0" desc="Dashboard menu item in the nav.">Dashboard</translation>
-  <translation id="1530868660496094291" key="MSG_CHROME_NAV_NAV1_1" desc="Nodes menu item in the nav.">Nodes</translation>
-  <translation id="1636213129587420802" key="MSG_CHROME_NAV_NAV1_2" desc="Release menu item in the nav.">Release</translation>
-  <translation id="4126758271435708415" key="MSG_CHROME_NAV_NAV1_3" desc="AppStore menu entry.">AppStore</translation>
-  <translation id="8335052838685120846" key="MSG_CHROME_NAV_NAV1_4" desc="Repositories menu entry.">Repositories</translation>
   <translation id="6861005465516238719" key="MSG_CHROME_NAV_NAVS_0" desc="Dashboard menu item in the nav.">仪表盘</translation>
   <translation id="865228458732442123" key="MSG_CHROME_NAV_NAVS_1" desc="Release menu item in the nav.">应用管理</translation>
   <translation id="3465723921326085610" key="MSG_CHROME_NAV_NAVS_19" desc="AppStore menu entry.">应用商店</translation>
