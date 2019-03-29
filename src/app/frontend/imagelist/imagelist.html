@@ -87,7 +87,7 @@
             <div ng-if="ctrl.customShowNum == 1? true:false">
                 <!-- <kd-content-card ng-if="ctrl.showNum == 1? true:false"> -->
                 <kd-content layout="row" class="kd-content-style" layout-wrap>
-                    <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.name==ctrl.choicedNormalimage.name?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
+                    <md-card class="kd-chart-card" style="width:200px;height: 250px;" ng-class="image.url==ctrl.choicedNormalimage.url?'kd-chart-card-selected':''" ng-repeat="image in ctrl.normalimageList track by $index" ng-click="ctrl.choiceNormalimage(image)">
                         <md-card-content class="list-content">
                             <div class="kd-chart-card-icon-image">
                                 <img ng-src="{{image.icon}}" />

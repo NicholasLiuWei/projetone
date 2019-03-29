@@ -114,13 +114,6 @@ export class imagelistController {
             /** @export */
             this.oWorkloadComponent = [];
             /** @export */
-            this.oWorkloadIngress = {
-                    "enabled": "true",
-                    "host": "k8s.com",
-                    "servicePort": "90",
-                    "servicename": "bbb11"
-                }
-                /** @export */
             this.deploymentSpec = {};
             /** @export */
             this.oWorkloadIngress;
@@ -278,6 +271,7 @@ export class imagelistController {
             resource.save(
                 deploymentSpec,
                 (response) => {
+                    this.oWorkloadIngress = JSON.parse(response['content'])['ingress'];
                     this.deploymentSpec = deploymentSpec;
                     this.kdService.value = response;
                     this.kdService.value["content"] = JSON.parse(this.kdService.value["content"]);
