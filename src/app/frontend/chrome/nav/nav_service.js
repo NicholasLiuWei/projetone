@@ -62,26 +62,26 @@ export class NavService {
         while (state) {
             let lastIndex
             switch (state.name) {
-                case "chrome.monitoring.list":
-                    lastIndex = this.states_.lastIndexOf("chrome.monitoring.list");
+                case "monitoring.list":
+                    lastIndex = this.states_.lastIndexOf("monitoring.list");
                     break;
-                case "chrome.monitoring.setting":
-                    lastIndex = this.states_.lastIndexOf("chrome.monitoring.list");
+                case "monitoring.setting":
+                    lastIndex = this.states_.lastIndexOf("monitoring.list");
                     break;
-                case "chrome.storage.storageclass":
-                    lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
+                case "storage.storageclass":
+                    lastIndex = this.states_.lastIndexOf("storage.pvc");
                     break;
-                case "chrome.storage.pvc":
-                    lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
+                case "storage.pvc":
+                    lastIndex = this.states_.lastIndexOf("storage.pvc");
                     break;
-                case "chrome.storage.pv":
-                    lastIndex = this.states_.lastIndexOf("chrome.storage.pvc");
+                case "storage.pv":
+                    lastIndex = this.states_.lastIndexOf("storage.pvc");
                     break;
-                case "chrome.net.service":
-                    lastIndex = this.states_.lastIndexOf("chrome.net.service");
+                case "net.service":
+                    lastIndex = this.states_.lastIndexOf("net.service");
                     break;
-                case "chrome.net.ingress":
-                    lastIndex = this.states_.lastIndexOf("chrome.net.service");
+                case "net.ingress":
+                    lastIndex = this.states_.lastIndexOf("net.service");
                     break;
                 default:
                     lastIndex = this.states_.lastIndexOf(state.name);
