@@ -253,6 +253,7 @@ export class imagelistController {
      * @export
      */
     deploypre(value) {
+            console.log(this.choicedNormalimage)
             this.oDefaultWorkloadComponent.images[0]["repository"] = this.choicedNormalimage["url"];
             if (this.customImages.name == "" || this.customImages.name == undefined) {
                 this.oCustomFillInFields.name = true;
@@ -452,6 +453,7 @@ export class imagelistController {
      * @export
      */
     choiceBaseimage(imagename) {
+        console.log(imagename)
         this.choicedBaseimage = imagename;
     }
 
@@ -459,6 +461,7 @@ export class imagelistController {
      * @export
      */
     choiceNormalimage(imagename) {
+        console.log(imagename)
         this.choicedNormalimage = imagename;
     }
 }
