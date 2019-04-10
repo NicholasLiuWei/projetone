@@ -98,8 +98,9 @@ function browserSyncInit(baseDir) {
 
     let apiRoute = '/api';
     let proxyMiddlewareOptions = {
-        target: "http://172.16.30.11:32002",
-        // target: "https://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:https/proxy/",
+        // target: "http://172.16.30.11:32002",
+        target: "https://dashboard.lenovo.com",
+        //target: "https://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:https/proxy/",
         // target: conf.frontend.serveHttps ? `https://localhost:${conf.backend.secureDevServerPort}` :
         //                                    `http://localhost:${conf.backend.devServerPort}`,
         changeOrigin: true,
@@ -115,7 +116,7 @@ function browserSyncInit(baseDir) {
             baseDir: baseDir,
             middleware: [proxyMiddleware(apiRoute, proxyMiddlewareOptions),
                 // proxyMiddleware('/api/v1/user', { target: "http://172.16.30.11:32002", changeOrigin: true, logLevel: "debug", ws: true, secure: false })
-                proxyMiddleware('/alert', { target: "https://172.16.30.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:https/proxy/", changeOrigin: true, logLevel: "debug", ws: true, secure: false }),
+                proxyMiddleware('/alert', { target: "https://dashboard.lenovo.com", changeOrigin: true, logLevel: "debug", ws: true, secure: false }),
                 // proxyMiddleware('/api/v1/helm/deploychartprepare', { target: "http://172.16.113.1:8091", changeOrigin: true, secure: false, logLevel: "debug" })
             ],
             routes: {
