@@ -53,6 +53,8 @@ export class AppStoreController {
         /** @export */
         this.allDeployCon = {};
         /** @export */
+        this.pending = true;
+        /** @export */
         this.advanced = false;
         /** @export */
         this.selectedRepos = '';
@@ -442,14 +444,17 @@ export class AppStoreController {
     getRepos() {
         /** @type {!angular.Resource<!backendApi.RepositoryList>} */
         let resource = this.resource_(`api/v1/helm/repository`);
+        this.pending = true;
         resource.get(
             (res) => {
                 this.repos = [].concat(res.repositories.map((e) => e.name));
                 if (this.repos.length > 0) {
                     this.getCharts(res.repositories[0]['name']);
                 }
+                this.pending = false;
             },
             (err) => {
+                this.pending = false;
                 this.log_.log(`Error getting repos: ${err}`);
             });
     }
@@ -477,6 +482,7 @@ export class AppStoreController {
      */
     getCharts(repo) {
         //console.log('get charts');
+        this.pending = true;
         /** @type {!angular.Resource<!backendApi.ChartList>} */
         let resource = this.resource_(`api/v1/helm/repository/${repo}`);
         resource.get(
@@ -486,8 +492,11 @@ export class AppStoreController {
                     let nameB = b.name.toUpperCase();
                     return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
                 });
+                this.pending = false;
             },
             (err) => {
+                this.charts = [];
+                this.pending = false;
                 this.log_.log(`Error getting charts: ${err}`);
             });
     }
