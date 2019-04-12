@@ -756,7 +756,7 @@
   <translation id="1324815177627229726" key="MSG_IMAGELIST_IMAGELIST_62" desc="\u670D\u52A1\u540D\u5B57imagelist">Service name</translation>
   <translation id="6564989981426038016" key="MSG_IMAGELIST_IMAGELIST_63" desc="\u4E0A\u4E00\u6B65imagelist">Previous step</translation>
   <translation id="7880263278268327603" key="MSG_IMAGELIST_IMAGELIST_64" desc="\u5F00\u59CB\u521B\u5EFAimagelist">Start creating</translation>
-  <translation id="1886844991297264559" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u6309\u7167\u6240\u9009\u57FA\u7840\u955C\u7684\u8981\u6C42\u548C\u89C4\u8303\uFF0C\u914D\u7F6E\u6E90\u7801\u5E93\u548C\u5177\u4F53\u5206\u652Fimagelist">Configure the source library and specific branches according to the requirements and specifications of the selected base mirror</translation>
+  <translation id="4295966776601710856" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u6309\u7167\u6240\u9009\u57FA\u7840\u955C\u50CF\u7684\u8981\u6C42\u548C\u89C4\u8303\uFF0C\u914D\u7F6E\u6E90\u7801\u5E93\u548C\u5177\u4F53\u5206\u652Fimagelist">按照所选基础镜像的要求和规范，配置源码库和具体分支</translation>
   <translation id="7135494107631123295" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u8F93\u5165\u666E\u901A\u955C\u50CF\u7684\u540D\u79F0\uFF0C\u5F00\u59CB\u6784\u5EFAimagelist">Enter the name of the normal image and start building</translation>
   <translation id="7366470440166215436" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u4E0B\u4E00\u6B65imagelist">Next step</translation>
   <translation id="1937389621995341440" key="MSG_IMAGELIST_S2I_0" desc="\u4ED3\u5E93\u5730\u5740">Repository Address</translation>

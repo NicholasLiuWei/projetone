@@ -45,8 +45,8 @@
                     <md-grid-list md-cols="3" md-row-height="122px" md-gutter="2em" required>
                         <md-grid-tile ng-repeat="chart in ctrl.charts" ng-value="chart" ng-if="ctrl.showChart(chart.platform)">
                             <md-card class="kd-chart-card {{chart.selected}}" ng-click="ctrl.selectChart(chart.fullURL)">
-                                <md-card-content layout="row" style="padding:5px 16px;">
-                                    <div flex="none" class="kd-chart-card-icon-image" layout="row" layout-align="center center">
+                                <md-card-content layout="row" style="padding:5px 16px;height:100%;">
+                                    <div flex="none" style="height:100%;" class="kd-chart-card-icon-image" layout="row" layout-align="center center">
                                         <img ng-src="{{chart.icon}}" />
                                     </div>
                                     <div class="chartmes">
