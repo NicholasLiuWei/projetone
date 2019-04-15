@@ -1,0 +1,68 @@
+<!-- <kd-persistent-volume-card-list persistent-volume-list="$ctrl.persistentVolumeList" persistent-volume-list-resource="$ctrl.persistentVolumeListResource">
+</kd-persistent-volume-card-list>
+
+<div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.persistentVolumeList.items.length==0">[[暂无信息|暂无信息]]</div> -->
+<kd-resource-card-list selectable="false" with-statuses="false">
+    <kd-resource-card-list-header>
+        Node
+    </kd-resource-card-list-header>
+
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column size="small" grow="2" class="table-header-first-padding-left">
+            IP
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            Type
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            Agent
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            Update Time
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            State
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            Version
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <md-content>
+        <kd-resource-card ng-repeat="msg in $ctrl.data">
+        <!-- <kd-resource-card type-meta='{"kind": "data"}' object-meta="$ctrl.data"> -->
+            <kd-resource-card-columns>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.internalIP}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.type}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.agent}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.updateTime}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.state}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.version}}
+                    </div>
+                </kd-resource-card-column>
+            </kd-resource-card-columns>
+        </kd-resource-card>
+    </md-content>
+</kd-resource-card-list>
+<div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.data.length==0">[[暂无信息|暂无信息]]</div>

@@ -1,0 +1,63 @@
+<kd-resource-card-list selectable="false" with-statuses="false">
+    <kd-resource-card-list-header>
+        <p>K8s</p>
+        <md-content style="height: 57px;display: flex;align-items: center;font-size: 14px;line-height: normal;background: #ffffff;box-sizing: border-box;border-bottom: 1px solid #ccc;overflow: hidden;" layout-gt-xs="row">
+            <div style="height: 57px;">
+                <md-input-container class="md-block">
+                    <label>Index</label>
+                    <md-select ng-model="$ctrl.sCurrentIndexArr">
+                        <md-option ng-repeat="currentIndex in $ctrl.aIndexArr" value="{{currentIndex._source.name}}">
+                            {{currentIndex._source.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex-gt-xs style="display: flex;align-items: center;margin-left: 100px;flex-direction: column;height: 56px;">
+                <label>开始日期</label>
+                <md-datepicker ng-model="$ctrl.oStartDate" md-placeholder="Start date"></md-datepicker>
+            </div>
+            <div flex-gt-xs style="display: flex;align-items: center;margin-left: 100px;flex-direction: column;height: 56px;">
+                <label>结束日期</label>
+                <md-datepicker ng-model="$ctrl.oEndDate" md-placeholder="End time"></md-datepicker>
+            </div>
+            <div style="margin-left: 100px;">
+                <md-button class="md-raised md-primary">检索</md-button>
+            </div>
+        </md-content>
+    </kd-resource-card-list-header>
+    <md-content>
+        <kd-resource-card-header-columns>
+            <kd-resource-card-header-column size="small" grow="2" class="table-header-first-padding-left">
+                Host
+            </kd-resource-card-header-column>
+            <kd-resource-card-header-column size="small" grow="2">
+                Date
+            </kd-resource-card-header-column>
+            <kd-resource-card-header-column size="small" grow="2">
+                Content
+            </kd-resource-card-header-column>
+        </kd-resource-card-header-columns>
+        <kd-resource-card ng-repeat="msg in $ctrl.data">
+            <kd-resource-card-columns>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg._source.hostname}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg._source['@timestamp']}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column title={{msg._source.message}}>
+                    <div style="word-break: break-all;height: 60px;overflow: hidden;">
+                        {{msg._source.message}}
+                    </div>
+                </kd-resource-card-column>
+            </kd-resource-card-columns>
+        </kd-resource-card>
+    </md-content>
+</kd-resource-card-list>
+<!-- <kd-secret-card pagination-id="$ctrl.data" secret="secret" dir-paginate="secret in $ctrl.data | itemsPerPage: default" total-items="::$ctrl.data.length">
+</kd-secret-card> -->
+<div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.data.length==0">[[暂无信息|暂无信息]]</div>

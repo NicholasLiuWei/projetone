@@ -3,6 +3,14 @@ import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_ser
 
 import { stateName as rizhiName, stateUrl } from './state';
 import { rizhiController } from './controller';
+import { stateName as pvcStateName } from './pvc/state';
+import { stateName as nodeStateName } from './node/state';
+import { stateName as storageclassStateName } from './storageclass/state';
+import { stateName as logStateName } from './log/state';
+import { pvcConfig } from './pvc/stateconfig';
+import { nodeConfig } from './node/stateconfig';
+import { storageclassConfig } from './storageclass/stateconfig';
+import { logConfig } from './log/stateconfig';
 
 /**
  * Configures states for the home.
@@ -28,6 +36,10 @@ export default function stateConfig($stateProvider) {
             },
         },
     });
+    $stateProvider.state(nodeStateName, nodeConfig);
+    $stateProvider.state(pvcStateName, pvcConfig);
+    $stateProvider.state(storageclassStateName, storageclassConfig);
+    $stateProvider.state(logStateName, logConfig);
 }
 
 const i18n = {

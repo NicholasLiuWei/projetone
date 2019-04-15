@@ -1,0 +1,60 @@
+<!-- <kd-persistent-volume-claim-card-list persistent-volume-claim-list="$ctrl.persistentVolumeClaimList" persistent-volume-claim-list-resource="$ctrl.persistentVolumeClaimListResource">
+</kd-persistent-volume-claim-card-list>
+<div layout="row" layout-align="center center" style="height:200pmsg;" ng-if="$ctrl.persistentVolumeClaimList.items.length==0">[[暂无信息|暂无信息]]</div> -->
+<kd-resource-card-list selectable="false" with-statuses="false">
+    <kd-resource-card-list-header>
+        kubernetes
+    </kd-resource-card-list-header>
+
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column size="small" grow="2" class="table-header-first-padding-left">
+            Name
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            Address
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            State
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            Update Time
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <md-content>
+        <kd-resource-card ng-repeat="msg in $ctrl.data">
+            <!-- <kd-resource-card type-meta='{"kind": "data"}' object-meta="$ctrl.data"> -->
+            <kd-resource-card-columns>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.name}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.address}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.state}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.updateTime}}
+                    </div>
+                </kd-resource-card-column>
+            </kd-resource-card-columns>
+        </kd-resource-card>
+    </md-content>
+    <!-- <kd-resource-card-list-pagination pagination-id="secrets" list="$ctrl.secretList"
+                                      list-resource="$ctrl.secretListResource">
+    </kd-resource-card-list-pagination>
+    <kd-secret-card pagination-id="secrets" secret="secret"
+        dir-paginate="secret in $ctrl.secretList.secrets | itemsPerPage: default"
+        total-items="::$ctrl.secretList.listMeta.totalItems">
+        </kd-secret-card> -->
+</kd-resource-card-list>
+<kd-secret-card pagination-id="$ctrl.data" secret="secret" dir-paginate="secret in $ctrl.data | itemsPerPage: default" total-items="::$ctrl.data.length">
+</kd-secret-card>
+<div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.data.length==0">[[暂无信息|暂无信息]]</div>

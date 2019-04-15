@@ -16,24 +16,24 @@
  * @final
  */
 export class ServiceListController {
-  /**
-   * @param {!backendApi.ServiceList} serviceList
-   * @param {!angular.Resource} kdServiceListResource
-   * @ngInject
-   */
-  constructor(serviceList, kdServiceListResource) {
-    /** @export {!backendApi.ServiceList} */
-    this.serviceList = serviceList;
+    /**
+     * @param {!backendApi.ServiceList} serviceList
+     * @param {!angular.Resource} kdServiceListResource
+     * @ngInject
+     */
+    constructor(serviceList, kdServiceListResource) {
+        /** @export {!backendApi.ServiceList} */
+        this.serviceList = serviceList;
 
-    /** @export {!angular.Resource} */
-    this.serviceListResource = kdServiceListResource;
-  }
+        /** @export {!angular.Resource} */
+        this.serviceListResource = kdServiceListResource;
+    }
 
-  /**
-   * @return {boolean}
-   * @export
-   */
-  shouldShowZeroState() {
-    return this.serviceList.services.length === 0;
-  }
+    /**
+     * @return {boolean}
+     * @export
+     */
+    shouldShowZeroState() {
+        return this.serviceList.services.length === 0;
+    }
 }
