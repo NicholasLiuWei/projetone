@@ -1275,7 +1275,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		return nil, err
 	}
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
-		log.Println(string(respBytes))
+		//log.Println(string(respBytes))
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}else{
@@ -2039,15 +2039,16 @@ func (apiHandler *APIHandler) handleGetClusterArch(request *restful.Request, res
 			arm++
 		}
 	}
-	log.Println("amd",amd);
-	log.Println("arm",arm);
 	if amd == 0 {
-		archMes.Arch = 1
-	}
-	if arm == 0 {
+		//2 arm64
 		archMes.Arch = 2
 	}
-	if arm != 0 && arm != 0{
+	if arm == 0 {
+		//1 x86
+		archMes.Arch = 1
+	}
+	if arm != 0 && amd != 0{
+		//0 auto
 		archMes.Arch = 0
 	}
 	log.Println("archMes.Arch",archMes.Arch)
