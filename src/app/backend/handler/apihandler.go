@@ -2039,6 +2039,8 @@ func (apiHandler *APIHandler) handleGetClusterArch(request *restful.Request, res
 			arm++
 		}
 	}
+	log.Println("amd",amd);
+	log.Println("arm",arm);
 	if amd == 0 {
 		archMes.Arch = 1
 	}
@@ -2048,6 +2050,7 @@ func (apiHandler *APIHandler) handleGetClusterArch(request *restful.Request, res
 	if arm != 0 && arm != 0{
 		archMes.Arch = 0
 	}
+	log.Println("archMes.Arch",archMes.Arch)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
 		return
