@@ -9,6 +9,6 @@ export class rizhiController {
      * @export
      */
     url() {
-        return `http://${location.hostname}:30810`
+        return "http://log.lenovo.com";
     }
 }
