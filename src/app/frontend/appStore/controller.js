@@ -18,7 +18,7 @@ export class AppStoreController {
      * @ngInject
      */
 
-    constructor($stateParams, $log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
+    constructor(kdStorageClassListResource, kdPaginationService, $stateParams, $log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
         this.form = 'form';
 
         this.file = { name: '', content: '' };
@@ -50,6 +50,12 @@ export class AppStoreController {
 
         this.getRepos();
         this.state = $state;
+        /** @export */
+        this.kdStorageClassListResource = kdStorageClassListResource;
+        /** @export */
+        this.kdPaginationService = kdPaginationService;
+        /** @export */
+        this.storageclasslist = [];
         /** @export */
         this.allDeployCon = {};
         /** @export */
@@ -108,6 +114,7 @@ export class AppStoreController {
             "service": "服务",
             "name": "名称",
             "storage": "存储",
+            "storageClass": "存储类",
             "storageclassname": "存储库",
             "storagesize": "存储大小",
             "hpa": "自动扩容",
@@ -338,6 +345,17 @@ export class AppStoreController {
                     resource.save(
                         deploymentSpec,
                         (response, headers) => {
+                            let promises = this.kdStorageClassListResource.get(this.kdPaginationService.getDefaultResourceQuery("")).$promise
+                            promises.then((res) => {
+                                this.storageclasslist = [];
+                                /** @export {!backendApi.StorageClassList} */
+                                let list = res;
+                                list.storageClasses.map((item) => {
+                                    this.storageclasslist.push(item.objectMeta.name);
+                                })
+                            }, () => {
+                                this.storageclasslist = [con["persistence"]["storageClass"]];
+                            })
                             this.choice = false;
                             this.commit = true;
                             this.disable = false;

@@ -35,6 +35,6 @@ export const pvConfig = {
  * @ngInject
  */
 export function resolvePVResource(kdPVResource, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery("default");
+    let query = kdPaginationService.getDefaultResourceQuery("");
     return kdPVResource.get(query).$promise;
 }

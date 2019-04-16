@@ -142,16 +142,16 @@
                         </kd-content>
                     </kd-content-card>
                 </div>
-                <div ng-if="ctrl.deployCon.hasOwnProperty('storage')">
+                <div ng-if="ctrl.deployCon.hasOwnProperty('persistence')">
                     <kd-content-card>
-                        <kd-title>{{ctrl.tanslate('storage')}}</kd-title>
+                        <kd-title>{{ctrl.tanslate('storageClass')}}</kd-title>
                         <kd-content class="kd-content-padded">
                             <kd-help-section>
                                 <md-input-container class="md-block">
-                                    <label>{{ctrl.tanslate("storagesize")}}</label>
-                                    <div>
-                                        <input ng-model="ctrl.deployCon.storage.storagesize" namespace="ctrl.namespace" required>
-                                    </div>
+                                    <label>{{ctrl.tanslate("storageClass")}}</label>
+                                    <md-select ng-model="ctrl.deployCon.persistence.storageClass">
+                                        <md-option ng-repeat="item in ctrl.storageclasslist" ng-value="item">{{item}}</md-option>
+                                    </md-select>
                                 </md-input-container>
                                 <kd-user-help style="width: 40%;">
                                 </kd-user-help>
@@ -252,9 +252,12 @@
                         <kd-help-section ng-if="!ctrl.type(value1)" ng-repeat="(key1,value1) in value">
                             <md-input-container class="md-block">
                                 <label>{{ctrl.tanslate(key1)}}</label>
-                                <div>
+                                <div ng-if="key1!='storageClass'">
                                     <input ng-model="ctrl.allDeployCon[key][key1]" namespace="ctrl.namespace" required>
                                 </div>
+                                <md-select ng-if="key1=='storageClass'" ng-model="ctrl.allDeployCon[key][key1]">
+                                    <md-option ng-repeat="item in ctrl.storageclasslist" ng-value="item">{{item}}</md-option>
+                                </md-select>
                             </md-input-container>
                             <kd-user-help style="width: 40%;">
                             </kd-user-help>

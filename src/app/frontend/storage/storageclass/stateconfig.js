@@ -35,6 +35,6 @@ export const storageclassConfig = {
  * @ngInject
  */
 export function resolveStorageResource(kdStorageResource, kdPaginationService) {
-    let query = kdPaginationService.getDefaultResourceQuery("default");
+    let query = kdPaginationService.getDefaultResourceQuery("");
     return kdStorageResource.get(query).$promise;
 }
