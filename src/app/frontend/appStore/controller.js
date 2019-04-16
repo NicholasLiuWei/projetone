@@ -348,12 +348,11 @@ export class AppStoreController {
                             let promises = this.kdStorageClassListResource.get(this.kdPaginationService.getDefaultResourceQuery("")).$promise
                             promises.then((res) => {
                                 this.storageclasslist = [];
-                                /** @export {!backendApi.StorageClassList} */
-                                let list = res;
-                                list.storageClasses.map((item) => {
-                                    this.storageclasslist.push(item.objectMeta.name);
+                                res["storageClasses"].map((item) => {
+                                    this.storageclasslist.push(item["objectMeta"]["name"]);
                                 })
                             }, () => {
+                                let con = JSON.parse(response.content);
                                 this.storageclasslist = [con["persistence"]["storageClass"]];
                             })
                             this.choice = false;
