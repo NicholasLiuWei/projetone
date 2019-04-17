@@ -651,10 +651,10 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.POST("/user/create").
 			To(apiHandler.handleCreateUser).
 			Reads(user.UserSpec{}))
-	apiV1Ws.Route(
-		apiV1Ws.GET("/user").
-			To(apiHandler.handleListUser).
-			Writes(user.RespData{}))
+	// apiV1Ws.Route(
+	// 	apiV1Ws.GET("/user").
+	// 		To(apiHandler.handleListUser).
+	// 		Writes(user.RespData{}))
 	apiV1Ws.Route(
 		apiV1Ws.PUT("/user/chgpwd").
 			To(apiHandler.handleUserChgpwd).
