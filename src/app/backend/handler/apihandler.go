@@ -643,25 +643,25 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.GET("/baseinfo/{node}").
 			To(apiHandler.handleBaseInfoByNode))
 
-	apiV1Ws.Route(
-		apiV1Ws.POST("/user/login").
-			To(apiHandler.handleUserLogin).
-			Reads(user.LoginSpec{}))
-	apiV1Ws.Route(
-		apiV1Ws.POST("/user/create").
-			To(apiHandler.handleCreateUser).
-			Reads(user.UserSpec{}))
+	// apiV1Ws.Route(
+	// 	apiV1Ws.POST("/user/login").
+	// 		To(apiHandler.handleUserLogin).
+	// 		Reads(user.LoginSpec{}))
+	// apiV1Ws.Route(
+	// 	apiV1Ws.POST("/user/create").
+	// 		To(apiHandler.handleCreateUser).
+	// 		Reads(user.UserSpec{}))
 	// apiV1Ws.Route(
 	// 	apiV1Ws.GET("/user").
 	// 		To(apiHandler.handleListUser).
 	// 		Writes(user.RespData{}))
-	apiV1Ws.Route(
-		apiV1Ws.PUT("/user/chgpwd").
-			To(apiHandler.handleUserChgpwd).
-			Reads(user.ChgPasswordSpec{}))
-	apiV1Ws.Route(
-		apiV1Ws.DELETE("/user/{userid}").
-			To(apiHandler.handleDeleteUser))
+	// apiV1Ws.Route(
+	// 	apiV1Ws.PUT("/user/chgpwd").
+	// 		To(apiHandler.handleUserChgpwd).
+	// 		Reads(user.ChgPasswordSpec{}))
+	// apiV1Ws.Route(
+	// 	apiV1Ws.DELETE("/user/{userid}").
+	// 		To(apiHandler.handleDeleteUser))
 	return wsContainer, nil
 }
 
