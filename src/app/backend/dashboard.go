@@ -171,9 +171,9 @@ func main() {
 
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
-	//user request
-	http.HandleFunc("/api/v1/user", Handle(NewReverseProxy("172.16.30.11:32002")))
-	http.HandleFunc("/api/v1/user/", Handle(NewReverseProxy("172.16.30.11:32002")))
+	// //user request
+	// http.HandleFunc("/api/v1/user", Handle(NewReverseProxy("172.16.30.11:32002")))
+	// http.HandleFunc("/api/v1/user/", Handle(NewReverseProxy("172.16.30.11:32002")))
 	//alert request from dashboard frontend
 	http.HandleFunc("/alert/", Handle(NewReverseProxy("127.0.0.1:9999")))
 
@@ -276,7 +276,7 @@ func Handle(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// log.Println("request:", r.RemoteAddr, "want", r.RequestURI)
 		// r.RequestURI = strings.Replace(r.RequestURI, "/helm", "", -1)
-		log.Println("request:", r.RemoteAddr, "want", r.RequestURI, "wzbdebug: kkk")
+		log.Println("request:", r.RemoteAddr, "want", r.RequestURI)
 		//Many webservers are configured to not serve pages if a request doesn’t appear from the same host.
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "X-Requested-With")

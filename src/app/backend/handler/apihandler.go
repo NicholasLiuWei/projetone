@@ -643,25 +643,25 @@ func CreateHTTPAPIHandler(iManager integration.IntegrationManager, cManager clie
 		apiV1Ws.GET("/baseinfo/{node}").
 			To(apiHandler.handleBaseInfoByNode))
 
-	// apiV1Ws.Route(
-	// 	apiV1Ws.POST("/user/login").
-	// 		To(apiHandler.handleUserLogin).
-	// 		Reads(user.LoginSpec{}))
-	// apiV1Ws.Route(
-	// 	apiV1Ws.POST("/user/create").
-	// 		To(apiHandler.handleCreateUser).
-	// 		Reads(user.UserSpec{}))
-	// apiV1Ws.Route(
-	// 	apiV1Ws.GET("/user").
-	// 		To(apiHandler.handleListUser).
-	// 		Writes(user.RespData{}))
-	// apiV1Ws.Route(
-	// 	apiV1Ws.PUT("/user/chgpwd").
-	// 		To(apiHandler.handleUserChgpwd).
-	// 		Reads(user.ChgPasswordSpec{}))
-	// apiV1Ws.Route(
-	// 	apiV1Ws.DELETE("/user/{userid}").
-	// 		To(apiHandler.handleDeleteUser))
+	apiV1Ws.Route(
+		apiV1Ws.POST("/user/login").
+			To(apiHandler.handleUserLogin).
+			Reads(user.LoginSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.POST("/user/create").
+			To(apiHandler.handleCreateUser).
+			Reads(user.UserSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.GET("/user").
+			To(apiHandler.handleListUser).
+			Writes(user.RespData{}))
+	apiV1Ws.Route(
+		apiV1Ws.PUT("/user/chgpwd").
+			To(apiHandler.handleUserChgpwd).
+			Reads(user.ChgPasswordSpec{}))
+	apiV1Ws.Route(
+		apiV1Ws.DELETE("/user/{userid}").
+			To(apiHandler.handleDeleteUser))
 	return wsContainer, nil
 }
 
@@ -3563,7 +3563,6 @@ func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response
 	}
 	newErr:=user.HandleLogin(k8sClient,loginSpec)
 	response.WriteHeaderAndEntity(http.StatusOK,newErr)
-	// response.WriteHeaderAndEntity(http.StatusOK,"handleUserLogin, hello world...")
 }
 
 func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
@@ -3575,7 +3574,6 @@ func (apiHandler *APIHandler) handleListUser(request *restful.Request, response 
 	}
 	resp:=user.HandleGetUsers(k8sClient)
 	response.WriteHeaderAndEntity(http.StatusOK,resp)
-	// response.WriteHeaderAndEntity(http.StatusOK,"handleListUser, hello world...")
 }
 
 func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
@@ -3592,7 +3590,6 @@ func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, respons
 	}
 	newErr:=user.HandleCreatUser(k8sClient,UserSpec)
 	response.WriteHeaderAndEntity(http.StatusOK,newErr)
-	// response.WriteHeaderAndEntity(http.StatusOK,"handleCreateUser, hello world...")
 }
 
 func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
@@ -3609,7 +3606,6 @@ func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, respons
 	}
 	newErr:=user.HandleUserChgpwd(k8sClient,chgPasswordSpec)
 	response.WriteHeaderAndEntity(http.StatusOK,newErr)
-	// response.WriteHeaderAndEntity(http.StatusOK,"handleUserChgpwd, hello world...")
 }
 
 func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
@@ -3622,6 +3618,5 @@ func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, respons
 	username := request.PathParameter("userid")
 	newErr:=user.HandleDeleteUser(k8sClient,username)
 	response.WriteHeaderAndEntity(http.StatusOK,newErr)
-	// response.WriteHeaderAndEntity(http.StatusOK,"handleDeleteUser, hello world...")
 }
 
