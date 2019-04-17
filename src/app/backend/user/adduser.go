@@ -35,7 +35,7 @@ func HandleCreatUser(client kubernetes.Interface, user *UserSpec) ErrResponse {
 		Name: user.Username,
 	}
 	err = namespace2.CreateNamespace(NameSpaceSpec, client)
-	log.Println("CreateNamespace", NameSpaceSpec)
+	log.Println("CreateNamespace ...")
 	if err != nil {
 		return ErrResponse{51000, err.Error()}
 	}
@@ -56,7 +56,7 @@ func HandleCreatUser(client kubernetes.Interface, user *UserSpec) ErrResponse {
 			"isAdmin":  FormatBool(user.IsAdmin)},
 	}
 	_, err = client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Create(UserConfig)
-	log.Println("CreateUser", userName)
+	log.Println("CreateUser ...")
 	if err != nil {
 		return ErrResponse{51000, err.Error()}
 	}
