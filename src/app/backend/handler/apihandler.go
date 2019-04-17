@@ -3550,74 +3550,78 @@ func parseDataSelectPathParameter(request *restful.Request) *dataselect.DataSele
 }
 
 func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response *restful.Response) {
-	log.Println("handleUserLogin")
-	k8sClient, err := apiHandler.cManager.Client(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	loginSpec:=new(user.LoginSpec)
-	if err := request.ReadEntity(loginSpec); err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	newErr:=user.HandleLogin(k8sClient,loginSpec)
-	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	// log.Println("handleUserLogin")
+	// k8sClient, err := apiHandler.cManager.Client(request)
+	// if err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// loginSpec:=new(user.LoginSpec)
+	// if err := request.ReadEntity(loginSpec); err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// newErr:=user.HandleLogin(k8sClient,loginSpec)
+	// response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	response.WriteHeaderAndEntity(http.StatusOK,"handleUserLogin, hello world...")
 }
 
 func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
-	log.Println("handleListUser")
-	k8sClient, err := apiHandler.cManager.Client(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	resp:=user.HandleGetUsers(k8sClient)
-	response.WriteHeaderAndEntity(http.StatusOK,resp)
+	// log.Println("handleListUser")
+	// k8sClient, err := apiHandler.cManager.Client(request)
+	// if err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// resp:=user.HandleGetUsers(k8sClient)
+	// response.WriteHeaderAndEntity(http.StatusOK,resp)
+	response.WriteHeaderAndEntity(http.StatusOK,"handleListUser, hello world...")
 }
 
 func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
-	log.Println("handleCreateUser")
-	k8sClient, err := apiHandler.cManager.Client(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	UserSpec:=new(user.UserSpec)
-	if err := request.ReadEntity(UserSpec); err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	newErr:=user.HandleCreatUser(k8sClient,UserSpec)
-	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	// log.Println("handleCreateUser")
+	// k8sClient, err := apiHandler.cManager.Client(request)
+	// if err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// UserSpec:=new(user.UserSpec)
+	// if err := request.ReadEntity(UserSpec); err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// newErr:=user.HandleCreatUser(k8sClient,UserSpec)
+	// response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	response.WriteHeaderAndEntity(http.StatusOK,"handleCreateUser, hello world...")
 }
 
 func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
-	log.Println("handleUserChgpwd")
-	k8sClient, err := apiHandler.cManager.Client(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	chgPasswordSpec:=new(user.ChgPasswordSpec)
-	if err := request.ReadEntity(chgPasswordSpec); err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	newErr:=user.HandleUserChgpwd(k8sClient,chgPasswordSpec)
-	response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	// log.Println("handleUserChgpwd")
+	// k8sClient, err := apiHandler.cManager.Client(request)
+	// if err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// chgPasswordSpec:=new(user.ChgPasswordSpec)
+	// if err := request.ReadEntity(chgPasswordSpec); err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// newErr:=user.HandleUserChgpwd(k8sClient,chgPasswordSpec)
+	// response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	response.WriteHeaderAndEntity(http.StatusOK,"handleUserChgpwd, hello world...")
 }
 
 func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
-	log.Println("handleDeleteUser")
-	k8sClient, err := apiHandler.cManager.Client(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-	username := request.PathParameter("userid")
-	newErr:=user.HandleDeleteUser(k8sClient,username)
-	response.WriteHeaderAndEntity(http.StatusOK,newErr)
-
+	// log.Println("handleDeleteUser")
+	// k8sClient, err := apiHandler.cManager.Client(request)
+	// if err != nil {
+	// 	kdErrors.HandleInternalError(response, err)
+	// 	return
+	// }
+	// username := request.PathParameter("userid")
+	// newErr:=user.HandleDeleteUser(k8sClient,username)
+	// response.WriteHeaderAndEntity(http.StatusOK,newErr)
+	response.WriteHeaderAndEntity(http.StatusOK,"handleDeleteUser, hello world...")
 }
 
