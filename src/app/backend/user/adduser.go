@@ -37,7 +37,7 @@ func HandleCreatUser(client kubernetes.Interface, user *UserSpec) ErrResponse {
 	err = namespace2.CreateNamespace(NameSpaceSpec, client)
 	log.Println("CreateNamespace ...")
 	if err != nil {
-		return ErrResponse{51000, err.Error()}
+		return ErrResponse{51888, err.Error()}
 	}
 	UserConfig := &v1.ConfigMap{
 		TypeMeta: metaV1.TypeMeta{
@@ -58,7 +58,7 @@ func HandleCreatUser(client kubernetes.Interface, user *UserSpec) ErrResponse {
 	_, err = client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).Create(UserConfig)
 	log.Println("CreateUser ...")
 	if err != nil {
-		return ErrResponse{51000, err.Error()}
+		return ErrResponse{51666, err.Error()}
 	}
 	return ErrResponse{0, "ok"}
 }
