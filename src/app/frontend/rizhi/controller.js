@@ -1,27 +1,27 @@
 export class rizhiController {
-    constructor($state, $stateParams, $cookies,$resource) {
-        
-        /** @export */
-        this.resource = $resource;
+    constructor($state, $stateParams, $cookies, $resource) {
 
-        /** @export */
-        this.state = $state;
+            /** @export */
+            this.resource = $resource;
 
-        /** @export */
-        this.stateParams = $stateParams["namespace"];
+            /** @export */
+            this.state = $state;
 
-        /** @private */
-        this.cookies = $cookies;
+            /** @export */
+            this.stateParams = $stateParams["namespace"];
 
-    }
-    // /**
-    //  * 日志中心地址
-    //  * @export
-    //  */
-    // url() {
-    //     return `http://${location.hostname}:30810`
-    // }
-    
+            /** @private */
+            this.cookies = $cookies;
+
+        }
+        // /**
+        //  * 日志中心地址
+        //  * @export
+        //  */
+        // url() {
+        //     return `http://${location.hostname}:30810`
+        // }
+
     // /** @type {!angular.Resource<!backendApi.AppDeploymentFromChartSpec>} */
     // let resource = this.resource('api/v1/helm/deploychartprepare', {}, { save: { method: 'POST' } });
     // resource.save(
@@ -36,7 +36,7 @@ export class rizhiController {
     //         // this.value = this.kdService.value.content.services;
     //     }
     // )
-    
+
     /**
      * state 切换
      */
@@ -70,11 +70,10 @@ export class rizhiController {
             return false;
         }
     }
-    
+
     /**
      * @export
      */
-    $onInit(){
-    }
-    
+    $onInit() {}
+
 }

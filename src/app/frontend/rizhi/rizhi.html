@@ -1,14 +1,14 @@
 <div>
     <div class="rizhi-table">
         <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.storageclass')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/storageclass?namespace='+$ctrl.stateParams}}">[[存储类|存储类]]</a></div>
+            <a ng-href="{{'#!/rizhi/storageclass?namespace='+$ctrl.stateParams}}">[[platform|platform-rizhi]]</a></div>
         <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.node')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/node?namespace='+$ctrl.stateParams}}">Node</a></div>
+            <a ng-href="{{'#!/rizhi/node?namespace='+$ctrl.stateParams}}">[[Node|Node-rizhi]]</a></div>
         <div ng-class="$ctrl.active('rizhi.pvc')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/pvc?namespace='+$ctrl.stateParams}}">log Management</a>
+            <a ng-href="{{'#!/rizhi/pvc?namespace='+$ctrl.stateParams}}">[[logManagement|logManagement-rizhi]]</a>
         </div>
         <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.log')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/log?namespace='+$ctrl.stateParams}}">End</a>
+            <a ng-href="{{'#!/rizhi/log?namespace='+$ctrl.stateParams}}">[[logAnalysis|logAnalysis-rizhi]]</a>
         </div>
     </div>
     <kd-content-card flex-offset="0" flex="100">

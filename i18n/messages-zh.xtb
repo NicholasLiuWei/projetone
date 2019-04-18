@@ -1246,9 +1246,44 @@
   <translation id="4707374810025494648" key="MSG_RESOURCEQUOTADETAIL_RESOURCEQUOTADETAIL_1" desc="Resource quota info details section name">Name</translation>
   <translation id="6441862772940625742" key="MSG_RESOURCEQUOTADETAIL_RESOURCEQUOTADETAIL_2" desc="Resource quota info details section scopes">Scopes</translation>
   <translation id="3641265385665997534" key="MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR" desc="Message shown to the user when there is a pagination error.">分页错误</translation>
-  <translation id="293354886646173361" key="MSG_RIZHI_RIZHI_0" desc="jiankong Kubernetes \u5E73\u53F0\u65E5\u5FD7">平台日志</translation>
-  <translation id="5623705714715305573" key="MSG_RIZHI_RIZHI_1" desc="jiankong \u5E73\u53F0\u65E5\u5FD7">平台日志</translation>
-  <translation id="7713986540154844007" key="MSG_RIZHI_RIZHI_2" desc="jiankong \u5E73\u53F0\u65E5\u5FD7\u5C55\u793A\u4EE5\u53CA\u5206\u6790">平台日志展示以及分析</translation>
+  <translation id="6600106705058096958" key="MSG_RIZHI_NODE_NODE_0" desc="Node-rizhi">Node</translation>
+  <translation id="3612652404170329586" key="MSG_RIZHI_NODE_NODE_1" desc="IP-rizhi">IP</translation>
+  <translation id="2080078356875510111" key="MSG_RIZHI_NODE_NODE_2" desc="Type-rizhi">Type</translation>
+  <translation id="23556500146878016" key="MSG_RIZHI_NODE_NODE_3" desc="Agent-rizhi">Agent</translation>
+  <translation id="8654344078112547032" key="MSG_RIZHI_NODE_NODE_4" desc="UpdateTime-rizhi">UpdateTime</translation>
+  <translation id="9065360969067525041" key="MSG_RIZHI_NODE_NODE_5" desc="State-rizhi">State</translation>
+  <translation id="9036942072284817535" key="MSG_RIZHI_NODE_NODE_6" desc="Version-rizhi">Version</translation>
+  <translation id="631813204777156756" key="MSG_RIZHI_NODE_NODE_7" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
+  <translation id="4544334897977432992" key="MSG_RIZHI_PVC_PVC_0" desc="Index-rizhi">Index</translation>
+  <translation id="2585173743254937858" key="MSG_RIZHI_PVC_PVC_1" desc="\u5F00\u59CB\u65E5\u671F-rizhi">开始日期</translation>
+  <translation id="8817203710036519432" key="MSG_RIZHI_PVC_PVC_10" desc="K8s-rizhi">K8s</translation>
+  <translation id="4989034491103877165" key="MSG_RIZHI_PVC_PVC_11" desc="Host-rizhi">Host</translation>
+  <translation id="4255852484292646972" key="MSG_RIZHI_PVC_PVC_12" desc="Date-rizhi">Date</translation>
+  <translation id="7097214224339693684" key="MSG_RIZHI_PVC_PVC_13" desc="Pod-rizhi">Pod</translation>
+  <translation id="1608492597736431701" key="MSG_RIZHI_PVC_PVC_14" desc="Content-rizhi">Content</translation>
+  <translation id="8468344527464567339" key="MSG_RIZHI_PVC_PVC_15" desc="K8s-rizhi">K8s</translation>
+  <translation id="6741162464903146457" key="MSG_RIZHI_PVC_PVC_16" desc="Host-rizhi">Host</translation>
+  <translation id="7804091604917869945" key="MSG_RIZHI_PVC_PVC_17" desc="Date-rizhi">Date</translation>
+  <translation id="739561985234230207" key="MSG_RIZHI_PVC_PVC_18" desc="Content-rizhi">Content</translation>
+  <translation id="4465085112743633275" key="MSG_RIZHI_PVC_PVC_19" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
+  <translation id="4810351746759311203" key="MSG_RIZHI_PVC_PVC_2" desc="\u7ED3\u675F\u65E5\u671F-rizhi">结束日期</translation>
+  <translation id="5392309769837709709" key="MSG_RIZHI_PVC_PVC_3" desc="K8s-rizhi">K8s</translation>
+  <translation id="5521212364841395647" key="MSG_RIZHI_PVC_PVC_4" desc="Host-rizhi">Host</translation>
+  <translation id="2885659233893436218" key="MSG_RIZHI_PVC_PVC_5" desc="Date-rizhi">Date</translation>
+  <translation id="1582466505095893900" key="MSG_RIZHI_PVC_PVC_6" desc="Pod-rizhi">Pod</translation>
+  <translation id="3370703293527723008" key="MSG_RIZHI_PVC_PVC_7" desc="Container-rizhi">Container</translation>
+  <translation id="6892345760247798139" key="MSG_RIZHI_PVC_PVC_8" desc="Namespace-rizhi">Namespace</translation>
+  <translation id="796655295536365168" key="MSG_RIZHI_PVC_PVC_9" desc="Content-rizhi">Content</translation>
+  <translation id="2515655316543599916" key="MSG_RIZHI_RIZHI_0" desc="platform-rizhi">platform</translation>
+  <translation id="1963442686503460231" key="MSG_RIZHI_RIZHI_1" desc="Node-rizhi">Node</translation>
+  <translation id="1791718377705648327" key="MSG_RIZHI_RIZHI_2" desc="logManagement-rizhi">logManagement</translation>
+  <translation id="5987373027310417765" key="MSG_RIZHI_RIZHI_3" desc="logAnalysis-rizhi">logAnalysis</translation>
+  <translation id="556484738876614284" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_0" desc="kubernetes-rizhi">kubernetes</translation>
+  <translation id="6680189138821102390" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_1" desc="Name-rizhi">Name</translation>
+  <translation id="722465702828137675" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_2" desc="Address-rizhi">Address</translation>
+  <translation id="5447678013909707198" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_3" desc="State-rizhi">State</translation>
+  <translation id="943121043390146680" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_4" desc="UpdateTime-rizhi">UpdateTime</translation>
+  <translation id="5255317918199289727" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_5" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="2528761437844965428" key="MSG_S2I_CANCEL_ACTION" desc="update release cancle.">取消</translation>
   <translation id="2759038103209691171" key="MSG_S2I_LOCATION" desc="image location.">镜像地址</translation>
   <translation id="2315821539252743508" key="MSG_S2I_OK_ACTION" desc="update release OK.">确定</translation>

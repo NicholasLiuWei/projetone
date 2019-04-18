@@ -13,21 +13,30 @@ export class storageClassController {
     /**
      * @ngInject
      */
-    constructor($resource) {
+    constructor($resource, kdPlatFormResource) {
 
             /** @export */
             this.resource = $resource;
 
             /** @export */
-            this.data = [];
+            this.kdPlatFormResource = kdPlatFormResource;
+
+            /** @export */
+            this.data = {
+                "listMeta": { "totalItems": 0 },
+                "platForms": []
+            };
         }
         /**
          * @export
          */
     getData() {
-        let resource = this.resource('log/platform');
-        resource.query((res) => {
-            this.data = res;
+        // let resource = this.resource('log/platform');
+        this.kdPlatFormResource.query((res) => {
+            this.data = {
+                "listMeta": { "totalItems": res.length },
+                "platForms": res
+            }
             console.log(this.data);
         }, (err) => {
             console.log(err)

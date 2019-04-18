@@ -2,20 +2,31 @@ export class nodeController {
     /**
      * @ngInject
      */
-    constructor($resource) {
-            /** @export */
-            this.resource = $resource;
+    constructor($resource, kdLogNodeResource) {
+        /** @export */
+        this.resource = $resource;
 
-            /** @export */
-            this.data = [];
-        }
-        /**
-         * @export
-         */
+        /** @export */
+
+        this.kdLogNodeResource = kdLogNodeResource;
+
+        /** @export */
+        this.data = {
+            "listMeta": { "totalItems": 0 },
+            "logNodes": []
+        };
+    }
+
+    /**
+     * @export
+     */
     getData() {
-        let resource = this.resource('log/node');
-        resource.query((res) => {
-            this.data = res;
+        // let resource = this.resource('log/node');
+        this.kdLogNodeResource.query((res) => {
+            this.data = {
+                "listMeta": { "totalItems": res.length },
+                "logNodes": res
+            }
             console.log(this.data);
         }, (err) => {
             console.log(err)

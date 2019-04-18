@@ -3,26 +3,30 @@
 <div layout="row" layout-align="center center" style="height:200pmsg;" ng-if="$ctrl.persistentVolumeClaimList.items.length==0">[[暂无信息|暂无信息]]</div> -->
 <kd-resource-card-list selectable="false" with-statuses="false">
     <kd-resource-card-list-header>
-        kubernetes
+        [[kubernetes|kubernetes-rizhi]]
     </kd-resource-card-list-header>
+
+    <kd-resource-card-list-pagination pagination-id="platForms" list="$ctrl.data" list-resource="">
+    </kd-resource-card-list-pagination>
 
     <kd-resource-card-header-columns>
         <kd-resource-card-header-column size="small" grow="2" class="table-header-first-padding-left">
-            Name
+            [[Name|Name-rizhi]]
         </kd-resource-card-header-column>
         <kd-resource-card-header-column size="small" grow="2">
-            Address
+            [[Address|Address-rizhi]]
         </kd-resource-card-header-column>
         <kd-resource-card-header-column size="small" grow="2">
-            State
+            [[State|State-rizhi]]
         </kd-resource-card-header-column>
         <kd-resource-card-header-column size="small" grow="2">
-            Update Time
+            [[UpdateTime|UpdateTime-rizhi]]
         </kd-resource-card-header-column>
     </kd-resource-card-header-columns>
     <md-content>
-        <kd-resource-card ng-repeat="msg in $ctrl.data">
-            <!-- <kd-resource-card type-meta='{"kind": "data"}' object-meta="$ctrl.data"> -->
+        <!-- <kd-resource-card ng-repeat="msg in $ctrl.data"> -->
+        <!-- <kd-resource-card type-meta='{"kind": "data"}' object-meta="$ctrl.data"> -->
+        <kd-resource-card dir-paginate="msg in $ctrl.data.platForms | itemsPerPage: $ctrl.data.listMeta.totalItems" total-items="::$ctrl.data.listMeta.totalItems" pagination-id="platForms" type-meta='{"kind": "platForms"}' object-meta="$ctrl.data">
             <kd-resource-card-columns>
                 <kd-resource-card-column>
                     <div style="word-break: break-all;">
@@ -47,14 +51,5 @@
             </kd-resource-card-columns>
         </kd-resource-card>
     </md-content>
-    <!-- <kd-resource-card-list-pagination pagination-id="secrets" list="$ctrl.secretList"
-                                      list-resource="$ctrl.secretListResource">
-    </kd-resource-card-list-pagination>
-    <kd-secret-card pagination-id="secrets" secret="secret"
-        dir-paginate="secret in $ctrl.secretList.secrets | itemsPerPage: default"
-        total-items="::$ctrl.secretList.listMeta.totalItems">
-        </kd-secret-card> -->
 </kd-resource-card-list>
-<kd-secret-card pagination-id="$ctrl.data" secret="secret" dir-paginate="secret in $ctrl.data | itemsPerPage: default" total-items="::$ctrl.data.length">
-</kd-secret-card>
 <div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.data.length==0">[[暂无信息|暂无信息]]</div>

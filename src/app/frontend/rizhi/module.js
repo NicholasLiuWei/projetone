@@ -18,27 +18,27 @@ export default angular
         ])
     .config(stateConfig)
     .service('kdNamespaceService1', NamespaceService)
-    // .factory('kdStorageResource', storageClassListResource)
-    // .factory('kdPVResource', persistentVolumeListResource)
+    .factory('kdPlatFormResource', platFormListResource)
+    .factory('kdLogNodeResource', logNodeListResource)
     // .factory('kdPVCResource', persistentVolumeClaimListResource);
 
-// /**
-//  * @param {!angular.$resource} $resource
-//  * @return {!angular.Resource}
-//  * @ngInject
-//  */
-// function storageClassListResource($resource) {
-//     return $resource('api/v1/storageclass');
-// }
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function logNodeListResource($resource) {
+    return $resource('log/node');
+}
 
-// /**
-//  * @param {!angular.$resource} $resource
-//  * @return {!angular.Resource}
-//  * @ngInject
-//  */
-// function persistentVolumeClaimListResource($resource) {
-//     return $resource('api/v1/persistentvolumeclaim/:namespace');
-// }
+/**
+ * @param {!angular.$resource} $resource
+ * @return {!angular.Resource}
+ * @ngInject
+ */
+function platFormListResource($resource) {
+    return $resource('log/platform');
+}
 
 // /**
 //  * @param {!angular.$resource} $resource

@@ -1,12 +1,27 @@
 .rizhi {
     line-height: 30px;
 }
-.rizhi-table{
-    display:flex;
-    &>div{
+
+.rizhi-table {
+    display: flex;
+    &>div {
         border-bottom: 1px solid #e4e7ed;
     }
-    .warn-list-item:last-child{
-        border-radius:0;
+    .warn-list-item:last-child {
+        border-radius: 0;
     }
+}
+
+.log-management-search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    &>div {
+        margin-left: 100px;
+    }
+}
+
+.index-position-top {
+    position: relative;
+    top: 13px;
 }
