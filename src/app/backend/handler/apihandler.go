@@ -1383,7 +1383,7 @@ func networkInfoByNode(t1 int64, t2 int64, url string, node string, ch chan []Re
 		ch <- nil
 		return nil, err
 	}
-	log.Println(string(respBytes))
+	// log.Println(string(respBytes))
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil

@@ -137,6 +137,16 @@ export class AppStoreController {
         a.then((res) => {
             this.arch = res["arch"];
         }, () => {});
+        // let data;
+        // this.resource_("api/v1/_raw/node/name/node3").get((res) => {
+        //     console.log(res);
+        //     data = res;
+        //     data.metadata.labels["test"] = "huawei";
+        //     let resource = this.resource_("api/v1/_raw/node/name/node3", {}, { save: { method: 'PUT' } });
+        //     resource.save(res).$promise.then((res) => { console.log(res) }, (res) => {
+        //         console.log(res);
+        //     })
+        // }, () => {})
     }
 
     /**
