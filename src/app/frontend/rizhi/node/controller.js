@@ -2,9 +2,12 @@ export class nodeController {
     /**
      * @ngInject
      */
-    constructor($resource, kdLogNodeResource) {
+    constructor($resource, toastr, kdLogNodeResource) {
         /** @export */
         this.resource = $resource;
+
+        /** @export */
+        this.toastr = toastr;
 
         /** @export */
 
@@ -29,7 +32,7 @@ export class nodeController {
             }
             console.log(this.data);
         }, (err) => {
-            console.log(err)
+            this.toastr["error"]("请求出错");
         })
     }
 

@@ -13,10 +13,12 @@ export class storageClassController {
     /**
      * @ngInject
      */
-    constructor($resource, kdPlatFormResource) {
-
+    constructor($resource, toastr, kdPlatFormResource) {
             /** @export */
             this.resource = $resource;
+
+            /** @export */
+            this.toastr = toastr;
 
             /** @export */
             this.kdPlatFormResource = kdPlatFormResource;
@@ -39,7 +41,7 @@ export class storageClassController {
             }
             console.log(this.data);
         }, (err) => {
-            console.log(err)
+            this.toastr["error"]("请求出错");
         })
     }
 

@@ -2,9 +2,12 @@ export class pvcController {
     /**
      * @ngInject
      */
-    constructor($resource) {
+    constructor($resource, toastr) {
         /** @export */
         this.resource = $resource;
+
+        /** @export */
+        this.toastr = toastr;
 
         /** @export */
         this.data = [];
@@ -88,7 +91,7 @@ export class pvcController {
                 this.aIndexArr.push(val['_source']['name'])
             }
         }, (err) => {
-            console.log(err)
+            this.toastr["error"]("请求出错");
         })
     }
 
@@ -128,7 +131,7 @@ export class pvcController {
                 console.log(this.data)
             },
             (err) => {
-                console.log(err)
+                this.toastr["error"]("请求出错");
             });
     }
 
@@ -147,6 +150,7 @@ export class pvcController {
     }
 
     $onInit() {
+        console.log(this.$mdDateLocaleProvider)
         this.getIndex();
         this.getData(this.sCurrentIndexArr, this.oSearchStartDate, this.oSearchEndDate);
         let that = this;

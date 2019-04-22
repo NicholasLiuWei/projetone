@@ -1255,7 +1255,7 @@
   <translation id="9036942072284817535" key="MSG_RIZHI_NODE_NODE_6" desc="Version-rizhi">Version</translation>
   <translation id="631813204777156756" key="MSG_RIZHI_NODE_NODE_7" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="4544334897977432992" key="MSG_RIZHI_PVC_PVC_0" desc="Index-rizhi">Index</translation>
-  <translation id="2585173743254937858" key="MSG_RIZHI_PVC_PVC_1" desc="\u5F00\u59CB\u65E5\u671F-rizhi">开始日期</translation>
+  <translation id="2585173743254937858" key="MSG_RIZHI_PVC_PVC_1" desc="\u5F00\u59CB\u65E5\u671F-rizhi">Start date</translation>
   <translation id="8817203710036519432" key="MSG_RIZHI_PVC_PVC_10" desc="K8s-rizhi">K8s</translation>
   <translation id="4989034491103877165" key="MSG_RIZHI_PVC_PVC_11" desc="Host-rizhi">Host</translation>
   <translation id="4255852484292646972" key="MSG_RIZHI_PVC_PVC_12" desc="Date-rizhi">Date</translation>
@@ -1266,7 +1266,7 @@
   <translation id="7804091604917869945" key="MSG_RIZHI_PVC_PVC_17" desc="Date-rizhi">Date</translation>
   <translation id="739561985234230207" key="MSG_RIZHI_PVC_PVC_18" desc="Content-rizhi">Content</translation>
   <translation id="4465085112743633275" key="MSG_RIZHI_PVC_PVC_19" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
-  <translation id="4810351746759311203" key="MSG_RIZHI_PVC_PVC_2" desc="\u7ED3\u675F\u65E5\u671F-rizhi">结束日期</translation>
+  <translation id="4810351746759311203" key="MSG_RIZHI_PVC_PVC_2" desc="\u7ED3\u675F\u65E5\u671F-rizhi">End date</translation>
   <translation id="5392309769837709709" key="MSG_RIZHI_PVC_PVC_3" desc="K8s-rizhi">K8s</translation>
   <translation id="5521212364841395647" key="MSG_RIZHI_PVC_PVC_4" desc="Host-rizhi">Host</translation>
   <translation id="2885659233893436218" key="MSG_RIZHI_PVC_PVC_5" desc="Date-rizhi">Date</translation>

@@ -12,7 +12,6 @@ export class rizhiController {
 
             /** @private */
             this.cookies = $cookies;
-
         }
         // /**
         //  * 日志中心地址
