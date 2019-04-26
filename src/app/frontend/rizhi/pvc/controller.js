@@ -150,7 +150,6 @@ export class pvcController {
     }
 
     $onInit() {
-        console.log(this.$mdDateLocaleProvider)
         this.getIndex();
         this.getData(this.sCurrentIndexArr, this.oSearchStartDate, this.oSearchEndDate);
         let that = this;
