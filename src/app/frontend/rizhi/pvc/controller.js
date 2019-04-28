@@ -89,7 +89,7 @@ export class pvcController {
      * @export
      */
     getIndex() {
-        let resource = this.resource('logs/index_patterns/_search');
+        let resource = this.resource('api/v1/logs/index_patterns/_search');
         resource.get((res) => {
             let aIndexArr = res['hits']['hits'];
             for (let val of aIndexArr) {
@@ -119,7 +119,7 @@ export class pvcController {
                 console.log("请求超时");
             }
         }, 5000)
-        let resource = this.resource(`logs/${indexArr}/_search`, {}, { save: { method: 'POST' } });
+        let resource = this.resource(`api/v1/logs/${indexArr}/_search`, {}, { save: { method: 'POST' } });
         resource.save(
             reqdata,
             (res) => {

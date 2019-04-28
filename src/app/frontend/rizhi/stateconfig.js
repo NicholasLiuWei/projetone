@@ -18,7 +18,7 @@ import { logConfig } from './log/stateconfig';
  * @param {!ui.router.$stateProvider} $stateProvider
  * @ngInject
  */
-export default function stateConfig($stateProvider) {
+export default function stateConfig($stateProvider, $mdDateLocaleProvider) {
     $stateProvider.state(rizhiName, {
         url: stateUrl,
         parent: chromeStateName,
@@ -41,11 +41,11 @@ export default function stateConfig($stateProvider) {
     $stateProvider.state(storageclassStateName, storageclassConfig);
     $stateProvider.state(logStateName, logConfig);
 
-    // $mdDateLocaleProvider.months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
-    // $mdDateLocaleProvider.shortMonths = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+    $mdDateLocaleProvider.months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+    $mdDateLocaleProvider.shortMonths = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
     // $mdDateLocaleProvider.days = ['dimanche', 'lundi', 'mardi', ...];
 
-    // $mdDateLocaleProvider.shortDays = ['日', '一', '二', '三', '四', '五', '六'];
+    $mdDateLocaleProvider.shortDays = ['日', '一', '二', '三', '四', '五', '六'];
 
 }
 
