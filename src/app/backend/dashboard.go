@@ -172,8 +172,8 @@ func main() {
 	//helm request
 	http.HandleFunc("/api/v1/helm/", Handle(NewReverseProxy("127.0.0.1:8091")))
 	// //user request
-	// http.HandleFunc("/api/v1/user", Handle(NewReverseProxy("172.16.30.11:32002")))
-	// http.HandleFunc("/api/v1/user/", Handle(NewReverseProxy("172.16.30.11:32002")))
+	http.HandleFunc("/api/v1/log/", Handle(NewReverseProxy("dashboard-log:8091")))
+	http.HandleFunc("/api/v1/logs/", Handle(NewReverseProxy("dashboard-log:8091")))
 	//alert request from dashboard frontend
 	http.HandleFunc("/alert/", Handle(NewReverseProxy("127.0.0.1:9999")))
 

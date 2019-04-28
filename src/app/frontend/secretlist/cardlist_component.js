@@ -16,22 +16,22 @@
  * @final
  */
 export class SecretCardListController {
-  /**
-   * @param {!./../common/namespace/namespace_service.NamespaceService} kdNamespaceService
-   * @ngInject
-   */
-  constructor(kdNamespaceService) {
-    /** @private {!./../common/namespace/namespace_service.NamespaceService} */
-    this.kdNamespaceService_ = kdNamespaceService;
-  }
+    /**
+     * @param {!./../common/namespace/namespace_service.NamespaceService} kdNamespaceService
+     * @ngInject
+     */
+    constructor(kdNamespaceService) {
+        /** @private {!./../common/namespace/namespace_service.NamespaceService} */
+        this.kdNamespaceService_ = kdNamespaceService;
+    }
 
-  /**
-   * @return {boolean}
-   * @export
-   */
-  areMultipleNamespacesSelected() {
-    return this.kdNamespaceService_.areMultipleNamespacesSelected();
-  }
+    /**
+     * @return {boolean}
+     * @export
+     */
+    areMultipleNamespacesSelected() {
+        return this.kdNamespaceService_.areMultipleNamespacesSelected();
+    }
 }
 
 /**
@@ -40,15 +40,15 @@ export class SecretCardListController {
  * @type {!angular.Component}
  */
 export const secretCardListComponent = {
-  transclude: {
-    // Optional header that is transcluded instead of the default one.
-    'header': '?kdHeader',
-  },
-  templateUrl: 'secretlist/cardlist.html',
-  controller: SecretCardListController,
-  bindings: {
-    /** {!backendApi.SecretList} */
-    'secretList': '<',
-    'secretListResource': '<',
-  },
+    transclude: {
+        // Optional header that is transcluded instead of the default one.
+        'header': '?kdHeader',
+    },
+    templateUrl: 'secretlist/cardlist.html',
+    controller: SecretCardListController,
+    bindings: {
+        /** {!backendApi.SecretList} */
+        'secretList': '<',
+        'secretListResource': '<',
+    },
 };

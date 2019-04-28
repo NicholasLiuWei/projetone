@@ -16,115 +16,116 @@
  * @final
  */
 export class ResourceCardListPaginationController {
-  /**
-   * @param {!../../pagination/pagination_service.PaginationService} kdPaginationService
-   * @param {!../../../chrome/chrome_state.StateParams|!../../resource/resourcedetail.StateParams}
-   *     $stateParams
-   * @param {!../../errorhandling/errordialog_service.ErrorDialog} errorDialog
-   * @param {!angular.Scope} $scope
-   * @ngInject
-   */
-  constructor(kdPaginationService, $stateParams, errorDialog, $scope) {
-    /** @export {!./resourcecardlist_component.ResourceCardListController} -
-     * Initialized from require just before $onInit is called. */
-    this.resourceCardListCtrl;
-    /** @export {string} - Unique pagination id. Used together with id on <dir-paginate>
-     directive. Initialized from binding. */
-    this.paginationId;
-    /** @export {!angular.$resource} Initialized from binding. */
-    this.listResource;
-    /** @export {{listMeta: !backendApi.ListMeta}} Initialized from binding. */
-    this.list;
-    /** @private {!../../pagination/pagination_service.PaginationService} */
-    this.paginationService_ = kdPaginationService;
-    /** @private
-     * {!../../../chrome/chrome_state.StateParams|!../../resource/resourcedetail.StateParams} */
-    this.stateParams_ = $stateParams;
-    /** @export {number} */
-    this.rowsLimit;
-    /** @export {!Array<number>} */
-    this.rowsLimitOptions = this.paginationService_.getRowsLimitOptions();
-    /** @export {boolean} - Indicates whether pagination should be server sided of frontend only. */
-    this.serverSided = true;
-    /** @private {!../../errorhandling/errordialog_service.ErrorDialog} */
-    this.errorDialog_ = errorDialog;
-    /** @private {!angular.Scope} */
-    this.scope_ = $scope;
-    /** @export */
-    this.i18n = i18n;
-  }
-
-  /**
-   * @export
-   */
-  $onInit() {
-    if (this.paginationId === undefined || this.paginationId.length === 0) {
-      throw new Error('Pagination id has to be set.');
+    /**
+     * @param {!../../pagination/pagination_service.PaginationService} kdPaginationService
+     * @param {!../../../chrome/chrome_state.StateParams|!../../resource/resourcedetail.StateParams}
+     *     $stateParams
+     * @param {!../../errorhandling/errordialog_service.ErrorDialog} errorDialog
+     * @param {!angular.Scope} $scope
+     * @ngInject
+     */
+    constructor(kdPaginationService, $stateParams, errorDialog, $scope) {
+        /** @export {!./resourcecardlist_component.ResourceCardListController} -
+         * Initialized from require just before $onInit is called. */
+        this.resourceCardListCtrl;
+        /** @export {string} - Unique pagination id. Used together with id on <dir-paginate>
+         directive. Initialized from binding. */
+        this.paginationId;
+        /** @export {!angular.$resource} Initialized from binding. */
+        this.listResource;
+        /** @export {{listMeta: !backendApi.ListMeta}} Initialized from binding. */
+        this.list;
+        /** @private {!../../pagination/pagination_service.PaginationService} */
+        this.paginationService_ = kdPaginationService;
+        /** @private
+         * {!../../../chrome/chrome_state.StateParams|!../../resource/resourcedetail.StateParams} */
+        this.stateParams_ = $stateParams;
+        /** @export {number} */
+        this.rowsLimit;
+        /** @export {!Array<number>} */
+        this.rowsLimitOptions = this.paginationService_.getRowsLimitOptions();
+        /** @export {boolean} - Indicates whether pagination should be server sided of frontend only. */
+        this.serverSided = true;
+        /** @private {!../../errorhandling/errordialog_service.ErrorDialog} */
+        this.errorDialog_ = errorDialog;
+        /** @private {!angular.Scope} */
+        this.scope_ = $scope;
+        /** @export */
+        this.i18n = i18n;
     }
 
-    if (this.listResource === undefined) {
-      this.serverSided = false;
+    /**
+     * @export
+     */
+    $onInit() {
+        if (this.paginationId === undefined || this.paginationId.length === 0) {
+            throw new Error('Pagination id has to be set.');
+        }
+
+        if (this.listResource === undefined) {
+            this.serverSided = false;
+        }
+
+        if (!this.paginationService_.isRegistered(this.paginationId)) {
+            this.paginationService_.registerInstance(this.paginationId);
+        }
+
+        this.rowsLimit = this.paginationService_.getRowsLimit(this.paginationId);
+        console.log(this.rowsLimit)
+        this.registerStateChangeListener(this.scope_);
     }
 
-    if (!this.paginationService_.isRegistered(this.paginationId)) {
-      this.paginationService_.registerInstance(this.paginationId);
+    /**
+     * @param {!angular.Scope} scope
+     */
+    registerStateChangeListener(scope) {
+        scope.$on('$stateChangeStart', () => this.paginationService_.resetRowsLimit());
     }
 
-    this.rowsLimit = this.paginationService_.getRowsLimit(this.paginationId);
-    this.registerStateChangeListener(this.scope_);
-  }
+    /**
+     * Updates number of rows to display on associated resource list.
+     * @export
+     */
+    onRowsLimitUpdate() {
+        this.paginationService_.setRowsLimit(this.rowsLimit, this.paginationId);
+    }
 
-  /**
-   * @param {!angular.Scope} scope
-   */
-  registerStateChangeListener(scope) {
-    scope.$on('$stateChangeStart', () => this.paginationService_.resetRowsLimit());
-  }
+    /**
+     * Returns true if number of items on the list is bigger
+     * then min available rows limit, false otherwise.
+     *
+     * @return {boolean}
+     * @export
+     */
+    shouldShowPagination() {
+        return this.list.listMeta.totalItems > this.paginationService_.getMinRowsLimit();
+    }
 
-  /**
-   * Updates number of rows to display on associated resource list.
-   * @export
-   */
-  onRowsLimitUpdate() {
-    this.paginationService_.setRowsLimit(this.rowsLimit, this.paginationId);
-  }
+    /**
+     * Fetches pods based on given page number.
+     *
+     * @param {number} newPageNumber
+     * @export
+     */
+    pageChanged(newPageNumber) {
+        let namespace = this.stateParams_.objectNamespace || this.stateParams_.namespace;
+        let query = this.paginationService_.getResourceQuery(
+            this.paginationService_.getRowsLimit(this.paginationId), newPageNumber, namespace,
+            this.stateParams_.objectName);
 
-  /**
-   * Returns true if number of items on the list is bigger
-   * then min available rows limit, false otherwise.
-   *
-   * @return {boolean}
-   * @export
-   */
-  shouldShowPagination() {
-    return this.list.listMeta.totalItems > this.paginationService_.getMinRowsLimit();
-  }
+        this.resourceCardListCtrl.setPending(true);
 
-  /**
-   * Fetches pods based on given page number.
-   *
-   * @param {number} newPageNumber
-   * @export
-   */
-  pageChanged(newPageNumber) {
-    let namespace = this.stateParams_.objectNamespace || this.stateParams_.namespace;
-    let query = this.paginationService_.getResourceQuery(
-        this.paginationService_.getRowsLimit(this.paginationId), newPageNumber, namespace,
-        this.stateParams_.objectName);
-
-    this.resourceCardListCtrl.setPending(true);
-
-    this.listResource.get(
-        query,
-        (list) => {
-          this.list = list;
-          this.resourceCardListCtrl.setPending(false);
-        },
-        (err) => {
-          this.errorDialog_.open(this.i18n.MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR, err.data);
-          this.resourceCardListCtrl.setPending(false);
-        });
-  }
+        this.listResource.get(
+            query,
+            (list) => {
+                this.list = list;
+                this.resourceCardListCtrl.setPending(false);
+            },
+            (err) => {
+                this.errorDialog_.open(this.i18n.MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR, err.data);
+                this.resourceCardListCtrl.setPending(false);
+            });
+    }
 }
 
 /**
@@ -141,20 +142,20 @@ export class ResourceCardListPaginationController {
  * @type {!angular.Component}
  */
 export const resourceCardListPaginationComponent = {
-  templateUrl: 'common/components/resourcecard/resourcecardlistpagination.html',
-  controller: ResourceCardListPaginationController,
-  transclude: true,
-  require: {
-    'resourceCardListCtrl': '^kdResourceCardList',
-  },
-  bindings: {
-    'paginationId': '@',
-    'listResource': '<',
-    'list': '=',
-  },
+    templateUrl: 'common/components/resourcecard/resourcecardlistpagination.html',
+    controller: ResourceCardListPaginationController,
+    transclude: true,
+    require: {
+        'resourceCardListCtrl': '^kdResourceCardList',
+    },
+    bindings: {
+        'paginationId': '@',
+        'listResource': '<',
+        'list': '=',
+    },
 };
 
 const i18n = {
-  /** @export {string} @desc Message shown to the user when there is a pagination error. */
-  MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR: goog.getMsg('Pagination error'),
+    /** @export {string} @desc Message shown to the user when there is a pagination error. */
+    MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR: goog.getMsg('Pagination error'),
 };
