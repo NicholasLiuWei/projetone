@@ -26,7 +26,14 @@
                             </div>
                             <div>
                                 <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
-                                <p class="kd-chart-color-secondary">{{ctrl.i18n.MSG_IMAGELIST_VERSION}}:&nbsp;&nbsp;{{image.tag}}</p>
+                                <!-- <p class="kd-chart-color-secondary">{{ctrl.i18n.MSG_IMAGELIST_VERSION}}:&nbsp;&nbsp;{{image.tag}}</p> -->
+                                <div class="kd-chart-color-secondary" style="height:20px;" layout="row" layout-align="space-between center">
+                                    <span>{{ctrl.i18n.MSG_IMAGELIST_VERSION}}:&nbsp;&nbsp;{{image.tag}}</span>
+                                    <div layout="row" class="kd-chart-platform">
+                                        <img ng-if="(image.platform=='X86' || image.platform=='auto')&&ctrl.arch!=2" height="20" src="assets/images/x86.png" alt="">
+                                        <img ng-if="(image.platform=='ARM64' || image.platform=='auto')&&ctrl.arch!=1" height="20" src="assets/images/arm.png" alt="">
+                                    </div>
+                                </div>
                                 <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
                             </div>
                         </md-card-content>
@@ -94,7 +101,14 @@
                             </div>
                             <div>
                                 <h2 class="kd-chart-card-text-name">{{image.name}}</h2>
-                                <p class="kd-chart-color-secondary">{{ctrl.i18n.MSG_IMAGELIST_VERSION}}:&nbsp;&nbsp;{{image.tag}}</p>
+                                <!-- <p class="kd-chart-color-secondary">{{ctrl.i18n.MSG_IMAGELIST_VERSION}}:&nbsp;&nbsp;{{image.tag}}</p> -->
+                                <div class="kd-chart-color-secondary" style="height:20px;" layout="row" layout-align="space-between center">
+                                    <span>{{ctrl.i18n.MSG_IMAGELIST_VERSION}}:&nbsp;&nbsp;{{image.tag}}</span>
+                                    <div layout="row" class="kd-chart-platform">
+                                        <img ng-if="(image.platform=='X86' || image.platform=='auto')&&ctrl.arch!=2" height="20" src="assets/images/x86.png" alt="">
+                                        <img ng-if="(image.platform=='ARM64' || image.platform=='auto')&&ctrl.arch!=1" height="20" src="assets/images/arm.png" alt="">
+                                    </div>
+                                </div>
                                 <p class="kd-chart-card-text-description kd-chart-color-secondary">{{image.help}}</p>
                             </div>
                         </md-card-content>

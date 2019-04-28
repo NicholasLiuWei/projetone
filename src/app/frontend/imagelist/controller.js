@@ -13,222 +13,244 @@ export class imagelistController {
      * @ngInject
      */
     constructor($stateParams, $state, $log, $mdDialog, $resource, toastr, $q, errorDialog, kdService, baseimageList, normalimageList) {
-            /** @export */
-            this.i18n = i18n;
-
-            /** @private {!angular.$log} */
-            this.log_ = $log;
-
-            /** @private */
-            this.resource = $resource;
-
-            /** @export */
-            this.choicedBaseimage = baseimageList[0];
-
-            /** @export */
-            this.choicedNormalimage = normalimageList[0];
-
-            /** @export */
-            this.baseimageList = baseimageList;
-
-            /** @export */
-            this.normalimageList = normalimageList;
-
-            /** @export */
-            this.kdService = kdService;
-
-            /** @export */
-            this.toastr = toastr;
-            // this.showDeploynow = false;
-
-            /** @export {string} */
-            this.form;
-
-            /** @export */
-            this.mdDialog_ = $mdDialog;
-
-            /** @export */
-            this.state = $state;
-
-            /** @export */
-            this.namespace = $stateParams.namespace;
-
-            /** @export */
-            this.releasename = '';
-            /** @export */
-            this.currentNavItem = "base";
-            /** @export */
-            this.show = true;
-            /** @export */
-            this.oBaseImageMsg = {};
-            /** @export */
-            this.baseImages = {
-                "branch": "",
-                "url": "",
-                "name": ""
-            };
-            /** @export */
-            this.customImages = {
-                "branch": "",
-                "url": "",
-                "name": ""
-            };
-            /** @export */
-            this.oBaseFillInFields = {
-                    "url": false,
-                    "branch": false,
-                    "name": false
-                }
-                /** @export */
-            this.oCustomFillInFields = {
-                    "url": false,
-                    "branch": false,
-                    "name": false
-                }
-                /** @export */
-            this.baseShowNum = 1;
-            /** @export */
-            this.customShowNum = 1;
-            /** @export */
-            this.workloadType = [
-                { "id": "1", "name": 'Deployment' },
-                { "id": "2", "name": 'Statefulset' },
-                { "id": "3", "name": 'DaemonSet' }
-            ];
-            /** @export */
-            this.creatWorkloadNum = 1;
-            /** @export */
-            this.oWorkloadName = "";
-            /** @export */
-            this.oWorkloadUrl = "";
-            /** @export */
-            this.oWorkloadVersion = "";
-            /** @export */
-            this.types = ['Deployment', 'Statefulset', 'DaemonSet']
-                /** @export */
-            this.selectedUser = 'Deployment';
-            /** @export */
-            this.oDefaultWorkloadComponent = { "appType": "deployment", "hpa": { "enabled": true, "maxReplicas": 10, "minReplicas": 5, "targetAvgUtil": 50 }, "images": [{ "args": ["--init"], "command": ["/cmd"], "env": [{ "name": "GOROOT", "value": "/go" }], "ports": [{ "containerPort": 80, "protocol": "TCP" }], "pullPolicy": "IfNotPresent", "pvcs": [{ "accessModes": "ReadWriteOnce", "mountpoint": "/var/data", "name": "pv-claim", "requestStorage": "100Gi", "storageClassName": "ceph-sc" }], "repository": "http://172.16.113.1/centos:1.1", "resources": { "enabled": false, "limits": { "cpu": "200m", "memory": "500Mi" }, "requests": { "cpu": "100m", "memory": "300Mi" } } }], "name": "first", "replicaCount": 1, "restartPolicy": "Always", "$$hashKey": "object:109" };
-            /** @export */
-            this.aAddWorkloadComponent = [];
-            /** @export */
-            this.oWorkloadComponent = [];
-            /** @export */
-            this.deploymentSpec = {};
-            /** @export */
-            this.oWorkloadIngress = {};
-        }
         /** @export */
-    $onInit() {}
+        this.i18n = i18n;
+
+        /** @private {!angular.$log} */
+        this.log_ = $log;
+
+        /** @private */
+        this.resource = $resource;
+
         /** @export */
+        this.choicedBaseimage = baseimageList[0];
+
+        /** @export */
+        this.choicedNormalimage = normalimageList[0];
+
+        /** @export */
+        this.baseimageList = baseimageList;
+
+        /** @export */
+        this.normalimageList = normalimageList;
+
+        /** @export */
+        this.kdService = kdService;
+
+        /** @export */
+        this.toastr = toastr;
+        // this.showDeploynow = false;
+
+        /** @export {string} */
+        this.form;
+
+        /** @export */
+        this.mdDialog_ = $mdDialog;
+
+        /** @export */
+        this.state = $state;
+
+        /** @export */
+        this.namespace = $stateParams.namespace;
+
+        /** @export */
+        this.arch = 0;
+
+        /** @export */
+        this.releasename = '';
+        /** @export */
+        this.currentNavItem = "base";
+        /** @export */
+        this.show = true;
+        /** @export */
+        this.oBaseImageMsg = {};
+        /** @export */
+        this.baseImages = {
+            "branch": "",
+            "url": "",
+            "name": ""
+        };
+        /** @export */
+        this.customImages = {
+            "branch": "",
+            "url": "",
+            "name": ""
+        };
+        /** @export */
+        this.oBaseFillInFields = {
+                "url": false,
+                "branch": false,
+                "name": false
+            }
+            /** @export */
+        this.oCustomFillInFields = {
+                "url": false,
+                "branch": false,
+                "name": false
+            }
+            /** @export */
+        this.baseShowNum = 1;
+        /** @export */
+        this.customShowNum = 1;
+        /** @export */
+        this.workloadType = [
+            { "id": "1", "name": 'Deployment' },
+            { "id": "2", "name": 'Statefulset' },
+            { "id": "3", "name": 'DaemonSet' }
+        ];
+        /** @export */
+        this.creatWorkloadNum = 1;
+        /** @export */
+        this.oWorkloadName = "";
+        /** @export */
+        this.oWorkloadUrl = "";
+        /** @export */
+        this.oWorkloadVersion = "";
+        /** @export */
+        this.types = ['Deployment', 'Statefulset', 'DaemonSet']
+            /** @export */
+        this.selectedUser = 'Deployment';
+        /** @export */
+        this.oDefaultWorkloadComponent = { "appType": "deployment", "hpa": { "enabled": true, "maxReplicas": 10, "minReplicas": 5, "targetAvgUtil": 50 }, "images": [{ "args": ["--init"], "command": ["/cmd"], "env": [{ "name": "GOROOT", "value": "/go" }], "ports": [{ "containerPort": 80, "protocol": "TCP" }], "pullPolicy": "IfNotPresent", "pvcs": [{ "accessModes": "ReadWriteOnce", "mountpoint": "/var/data", "name": "pv-claim", "requestStorage": "100Gi", "storageClassName": "ceph-sc" }], "repository": "http://172.16.113.1/centos:1.1", "resources": { "enabled": false, "limits": { "cpu": "200m", "memory": "500Mi" }, "requests": { "cpu": "100m", "memory": "300Mi" } } }], "name": "first", "replicaCount": 1, "restartPolicy": "Always", "$$hashKey": "object:109" };
+        /** @export */
+        this.aAddWorkloadComponent = [];
+        /** @export */
+        this.oWorkloadComponent = [];
+        /** @export */
+        this.deploymentSpec = {};
+        /** @export */
+        this.oWorkloadIngress = {};
+    }
+
+    /** @export */
+    $onInit() {
+        let archResource = this.resource("api/v1/clusterArch");
+        let a = archResource.get().$promise;
+        a.then((res) => {
+            this.arch = res["arch"];
+        }, () => {});
+    }
+
+    /** @export */
     tablesBaseClick() {
-            this.show = true;
-        }
-        /** @export */
+        this.show = true;
+    }
+
+    /** @export */
     tablesCustomClick() {
-            this.show = false;
-        }
-        /**
-         * @export
-         */
+        this.show = false;
+    }
+
+    /**
+     * @export
+     */
     fPreviousStep() {
-            this.baseShowNum--;
-            this.prevClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-        }
-        /**
-         * @export
-         */
+        this.baseShowNum--;
+        this.prevClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+    }
+
+    /**
+     * @export
+     */
     fCreateBaseImagePre(msg) {
+        this.baseShowNum++;
+        this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+        this.oBaseImageMsg = msg;
+    }
+
+    /** @export */
+    fInputChangeUrl(value) {
+        if (value == undefined) {
+            this.oBaseFillInFields.url = true;
+        } else {
+            this.oBaseFillInFields.url = false;
+        }
+    }
+
+    /** @export */
+    fInputChangeBranch(value) {
+        if (value == undefined) {
+            this.oBaseFillInFields.branch = true;
+        } else {
+            this.oBaseFillInFields.branch = false;
+        }
+    }
+
+    /** @export */
+    fInputChangeName(value) {
+        if (value == undefined) {
+            this.oBaseFillInFields.name = true;
+        } else {
+            this.oBaseFillInFields.name = false;
+        }
+    }
+
+    /** @export */
+    fCustomInputChangeName(value) {
+        if (value == undefined) {
+            this.oCustomFillInFields.name = true;
+        } else {
+            this.oCustomFillInFields.name = false;
+        }
+    }
+
+    /**
+     * @export
+     */
+    fInputMsgPreNext() {
+        if (this.oBaseFillInFields.url == false && this.oBaseFillInFields.branch == false) {
             this.baseShowNum++;
             this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-            this.oBaseImageMsg = msg;
-        }
-        /** @export */
-    fInputChangeUrl(value) {
-            if (value == undefined) {
+        } else {
+            if (this.baseImages.url == "" || this.baseImages.url == undefined) {
                 this.oBaseFillInFields.url = true;
             } else {
-                this.oBaseFillInFields.url = false;
-            }
-        }
-        /** @export */
-    fInputChangeBranch(value) {
-            if (value == undefined) {
                 this.oBaseFillInFields.branch = true;
-            } else {
-                this.oBaseFillInFields.branch = false;
             }
         }
-        /** @export */
-    fInputChangeName(value) {
-            if (value == undefined) {
-                this.oBaseFillInFields.name = true;
-            } else {
-                this.oBaseFillInFields.name = false;
-            }
-        }
-        /** @export */
-    fCustomInputChangeName(value) {
-            if (value == undefined) {
-                this.oCustomFillInFields.name = true;
-            } else {
-                this.oCustomFillInFields.name = false;
-            }
-        }
-        /**
-         * @export
-         */
-    fInputMsgPreNext() {
-            if (this.oBaseFillInFields.url == false && this.oBaseFillInFields.branch == false) {
-                this.baseShowNum++;
-                this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-            } else {
-                if (this.baseImages.url == "" || this.baseImages.url == undefined) {
-                    this.oBaseFillInFields.url = true;
-                } else {
-                    this.oBaseFillInFields.branch = true;
-                }
-            }
-        }
-        /**
-         * @export
-         */
-    fBaseImagePre() {
-            if (this.baseImages.name == "" || this.baseImages.name == undefined) {
-                this.oBaseFillInFields.name = true;
-                return;
-            }
-            this.baseShowNum = 1;
-            this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-            let msg = {
-                "gitUrl": this.baseImages.url,
-                "gitBranch": this.baseImages.branch,
-                "builderImg": this.oBaseImageMsg["url"],
-                "imageTag": this.baseImages.name
-            }
+    }
 
-            let resource = this.resource(`api/v1/helm/s2i`, {}, { save: { method: 'POST' } });
-            resource.save(
-                msg, this.onEditReleaseSuccess_.bind(this),
-                this.onEditReleaseError_.bind(this),
-                this.baseImages = {
-                    branch: "",
-                    url: "",
-                    name: ""
-                });
+    /**
+     * @export
+     */
+    fBaseImagePre() {
+        if (this.baseImages.name == "" || this.baseImages.name == undefined) {
+            this.oBaseFillInFields.name = true;
+            return;
         }
-        /**
-         * @export
-         */
+        this.baseShowNum = 1;
+        this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+        let msg = {
+            "gitUrl": this.baseImages.url,
+            "gitBranch": this.baseImages.branch,
+            "builderImg": this.oBaseImageMsg["url"],
+            "imageTag": this.baseImages.name
+        }
+
+        let resource = this.resource(`api/v1/helm/s2i`, {}, { save: { method: 'POST' } });
+        resource.save(
+            msg, this.onEditReleaseSuccess_.bind(this),
+            this.onEditReleaseError_.bind(this),
+            this.baseImages = {
+                branch: "",
+                url: "",
+                name: ""
+            });
+    }
+
+    /**
+     * @export
+     */
     prevClassNameShow(elementNode) {
-            let oCustomProcessChildrenBackground = elementNode,
-                sClassName = elementNode.className;
-            oCustomProcessChildrenBackground.previousElementSibling.className = sClassName;
-            oCustomProcessChildrenBackground.className = "";
-        }
-        /**
-         * @export
-         */
+        let oCustomProcessChildrenBackground = elementNode,
+            sClassName = elementNode.className;
+        oCustomProcessChildrenBackground.previousElementSibling.className = sClassName;
+        oCustomProcessChildrenBackground.className = "";
+    }
+
+    /**
+     * @export
+     */
     nextClassNameShow(elementNode) {
         let oCustomProcessChildrenBackground = elementNode,
             sClassName = elementNode.className,
