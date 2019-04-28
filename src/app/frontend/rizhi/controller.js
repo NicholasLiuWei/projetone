@@ -1,4 +1,7 @@
 export class rizhiController {
+    /**
+     * @ngInject
+     */
     constructor($state, $stateParams, $cookies, $resource) {
 
         /** @export */
