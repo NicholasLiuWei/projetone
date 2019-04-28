@@ -776,6 +776,7 @@ export class homeController {
             }, () => {});
             //平台体系 arm  amd  或者混合
             this.kdArchResource.get().$promise.then((data) => {
+                //0 auto   1 x86     2 arm64
                 this.arch["arch"] = data["arch"]
             }, () => {});
             //存储
@@ -857,7 +858,7 @@ export class homeController {
                     this.nodenum["armnormal"] = list[2];
                     this.nodenum["armabnormal"] = list[3];
                     // this.formatstatus('node', list);
-                    // console.log(data);
+                    // console.log(this.nodenum);
                     //CPU 内存  网络
                     this.kdPanelResource.get().$promise.then((data) => {
                         this.panelMes = data;
