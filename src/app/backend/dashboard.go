@@ -25,7 +25,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"os/exec"
-	// "strings"
+	"strings"
 	"os"
 	"time"
 
@@ -276,6 +276,8 @@ func Handle(p *httputil.ReverseProxy) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// log.Println("request:", r.RemoteAddr, "want", r.RequestURI)
 		// r.RequestURI = strings.Replace(r.RequestURI, "/helm", "", -1)
+		r.URL.Path = strings.Replace(r.URL.Path, "/api/v1/log/", "/log/", -1)
+		r.URL.Path = strings.Replace(r.URL.Path, "/api/v1/logs/", "/logs/", -1)
 		log.Println("request:", r.RemoteAddr, "want", r.RequestURI)
 		//Many webservers are configured to not serve pages if a request doesn’t appear from the same host.
 		w.Header().Set("Access-Control-Allow-Origin", "*")
