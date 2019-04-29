@@ -13,7 +13,7 @@ import(
         clientapi "github.com/kubernetes/dashboard/src/app/backend/client/api"
         "k8s.io/apimachinery/pkg/labels"
         metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-        "k8s.io/kubernetes/pkg/apis/core/pods"
+        //"k8s.io/kubernetes/pkg/apis/core/pods"
 )
 
 var ErrNoEmailConfigs = errors.New("invalid email config")
@@ -144,7 +144,7 @@ func (email *emailStore) postHandler(req *restful.Request, resp *restful.Respons
                         return
                 }
         }
-        
+
 
         body,err := httpPostForm()
         if err!=nil{
