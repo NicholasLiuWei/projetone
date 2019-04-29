@@ -177,6 +177,8 @@ func main() {
 	//alert request from dashboard frontend
 	http.HandleFunc("/alert/", Handle(NewReverseProxy("127.0.0.1:9999")))
 
+	//init alert
+	alert.InitEmailStore(clientManager)
 	// Create a new influxdb HTTPClient
 	influxdbclient, err := influxdbclient.NewHTTPClient(influxdbclient.HTTPConfig{
 		Addr:     "http://alert-influxdb.monitoring:8086",

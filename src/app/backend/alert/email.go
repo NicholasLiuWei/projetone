@@ -10,6 +10,10 @@ import(
 	"log"
 	"strings"
         "github.com/emicklei/go-restful"
+        clientapi "github.com/kubernetes/dashboard/src/app/backend/client/api"
+        "k8s.io/apimachinery/pkg/labels"
+        metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+        "k8s.io/kubernetes/pkg/apis/core/pods"
 )
 
 var ErrNoEmailConfigs = errors.New("invalid email config")
@@ -20,6 +24,7 @@ type (
                 sync.Mutex           `json:"-"`
                 EmailName string     `json:"email,omitempty"`
                 EmailConfig []string `json:"emailConfig,omitempty"`
+                ClientFactory clientapi.ClientManager
         }
 )
 
@@ -27,6 +32,10 @@ type (
 var e = &emailStore{
 		EmailName: "",
 	}
+
+func InitEmailStore(cf clientapi.ClientManager){
+        e.ClientFactory = cf
+}
 
 
 // email handler
@@ -120,6 +129,23 @@ func (email *emailStore) postHandler(req *restful.Request, resp *restful.Respons
         //        return
         //}
         //log.Printf("reload alertmanager config success, out=%v\n",out)
+
+        k8sClient, err := email.ClientFactory.Client(req)
+        label := labels.SelectorFromSet(labels.Set(map[string]string{"app": "alertmanager"}))
+        pod, err := k8sClient.CoreV1().Pods("monitoring").List(metav1.ListOptions{LabelSelector: label.String()})
+        if err != nil || len(pod.Items) == 0 {
+                log.Println("reload alertmanager get pod failed")
+                return
+        }
+        for i:=0; i<len(pod.Items); i++ {
+                err = k8sClient.CoreV1().Pods("monitoring").Delete(pod.Items[i].ObjectMeta.Name, &metav1.DeleteOptions{})
+                if err != nil {
+                        log.Println("reload alertmanager delete pod failed")
+                        return
+                }
+        }
+        
+
         body,err := httpPostForm()
         if err!=nil{
                 log.Println("reload alertmanager config failed")
