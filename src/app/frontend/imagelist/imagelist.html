@@ -45,7 +45,7 @@
                     <!-- <md-button class="md-raised" ng-click="ctrl.kdService.showS2IDialog(ctrl.choicedBaseimage)">[[S2I|S2I]]</md-button> -->
                 </kd-footer>
             </div>
-            <div ng-if="ctrl.baseShowNum == 2? true:false">
+            <div ng-if="ctrl.baseShowNum == 2 && ctrl.needUpload == false? true:false">
                 <md-input-container class="md-block">
                     <label>[[仓库地址|仓库地址imagelist]]</label>
                     <input name="releasename" type="text" ng-change="ctrl.fInputChangeUrl(ctrl.baseImages.url)" required repeat ng-model="ctrl.baseImages.url">
@@ -64,6 +64,23 @@
                     <md-button class="md-raised" ng-click="ctrl.fPreviousStep()">[[上一步|上一步imagelist]]</md-button>
                     <md-button class="md-raised" ng-click="ctrl.fInputMsgPreNext()">[[下一步|下一步imagelist]]</md-button>
                 </kd-footer>
+            </div>
+            <div ng-if="ctrl.baseShowNum == 2 && ctrl.needUpload == true? true:false">
+                <form id="myForm">
+                    <md-button class="md-raised">
+                        选择文件
+                        <input type="file" id="file" name="myfile" onchange="angular.element(this).scope().ctrl.getFile(this.files)" />
+                    </md-button>
+                    {{ctrl.fileName[0].name}}
+                    <!-- <md-button class="md-raised md-primary" ng-click="ctrl.fUploadFile()">
+                    <md-icon>file_upload</md-icon>
+                    上传
+                </md-button>
+                <md-button class="md-raised">取消</md-button> -->
+                    <kd-footer layout="row" layout-align="end center">
+                        <md-button class="md-raised" ng-click="ctrl.fPreviousStep()">[[上一步|上一步imagelist]]</md-button>
+                        <md-button class="md-raised" ng-click="ctrl.fInputMsgPreNext()">[[下一步|下一步imagelist]]</md-button>
+                    </kd-footer>
             </div>
             <div ng-if="ctrl.baseShowNum == 3? true:false">
                 <md-input-container class="md-block">

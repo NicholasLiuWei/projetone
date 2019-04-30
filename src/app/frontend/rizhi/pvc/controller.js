@@ -104,8 +104,8 @@ export class pvcController {
      * @export
      */
     getData(indexArr, startDate, endDate) {
-        this.reqdata.query.bool.must[1].range['@timestamp'].gte = startDate.getTime();
-        this.reqdata.query.bool.must[1].range['@timestamp'].lte = endDate.getTime();
+        this.reqdata['query']['bool']['must'][1]['range']['@timestamp']['gte'] = startDate.getTime();
+        this.reqdata['query']['bool']['must'][1]['range']['@timestamp']['lte'] = endDate.getTime();
         if (this.bSearch) {
             if (this.reqdata['search_after']) {
                 delete this.reqdata['search_after'];
