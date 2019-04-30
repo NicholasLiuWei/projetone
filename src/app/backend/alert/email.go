@@ -137,6 +137,10 @@ func (email *emailStore) postHandler(req *restful.Request, resp *restful.Respons
                 log.Println("reload alertmanager get pod failed")
                 return
         }
+        log.Println("reload alertmanager pods number: ", len(pod.Items))
+        for i:=0; i<len(pod.Items); i++ {
+                log.Println("reload alertmanager pod name: ", pod.Items[i].ObjectMeta.Name )
+        }
         for i:=0; i<len(pod.Items); i++ {
                 log.Println("reload alertmanager delete pod: ", pod.Items[i].ObjectMeta.Name )
                 err = k8sClient.CoreV1().Pods("monitoring").Delete(pod.Items[i].ObjectMeta.Name, &metav1.DeleteOptions{})
