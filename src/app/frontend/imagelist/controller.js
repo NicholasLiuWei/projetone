@@ -58,68 +58,98 @@ export class imagelistController {
 
         /** @export */
         this.releasename = '';
+
         /** @export */
         this.currentNavItem = "base";
+
         /** @export */
         this.show = true;
+
         /** @export */
         this.oBaseImageMsg = {};
+
         /** @export */
         this.baseImages = {
             "branch": "",
             "url": "",
             "name": ""
         };
+
         /** @export */
         this.customImages = {
             "branch": "",
             "url": "",
             "name": ""
         };
+
         /** @export */
         this.oBaseFillInFields = {
-                "url": false,
-                "branch": false,
-                "name": false
-            }
-            /** @export */
+            "url": false,
+            "branch": false,
+            "name": false
+        }
+
+        /** @export */
         this.oCustomFillInFields = {
-                "url": false,
-                "branch": false,
-                "name": false
-            }
-            /** @export */
+            "url": false,
+            "branch": false,
+            "name": false
+        }
+
+        /** @export */
         this.baseShowNum = 1;
+
         /** @export */
         this.customShowNum = 1;
+
         /** @export */
         this.workloadType = [
             { "id": "1", "name": 'Deployment' },
             { "id": "2", "name": 'Statefulset' },
             { "id": "3", "name": 'DaemonSet' }
         ];
+
         /** @export */
         this.creatWorkloadNum = 1;
+
         /** @export */
         this.oWorkloadName = "";
+
         /** @export */
         this.oWorkloadUrl = "";
+
         /** @export */
         this.oWorkloadVersion = "";
+
         /** @export */
         this.types = ['Deployment', 'Statefulset', 'DaemonSet']
-            /** @export */
+
+        /** @export */
         this.selectedUser = 'Deployment';
+
         /** @export */
         this.oDefaultWorkloadComponent = { "appType": "deployment", "hpa": { "enabled": true, "maxReplicas": 10, "minReplicas": 5, "targetAvgUtil": 50 }, "images": [{ "args": ["--init"], "command": ["/cmd"], "env": [{ "name": "GOROOT", "value": "/go" }], "ports": [{ "containerPort": 80, "protocol": "TCP" }], "pullPolicy": "IfNotPresent", "pvcs": [{ "accessModes": "ReadWriteOnce", "mountpoint": "/var/data", "name": "pv-claim", "requestStorage": "100Gi", "storageClassName": "ceph-sc" }], "repository": "http://172.16.113.1/centos:1.1", "resources": { "enabled": false, "limits": { "cpu": "200m", "memory": "500Mi" }, "requests": { "cpu": "100m", "memory": "300Mi" } } }], "name": "first", "replicaCount": 1, "restartPolicy": "Always", "$$hashKey": "object:109" };
+
         /** @export */
         this.aAddWorkloadComponent = [];
+
         /** @export */
         this.oWorkloadComponent = [];
+
         /** @export */
         this.deploymentSpec = {};
+
         /** @export */
         this.oWorkloadIngress = {};
+
+        /** @export */
+        this.needUpload = false;
+
+        /** @export */
+        this.fileName = {};
+
+        /** @export */
+        this.fileCont = "";
     }
 
     /** @export */
@@ -145,6 +175,9 @@ export class imagelistController {
      * @export
      */
     fPreviousStep() {
+        if (this.fileName["length"] && this.baseShowNum == 2) {
+            this.getFile();
+        }
         this.baseShowNum--;
         this.prevClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
     }
@@ -198,15 +231,25 @@ export class imagelistController {
      * @export
      */
     fInputMsgPreNext() {
-        if (this.oBaseFillInFields.url == false && this.oBaseFillInFields.branch == false) {
+        if (this.needUpload == true && this.fileName['length']) {
             this.baseShowNum++;
             this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-        } else {
-            if (this.baseImages.url == "" || this.baseImages.url == undefined) {
-                this.oBaseFillInFields.url = true;
+        } else if (this.needUpload == false && this.oBaseFillInFields['url'] == false && this.oBaseFillInFields['branch'] == false) {
+            if (this.baseImages['url'] == "" || this.baseImages['url'] == undefined) {
+                this.oBaseFillInFields['url'] = true;
+            } else if (this.baseImages['branch'] == "" || this.baseImages['branch'] == undefined) {
+                this.oBaseFillInFields['branch'] = true;
             } else {
-                this.oBaseFillInFields.branch = true;
+                this.baseShowNum++;
+                this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
             }
+        } else {
+            /** @type {string} @desc release 未上传文件 */
+            let MSG_image_imagelist_error_title = goog.getMsg('请上传文件');
+            this.toastr["warning"](MSG_image_imagelist_error_title, 0, {
+                closeButton: true,
+                timeOut: 10000,
+            });
         }
     }
 
@@ -214,28 +257,82 @@ export class imagelistController {
      * @export
      */
     fBaseImagePre() {
-        if (this.baseImages.name == "" || this.baseImages.name == undefined) {
-            this.oBaseFillInFields.name = true;
-            return;
+        let that = this;
+        if (that.needUpload == true) {
+            var reader = new FileReader(); //新建一个FileReader
+            reader.readAsText(this.fileName[0], "UTF-8"); //读取文件 
+            reader.onload = function(evt) { //读取完文件之后会回来这里
+                that.fileCont = evt['target']['result']
+                if (that.baseImages['name'] == "" || that.baseImages['name'] == undefined) {
+                    that.oBaseFillInFields['name'] = true;
+                    return;
+                }
+                that.baseShowNum = 1;
+                that.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+                let msg = {
+                    "gitUrl": that.baseImages['url'],
+                    "gitBranch": that.baseImages['branch'],
+                    "builderImg": that.oBaseImageMsg["url"],
+                    "imageTag": that.baseImages['name'],
+                    "file": that.fileName[0]["name"],
+                    "fileCont": that.fileCont
+                }
+                let resource = that.resource(`api/v1/helm/s2i`, {}, { save: { method: 'POST' } });
+                resource.save(
+                    msg,
+                    (res) => {
+                        that.baseImages = {
+                            branch: "",
+                            url: "",
+                            name: ""
+                        };
+                        that.fileName = {}
+                    }, (err) => {
+                        that.baseImages = {
+                            branch: "",
+                            url: "",
+                            name: ""
+                        };
+                        that.fileName = {}
+                    }
+                );
+            }
+        } else {
+            if (that.baseImages['name'] == "" || that.baseImages['name'] == undefined) {
+                that.oBaseFillInFields['name'] = true;
+                return;
+            }
+            that.baseShowNum = 1;
+            that.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
+            let msg = {
+                "gitUrl": that.baseImages['url'],
+                "gitBranch": that.baseImages['branch'],
+                "builderImg": that.oBaseImageMsg["url"],
+                "imageTag": that.baseImages['name'],
+                "file": "",
+                "fileCont": ""
+            }
+            console.log(msg)
+            let resource = that.resource(`api/v1/helm/s2i`, {}, { save: { method: 'POST' } });
+            resource.save(
+                msg,
+                (res) => {
+                    that.baseImages = {
+                        branch: "",
+                        url: "",
+                        name: ""
+                    };
+                    that.fileName = {}
+                }, (err) => {
+                    that.baseImages = {
+                        branch: "",
+                        url: "",
+                        name: ""
+                    };
+                    that.fileName = {}
+                }
+            );
         }
-        this.baseShowNum = 1;
-        this.nextClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
-        let msg = {
-            "gitUrl": this.baseImages.url,
-            "gitBranch": this.baseImages.branch,
-            "builderImg": this.oBaseImageMsg["url"],
-            "imageTag": this.baseImages.name
-        }
-
-        let resource = this.resource(`api/v1/helm/s2i`, {}, { save: { method: 'POST' } });
-        resource.save(
-            msg, this.onEditReleaseSuccess_.bind(this),
-            this.onEditReleaseError_.bind(this),
-            this.baseImages = {
-                branch: "",
-                url: "",
-                name: ""
-            });
     }
 
     /**
@@ -475,7 +572,7 @@ export class imagelistController {
      * @export
      */
     choiceBaseimage(imagename) {
-        console.log(imagename)
+        this.needUpload = imagename.needUpload;
         this.choicedBaseimage = imagename;
     }
 
@@ -486,6 +583,18 @@ export class imagelistController {
         console.log(imagename)
         this.choicedNormalimage = imagename;
     }
+
+    /**
+     * @export
+     */
+    getFile(event) {
+        if (event) {
+            this.fileName = event;
+            return
+        }
+        this.fileName = {};
+    }
+
 }
 
 const i18n = {
