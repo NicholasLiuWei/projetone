@@ -206,6 +206,27 @@ func (email *emailStore) addEmailHandler(req *restful.Request, resp *restful.Res
         //        return
         //}
         //log.Printf("reload alertmanager config success, out=%v\n",out)
+
+        k8sClient, err := email.ClientFactory.Client(req)
+        label := labels.SelectorFromSet(labels.Set(map[string]string{"app": "alertmanager"}))
+        pod, err := k8sClient.CoreV1().Pods("monitoring").List(metav1.ListOptions{LabelSelector: label.String()})
+        if err != nil || len(pod.Items) == 0 {
+                log.Println("reload alertmanager get pod failed")
+                return
+        }
+        log.Println("reload alertmanager pods number: ", len(pod.Items))
+        for i:=0; i<len(pod.Items); i++ {
+                log.Println("reload alertmanager pod name: ", pod.Items[i].ObjectMeta.Name )
+        }
+        for i:=0; i<len(pod.Items); i++ {
+                log.Println("reload alertmanager delete pod: ", pod.Items[i].ObjectMeta.Name )
+                err = k8sClient.CoreV1().Pods("monitoring").Delete(pod.Items[i].ObjectMeta.Name, &metav1.DeleteOptions{})
+                if err != nil {
+                        log.Println("reload alertmanager delete pod failed", err)
+                        return
+                }
+        }
+        
         body,err := httpPostForm()
         if err!=nil{
                 log.Println("reload alertmanager config failed")
