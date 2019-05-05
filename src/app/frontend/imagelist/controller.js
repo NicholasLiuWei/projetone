@@ -176,7 +176,7 @@ export class imagelistController {
      */
     fPreviousStep() {
         if (this.fileName["length"] && this.baseShowNum == 2) {
-            this.getFile();
+            this.getFile(false);
         }
         this.baseShowNum--;
         this.prevClassNameShow(document.getElementsByClassName("base-process-children-background")[0]);
