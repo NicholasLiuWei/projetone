@@ -1,0 +1,52 @@
+<div class="log-management-search">
+    <div><label>[[开始日期|开始日期-rizhi]]</label>
+        <md-datepicker ng-model="$ctrl.oStartDate" md-placeholder="Start date"></md-datepicker>
+    </div>
+    <div>
+        <label>[[结束日期|结束日期-rizhi]]</label>
+        <md-datepicker ng-model="$ctrl.oEndDate" md-placeholder="End time"></md-datepicker>
+    </div>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>loglevel</label>
+            <md-select ng-model="">
+                <md-option ng-repeat="" value="">
+
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>Service</label>
+            <md-select ng-model="">
+                <md-option ng-repeat="" value="">
+
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>App</label>
+            <md-select ng-model="">
+                <md-option ng-repeat="" value="">
+
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>Host</label>
+            <md-select ng-model="">
+                <md-option ng-repeat="" value="">
+
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div style="margin-left: 100px;">
+        <md-button class="md-raised md-primary" ng-click="$ctrl.fSearchData()">检索</md-button>
+    </div>
+</div>

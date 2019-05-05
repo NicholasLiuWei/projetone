@@ -1,21 +1,24 @@
-<div>
+<div class="rizhi-box">
     <div class="rizhi-table">
-        <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.storageclass')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/storageclass?namespace='+$ctrl.stateParams}}">[[platform|platform-rizhi]]</a></div>
-        <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.node')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+        <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.platform')?'rizhi-router rizhi-router-link-exact-active active':'rizhi-router'">
+            <a ng-href="{{'#!/rizhi/platform?namespace='+$ctrl.stateParams}}">[[platform|platform-rizhi]]</a></div>
+        <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.node')?'rizhi-router rizhi-router-link-exact-active active':'rizhi-router'">
             <a ng-href="{{'#!/rizhi/node?namespace='+$ctrl.stateParams}}">[[Node|Node-rizhi]]</a></div>
-        <div ng-class="$ctrl.active('rizhi.pvc')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/pvc?namespace='+$ctrl.stateParams}}">[[logManagement|logManagement-rizhi]]</a>
+        <div ng-class="$ctrl.active('rizhi.logManagement')?'rizhi-router rizhi-router-link-exact-active active':'rizhi-router'">
+            <a ng-href="{{'#!/rizhi/logManagement?namespace='+$ctrl.stateParams}}">[[logManagement|logManagement-rizhi]]</a>
         </div>
-        <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.log')?'warn-list-item router-link-exact-active active':'warn-list-item'">
-            <a ng-href="{{'#!/rizhi/log?namespace='+$ctrl.stateParams}}">[[logAnalysis|logAnalysis-rizhi]]</a>
+        <div ng-if="$ctrl.show()" ng-class="$ctrl.active('rizhi.logAnalysis')?'rizhi-router rizhi-router-link-exact-active active':'rizhi-router'">
+            <a ng-href="{{'#!/rizhi/logAnalysis?namespace='+$ctrl.stateParams}}">[[logAnalysis|logAnalysis-rizhi]]</a>
         </div>
     </div>
-    <kd-content-card flex-offset="0" flex="100">
+    <!-- <kd-content-card flex-offset="0" flex="100">
         <kd-content>
             <ui-view></ui-view>
         </kd-content>
-    </kd-content-card>
+    </kd-content-card> -->
+    <div>
+        <ui-view></ui-view>
+    </div>
 </div>
 
 <!-- <kd-content-card>

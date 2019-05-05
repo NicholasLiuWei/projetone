@@ -3,14 +3,14 @@ import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_ser
 
 import { stateName as rizhiName, stateUrl } from './state';
 import { rizhiController } from './controller';
-import { stateName as pvcStateName } from './pvc/state';
+import { stateName as logManagementStateName } from './logManagement/state';
 import { stateName as nodeStateName } from './node/state';
-import { stateName as storageclassStateName } from './storageclass/state';
-import { stateName as logStateName } from './log/state';
-import { pvcConfig } from './pvc/stateconfig';
+import { stateName as platformStateName } from './platform/state';
+import { stateName as logAnalysisStateName } from './logAnalysis/state';
+import { logManagementConfig } from './logManagement/stateconfig';
 import { nodeConfig } from './node/stateconfig';
-import { storageclassConfig } from './storageclass/stateconfig';
-import { logConfig } from './log/stateconfig';
+import { platformConfig } from './platform/stateconfig';
+import { logAnalysisConfig } from './logAnalysis/stateconfig';
 
 /**
  * Configures states for the home.
@@ -37,9 +37,9 @@ export default function stateConfig($stateProvider, $mdDateLocaleProvider) {
         },
     });
     $stateProvider.state(nodeStateName, nodeConfig);
-    $stateProvider.state(pvcStateName, pvcConfig);
-    $stateProvider.state(storageclassStateName, storageclassConfig);
-    $stateProvider.state(logStateName, logConfig);
+    $stateProvider.state(logManagementStateName, logManagementConfig);
+    $stateProvider.state(platformStateName, platformConfig);
+    $stateProvider.state(logAnalysisStateName, logAnalysisConfig);
 
     $mdDateLocaleProvider.months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
     $mdDateLocaleProvider.shortMonths = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];

@@ -702,60 +702,63 @@
   <translation id="621895495483805603" key="MSG_IMAGELIST_IMAGELIST_13" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field</translation>
   <translation id="4783996114185367482" key="MSG_IMAGELIST_IMAGELIST_14" desc="\u4E0A\u4E00\u6B65imagelist">Previous step</translation>
   <translation id="6097033506457528583" key="MSG_IMAGELIST_IMAGELIST_15" desc="\u4E0B\u4E00\u6B65imagelist">Next step</translation>
-  <translation id="3339020208799222973" key="MSG_IMAGELIST_IMAGELIST_16" desc="\u8F93\u5165\u81EA\u5B9A\u4E49\u955C\u50CF\u540D\u79F0imagelist">Enter a custom image name</translation>
-  <translation id="8044222212948187549" key="MSG_IMAGELIST_IMAGELIST_17" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field.</translation>
-  <translation id="7154847046530303450" key="MSG_IMAGELIST_IMAGELIST_18" desc="\u4E0A\u4E00\u6B65imagelist">Previous step</translation>
-  <translation id="2021631524700642178" key="MSG_IMAGELIST_IMAGELIST_19" desc="\u5F00\u59CB\u521B\u5EFAimagelist">Start creating</translation>
+  <translation id="8507502769503080670" key="MSG_IMAGELIST_IMAGELIST_16" desc="\u8BF7\u9009\u62E9\u6240\u8981\u53D1\u5E03\u7684web\u5E94\u7528\u7A0B\u5E8F\u5F52\u6863\u6587\u4EF6(war\u5305)imagelist">Select the web application archive file (war package) you want to publish</translation>
+  <translation id="1254927879238477125" key="MSG_IMAGELIST_IMAGELIST_17" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="8448010151601145898" key="MSG_IMAGELIST_IMAGELIST_18" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
+  <translation id="1170446159962931526" key="MSG_IMAGELIST_IMAGELIST_19" desc="\u8F93\u5165\u81EA\u5B9A\u4E49\u955C\u50CF\u540D\u79F0imagelist">输入自定义镜像名称</translation>
   <translation id="9057152056335733475" key="MSG_IMAGELIST_IMAGELIST_2" desc="\u521B\u5EFA\u955C\u50CFimagelist">Create image</translation>
-  <translation id="6819427701029216459" key="MSG_IMAGELIST_IMAGELIST_20" desc="\u521B\u5EFA\u5E94\u7528imagelist">Create application</translation>
-  <translation id="6044296960153132050" key="MSG_IMAGELIST_IMAGELIST_21" desc="\u4EE5\u666E\u901A\u955C\u50CF\u4E3A\u57FA\u7840, \u7528\u6237\u53EF\u4EE5\u7F16\u6392\u3001\u6784\u5EFA\u591A\u7EC4\u4EF6\u7684\u590D\u6742\u5E94\u7528imagelist">Based on ordinary images, users can arrange and construct complex multi-component applications</translation>
-  <translation id="2880004992320669217" key="MSG_IMAGELIST_IMAGELIST_22" desc="\u9009\u62E9\u666E\u901A\u955C\u50CF\uFF0C\u8F93\u5165\u5E94\u7528\u540D\u79F0imagelist">Select the normal image and enter the application name</translation>
-  <translation id="5350222452807751008" key="MSG_IMAGELIST_IMAGELIST_23" desc="\u57FA\u4E8E\u6307\u5B9A\u7684\u955C\u50CF\u5F00\u59CB\u7F16\u6392\u5E94\u7528imagelist">Start the orchestration application based on the specified mirror</translation>
-  <translation id="1694227955275439425" key="MSG_IMAGELIST_IMAGELIST_24" desc="\u7F16\u8F91\u5E94\u7528\u7EC4\u4EF6imagelist">Editing Application Components</translation>
-  <translation id="8703713756496847135" key="MSG_IMAGELIST_IMAGELIST_25" desc="\u7F16\u8F91\u3001\u589E\u52A0\u3001\u5220\u9664\u5E94\u7528\u7EC4\u4EF6imagelist">Edit, add, delete application components</translation>
-  <translation id="544487059627439033" key="MSG_IMAGELIST_IMAGELIST_26" desc="\u521B\u5EFA\u670D\u52A1imagelist">Create service</translation>
-  <translation id="317240844922630327" key="MSG_IMAGELIST_IMAGELIST_27" desc="\u5404\u7EC4\u4EF6\u53EF\u4EE5\u5BF9\u5916\u63D0\u4F9B\u7F51\u7EDC\u670D\u52A1imagelist">Each component can provide network services to the outside world</translation>
-  <translation id="4794215378279484378" key="MSG_IMAGELIST_IMAGELIST_28" desc="\u521B\u5EFA\u670D\u52A1\u5165\u53E3imagelist">Create Service Entry</translation>
-  <translation id="984890951237961102" key="MSG_IMAGELIST_IMAGELIST_29" desc="\u914D\u7F6E\u5E94\u7528\u8BBF\u95EE\u5165\u53E3imagelist">Configure Application Access Entry</translation>
+  <translation id="5425494406187075100" key="MSG_IMAGELIST_IMAGELIST_20" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
+  <translation id="3786315073506145525" key="MSG_IMAGELIST_IMAGELIST_21" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="1385114303730482348" key="MSG_IMAGELIST_IMAGELIST_22" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
+  <translation id="8903583237979285739" key="MSG_IMAGELIST_IMAGELIST_23" desc="\u521B\u5EFA\u5E94\u7528imagelist">创建应用</translation>
+  <translation id="5668823967617632856" key="MSG_IMAGELIST_IMAGELIST_24" desc="\u4EE5\u666E\u901A\u955C\u50CF\u4E3A\u57FA\u7840, \u7528\u6237\u53EF\u4EE5\u7F16\u6392\u3001\u6784\u5EFA\u591A\u7EC4\u4EF6\u7684\u590D\u6742\u5E94\u7528imagelist">以普通镜像为基础, 用户可以编排、构建多组件的复杂应用</translation>
+  <translation id="4654442961668733327" key="MSG_IMAGELIST_IMAGELIST_25" desc="\u9009\u62E9\u666E\u901A\u955C\u50CF\uFF0C\u8F93\u5165\u5E94\u7528\u540D\u79F0imagelist">选择普通镜像，输入应用名称</translation>
+  <translation id="2686351293245266719" key="MSG_IMAGELIST_IMAGELIST_26" desc="\u57FA\u4E8E\u6307\u5B9A\u7684\u955C\u50CF\u5F00\u59CB\u7F16\u6392\u5E94\u7528imagelist">基于指定的镜像开始编排应用</translation>
+  <translation id="7877349867393888018" key="MSG_IMAGELIST_IMAGELIST_27" desc="\u7F16\u8F91\u5E94\u7528\u7EC4\u4EF6imagelist">编辑应用组件</translation>
+  <translation id="3704932609760569687" key="MSG_IMAGELIST_IMAGELIST_28" desc="\u7F16\u8F91\u3001\u589E\u52A0\u3001\u5220\u9664\u5E94\u7528\u7EC4\u4EF6imagelist">编辑、增加、删除应用组件</translation>
+  <translation id="7153924514593747207" key="MSG_IMAGELIST_IMAGELIST_29" desc="\u521B\u5EFA\u670D\u52A1imagelist">创建服务</translation>
   <translation id="4865034318252905981" key="MSG_IMAGELIST_IMAGELIST_3" desc="\u7528\u6237\u53EF\u4EE5\u57FA\u4E8E\u57FA\u7840\u955C\u50CF\u521B\u5EFA\u5BF9\u5916\u63D0\u4F9B\u670D\u52A1\u7684\u666E\u901A\u955C\u50CFimagelist">Users can create common mirrors of services provided to the outside world based on basic mirrors</translation>
-  <translation id="2810406713227389520" key="MSG_IMAGELIST_IMAGELIST_30" desc="\u5E94\u7528\u540D\u79F0">Apply name</translation>
-  <translation id="2625865354243583956" key="MSG_IMAGELIST_IMAGELIST_31" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">Please fill in this field</translation>
-  <translation id="470467957454405118" key="MSG_IMAGELIST_IMAGELIST_32" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">Repetition of names</translation>
-  <translation id="612704872573294307" key="MSG_IMAGELIST_IMAGELIST_33" desc="\u521B\u5EFA\u5E94\u7528">Create application</translation>
-  <translation id="5979923983747989379" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">Workload name</translation>
-  <translation id="4752924200738331837" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u7C7B\u578Bimagelist">Type</translation>
-  <translation id="4913277352305416003" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u955C\u50CFimagelist">Image</translation>
+  <translation id="7847783580137844676" key="MSG_IMAGELIST_IMAGELIST_30" desc="\u5404\u7EC4\u4EF6\u53EF\u4EE5\u5BF9\u5916\u63D0\u4F9B\u7F51\u7EDC\u670D\u52A1imagelist">各组件可以对外提供网络服务</translation>
+  <translation id="6151363852918790409" key="MSG_IMAGELIST_IMAGELIST_31" desc="\u521B\u5EFA\u670D\u52A1\u5165\u53E3imagelist">创建服务入口</translation>
+  <translation id="4488260970301855048" key="MSG_IMAGELIST_IMAGELIST_32" desc="\u914D\u7F6E\u5E94\u7528\u8BBF\u95EE\u5165\u53E3imagelist">配置应用访问入口</translation>
+  <translation id="5785493339508850195" key="MSG_IMAGELIST_IMAGELIST_33" desc="\u5E94\u7528\u540D\u79F0">应用名称</translation>
+  <translation id="8982539753584446194" key="MSG_IMAGELIST_IMAGELIST_34" desc="\u8BF7\u586B\u5199\u6B64\u5B57\u6BB5imagelist">请填写此字段</translation>
+  <translation id="938903000890733456" key="MSG_IMAGELIST_IMAGELIST_35" desc="\u90E8\u7F72\u5E94\u7528\u540D\u5B57\u91CD\u590D\u63D0\u793A">名字重复</translation>
+  <translation id="9118559220665735538" key="MSG_IMAGELIST_IMAGELIST_36" desc="\u521B\u5EFA\u5E94\u7528">创建应用</translation>
   <translation id="7882563763634747729" key="MSG_IMAGELIST_IMAGELIST_37" desc="This is required!imagelist">This is required!</translation>
-  <translation id="1676925596533944029" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u662F\u5426\u81EA\u52A8\u6269\u5BB9imagelist">Whether to expand automatically</translation>
-  <translation id="7391460082570510676" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u64CD\u4F5Cimagelist">Actions</translation>
+  <translation id="2733504350500661300" key="MSG_IMAGELIST_IMAGELIST_38" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
+  <translation id="1429448338454135119" key="MSG_IMAGELIST_IMAGELIST_39" desc="\u7C7B\u578Bimagelist">类型</translation>
   <translation id="1888376549594633009" key="MSG_IMAGELIST_IMAGELIST_4" desc="\u9009\u62E9\u57FA\u7840\u955C\u50CFimagelist">Selection of Basic Mirror</translation>
   <translation id="1391934213490690762" key="MSG_IMAGELIST_IMAGELIST_40" desc="This is required!imagelist">This is required!</translation>
-  <translation id="8894682909772075153" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u662Fimagelist">Yes</translation>
+  <translation id="7837877448642217055" key="MSG_IMAGELIST_IMAGELIST_41" desc="\u955C\u50CFimagelist">镜像</translation>
   <translation id="3928302596157576710" key="MSG_IMAGELIST_IMAGELIST_42" desc="This is required!imagelist">This is required!</translation>
-  <translation id="8917263612055453339" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u5426imagelist">No</translation>
-  <translation id="6650313513949411435" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u5220\u9664">Delete</translation>
-  <translation id="5114250454965160602" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u6DFB\u52A0\u5DE5\u4F5C\u8D1F\u8F7Dimagelist">Add workload</translation>
-  <translation id="964056397749288049" key="MSG_IMAGELIST_IMAGELIST_46" desc="\u4E0A\u4E00\u6B65imagelist">Previous step</translation>
-  <translation id="294547359603979722" key="MSG_IMAGELIST_IMAGELIST_47" desc="\u4E0B\u4E00\u6B65imagelist">Next step</translation>
-  <translation id="5830383993240819841" key="MSG_IMAGELIST_IMAGELIST_48" desc="\u786E\u5B9Aimagelist">Confirm</translation>
-  <translation id="798610475142203189" key="MSG_IMAGELIST_IMAGELIST_49" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">Workload name</translation>
+  <translation id="979871845130114227" key="MSG_IMAGELIST_IMAGELIST_43" desc="\u662F\u5426\u81EA\u52A8\u6269\u5BB9imagelist">是否自动扩容</translation>
+  <translation id="8513870866038235054" key="MSG_IMAGELIST_IMAGELIST_44" desc="\u64CD\u4F5Cimagelist">操作</translation>
+  <translation id="5085036458292941533" key="MSG_IMAGELIST_IMAGELIST_45" desc="\u662Fimagelist">是</translation>
+  <translation id="2408175937726387691" key="MSG_IMAGELIST_IMAGELIST_46" desc="\u5426imagelist">否</translation>
+  <translation id="8438407916822316732" key="MSG_IMAGELIST_IMAGELIST_47" desc="\u5220\u9664">删除</translation>
+  <translation id="5169669706897964212" key="MSG_IMAGELIST_IMAGELIST_48" desc="\u6DFB\u52A0\u5DE5\u4F5C\u8D1F\u8F7Dimagelist">添加工作负载</translation>
+  <translation id="6235303948123725388" key="MSG_IMAGELIST_IMAGELIST_49" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
   <translation id="2008554916863000188" key="MSG_IMAGELIST_IMAGELIST_5" desc="\u6839\u636E\u7528\u6237\u9879\u76EE\u7684\u7F16\u7A0B\u8BED\u8A00\u9009\u62E9\u5BF9\u5E94\u7684\u57FA\u7840\u955C\u50CFimagelist">Select the corresponding base image according to the programming language of the user project</translation>
-  <translation id="5023355512769271132" key="MSG_IMAGELIST_IMAGELIST_50" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">Type of workload</translation>
-  <translation id="6127330588028371716" key="MSG_IMAGELIST_IMAGELIST_51" desc="\u955C\u50CF\u5730\u5740imagelist">Mirror Address</translation>
-  <translation id="162791477646993502" key="MSG_IMAGELIST_IMAGELIST_52" desc="\u7248\u672C\u53F7imagelist">version number</translation>
-  <translation id="8269474691597547564" key="MSG_IMAGELIST_IMAGELIST_53" desc="\u53D6\u6D88imagelist">cancel</translation>
-  <translation id="2620585330018854159" key="MSG_IMAGELIST_IMAGELIST_54" desc="\u786E\u5B9Aimagelist">Confirm</translation>
-  <translation id="1570889057839982468" key="MSG_IMAGELIST_IMAGELIST_55" desc="\u4E0A\u4E00\u6B65imagelist">Previous step</translation>
-  <translation id="8967385630090961440" key="MSG_IMAGELIST_IMAGELIST_56" desc="\u4E0B\u4E00\u6B65imagelist">Next step</translation>
-  <translation id="1561607668559002770" key="MSG_IMAGELIST_IMAGELIST_57" desc="\u662F\u5426\u914D\u7F6Eimagelist">Is it configured</translation>
-  <translation id="5474984280336946983" key="MSG_IMAGELIST_IMAGELIST_58" desc="\u662Fimagelist">Yes</translation>
-  <translation id="4897801886472419527" key="MSG_IMAGELIST_IMAGELIST_59" desc="\u5426imagelist">No</translation>
+  <translation id="99129485084549186" key="MSG_IMAGELIST_IMAGELIST_50" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
+  <translation id="4487904338376126270" key="MSG_IMAGELIST_IMAGELIST_51" desc="\u786E\u5B9Aimagelist">确定</translation>
+  <translation id="7112070014339777516" key="MSG_IMAGELIST_IMAGELIST_52" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u540D\u79F0imagelist">工作负载名称</translation>
+  <translation id="5729487885992069829" key="MSG_IMAGELIST_IMAGELIST_53" desc="\u5DE5\u4F5C\u8D1F\u8F7D\u7C7B\u578Bimagelist">工作负载类型</translation>
+  <translation id="4260011579671099605" key="MSG_IMAGELIST_IMAGELIST_54" desc="\u955C\u50CF\u5730\u5740imagelist">镜像地址</translation>
+  <translation id="7631661121875227871" key="MSG_IMAGELIST_IMAGELIST_55" desc="\u7248\u672C\u53F7imagelist">版本号</translation>
+  <translation id="7208226426526385313" key="MSG_IMAGELIST_IMAGELIST_56" desc="\u53D6\u6D88imagelist">取消</translation>
+  <translation id="7797279867617357804" key="MSG_IMAGELIST_IMAGELIST_57" desc="\u786E\u5B9Aimagelist">确定</translation>
+  <translation id="440233059015556637" key="MSG_IMAGELIST_IMAGELIST_58" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="4746845451566162333" key="MSG_IMAGELIST_IMAGELIST_59" desc="\u4E0B\u4E00\u6B65imagelist">下一步</translation>
   <translation id="6873143077460672448" key="MSG_IMAGELIST_IMAGELIST_6" desc="\u9009\u62E9git\u5E93\u5730\u5740\u548C\u5206\u652Fimagelist">Select git library address and branch</translation>
-  <translation id="3844364157641311744" key="MSG_IMAGELIST_IMAGELIST_60" desc="\u5730\u5740imagelist">Address</translation>
-  <translation id="4512858331902781106" key="MSG_IMAGELIST_IMAGELIST_61" desc="\u670D\u52A1\u7AEF\u53E3imagelist">Service port</translation>
-  <translation id="1324815177627229726" key="MSG_IMAGELIST_IMAGELIST_62" desc="\u670D\u52A1\u540D\u5B57imagelist">Service name</translation>
-  <translation id="6564989981426038016" key="MSG_IMAGELIST_IMAGELIST_63" desc="\u4E0A\u4E00\u6B65imagelist">Previous step</translation>
-  <translation id="7880263278268327603" key="MSG_IMAGELIST_IMAGELIST_64" desc="\u5F00\u59CB\u521B\u5EFAimagelist">Start creating</translation>
+  <translation id="4063122211525563366" key="MSG_IMAGELIST_IMAGELIST_60" desc="\u662F\u5426\u914D\u7F6Eimagelist">是否配置</translation>
+  <translation id="5120862155892329091" key="MSG_IMAGELIST_IMAGELIST_61" desc="\u662Fimagelist">是</translation>
+  <translation id="489802340040266620" key="MSG_IMAGELIST_IMAGELIST_62" desc="\u5426imagelist">否</translation>
+  <translation id="5835239232819896404" key="MSG_IMAGELIST_IMAGELIST_63" desc="\u5730\u5740imagelist">地址</translation>
+  <translation id="8625662095152468455" key="MSG_IMAGELIST_IMAGELIST_64" desc="\u670D\u52A1\u7AEF\u53E3imagelist">服务端口</translation>
+  <translation id="3851907390702274240" key="MSG_IMAGELIST_IMAGELIST_65" desc="\u670D\u52A1\u540D\u5B57imagelist">服务名字</translation>
+  <translation id="3288092806759954454" key="MSG_IMAGELIST_IMAGELIST_66" desc="\u4E0A\u4E00\u6B65imagelist">上一步</translation>
+  <translation id="1732953139812418684" key="MSG_IMAGELIST_IMAGELIST_67" desc="\u5F00\u59CB\u521B\u5EFAimagelist">开始创建</translation>
   <translation id="4295966776601710856" key="MSG_IMAGELIST_IMAGELIST_7" desc="\u6309\u7167\u6240\u9009\u57FA\u7840\u955C\u50CF\u7684\u8981\u6C42\u548C\u89C4\u8303\uFF0C\u914D\u7F6E\u6E90\u7801\u5E93\u548C\u5177\u4F53\u5206\u652Fimagelist">按照所选基础镜像的要求和规范，配置源码库和具体分支</translation>
   <translation id="7135494107631123295" key="MSG_IMAGELIST_IMAGELIST_8" desc="\u8F93\u5165\u666E\u901A\u955C\u50CF\u7684\u540D\u79F0\uFF0C\u5F00\u59CB\u6784\u5EFAimagelist">Enter the name of the normal image and start building</translation>
   <translation id="7366470440166215436" key="MSG_IMAGELIST_IMAGELIST_9" desc="\u4E0B\u4E00\u6B65imagelist">Next step</translation>
@@ -1246,6 +1249,25 @@
   <translation id="4707374810025494648" key="MSG_RESOURCEQUOTADETAIL_RESOURCEQUOTADETAIL_1" desc="Resource quota info details section name">Name</translation>
   <translation id="6441862772940625742" key="MSG_RESOURCEQUOTADETAIL_RESOURCEQUOTADETAIL_2" desc="Resource quota info details section scopes">Scopes</translation>
   <translation id="3641265385665997534" key="MSG_RESOURCE_CARD_LIST_PAGINATION_ERROR" desc="Message shown to the user when there is a pagination error.">Pagination error</translation>
+  <translation id="267360538853046141" key="MSG_RIZHI_LOGANALYSIS_LOGANALYSIS_0" desc="\u5F00\u59CB\u65E5\u671F-rizhi">开始日期</translation>
+  <translation id="3911424079137475385" key="MSG_RIZHI_LOGANALYSIS_LOGANALYSIS_1" desc="\u7ED3\u675F\u65E5\u671F-rizhi">结束日期</translation>
+  <translation id="3467749503584617036" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_0" desc="Index-rizhi">Index</translation>
+  <translation id="1444054681649470587" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_1" desc="\u5F00\u59CB\u65E5\u671F-rizhi">开始日期</translation>
+  <translation id="7913597360261839832" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_10" desc="Date-rizhi">Date</translation>
+  <translation id="5245325023011848794" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_11" desc="Pod-rizhi">Pod</translation>
+  <translation id="5111397240446724547" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_12" desc="Content-rizhi">Content</translation>
+  <translation id="3281752797148371769" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_13" desc="Host-rizhi">Host</translation>
+  <translation id="9053445839805663995" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_14" desc="Date-rizhi">Date</translation>
+  <translation id="1167170993304789187" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_15" desc="Content-rizhi">Content</translation>
+  <translation id="8580423504383311" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_16" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
+  <translation id="1347096493665817410" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_2" desc="\u7ED3\u675F\u65E5\u671F-rizhi">结束日期</translation>
+  <translation id="6134991571736064571" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_3" desc="Host-rizhi">Host</translation>
+  <translation id="6722003168146987105" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_4" desc="Date-rizhi">Date</translation>
+  <translation id="6242778772317498007" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_5" desc="Pod-rizhi">Pod</translation>
+  <translation id="1070738990764550317" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_6" desc="Container-rizhi">Container</translation>
+  <translation id="6064143892531948926" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_7" desc="Namespace-rizhi">Namespace</translation>
+  <translation id="2757435010235752676" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_8" desc="Content-rizhi">Content</translation>
+  <translation id="11997710092581123" key="MSG_RIZHI_LOGMANAGEMENT_LOGMANAGEMENT_9" desc="Host-rizhi">Host</translation>
   <translation id="6600106705058096958" key="MSG_RIZHI_NODE_NODE_0" desc="Node-rizhi">Node</translation>
   <translation id="3612652404170329586" key="MSG_RIZHI_NODE_NODE_1" desc="IP-rizhi">IP</translation>
   <translation id="2080078356875510111" key="MSG_RIZHI_NODE_NODE_2" desc="Type-rizhi">Type</translation>
@@ -1254,36 +1276,16 @@
   <translation id="9065360969067525041" key="MSG_RIZHI_NODE_NODE_5" desc="State-rizhi">State</translation>
   <translation id="9036942072284817535" key="MSG_RIZHI_NODE_NODE_6" desc="Version-rizhi">Version</translation>
   <translation id="631813204777156756" key="MSG_RIZHI_NODE_NODE_7" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
-  <translation id="4544334897977432992" key="MSG_RIZHI_PVC_PVC_0" desc="Index-rizhi">Index</translation>
-  <translation id="2585173743254937858" key="MSG_RIZHI_PVC_PVC_1" desc="\u5F00\u59CB\u65E5\u671F-rizhi">Start date</translation>
-  <translation id="8817203710036519432" key="MSG_RIZHI_PVC_PVC_10" desc="K8s-rizhi">K8s</translation>
-  <translation id="4989034491103877165" key="MSG_RIZHI_PVC_PVC_11" desc="Host-rizhi">Host</translation>
-  <translation id="4255852484292646972" key="MSG_RIZHI_PVC_PVC_12" desc="Date-rizhi">Date</translation>
-  <translation id="7097214224339693684" key="MSG_RIZHI_PVC_PVC_13" desc="Pod-rizhi">Pod</translation>
-  <translation id="1608492597736431701" key="MSG_RIZHI_PVC_PVC_14" desc="Content-rizhi">Content</translation>
-  <translation id="8468344527464567339" key="MSG_RIZHI_PVC_PVC_15" desc="K8s-rizhi">K8s</translation>
-  <translation id="6741162464903146457" key="MSG_RIZHI_PVC_PVC_16" desc="Host-rizhi">Host</translation>
-  <translation id="7804091604917869945" key="MSG_RIZHI_PVC_PVC_17" desc="Date-rizhi">Date</translation>
-  <translation id="739561985234230207" key="MSG_RIZHI_PVC_PVC_18" desc="Content-rizhi">Content</translation>
-  <translation id="4465085112743633275" key="MSG_RIZHI_PVC_PVC_19" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
-  <translation id="4810351746759311203" key="MSG_RIZHI_PVC_PVC_2" desc="\u7ED3\u675F\u65E5\u671F-rizhi">End date</translation>
-  <translation id="5392309769837709709" key="MSG_RIZHI_PVC_PVC_3" desc="K8s-rizhi">K8s</translation>
-  <translation id="5521212364841395647" key="MSG_RIZHI_PVC_PVC_4" desc="Host-rizhi">Host</translation>
-  <translation id="2885659233893436218" key="MSG_RIZHI_PVC_PVC_5" desc="Date-rizhi">Date</translation>
-  <translation id="1582466505095893900" key="MSG_RIZHI_PVC_PVC_6" desc="Pod-rizhi">Pod</translation>
-  <translation id="3370703293527723008" key="MSG_RIZHI_PVC_PVC_7" desc="Container-rizhi">Container</translation>
-  <translation id="6892345760247798139" key="MSG_RIZHI_PVC_PVC_8" desc="Namespace-rizhi">Namespace</translation>
-  <translation id="796655295536365168" key="MSG_RIZHI_PVC_PVC_9" desc="Content-rizhi">Content</translation>
+  <translation id="2358473797075511631" key="MSG_RIZHI_PLATFORM_PLATFORM_0" desc="kubernetes-rizhi">kubernetes</translation>
+  <translation id="1611086003208332891" key="MSG_RIZHI_PLATFORM_PLATFORM_1" desc="Name-rizhi">Name</translation>
+  <translation id="7770929170292872629" key="MSG_RIZHI_PLATFORM_PLATFORM_2" desc="Address-rizhi">Address</translation>
+  <translation id="7215393697274884039" key="MSG_RIZHI_PLATFORM_PLATFORM_3" desc="State-rizhi">State</translation>
+  <translation id="875459894676113214" key="MSG_RIZHI_PLATFORM_PLATFORM_4" desc="UpdateTime-rizhi">UpdateTime</translation>
+  <translation id="6517397764800738421" key="MSG_RIZHI_PLATFORM_PLATFORM_5" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="2515655316543599916" key="MSG_RIZHI_RIZHI_0" desc="platform-rizhi">platform</translation>
   <translation id="1963442686503460231" key="MSG_RIZHI_RIZHI_1" desc="Node-rizhi">Node</translation>
   <translation id="1791718377705648327" key="MSG_RIZHI_RIZHI_2" desc="logManagement-rizhi">logManagement</translation>
   <translation id="5987373027310417765" key="MSG_RIZHI_RIZHI_3" desc="logAnalysis-rizhi">logAnalysis</translation>
-  <translation id="556484738876614284" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_0" desc="kubernetes-rizhi">kubernetes</translation>
-  <translation id="6680189138821102390" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_1" desc="Name-rizhi">Name</translation>
-  <translation id="722465702828137675" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_2" desc="Address-rizhi">Address</translation>
-  <translation id="5447678013909707198" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_3" desc="State-rizhi">State</translation>
-  <translation id="943121043390146680" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_4" desc="UpdateTime-rizhi">UpdateTime</translation>
-  <translation id="5255317918199289727" key="MSG_RIZHI_STORAGECLASS_STORAGECLASS_5" desc="\u6682\u65E0\u4FE1\u606F">暂无信息</translation>
   <translation id="2528761437844965428" key="MSG_S2I_CANCEL_ACTION" desc="update release cancle.">Cancle</translation>
   <translation id="2759038103209691171" key="MSG_S2I_LOCATION" desc="image location.">Image location</translation>
   <translation id="2315821539252743508" key="MSG_S2I_OK_ACTION" desc="update release OK.">OK</translation>
@@ -1454,6 +1456,7 @@
   <translation id="2746713520527501031" key="MSG_image_deployment_failed_title" desc="image 部署失败提示">Server error</translation>
   <translation id="6082626850385368780" key="MSG_image_imagelist_error_title" desc="release 更新失败">Update failed</translation>
   <translation id="4390877576403583900" key="MSG_image_imagelist_success_title" desc="release 更新成功">The update is successful</translation>
+  <translation id="7878415387735764428" key="MSG_image_imagelist_warning_upload" desc="release 未上传文件">请上传文件</translation>
   <translation id="2483598429205640983" key="MSG_image_s2i_error_title" desc="release 更新失败">Update failed</translation>
   <translation id="6408231948271223670" key="MSG_image_s2i_success_title" desc="release 更新成功">Update Success</translation>
   <translation id="1355740095585846445" key="MSG_login_login_error" desc="请求失败,后端服务异常 Request failure, backend service exception">Request failure, backend service exception</translation>

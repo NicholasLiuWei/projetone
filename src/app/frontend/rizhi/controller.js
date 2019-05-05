@@ -22,9 +22,9 @@ export class rizhiController {
      */
     change(name) {
         if (name == 'set') {
-            this.state.go('rizhi.storageclass')
+            this.state.go('rizhi.platform')
         } else {
-            this.state.go('rizhi.pvc')
+            this.state.go('rizhi.logManagement')
         }
     }
 

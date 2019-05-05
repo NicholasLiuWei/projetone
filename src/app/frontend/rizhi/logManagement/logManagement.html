@@ -1,0 +1,181 @@
+<!-- <md-content style="height: 57px;display: flex;align-items: center;font-size: 14px;line-height: normal;background: #ffffff;box-sizing: border-box;border-bottom: 1px solid #ccc;overflow: hidden;" layout-gt-xs="row"> -->
+<!-- <div style="height: 57px;"> -->
+<div class="log-management-search">
+    <div layout-gt-sm="row" class="index-position-top">
+        <md-input-container class="md-block">
+            <label>[[Index|Index-rizhi]]</label>
+            <md-select ng-model="$ctrl.sCurrentIndexArr">
+                <md-option ng-repeat="currentIndex in $ctrl.aIndexArr" value="{{currentIndex}}">
+                    {{currentIndex}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div><label>[[开始日期|开始日期-rizhi]]</label>
+        <md-datepicker ng-model="$ctrl.oStartDate" md-placeholder="Start date"></md-datepicker>
+    </div>
+    <div>
+        <label>[[结束日期|结束日期-rizhi]]</label>
+        <md-datepicker ng-model="$ctrl.oEndDate" md-placeholder="End time"></md-datepicker>
+    </div>
+    <div style="margin-left: 100px;">
+        <md-button class="md-raised md-primary" ng-click="$ctrl.fSearchData()">检索</md-button>
+    </div>
+</div>
+<!-- <div ng-switch="$ctrl.sSearchIndexArr"> -->
+<kd-resource-card-list selectable="false" with-statuses="false" ng-if="$ctrl.sSearchIndexArr=='k8s-containers-*'?true:false">
+    <kd-resource-card-list-header>
+        <!-- [[K8s|K8s-rizhi]] -->
+    </kd-resource-card-list-header>
+    <div ng-if="$ctrl.bSearchLoading" style="background: #fff;width: 100%;height: 238px;position: absolute;z-index: 99;">
+        <md-progress-circular md-diameter="50" style="margin:90px auto 0;">
+        </md-progress-circular>
+    </div>
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column size="small" grow="1" class="table-header-first-padding-left">
+            [[Host|Host-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="1">
+            [[Date|Date-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="1">
+            [[Pod|Pod-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="1">
+            [[Container|Container-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="1">
+            [[Namespace|Namespace-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="4">
+            [[Content|Content-rizhi]]
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <kd-resource-card ng-repeat="msg in $ctrl.data">
+        <kd-resource-card-columns>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source.kubernetes.host}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source['@timestamp']}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source.kubernetes.pod_name}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source.kubernetes.container_name}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source.kubernetes.namespace_name}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column title={{msg._source.log}}>
+                <div style="word-break: break-all;height: 60px;overflow: hidden;">
+                    {{msg._source.log}}
+                </div>
+            </kd-resource-card-column>
+        </kd-resource-card-columns>
+    </kd-resource-card>
+</kd-resource-card-list>
+
+<kd-resource-card-list selectable="false" with-statuses="false" ng-if="$ctrl.sSearchIndexArr=='k8s-dmesg-*'?true:false">
+    <kd-resource-card-list-header>
+        <!-- [[K8s|K8s-rizhi]] -->
+    </kd-resource-card-list-header>
+    <div ng-if="$ctrl.bSearchLoading" style="background: #fff;width: 100%;height: 238px;position: absolute;z-index: 99;">
+        <md-progress-circular md-diameter="50" style="margin:90px auto 0;">
+        </md-progress-circular>
+    </div>
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column class="table-header-first-padding-left">
+            [[Host|Host-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column>
+            [[Date|Date-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column>
+            [[Pod|Pod-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column>
+            [[Content|Content-rizhi]]
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <kd-resource-card ng-repeat="msg in $ctrl.data">
+        <kd-resource-card-columns layout="row">
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source['host_machine_name:']}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source['@timestamp']}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source.pod_name}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column title={{msg._source.message}}>
+                <div style="word-break: break-all;height: 60px;overflow: hidden;">
+                    {{msg._source.message}}
+                </div>
+            </kd-resource-card-column>
+        </kd-resource-card-columns>
+    </kd-resource-card>
+</kd-resource-card-list>
+
+<kd-resource-card-list selectable="false" with-statuses="false" ng-if="$ctrl.sSearchIndexArr!=='k8s-containers-*'&&$ctrl.sSearchIndexArr!=='k8s-dmesg-*'?true:false">
+    <kd-resource-card-list-header>
+        <!-- [[K8s|K8s-rizhi]] -->
+    </kd-resource-card-list-header>
+    <div ng-if="$ctrl.bSearchLoading" style="background: #fff;width: 100%;height: 238px;position: absolute;z-index: 99;">
+        <md-progress-circular md-diameter="50" style="margin:90px auto 0;">
+        </md-progress-circular>
+    </div>
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column class="table-header-first-padding-left">
+            [[Host|Host-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column>
+            [[Date|Date-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column>
+            [[Content|Content-rizhi]]
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <kd-resource-card ng-repeat="msg in $ctrl.data">
+        <kd-resource-card-columns>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source.hostname}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column>
+                <div style="word-break: break-all;">
+                    {{msg._source['@timestamp']}}
+                </div>
+            </kd-resource-card-column>
+            <kd-resource-card-column title={{msg._source.message}}>
+                <div style="word-break: break-all;height: 60px;overflow: hidden;">
+                    {{msg._source.message}}
+                </div>
+            </kd-resource-card-column>
+        </kd-resource-card-columns>
+    </kd-resource-card>
+</kd-resource-card-list>
+<div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.data.length==0">[[暂无信息|暂无信息]]</div>
+<div ng-if="$ctrl.bLoading" style="height:70px;padding-top: 30px;background-color: rgb(250,250,250);">
+    <md-progress-circular md-diameter="30" style="margin:0 auto;">
+    </md-progress-circular>
+</div>

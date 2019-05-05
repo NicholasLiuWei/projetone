@@ -260,9 +260,9 @@ export class imagelistController {
         let that = this;
         if (that.needUpload == true) {
             var reader = new FileReader(); //新建一个FileReader
-            reader.readAsText(this.fileName[0], "UTF-8"); //读取文件 
+            reader.readAsArrayBuffer(this.fileName[0]); //读取文件 
             reader.onload = function(evt) { //读取完文件之后会回来这里
-                that.fileCont = evt['target']['result']
+                that.fileCont = Array.from(new Uint8Array(evt.target.result));
                 if (that.baseImages['name'] == "" || that.baseImages['name'] == undefined) {
                     that.oBaseFillInFields['name'] = true;
                     return;
