@@ -245,8 +245,8 @@ export class imagelistController {
             }
         } else {
             /** @type {string} @desc release 未上传文件 */
-            let MSG_image_imagelist_error_title = goog.getMsg('请上传文件');
-            this.toastr["warning"](MSG_image_imagelist_error_title, 0, {
+            let MSG_image_imagelist_warning_upload = goog.getMsg('请上传文件');
+            this.toastr["warning"](MSG_image_imagelist_warning_upload, 0, {
                 closeButton: true,
                 timeOut: 10000,
             });
