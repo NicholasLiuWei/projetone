@@ -467,6 +467,7 @@ export class imagelistController {
          */
     deployWorkload() {
             this.customShowNum++;
+            this.kdService.value["content"]["services"][0]["pods"] = this.kdService["value"]["releaseName"]
             this.nextClassNameShow(document.getElementsByClassName("custom-process-children-background")[0]);
         }
         /**
