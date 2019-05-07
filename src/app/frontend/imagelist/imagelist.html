@@ -291,7 +291,10 @@
                 </kd-content-card>
                 <kd-footer layout="row" layout-align="end center" style="margin-top: 20px;">
                     <md-button class="md-raised" ng-click="ctrl.fCustomPreviousStep()">[[上一步|上一步imagelist]]</md-button>
-                    <md-button class="md-raised" ng-click="ctrl.deployServiceAfter()">[[开始创建|开始创建imagelist]]</md-button>
+                    <md-button class="md-raised app-load-parent" ng-click="ctrl.deployServiceAfter()">
+                        <md-progress-circular md-mode="indeterminate" class="app-load" ng-if="ctrl.bCreatAppLayout"></md-progress-circular>
+                        [[开始创建|开始创建imagelist]]
+                    </md-button>
                 </kd-footer>
             </div>
 

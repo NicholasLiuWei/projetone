@@ -150,6 +150,9 @@ export class imagelistController {
 
         /** @export */
         this.fileCont = "";
+
+        /** @export */
+        this.bCreatAppLayout = false;
     }
 
     /** @export */
@@ -481,6 +484,7 @@ export class imagelistController {
          * @export
          */
     deployServiceAfter() {
+            this.bCreatAppLayout = true;
             let content = {};
             content['components'] = this.kdService.value["content"]["components"];
             content['ingress'] = this.oWorkloadIngress;
@@ -494,13 +498,20 @@ export class imagelistController {
                 "releaseName": this.deploymentSpec.releaseName,
                 "content": JSON.stringify(content)
             }
-            this.customShowNum = 1;
             this.nextClassNameShow(document.getElementsByClassName("custom-process-children-background")[0]);
             let resource = this.resource('api/v1/helm/deploychartnow', {}, { save: { method: 'POST', } });
             resource.save(
                 deploynowData,
                 (response, req) => {
-                    this.state.go("chrome.release");
+                    this.customShowNum = 1;
+                    this.bCreatAppLayout = false;
+                    /** @type {string} @desc release 部署成功 */
+                    let MSG_image_imagelist_success_deploy = goog.getMsg('部署成功');
+                    this.toastr["success"](MSG_image_imagelist_success_deploy, 0, {
+                        closeButton: true,
+                        timeOut: 10000,
+                    });
+                    // this.state.go("chrome.release");
                     this.customImages = {
                         branch: "",
                         url: "",
@@ -508,6 +519,8 @@ export class imagelistController {
                     };
                 },
                 (err) => {
+                    this.customShowNum = 1;
+                    this.bCreatAppLayout = false;
                     // this.disable = false;
                     // defer.reject(err); // Progress ends
                     // this.log_.error('Error deploying chart:', err);
@@ -526,6 +539,12 @@ export class imagelistController {
                         "url": "",
                         "name": ""
                     };
+                    // /** @type {string} @desc release 部署失败 */
+                    // let MSG_image_imagelist_error_deploy = goog.getMsg('部署失败');
+                    // this.toastr["error"](MSG_image_imagelist_error_deploy, 0, {
+                    //     closeButton: true,
+                    //     timeOut: 10000,
+                    // });
                 })
         }
         /**

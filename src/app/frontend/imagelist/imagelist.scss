@@ -197,11 +197,29 @@ md-card>md-card-header img {
     height: 100%;
 }
 
-#file{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+#file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
+}
+
+.app-load-parent {
+    display: flex;
+    justify-content: center;
+    &>.app-load {
+        width: 20px !important;
+        height: 20px !important;
+        padding-right: 10px;
+        &>svg {
+            width: 20px !important;
+            height: 20px !important;
+            transform-origin: initial !important;
+            &>path {
+                stroke: #ccc;
+            }
+        }
+    }
 }
