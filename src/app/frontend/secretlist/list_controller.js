@@ -16,24 +16,24 @@
  * @final
  */
 export class SecretListController {
-  /**
-   * @param {!backendApi.SecretList} secretList
-   * @param {!angular.Resource} kdSecretListResource
-   * @ngInject
-   */
-  constructor(secretList, kdSecretListResource) {
-    /** @export {!backendApi.SecretList} */
-    this.secretList = secretList;
+    /**
+     * @param {!backendApi.SecretList} secretList
+     * @param {!angular.Resource} kdSecretListResource
+     * @ngInject
+     */
+    constructor(secretList, kdSecretListResource) {
+        /** @export {!backendApi.SecretList} */
+        this.secretList = secretList;
 
-    /** @export {!angular.Resource} */
-    this.secretListResource = kdSecretListResource;
-  }
+        /** @export {!angular.Resource} */
+        this.secretListResource = kdSecretListResource;
+    }
 
-  /**
-   * @return {boolean}
-   * @export
-   */
-  shouldShowZeroState() {
-    return !(this.secretList.secrets && this.secretList.secrets.length);
-  }
+    /**
+     * @return {boolean}
+     * @export
+     */
+    shouldShowZeroState() {
+        return !(this.secretList.secrets && this.secretList.secrets.length);
+    }
 }

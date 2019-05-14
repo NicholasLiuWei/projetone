@@ -16,25 +16,25 @@
  * @final
  */
 export class ServiceCardListController {
-  /**
-   * @param {!./../common/namespace/namespace_service.NamespaceService} kdNamespaceService
-   * @ngInject
-   */
-  constructor(kdNamespaceService) {
-    /** @private {!./../common/namespace/namespace_service.NamespaceService} */
-    this.kdNamespaceService_ = kdNamespaceService;
+    /**
+     * @param {!./../common/namespace/namespace_service.NamespaceService} kdNamespaceService
+     * @ngInject
+     */
+    constructor(kdNamespaceService) {
+        /** @private {!./../common/namespace/namespace_service.NamespaceService} */
+        this.kdNamespaceService_ = kdNamespaceService;
 
-    /** @export {!angular.Resource} Initialized from binding. */
-    this.serviceListResource;
-  }
+        /** @export {!angular.Resource} Initialized from binding. */
+        this.serviceListResource;
+    }
 
-  /**
-   * @return {boolean}
-   * @export
-   */
-  areMultipleNamespacesSelected() {
-    return this.kdNamespaceService_.areMultipleNamespacesSelected();
-  }
+    /**
+     * @return {boolean}
+     * @export
+     */
+    areMultipleNamespacesSelected() {
+        return this.kdNamespaceService_.areMultipleNamespacesSelected();
+    }
 }
 
 /**
@@ -43,20 +43,20 @@ export class ServiceCardListController {
  * @type {!angular.Component}
  */
 export const serviceCardListComponent = {
-  transclude: {
-    // Optional header that is transcluded instead of the default one.
-    'header': '?kdHeader',
-    // Optional zerostate content that is shown when there are zero items.
-    'zerostate': '?kdZerostate',
-  },
-  templateUrl: 'servicelist/servicecardlist.html',
-  controller: ServiceCardListController,
-  bindings: {
-    /** {!backendApi.ServiceList} */
-    'serviceList': '<',
-    /** {angular.Resource} */
-    'serviceListResource': '<',
-    /** {boolean} */
-    'selectable': '<',
-  },
+    transclude: {
+        // Optional header that is transcluded instead of the default one.
+        'header': '?kdHeader',
+        // Optional zerostate content that is shown when there are zero items.
+        'zerostate': '?kdZerostate',
+    },
+    templateUrl: 'servicelist/servicecardlist.html',
+    controller: ServiceCardListController,
+    bindings: {
+        /** {!backendApi.ServiceList} */
+        'serviceList': '<',
+        /** {angular.Resource} */
+        'serviceListResource': '<',
+        /** {boolean} */
+        'selectable': '<',
+    },
 };

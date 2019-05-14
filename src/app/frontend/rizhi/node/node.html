@@ -1,0 +1,69 @@
+<kd-resource-card-list selectable="false" with-statuses="false">
+    <kd-resource-card-list-header>
+        [[Node|Node-rizhi]]
+    </kd-resource-card-list-header>
+
+    <kd-resource-card-list-pagination pagination-id="logNodes" list="$ctrl.data" list-resource="">
+    </kd-resource-card-list-pagination>
+
+    <kd-resource-card-header-columns>
+        <kd-resource-card-header-column size="small" grow="2" class="table-header-first-padding-left">
+            [[IP|IP-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[Type|Type-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[Agent|Agent-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[UpdateTime|UpdateTime-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[State|State-rizhi]]
+        </kd-resource-card-header-column>
+        <kd-resource-card-header-column size="small" grow="2">
+            [[Version|Version-rizhi]]
+        </kd-resource-card-header-column>
+    </kd-resource-card-header-columns>
+    <md-content>
+        <!-- <kd-service-card service="service" dir-paginate="service in $ctrl.data | itemsPerPage: 2" total-items="::$ctrl.data.length" pagination-id="logNodes">
+        </kd-service-card> -->
+        <!-- <kd-resource-card ng-repeat="msg in $ctrl.data"> -->
+        <kd-resource-card dir-paginate="msg in $ctrl.data.logNodes | itemsPerPage: $ctrl.data.listMeta.totalItems" total-items="::$ctrl.data.listMeta.totalItems" pagination-id="logNodes" type-meta='{"kind": "logNodes"}' object-meta="$ctrl.data">
+            <kd-resource-card-columns>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.internalIP}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.type}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.agent}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.updateTime}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.state}}
+                    </div>
+                </kd-resource-card-column>
+                <kd-resource-card-column>
+                    <div style="word-break: break-all;">
+                        {{msg.version}}
+                    </div>
+                </kd-resource-card-column>
+            </kd-resource-card-columns>
+        </kd-resource-card>
+    </md-content>
+</kd-resource-card-list>
+<div layout="row" layout-align="center center" style="height:200px;" ng-if="$ctrl.data.length==0">[[暂无信息|暂无信息]]</div>

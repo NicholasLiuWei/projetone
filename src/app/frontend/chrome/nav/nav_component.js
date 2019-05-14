@@ -42,8 +42,8 @@ import { stateName as image } from 'imagelist/state';
 import { stateName as warning } from 'warning/list/state';
 import { stateName as storage } from 'storage/pvc/state';
 import { stateName as network } from 'network/service/state';
-import { stateName as rizhi } from 'rizhi/state';
-import { stateName as cephcluster } from 'jiankong/cephcluster/state';
+import { stateName as rizhi } from 'rizhi/pvc/state';
+import { stateName as jiankong } from 'jiankong/state';
 
 /**
  * @final
