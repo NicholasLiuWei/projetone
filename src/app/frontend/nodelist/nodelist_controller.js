@@ -23,41 +23,54 @@ export class NodeListController {
      * @param {!angular.Resource} kdNodeListResource
      * @ngInject
      */
-    constructor(nodeList, kdNodeListResource, $rootScope, $interval) {
-            /** @export {!backendApi.NodeList} */
-            this.nodeList = nodeList;
+    constructor(nodeList, kdNodeListResource, $rootScope, $interval, $scope) {
+        /** @export {!backendApi.NodeList} */
+        this.nodeList = nodeList;
 
-            /** @export {!angular.Resource} */
-            this.nodeListResource = kdNodeListResource;
+        /** @export {!angular.Resource} */
+        this.nodeListResource = kdNodeListResource;
 
-            /** @private {!angular.$interval} */
-            this.interval_ = $interval;
+        /** @private {!angular.Scope} */
+        this.scope_ = $scope;
 
-            /** @export */
-            this.rootScope_ = $rootScope;
+        /** @private {!angular.$interval} */
+        this.interval_ = $interval;
 
-            /** @export */
-            $rootScope.loading = false;
+        /** @export */
+        this.rootScope_ = $rootScope;
 
-            /** @export */
-            $rootScope.show = false;
+        /** @export */
+        $rootScope.loading = false;
 
-            /** @export */
-            this.i18n = i18n;
+        /** @export */
+        $rootScope.show = false;
 
-            /** @export */
-            $rootScope.nodedetail = {};
+        /** @export */
+        this.i18n = i18n;
 
-            /** @export */
-            this.statusCodes = {
-                1: i18n.MSG_NODE_CARD_detail_good,
-                2: i18n.MSG_NODE_CARD_detail_error,
-            };
-        }
-        /** 
-         * 隐藏详情
-         * @export 
-         */
+        /** @export */
+        $rootScope.nodedetail = {};
+
+        /** @export */
+        this.statusCodes = {
+            1: i18n.MSG_NODE_CARD_detail_good,
+            2: i18n.MSG_NODE_CARD_detail_error,
+        };
+    }
+
+    /** @export */
+    $onInit() {
+        this.scope_.$on('$destroy', () => {
+            if (this.rootScope_.nodedetail['interval']) {
+                this.interval_.cancel(this.rootScope_.nodedetail['interval']);
+            }
+        });
+    }
+
+    /** 
+     * 隐藏详情
+     * @export 
+     */
     hide() {
         if (this.rootScope_.nodedetail['interval']) {
             this.interval_.cancel(this.rootScope_.nodedetail['interval']);

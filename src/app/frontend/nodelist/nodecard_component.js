@@ -501,7 +501,7 @@ export default class NodeCardController {
             this.request();
             this.rootScope_.nodedetail['interval'] = this.interval_(() => {
                 this.request();
-            }, 10000);
+            }, 1000000);
         }
         /**
          * @export
@@ -532,16 +532,17 @@ export default class NodeCardController {
      * @return {string} localized tooltip with the formated creation date
      */
     getCreatedAtTooltip(creationDate) {
-            let filter = this.interpolate_(`{{date | date}}`);
-            /** @type {string} @desc Tooltip 'Created at [some date]' showing the exact creation time of
-             * node. */
-            let MSG_NODE_LIST_CREATED_AT_TOOLTIP =
-                goog.getMsg('Created at {$creationDate}', { 'creationDate': filter({ 'date': creationDate }) });
-            return MSG_NODE_LIST_CREATED_AT_TOOLTIP;
-        }
-        /**
-         * @export
-         */
+        let filter = this.interpolate_(`{{date | date}}`);
+        /** @type {string} @desc Tooltip 'Created at [some date]' showing the exact creation time of
+         * node. */
+        let MSG_NODE_LIST_CREATED_AT_TOOLTIP =
+            goog.getMsg('Created at {$creationDate}', { 'creationDate': filter({ 'date': creationDate }) });
+        return MSG_NODE_LIST_CREATED_AT_TOOLTIP;
+    }
+
+    /**
+     * @export
+     */
     toggleRight() {
         let resource = this.resource_("gethw?host=" + this.node.externalID);
         resource.get().$promise.then(function(data) {
