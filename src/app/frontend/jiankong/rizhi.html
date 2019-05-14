@@ -6,7 +6,7 @@
             <a target="_blank" ng-href="{{$ctrl.url()}}">{{$ctrl.url()}}</a>
         </div> -->
 <div>
-    <kd-content-card>
+    <!-- <kd-content-card>
         <kd-title>[[Ceph监控|jiankong Ceph监控]]</kd-title>
         <kd-content layout="row">
             <a ng-href="{{$ctrl.url()+'/d/ceph-cluster/ceph-cluster?refresh=1m&orgId=1'}}" target="_blank">
@@ -47,7 +47,8 @@
     <kd-content-card>
         <kd-title>[[Kubernetes 集群监控|jiankong Kubernetes 集群监控]]</kd-title>
         <kd-content>
-            <a ng-href="{{$ctrl.url()+'/d/k8s/kubernetes-cluster-monitoring-via-prometheus?refresh=10s&orgId=1'}}" target="_blank">
+            <a ng-href="{{$ctrl.url()+'/d/k8s/kubernetes-cluster-monitoring-via-prometheus?refresh=10s&orgId=1'}}"
+                target="_blank">
                 <div class="jkbox" layout="row">
                     <div class="jkimagebox" layout="row" layout-align="center center">
                         <img src="assets/images/kubernetes.png" alt="kubernetes">
@@ -59,7 +60,22 @@
                 </div>
             </a>
         </kd-content>
-    </kd-content-card>
+    </kd-content-card> -->
+    <div flex="100" class="warn-list-group">
+        <div ng-class="$ctrl.active('monitor-cephcluster')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/jiankong/cephcluster?namespace='+$ctrl.stateParams}}">[[Ceph-Cluster|Ceph-Cluster]]</a>
+        </div>
+        <div ng-class="$ctrl.active('monitor-cephpools')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/jiankong/cephpools?namespace='+$ctrl.stateParams}}">[[Ceph-Pools|Ceph-Pools]]</a>
+        </div>
+        <div ng-class="$ctrl.active('monitor-cephOSD')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/jiankong/cephOSD?namespace='+$ctrl.stateParams}}">[[Ceph-OSD|Ceph-OSD]]</a>
+        </div>
+        <div  style="margin-right: 20px;"  ng-class="$ctrl.active('monitor-dashboard')?'warn-list-item router-link-exact-active active':'warn-list-item'">
+            <a ng-href="{{'#!/jiankong/dashboard?namespace='+$ctrl.stateParams}}">[[Dashboard|Dashboard]]</a>
+        </div>
+    </div>
+    <ui-view></ui-view>
 </div>
 <!-- </kd-content>
 </kd-content-card> -->

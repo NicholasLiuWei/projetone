@@ -1,8 +1,15 @@
 import { stateName as chromeStateName } from 'chrome/chrome_state';
 import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_service';
-
+import { stateName as cephclusterStateName } from './cephcluster/state';
+import { stateName as cephpoolsStateName } from './cephpools/state';
+import { stateName as cephosdStateName } from './cephosd/state';
+import { stateName as dashboardStateName } from './dashboard/state';
 import { stateName as rizhiName, stateUrl } from './state';
 import { jiankongController } from './controller';
+import { cephclusterConfig } from './cephcluster/stateconfig';
+import { cephpoolsConfig } from './cephpools/stateconfig';
+import { cephosdConfig } from './cephosd/stateconfig';
+import { dashboardConfig } from './dashboard/stateconfig';
 
 /**
  * Configures states for the home.
@@ -28,6 +35,12 @@ export default function stateConfig($stateProvider) {
             },
         },
     });
+
+
+    $stateProvider.state(cephclusterStateName, cephclusterConfig);
+    $stateProvider.state(cephpoolsStateName, cephpoolsConfig);
+    $stateProvider.state(cephosdStateName, cephosdConfig);
+    $stateProvider.state(dashboardStateName, dashboardConfig);
 }
 
 const i18n = {

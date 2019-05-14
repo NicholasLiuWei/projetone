@@ -30,6 +30,8 @@ export class LoginController {
          * @export
          */
     login() {
+        this.state.go('home');
+
         if (this.form.$valid) {
             this.cookies.put('login', true);
             this.cookies.put('username', this.username);

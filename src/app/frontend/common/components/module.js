@@ -40,6 +40,7 @@ import uploadFileDirective from './uploadfile/directive';
 import {warningsComponent} from './warnings/component';
 import warnThresholdDirective from './warnthreshold/directive';
 import {zeroStateComponent} from './zerostate/component';
+import {chartComponent} from './charts/component';
 
 /**
  * Module containing common components for the application.
@@ -72,6 +73,7 @@ export default angular
     .component('kdObjectMetaInfoCard', infoCardComponent)
     .component('kdContentCard', contentCardComponent)
     .component('kdWarnings', warningsComponent)
+    .component('kdCharts', chartComponent)
     .component('kdConditionList', conditionListComponent)
     .component('kdScaleButton', scaleButtonComponent)
     .component('kdPodWarnings', podWarningsComponent)

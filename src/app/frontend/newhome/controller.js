@@ -603,6 +603,7 @@ export class homeController {
                     //调用格式化数据函数
                     getcpuData();
                     cpuuse["setOption"](cpuoption);
+                    console.log(cpuoption)
                     memuse["setOption"](memoption);
                     receive["setOption"](qianoption);
                     send["setOption"](wanoption);
@@ -788,6 +789,7 @@ export class homeController {
                 option1['series'][1]['data'][0]['value'] = fsusage;
                 option1['series'][1]['data'][1]['value'] = 100 - fsusage;
                 tu1["setOption"](option1);
+                console.log(option1)
             }, () => {});
             //应用
             this.kdReleaseResource.get().$promise.then((data) => {
@@ -866,6 +868,7 @@ export class homeController {
                         memuse["setOption"](memoption);
                         receive["setOption"](qianoption);
                         send["setOption"](wanoption);
+                        console.log(cpuoption)
                     }, () => {});
                 },
                 (res) => {
