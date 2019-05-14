@@ -1,4 +1,4 @@
-import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_service';
+// import { breadcrumbsConfig } from 'common/components/breadcrumbs/breadcrumbs_service';
 
 import { stateName as rizhiName, stateUrl } from './state';
 import { nodeController } from './controller';
@@ -21,11 +21,11 @@ export const nodeConfig = {
             templateUrl: 'rizhi/node/node.html',
         },
     },
-    data: {
-        [breadcrumbsConfig]: {
-            'label': 'node',
-        },
-    },
+    // data: {
+    //     [breadcrumbsConfig]: {
+    //         'label': 'node',
+    //     },
+    // },
 }
 
 // /**

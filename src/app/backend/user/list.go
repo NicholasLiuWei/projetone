@@ -15,22 +15,24 @@
 package user
 
 import (
-	"k8s.io/client-go/kubernetes"
-	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
 	API "github.com/kubernetes/dashboard/src/app/backend/api"
+	"github.com/kubernetes/dashboard/src/app/backend/settings/api"
+	"k8s.io/client-go/kubernetes"
 	//metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"strings"
+	"log"
 )
 
-func HandleGetUsers(client kubernetes.Interface) (RespData) {
+func HandleGetUsers(client kubernetes.Interface) RespData {
 	//create a selector
 	//selector:=map[string]string{"role":UserConfigMapRole}
 	//var ListBySelector = metaV1.ListOptions{
 	//	LabelSelector: labels.FormatLabels(selector),
 	//}
 	//list with filter
-	list, err :=  client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).List(API.ListEverything)
-	if err!=nil || list==nil || len(list.Items)<=0{
+	list, err := client.CoreV1().ConfigMaps(api.SettingsConfigMapNamespace).List(API.ListEverything)
+	log.Println("list configmap ...")
+	if err != nil || list == nil || len(list.Items) <= 0 {
 		return RespData{
 			StatusOK,
 			nil,
@@ -47,19 +49,17 @@ func HandleGetUsers(client kubernetes.Interface) (RespData) {
 			filteredItems = append(filteredItems, innerItem)
 		}
 	}
-	userList:=&ListUser{
-		ListMeta:ListMeta{TotalItems:len(filteredItems)},
-		Items:filteredItems,
+	userList := &ListUser{
+		ListMeta: ListMeta{TotalItems: len(filteredItems)},
+		Items:    filteredItems,
 	}
-   return RespData{StatusOK,userList}
+	return RespData{StatusOK, userList}
 }
 
-
 func FormatStringToBool(s string) bool {
-	if s=="true" {
+	if s == "true" {
 		return true
-	}else{
+	} else {
 		return false
 	}
 }
-

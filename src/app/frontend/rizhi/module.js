@@ -28,7 +28,7 @@ export default angular
  * @ngInject
  */
 function logNodeListResource($resource) {
-    return $resource('log/node');
+    return $resource('api/v1/log/node');
 }
 
 /**
@@ -37,7 +37,7 @@ function logNodeListResource($resource) {
  * @ngInject
  */
 function platFormListResource($resource) {
-    return $resource('log/platform');
+    return $resource('api/v1/log/platform');
 }
 
 // /**

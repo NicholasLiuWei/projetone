@@ -47,9 +47,9 @@
                 <div class="statusdesc" layout="row" layout-align="space-between">
                     <div layout="row">
                         <b>{{$ctrl.i18n.MSG_HOME_NODE_NAME}}:</b>&nbsp;&nbsp;&nbsp;&nbsp;{{$ctrl.i18n.MSG_HOME_NODE_ERR}} &nbsp;
-                        <span>{{$ctrl.releasenum.abnormal}}</span>
+                        <span>{{$ctrl.arch.arch==1?$ctrl.nodenum.amdabnormal:$ctrl.nodenum.armabnormal}}</span>
                     </div>
-                    <div layout="row">{{$ctrl.i18n.MSG_HOME_NODE_GOOD}}: &nbsp; <span> {{$ctrl.releasenum.normal}}</span> </div>
+                    <div layout="row">{{$ctrl.i18n.MSG_HOME_NODE_GOOD}}: &nbsp; <span> {{$ctrl.arch.arch==1?$ctrl.nodenum.amdnormal:$ctrl.nodenum.armnormal}}</span> </div>
                 </div>
             </div>
             <div ng-if="$ctrl.arch.arch==0" class="sitem" layout="row">

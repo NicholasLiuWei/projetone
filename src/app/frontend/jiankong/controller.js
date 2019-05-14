@@ -22,7 +22,7 @@ export class jiankongController {
      * @export
      */
     url() {
-        return `http://${location.hostname}:30000`
+        return "http://grafana.lenovo.com";
     }
 
        /**

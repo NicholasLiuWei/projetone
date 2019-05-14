@@ -1,4 +1,4 @@
-export class pvcController {
+export class logManagementController {
     /**
      * @ngInject
      */

@@ -4,11 +4,51 @@
 
 .rizhi-table {
     display: flex;
-    &>div {
-        border-bottom: 1px solid #e4e7ed;
+    border-bottom: 1px solid #ccc;
+    &>div:first-child {
+        margin-left: 10px;
+        // border-bottom: 1px solid #e4e7ed;
     }
     .warn-list-item:last-child {
         border-radius: 0;
+    }
+}
+
+// .rizhi-table {
+//     display: flex;
+//     border-bottom: 1px solid #ccc;
+//     &>div {
+//         border: none;
+//         // border-bottom: 1px solid blue;
+//     }
+//     .warn-list-item:last-child {
+//         border: none !important;
+//         border-radius: 0;
+//     }
+// }
+.rizhi-router {
+    padding: 0 20px;
+    background: #ffffff;
+    color: #000000;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 20px;
+    &>a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: rgba(0, 0, 0, 0.54);
+    }
+    &:hover {
+        cursor: pointer;
+        background: #f0f0f0;
+    }
+}
+
+.rizhi-router-link-exact-active {
+    border-bottom: 2px solid rgb(68, 138, 255);
+    &>a {
+        color: rgb(68, 138, 255) !important;
     }
 }
 
@@ -24,4 +64,9 @@
 .index-position-top {
     position: relative;
     top: 13px;
+}
+
+.rizhi-box {
+    padding: 0 20px 20px;
+    background: #ffffff;
 }

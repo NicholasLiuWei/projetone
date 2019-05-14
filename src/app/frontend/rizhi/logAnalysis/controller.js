@@ -1,4 +1,4 @@
-export class logController {
+export class logAnalysisController {
     /**
      * @ngInject
      */

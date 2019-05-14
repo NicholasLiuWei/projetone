@@ -18,7 +18,7 @@ export class AppStoreController {
      * @ngInject
      */
 
-    constructor($stateParams, $log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
+    constructor(kdStorageClassListResource, kdPaginationService, $stateParams, $log, $resource, $mdDialog, $q, errorDialog, kdHistoryService, kdCsrfTokenService, $timeout, $state) {
         this.form = 'form';
 
         this.file = { name: '', content: '' };
@@ -51,7 +51,15 @@ export class AppStoreController {
         this.getRepos();
         this.state = $state;
         /** @export */
+        this.kdStorageClassListResource = kdStorageClassListResource;
+        /** @export */
+        this.kdPaginationService = kdPaginationService;
+        /** @export */
+        this.storageclasslist = [];
+        /** @export */
         this.allDeployCon = {};
+        /** @export */
+        this.pending = true;
         /** @export */
         this.advanced = false;
         /** @export */
@@ -106,6 +114,7 @@ export class AppStoreController {
             "service": "服务",
             "name": "名称",
             "storage": "存储",
+            "storageClass": "存储类",
             "storageclassname": "存储库",
             "storagesize": "存储大小",
             "hpa": "自动扩容",
@@ -128,6 +137,16 @@ export class AppStoreController {
         a.then((res) => {
             this.arch = res["arch"];
         }, () => {});
+        // let data;
+        // this.resource_("api/v1/_raw/node/name/node3").get((res) => {
+        //     console.log(res);
+        //     data = res;
+        //     data.metadata.labels["test"] = "huawei";
+        //     let resource = this.resource_("api/v1/_raw/node/name/node3", {}, { save: { method: 'PUT' } });
+        //     resource.save(res).$promise.then((res) => { console.log(res) }, (res) => {
+        //         console.log(res);
+        //     })
+        // }, () => {})
     }
 
     /**
@@ -336,6 +355,16 @@ export class AppStoreController {
                     resource.save(
                         deploymentSpec,
                         (response, headers) => {
+                            let promises = this.kdStorageClassListResource.get(this.kdPaginationService.getDefaultResourceQuery("")).$promise
+                            promises.then((res) => {
+                                this.storageclasslist = [];
+                                res["storageClasses"].map((item) => {
+                                    this.storageclasslist.push(item["objectMeta"]["name"]);
+                                })
+                            }, () => {
+                                let con = JSON.parse(response.content);
+                                this.storageclasslist = [con["persistence"]["storageClass"]];
+                            })
                             this.choice = false;
                             this.commit = true;
                             this.disable = false;
@@ -442,14 +471,17 @@ export class AppStoreController {
     getRepos() {
         /** @type {!angular.Resource<!backendApi.RepositoryList>} */
         let resource = this.resource_(`api/v1/helm/repository`);
+        this.pending = true;
         resource.get(
             (res) => {
                 this.repos = [].concat(res.repositories.map((e) => e.name));
                 if (this.repos.length > 0) {
                     this.getCharts(res.repositories[0]['name']);
                 }
+                this.pending = false;
             },
             (err) => {
+                this.pending = false;
                 this.log_.log(`Error getting repos: ${err}`);
             });
     }
@@ -477,6 +509,7 @@ export class AppStoreController {
      */
     getCharts(repo) {
         //console.log('get charts');
+        this.pending = true;
         /** @type {!angular.Resource<!backendApi.ChartList>} */
         let resource = this.resource_(`api/v1/helm/repository/${repo}`);
         resource.get(
@@ -486,8 +519,11 @@ export class AppStoreController {
                     let nameB = b.name.toUpperCase();
                     return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
                 });
+                this.pending = false;
             },
             (err) => {
+                this.charts = [];
+                this.pending = false;
                 this.log_.log(`Error getting charts: ${err}`);
             });
     }

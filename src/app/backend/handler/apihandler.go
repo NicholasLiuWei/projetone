@@ -1275,7 +1275,7 @@ func memoryInfo(t1 int64, t2 int64, ch chan []ResultData) ([]ResultData, error) 
 		return nil, err
 	}
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
-		log.Println(string(respBytes))
+		//log.Println(string(respBytes))
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
 	}else{
@@ -1383,7 +1383,7 @@ func networkInfoByNode(t1 int64, t2 int64, url string, node string, ch chan []Re
 		ch <- nil
 		return nil, err
 	}
-	log.Println(string(respBytes))
+	// log.Println(string(respBytes))
 	if rangeResp != nil && rangeResp.Status == "success" && (len(rangeResp.Data.Result) > 0) {
 		ch <- rangeResp.Data.Result
 		return rangeResp.Data.Result, nil
@@ -2040,14 +2040,18 @@ func (apiHandler *APIHandler) handleGetClusterArch(request *restful.Request, res
 		}
 	}
 	if amd == 0 {
-		archMes.Arch = 1
-	}
-	if arm == 0 {
+		//2 arm64
 		archMes.Arch = 2
 	}
-	if arm != 0 && arm != 0{
+	if arm == 0 {
+		//1 x86
+		archMes.Arch = 1
+	}
+	if arm != 0 && amd != 0{
+		//0 auto
 		archMes.Arch = 0
 	}
+	log.Println("archMes.Arch",archMes.Arch)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
 		return
@@ -3546,6 +3550,7 @@ func parseDataSelectPathParameter(request *restful.Request) *dataselect.DataSele
 }
 
 func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response *restful.Response) {
+	log.Println("handleUserLogin")
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3561,6 +3566,7 @@ func (apiHandler *APIHandler) handleUserLogin(request *restful.Request, response
 }
 
 func (apiHandler *APIHandler) handleListUser(request *restful.Request, response *restful.Response) {
+	log.Println("handleListUser")
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3571,6 +3577,7 @@ func (apiHandler *APIHandler) handleListUser(request *restful.Request, response 
 }
 
 func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, response *restful.Response) {
+	log.Println("handleCreateUser")
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3586,6 +3593,7 @@ func (apiHandler *APIHandler) handleCreateUser(request *restful.Request, respons
 }
 
 func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, response *restful.Response) {
+	log.Println("handleUserChgpwd")
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3601,6 +3609,7 @@ func (apiHandler *APIHandler) handleUserChgpwd(request *restful.Request, respons
 }
 
 func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, response *restful.Response) {
+	log.Println("handleDeleteUser")
 	k8sClient, err := apiHandler.cManager.Client(request)
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -3609,6 +3618,5 @@ func (apiHandler *APIHandler) handleDeleteUser(request *restful.Request, respons
 	username := request.PathParameter("userid")
 	newErr:=user.HandleDeleteUser(k8sClient,username)
 	response.WriteHeaderAndEntity(http.StatusOK,newErr)
-
 }
 

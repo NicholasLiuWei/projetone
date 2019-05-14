@@ -10,6 +10,10 @@ import(
 	"log"
 	"strings"
         "github.com/emicklei/go-restful"
+        clientapi "github.com/kubernetes/dashboard/src/app/backend/client/api"
+        //"k8s.io/apimachinery/pkg/labels"
+        //metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+        //"k8s.io/kubernetes/pkg/apis/core/pods"
 )
 
 var ErrNoEmailConfigs = errors.New("invalid email config")
@@ -20,6 +24,7 @@ type (
                 sync.Mutex           `json:"-"`
                 EmailName string     `json:"email,omitempty"`
                 EmailConfig []string `json:"emailConfig,omitempty"`
+                ClientFactory clientapi.ClientManager
         }
 )
 
@@ -27,6 +32,10 @@ type (
 var e = &emailStore{
 		EmailName: "",
 	}
+
+func InitEmailStore(cf clientapi.ClientManager){
+        e.ClientFactory = cf
+}
 
 
 // email handler
@@ -120,6 +129,7 @@ func (email *emailStore) postHandler(req *restful.Request, resp *restful.Respons
         //        return
         //}
         //log.Printf("reload alertmanager config success, out=%v\n",out)
+
         body,err := httpPostForm()
         if err!=nil{
                 log.Println("reload alertmanager config failed")
@@ -129,7 +139,7 @@ func (email *emailStore) postHandler(req *restful.Request, resp *restful.Respons
 }
 
 func httpPostForm()([]byte,error){
-        resp,err:=http.PostForm("http://127.0.0.1:30903/-/reload", url.Values{})
+        resp,err:=http.PostForm("http://alertmanager.monitoring.svc.cluster.local:9093/-/reload", url.Values{})
         if err!=nil {
                 return nil,err
         }
@@ -175,6 +185,7 @@ func (email *emailStore) addEmailHandler(req *restful.Request, resp *restful.Res
         //        return
         //}
         //log.Printf("reload alertmanager config success, out=%v\n",out)
+        
         body,err := httpPostForm()
         if err!=nil{
                 log.Println("reload alertmanager config failed")
