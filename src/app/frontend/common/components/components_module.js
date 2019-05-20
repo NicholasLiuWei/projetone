@@ -35,36 +35,35 @@ import sparklineDirective from './sparkline/sparkline_directive';
 import toggleHiddenTextModule from './togglehiddentext/togglehiddentext_module';
 import warnThresholdDirective from './warnthreshold/warnthreshold_directive';
 import zeroStateModule from './zerostate/zerostate_module';
-import {chartComponent} from './charts/component';
+// import {chartComponent} from './charts/component';
 /**
  * Module containing common components for the application.
  */
 export default angular
     .module(
-        'kubernetesDashboard.common.components',
-        [
-          'ngMaterial',
-          'ui.router',
-          filtersModule.name,
-          actionbarModule.name,
-          contentCardModule.name,
-          endpointModule.name,
-          infoCardModule.name,
-          resourceDetailModule.name,
-          resourceCardModule.name,
-          zeroStateModule.name,
-          paginationModule.name,
-          namespaceModule.name,
-          stateModule.name,
-          graphModule.name,
-          conditionsModule.name,
-          serializedReferenceModule.name,
-          annotationsModule.name,
-          toggleHiddenTextModule.name,
+        'kubernetesDashboard.common.components', [
+            'ngMaterial',
+            'ui.router',
+            filtersModule.name,
+            actionbarModule.name,
+            contentCardModule.name,
+            endpointModule.name,
+            infoCardModule.name,
+            resourceDetailModule.name,
+            resourceCardModule.name,
+            zeroStateModule.name,
+            paginationModule.name,
+            namespaceModule.name,
+            stateModule.name,
+            graphModule.name,
+            conditionsModule.name,
+            serializedReferenceModule.name,
+            annotationsModule.name,
+            toggleHiddenTextModule.name,
         ])
     .directive('kdI18n', i18nDirective)
     .directive('kdLabels', labelsDirective)
     .directive('kdMiddleEllipsis', middleEllipsisDirective)
     .directive('kdSparkline', sparklineDirective)
-    .component('kdCharts', chartComponent)
+    // .component('kdCharts', chartComponent)
     .directive('kdWarnThreshold', warnThresholdDirective);
