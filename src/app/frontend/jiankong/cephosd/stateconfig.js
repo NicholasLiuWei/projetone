@@ -12,7 +12,7 @@ export const cephosdConfig = {
     url: stateUrl,
     parent: parentState,
     resolve: {
-        // "cephpoolChart1": cephpoolChart1,
+        // "cephosdChart1": cephosdChart1,
         // "cephpoolChart1_1": cephpoolChart1_1,
         // "cephpoolChart1_2": cephpoolChart1_2,
         // "cephpoolChart1_3": cephpoolChart1_3,
@@ -26,7 +26,7 @@ export const cephosdConfig = {
     },
     views: {
         '': {
-            controller:cephosdController,
+            controller: cephosdController,
             controllerAs: '$ctrl',
             templateUrl: 'jiankong/cephosd/cephosd.html',
         },
@@ -44,7 +44,7 @@ export const cephosdConfig = {
  * @return {!angular.Resource}
  * @ngInject
  */
-function cephpoolChart1($resource) {
+function cephosdChart1($resource) {
     return $resource('api/v1/query_range?query=ceph_pool_available_bytes%7Bpool%3D~%22cephfs_data%22%7D');
 }
 
@@ -130,7 +130,7 @@ function cephpoolChart4_2($resource) {
  * @return {!angular.Resource}
  * @ngInject
  */
- function cephpoolChart5_1($resource) {
+function cephpoolChart5_1($resource) {
     return $resource('api/v1/query_range?query=irate(ceph_pool_read_bytes_total%7Bpool%3D~%22cephfs_data%22%7D%5B3m%5D)');
 }
 
@@ -139,6 +139,6 @@ function cephpoolChart4_2($resource) {
  * @return {!angular.Resource}
  * @ngInject
  */
- function cephpoolChart5_2($resource) {
+function cephpoolChart5_2($resource) {
     return $resource('api/v1/query_range?query=irate(ceph_pool_write_bytes_total%7Bpool%3D~%22cephfs_data%22%7D%5B3m%5D)');
 }

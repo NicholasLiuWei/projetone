@@ -785,16 +785,10 @@
   <translation id="6970100075274497061" key="MSG_INGRESSLIST_CARDLIST_3" desc="Label \'endpoints\' which appears as a column label in the table of ingresses (ingress list view).">端点</translation>
   <translation id="8202258406797150740" key="MSG_INGRESSLIST_CARDLIST_4" desc="Label \'Age\' which appears as a column label in the table of ingresses (ingress list view).">时间</translation>
   <translation id="6014322650743882966" key="MSG_INGRESS_LIST_STARTED_AT_TOOLTIP" desc="Tooltip 'Started at [some date]' showing the exact start time of the ingress.">创建于 <ph name="START_DATE"> UTC</ph></translation>
-  <translation id="5447992502735023839" key="MSG_JIANKONG_RIZHI_0" desc="jiankong Ceph\u76D1\u63A7">Ceph监控</translation>
-  <translation id="399868909027095843" key="MSG_JIANKONG_RIZHI_1" desc="jiankong Ceph-Cluster">Ceph-Cluster</translation>
-  <translation id="1886148860411510032" key="MSG_JIANKONG_RIZHI_2" desc="jiankong \u76D1\u63A7ceph\u96C6\u7FA4\u4FE1\u606F\uFF0C\u96C6\u7FA4\u72B6\u6001\uFF0C\u5B58\u50A8\u72B6\u6001\u7B49\u4FE1\u606F">监控Ceph集群信息，集群状态，存储状态等信息</translation>
-  <translation id="4281952765852155926" key="MSG_JIANKONG_RIZHI_3" desc="jiankong ceph-Pools">Ceph-Pools</translation>
-  <translation id="5592548296787612084" key="MSG_JIANKONG_RIZHI_4" desc="\u76D1\u63A7Ceph-Pools\u4FE1\u606F\uFF0Cobject\u6570\uFF0Cops\u7B49\u4FE1\u606F">监控Ceph-Pools信息，object数，ops等信息</translation>
-  <translation id="438868781937206199" key="MSG_JIANKONG_RIZHI_5" desc="jiankong ceph-cluster">Ceph-OSD</translation>
-  <translation id="2737439275425719832" key="MSG_JIANKONG_RIZHI_6" desc="jiankong \u76D1\u63A7Ceph-OSD\u4FE1\u606F">监控Ceph-OSD信息</translation>
-  <translation id="4537034408188664751" key="MSG_JIANKONG_RIZHI_7" desc="jiankong Kubernetes \u96C6\u7FA4\u76D1\u63A7">Kubernetes 集群监控</translation>
-  <translation id="8478432366656679914" key="MSG_JIANKONG_RIZHI_8" desc="jiankong Kubernetes">Kubernetes</translation>
-  <translation id="3467578657925497846" key="MSG_JIANKONG_RIZHI_9" desc="jiankong \u76D1\u63A7Kubernetes\u96C6\u7FA4\u4FE1\u606F">监控Kubernetes集群信息</translation>
+  <translation id="7142770948889050904" key="MSG_JIANKONG_RIZHI_0" desc="Ceph-Cluster">Ceph-Cluster</translation>
+  <translation id="6406535915869934272" key="MSG_JIANKONG_RIZHI_1" desc="Ceph-Pools">Ceph-Pools</translation>
+  <translation id="3392885605785270592" key="MSG_JIANKONG_RIZHI_2" desc="Ceph-OSD">Ceph-OSD</translation>
+  <translation id="1199090297104187667" key="MSG_JIANKONG_RIZHI_3" desc="Dashboard">Dashboard</translation>
   <translation id="6315518507776012285" key="MSG_JOBDETAIL_ACTIONBAR_0" desc="Label \'Job\' which appears at the top of the dialog, opened from a job details page.">Job</translation>
   <translation id="3137266053437967990" key="MSG_JOBDETAIL_JOBDETAIL_0" desc="Title for graph card displaying CPU metric of one job.">CPU usage</translation>
   <translation id="3929486061329485708" key="MSG_JOBDETAIL_JOBDETAIL_1" desc="Title for graph card displaying memory metric of one job.">Memory usage</translation>
@@ -1455,6 +1449,7 @@
   <translation id="6571388540812573885" key="MSG_image_deployment_failed_con" desc="image 部署失败提示">部署失败，请重试</translation>
   <translation id="2746713520527501031" key="MSG_image_deployment_failed_title" desc="image 部署失败提示">服务器错误</translation>
   <translation id="6082626850385368780" key="MSG_image_imagelist_error_title" desc="release 更新失败">更新失败</translation>
+  <translation id="5633766809518232264" key="MSG_image_imagelist_success_deploy" desc="release 部署成功">部署成功</translation>
   <translation id="4390877576403583900" key="MSG_image_imagelist_success_title" desc="release 更新成功">更新成功</translation>
   <translation id="7878415387735764428" key="MSG_image_imagelist_warning_upload" desc="release 未上传文件">请上传文件</translation>
   <translation id="2483598429205640983" key="MSG_image_s2i_error_title" desc="release 更新失败">更新失败</translation>

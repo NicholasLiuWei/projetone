@@ -4,6 +4,7 @@ export class cephpoolsController {
      */
     constructor() {
         //  this.$watch= $watch;
+        /** @export */
         this.chartUrlOption = 'cephfs_data'
 
         /** @export */
@@ -53,7 +54,7 @@ export class cephpoolsController {
         }
 
 
-        this.changeOpt = function () {
+        this.changeOpt = function() {
             this.cephpoolChart1 = `api/v1/query_range?query=ceph_pool_available_bytes%7Bpool%3D~%22${this.chartUrlOption}%22%7D`;
             this.cephpoolChart1_1 = `api/v1/query_range?query=ceph_pool_used_bytes%7Bpool%3D~%22${this.chartUrlOption}%22%7D`;
             this.cephpoolChart1_2 = `api/v1/query_range?query=ceph_pool_used_bytes%7Bpool%3D~%22${this.chartUrlOption}%22%7D%20%2B%20ceph_pool_available_bytes%7Bpool%3D~%22${this.chartUrlOption}%22%7D`;

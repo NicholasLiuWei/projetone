@@ -1,686 +1,268 @@
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
-    <!-- 文字 -->
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart1]" type="'txt'" title="'Status'" timerange="10"
-            step="60" reqtimerange="30" format="'healthy'" option="{}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart2]" type="'txt'" title="'Monitors In Quorum'"
-            timerange="10" step="60" reqtimerange="30" format="'healthy'" option="{}">
-        </kd-charts>
-    </div>
-    <!-- 文字加图 -->
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart3]" type="'txt&chart'" title="'Pools'"
-            timerange="10" step="60" reqtimerange="30" option="{ xAxis: {
-                type: 'time',
-                show:false,
-            },
-            yAxis: {
-                type: 'value',
-                show:false,
-            },
-            lineStyle:{width:3},
-            series : [
-                {
-                    name: 'Pools',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                }
-            ]}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart4]" type="'txt&chart'"
-            title="'Cluster Capacity'" timerange="60" step="60" reqtimerange="30" format="'GB'" option="{ xAxis: {
-                type: 'time',
-                show:false,
-            },
-            yAxis: {
-                type: 'value',
-                show:false,
-            },
-            lineStyle:{width:3},
-            series : [
-                {
-                    name: 'Cluster Capacity',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                }
-            ]}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart5]" type="'txt&chart'" title="'Used Capacity'"
-            timerange="60" step="60" reqtimerange="30" format="'GB'" option="{ xAxis: {
-                    type: 'time',
-                    show:false,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:false,
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Used Capacity',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
-        </kd-charts>
-    </div>
-    <!-- 图标 -->
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart6]" type="'chart'" title="'Available Capacity'"
-            timerange="60" step="60" format="'dashboard'" reqtimerange="30" option="{
-                        series: [
-                            {
-                                name: 'Available Capacity',
-                                type: 'gauge',
-                                detail: {formatter:'{value}%',fontSize: 13},
-                                radius:'85%',
-                                data: [],
-                                title:{
-                                    color:'red',
-                                    fontSize:12
-                                },
-                                axisLabel:{
-                                    fontSize:12
-                                },
-                                axisLine: {           
-                                    lineStyle: {       
-                                        width: 2
-                                    }
-                                },
-                                splitLine: {         
-                                    length:5         
-                                },
-                                axisTick: {         
-                                    length:5,        
-                                    lineStyle: {       
-                                        color: 'auto'
-                                    }
-                                },  
-                                pointer: {
-                                    width:2
-                                },
-                            }
-                        ],
-                    }">
-        </kd-charts>
-    </div>
+<div layout="row" style="width:230px;height: 35px;border-bottom: 1px solid #e4e7ed;" layout-align="space-between center">
+    Pool ：
+    <md-input-container>
+        <!-- <md-select ng-model="$ctrl.chartUrlOption" class="md-no-underline"> -->
+        <md-select ng-model="$ctrl.chartUrlOption" class="md-no-underline" ng-change="$ctrl.changeOpt()">
+            <md-option value="^.*$">all</md-option>
+            <md-option value="^node1$">node1</md-option>
+            <md-option value="^node3$">node3</md-option>
+            <md-option value="^node4$">node4</md-option>
+        </md-select>
+    </md-input-container>
 </div>
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
-    <div style="width: 87px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart7]" type="'txt'" title="'OSDs IN'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
-        </kd-charts>
-    </div>
-    <div style="width: 86px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart8]" type="'txt'" title="'OSDs OUT'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
-        </kd-charts>
-    </div>
-    <div style="width: 87px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart9]" type="'txt'" title="'OSDs UP'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
-        </kd-charts>
-    </div>
-    <div style="width: 87px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart10]" type="'txt'" title="'OSDs  DOWN'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart11]" type="'txt&chart'"
-            title="'Average PGs per OSD'" format="''" timerange="60" step="60" reqtimerange="30" option="{ xAxis: {
-                    type: 'time',
-                    show:false,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:false,
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Average PGs per OSD',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart12]" type="'txt&chart'"
-            title="'Average OSD Commit Latency'" timerange="60" step="60" reqtimerange="30" format="'MS'" option="{ xAxis: {
-                type: 'time',
-                show:false,
-            },
-            yAxis: {
-                type: 'value',
-                show:false,
-            },
-            lineStyle:{width:3},
-            series : [
-                {
-                    name: 'Average OSD Commit Latency',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                }
-            ]}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart13]" type="'txt&chart'"
-            title="'Average OSD Commit Latency'" timerange="60" step="60" reqtimerange="30" format="'US'" option="{ xAxis: {
-                type: 'time',
-                show:false,
-            },
-            yAxis: {
-                type: 'value',
-                show:false,
-            },
-            lineStyle:{width:3},
-            series : [
-                {
-                    name: 'Average OSD Commit Latency',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                }
-            ]}">
-        </kd-charts>
-    </div>
-    <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart14]" type="'txt'"
-            title="'Average Monitor Latency'" timerange="60" step="60" reqtimerange="30" format="'healthy'" option="{}">
-        </kd-charts>
-    </div>
-</div>
-
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
-    <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart15_1,$ctrl.cephclusterChart15_2,$ctrl.cephclusterChart15_3]"
-            type="'chart'" title="'Capacity'" timerange="60" step="60" format="'GB'" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:false,
-                    axisLabel:{
-                        formatter :'{value} GB' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:$ctrl.tipFormatGb
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Available',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Used',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Total Capacity',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
-        </kd-charts>
-    </div>
-    <div style="width:425px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart16_1,$ctrl.cephclusterChart16_2]" type="'chart'"
-            title="'IOPS'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:false,
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:''
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Write',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Read',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
-        </kd-charts>
-    </div>
-    <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart17_1,$ctrl.cephclusterChart17_2]" type="'chart'"
-            title="'Throughput
-            '" timerange="60" step="60" format="'KB'" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:false,
-                    axisLabel:{
-                        formatter :'{value} KB/s' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:$ctrl.tipFormatKb
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Write',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Read',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
-        </kd-charts>
-    </div>
-</div>
-
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <div style="width:1329px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart18_1,$ctrl.cephclusterChart18_2,$ctrl.cephclusterChart18_3]"
-            type="'chart'" title="'Objects in the Cluster'" timerange="60" step="60" format="'KB'" reqtimerange="30"
-            option="{ xAxis:{
-                type: 'time',
-                show:true,
-            },
-            yAxis: {
-                type: 'value',
-                show:true,
-                axisLabel:{
-                    formatter :'{value} K' 
-                }
-            },
-            legend:{
-                type:'scroll',
-                show:true,
-                top:20
-            },
-            tooltip : {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    label: {
-                        backgroundColor: '#6a7985'
-                    }
-                },
-                formatter:$ctrl.tipFormatK
-            },
-            lineStyle:{width:3},
-            series : [
-                {
-                    name: 'Total',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                },
-                {
-                    name: 'Degraded',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                },{
-                    name: 'Misplaced',
-                    type: 'line',
-                    areaStyle: {},
-                    data:[
-                    ]
-                }
-            ]}">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart1,$ctrl.dashboardChart1_1]" type="'chart'" title="'Network I/O pressure'" timerange="60" step="60" format="'MB'" reqtimerange="30" option="{ xAxis:{
+                            type: 'time',
+                            show:true,
+                        },
+                        yAxis: {
+                            type: 'value',
+                            show:false,
+                            axisLabel:{
+                                formatter :'{value} MB/s' 
+                            }
+                        },
+                        legend:{
+                            type:'scroll',
+                            show:true,
+                            top:20
+                        },
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                label: {
+                                    backgroundColor: '#6a7985'
+                                }
+                            },
+                            formatter:$ctrl.tipFormatMb
+                        },
+                        lineStyle:{width:3},
+                        series : [
+                            {
+                                name: 'Received',
+                                type: 'line',
+                                areaStyle: {},
+                                data:[
+                                ]
+                            },
+                            {
+                                name: 'Sent',
+                                type: 'line',
+                                areaStyle: {},
+                                data:[
+                                ]
+                            }
+                        ]}">
         </kd-charts>
     </div>
 </div>
-
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" 
-    class="whiteframedemoBasicClassUsage">
-    <div style="width:652px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart19_1,$ctrl.cephclusterChart19_2,$ctrl.cephclusterChart19_3,$ctrl.cephclusterChart19_4,$ctrl.cephclusterChart19_5,$ctrl.cephclusterChart19_6]"
-            type="'chart'" title="'PGs'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:true,
-                    axisLabel:{
-                        formatter :'{value}' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:''
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Total',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Degraded',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Stale',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },{
-                        name: 'Unclean',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },{
-                        name: 'Undersized',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },{
-                        name: 'Stuck',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
+    <div style="width: 426px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2]" type="'chart'" title="'Cluster memory usage'" timerange="60" step="60" format="'dashboard_1'" reqtimerange="30" option="{
+                                series: [
+                                    {
+                                        name: 'Cluster memory usage',
+                                        type: 'gauge',
+                                        detail: {formatter:'{value}%',fontSize: 13},
+                                        radius:'85%',
+                                        data: [],
+                                        title:{
+                                            color:'red',
+                                            fontSize:12
+                                        },
+                                        axisLabel:{
+                                            fontSize:12
+                                        },
+                                        axisLine: {           
+                                            lineStyle: {       
+                                                width: 2
+                                            }
+                                        },
+                                        splitLine: {         
+                                            length:5         
+                                        },
+                                        axisTick: {         
+                                            length:5,        
+                                            lineStyle: {       
+                                                color: 'auto'
+                                            }
+                                        },  
+                                        pointer: {
+                                            width:2
+                                        },
+                                    }
+                                ],
+                            }">
         </kd-charts>
     </div>
-    <div style="width:652px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart20_1,$ctrl.cephclusterChart20_2,$ctrl.cephclusterChart20_3,$ctrl.cephclusterChart20_4]"
-            type="'chart'" title="'Stuck PGs'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:true,
-                    axisLabel:{
-                        formatter :'{value}' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:''
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Degraded',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Stale',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },
-                    {
-                        name: 'Unclean',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    },{
-                        name: 'Undersized',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
+    <div style="width: 426px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_1]" type="'chart'" title="'Cluster memory usage'" timerange="60" step="60" format="'dashboard_1'" reqtimerange="30" option="{
+                                    series: [
+                                        {
+                                            name: 'Cluster memory usage',
+                                            type: 'gauge',
+                                            detail: {formatter:'{value}%',fontSize: 13},
+                                            radius:'85%',
+                                            data: [],
+                                            title:{
+                                                color:'red',
+                                                fontSize:12
+                                            },
+                                            axisLabel:{
+                                                fontSize:12
+                                            },
+                                            axisLine: {           
+                                                lineStyle: {       
+                                                    width: 2
+                                                }
+                                            },
+                                            splitLine: {         
+                                                length:5         
+                                            },
+                                            axisTick: {         
+                                                length:5,        
+                                                lineStyle: {       
+                                                    color: 'auto'
+                                                }
+                                            },  
+                                            pointer: {
+                                                width:2
+                                            },
+                                        }
+                                    ],
+                                }">
+        </kd-charts>
+    </div>
+    <div style="width: 426px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_2]" type="'chart'" title="'Cluster memory usage'" timerange="60" step="60" format="'dashboard_1'" reqtimerange="30" option="{
+                                        series: [
+                                            {
+                                                name: 'Cluster memory usage',
+                                                type: 'gauge',
+                                                detail: {formatter:'{value}%',fontSize: 13},
+                                                radius:'85%',
+                                                data: [],
+                                                title:{
+                                                    color:'red',
+                                                    fontSize:12
+                                                },
+                                                axisLabel:{
+                                                    fontSize:12
+                                                },
+                                                axisLine: {           
+                                                    lineStyle: {       
+                                                        width: 2
+                                                    }
+                                                },
+                                                splitLine: {         
+                                                    length:5         
+                                                },
+                                                axisTick: {         
+                                                    length:5,        
+                                                    lineStyle: {       
+                                                        color: 'auto'
+                                                    }
+                                                },  
+                                                pointer: {
+                                                    width:2
+                                                },
+                                            }
+                                        ],
+                                    }">
         </kd-charts>
     </div>
 </div>
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" 
-    class="whiteframedemoBasicClassUsage">
-    <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart21]" type="'chart'" title="'Bytes'"
-            timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:true,
-                    axisLabel:{
-                        formatter :'{value}' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:''
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Degraded',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_used]" type="'txt'" title="'Used'" timerange="10" step="60" reqtimerange="30" format="'GB'" option="{}">
         </kd-charts>
     </div>
-    <div style="width:425px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart22]" type="'chart'" title="'Keys'"
-            timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:true,
-                    axisLabel:{
-                        formatter :'{value}' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:''
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Keys',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_total]" type="'txt'" title="'Total'" timerange="10" step="60" reqtimerange="30" format="'GB'" option="{}">
         </kd-charts>
     </div>
-    <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart23]" type="'chart'" title="'Objects'"
-            timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
-                    type: 'time',
-                    show:true,
-                },
-                yAxis: {
-                    type: 'value',
-                    show:true,
-                    axisLabel:{
-                        formatter :'{value}' 
-                    }
-                },
-                legend:{
-                    type:'scroll',
-                    show:true,
-                    top:20
-                },
-                tooltip : {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'cross',
-                        label: {
-                            backgroundColor: '#6a7985'
-                        }
-                    },
-                    formatter:''
-                },
-                lineStyle:{width:3},
-                series : [
-                    {
-                        name: 'Objects',
-                        type: 'line',
-                        areaStyle: {},
-                        data:[
-                        ]
-                    }
-                ]}">
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_1_used]" type="'txt'" title="'Used'" timerange="10" step="60" reqtimerange="30" format="'cores'" option="{}">
+        </kd-charts>
+    </div>
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_1_total]" type="'txt'" title="'Total'" timerange="10" step="60" reqtimerange="30" format="'cores'" option="{}">
+        </kd-charts>
+    </div>
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_2_used]" type="'txt'" title="'Used'" timerange="10" step="60" reqtimerange="30" format="'GB'" option="{}">
+        </kd-charts>
+    </div>
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart2_2_total]" type="'txt'" title="'Total'" timerange="10" step="60" reqtimerange="30" format="'TB'" option="{}">
+        </kd-charts>
+    </div>
+</div>
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
+    <div style="width:1329px;height: 300px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart3]" type="'chart'" title="'Pods CPU usage (1m avg)'" timerange="60" step="60" format="'podsusage1'" reqtimerange="30" option="{ xAxis:{
+                            type: 'time',
+                            show:true,
+                        },
+                        yAxis: {
+                            type: 'value',
+                            show:false,
+                            axisLabel:{
+                                formatter :'{value}' 
+                            }
+                        },
+                        legend:{
+                            type:'scroll',
+                            show:true,
+                            top:20
+                        },
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                label: {
+                                    backgroundColor: '#6a7985'
+                                }
+                            },
+                            formatter:$ctrl.tipFormatPodGb
+                        },
+                        lineStyle:{width:3},
+                        series : []}">
+        </kd-charts>
+    </div>
+</div>
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
+    <div style="width:1329px;height: 300px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.dashboardChart4]" type="'chart'" title="'Pods memory usage'" timerange="60" step="60" format="'podsusage2'" reqtimerange="30" option="{ xAxis:{
+                            type: 'time',
+                            show:true,
+                        },
+                        yAxis: {
+                            type: 'value',
+                            show:false,
+                            axisLabel:{
+                                formatter :'{value}' 
+                            }
+                        },
+                        legend:{
+                            type:'scroll',
+                            show:true,
+                            top:20
+                        },
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                label: {
+                                    backgroundColor: '#6a7985'
+                                }
+                            },
+                            formatter:$ctrl.tipFormatPodsMb
+                        },
+                        lineStyle:{width:3},
+                        series : []}">
         </kd-charts>
     </div>
 </div>

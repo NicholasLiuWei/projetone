@@ -43,7 +43,7 @@ import { stateName as warning } from 'warning/list/state';
 import { stateName as storage } from 'storage/pvc/state';
 import { stateName as network } from 'network/service/state';
 import { stateName as rizhi } from 'rizhi/platform/state';
-import { stateName as jiankong } from 'jiankong/state';
+import { stateName as jiankong } from 'jiankong/cephcluster/state';
 
 /**
  * @final
@@ -102,7 +102,7 @@ export class NavController {
             'storage': storage,
             'net': network,
             'rizhi': rizhi,
-            'jiankong': cephcluster
+            'jiankong': jiankong
         };
 
         /** cunchu */

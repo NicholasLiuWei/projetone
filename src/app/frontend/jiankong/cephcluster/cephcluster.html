@@ -1,20 +1,16 @@
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <!-- 文字 -->
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart1]" type="'txt'" title="'Status'" timerange="10"
-            step="60" reqtimerange="30" format="'healthy'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart1]" type="'txt'" title="'Status'" timerange="10" step="60" reqtimerange="30" format="'healthy'" option="{}">
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart2]" type="'txt'" title="'Monitors In Quorum'"
-            timerange="10" step="60" reqtimerange="30" format="'healthy'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart2]" type="'txt'" title="'Monitors In Quorum'" timerange="10" step="60" reqtimerange="30" format="'healthy'" option="{}">
         </kd-charts>
     </div>
     <!-- 文字加图 -->
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart3]" type="'txt&chart'" title="'Pools'"
-            timerange="10" step="60" reqtimerange="30" option="{ xAxis: {
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart3]" type="'txt&chart'" title="'Pools'" timerange="10" step="60" reqtimerange="30" option="{ xAxis: {
                 type: 'time',
                 show:false,
             },
@@ -35,8 +31,7 @@
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart4]" type="'txt&chart'"
-            title="'Cluster Capacity'" timerange="60" step="60" reqtimerange="30" format="'GB'" option="{ xAxis: {
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart4]" type="'txt&chart'" title="'Cluster Capacity'" timerange="60" step="60" reqtimerange="30" format="'GB'" option="{ xAxis: {
                 type: 'time',
                 show:false,
             },
@@ -57,8 +52,7 @@
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart5]" type="'txt&chart'" title="'Used Capacity'"
-            timerange="60" step="60" reqtimerange="30" format="'GB'" option="{ xAxis: {
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart5]" type="'txt&chart'" title="'Used Capacity'" timerange="60" step="60" reqtimerange="30" format="'GB'" option="{ xAxis: {
                     type: 'time',
                     show:false,
                 },
@@ -80,8 +74,7 @@
     </div>
     <!-- 图标 -->
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart6]" type="'chart'" title="'Available Capacity'"
-            timerange="60" step="60" format="'dashboard'" reqtimerange="30" option="{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart6]" type="'chart'" title="'Available Capacity'" timerange="60" step="60" format="'dashboard'" reqtimerange="30" option="{
                         series: [
                             {
                                 name: 'Available Capacity',
@@ -119,31 +112,25 @@
         </kd-charts>
     </div>
 </div>
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <div style="width: 87px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart7]" type="'txt'" title="'OSDs IN'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart7]" type="'txt'" title="'OSDs IN'" timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
         </kd-charts>
     </div>
     <div style="width: 86px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart8]" type="'txt'" title="'OSDs OUT'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart8]" type="'txt'" title="'OSDs OUT'" timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
         </kd-charts>
     </div>
     <div style="width: 87px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart9]" type="'txt'" title="'OSDs UP'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart9]" type="'txt'" title="'OSDs UP'" timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
         </kd-charts>
     </div>
     <div style="width: 87px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart10]" type="'txt'" title="'OSDs  DOWN'"
-            timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart10]" type="'txt'" title="'OSDs  DOWN'" timerange="60" step="60" reqtimerange="30" format="'text'" option="{}">
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart11]" type="'txt&chart'"
-            title="'Average PGs per OSD'" format="''" timerange="60" step="60" reqtimerange="30" option="{ xAxis: {
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart11]" type="'txt&chart'" title="'Average PGs per OSD'" format="''" timerange="60" step="60" reqtimerange="30" option="{ xAxis: {
                     type: 'time',
                     show:false,
                 },
@@ -164,8 +151,7 @@
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart12]" type="'txt&chart'"
-            title="'Average OSD Commit Latency'" timerange="60" step="60" reqtimerange="30" format="'MS'" option="{ xAxis: {
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart12]" type="'txt&chart'" title="'Average OSD Commit Latency'" timerange="60" step="60" reqtimerange="30" format="'MS'" option="{ xAxis: {
                 type: 'time',
                 show:false,
             },
@@ -186,8 +172,7 @@
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart13]" type="'txt&chart'"
-            title="'Average OSD Commit Latency'" timerange="60" step="60" reqtimerange="30" format="'US'" option="{ xAxis: {
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart13]" type="'txt&chart'" title="'Average OSD Commit Latency'" timerange="60" step="60" reqtimerange="30" format="'US'" option="{ xAxis: {
                 type: 'time',
                 show:false,
             },
@@ -208,18 +193,14 @@
         </kd-charts>
     </div>
     <div style="width: 200px;height: 150px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart14]" type="'txt'"
-            title="'Average Monitor Latency'" timerange="60" step="60" reqtimerange="30" format="'healthy'" option="{}">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart14]" type="'txt'" title="'Average Monitor Latency'" timerange="60" step="60" reqtimerange="30" format="'healthy'" option="{}">
         </kd-charts>
     </div>
 </div>
 
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart15_1,$ctrl.cephclusterChart15_2,$ctrl.cephclusterChart15_3]"
-            type="'chart'" title="'Capacity'" timerange="60" step="60" format="'GB'" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart15_1,$ctrl.cephclusterChart15_2,$ctrl.cephclusterChart15_3]" type="'chart'" title="'Capacity'" timerange="60" step="60" format="'GB'" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },
@@ -272,8 +253,7 @@
         </kd-charts>
     </div>
     <div style="width:425px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart16_1,$ctrl.cephclusterChart16_2]" type="'chart'"
-            title="'IOPS'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart16_1,$ctrl.cephclusterChart16_2]" type="'chart'" title="'IOPS'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },
@@ -316,8 +296,7 @@
         </kd-charts>
     </div>
     <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart17_1,$ctrl.cephclusterChart17_2]" type="'chart'"
-            title="'Throughput
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart17_1,$ctrl.cephclusterChart17_2]" type="'chart'" title="'Throughput
             '" timerange="60" step="60" format="'KB'" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
@@ -365,13 +344,9 @@
     </div>
 </div>
 
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill=""
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <div style="width:1329px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart18_1,$ctrl.cephclusterChart18_2,$ctrl.cephclusterChart18_3]"
-            type="'chart'" title="'Objects in the Cluster'" timerange="60" step="60" format="'KB'" reqtimerange="30"
-            option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart18_1,$ctrl.cephclusterChart18_2,$ctrl.cephclusterChart18_3]" type="'chart'" title="'Objects in the Cluster'" timerange="60" step="60" format="'KB'" reqtimerange="30" option="{ xAxis:{
                 type: 'time',
                 show:true,
             },
@@ -424,12 +399,10 @@
     </div>
 </div>
 
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" 
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <div style="width:652px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart19_1,$ctrl.cephclusterChart19_2,$ctrl.cephclusterChart19_3,$ctrl.cephclusterChart19_4,$ctrl.cephclusterChart19_5,$ctrl.cephclusterChart19_6]"
-            type="'chart'" title="'PGs'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart19_1,$ctrl.cephclusterChart19_2,$ctrl.cephclusterChart19_3,$ctrl.cephclusterChart19_4,$ctrl.cephclusterChart19_5,$ctrl.cephclusterChart19_6]" type="'chart'" title="'PGs'" timerange="60" step="60"
+            format="''" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },
@@ -500,9 +473,7 @@
         </kd-charts>
     </div>
     <div style="width:652px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD"
-            chartresource="[$ctrl.cephclusterChart20_1,$ctrl.cephclusterChart20_2,$ctrl.cephclusterChart20_3,$ctrl.cephclusterChart20_4]"
-            type="'chart'" title="'Stuck PGs'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart20_1,$ctrl.cephclusterChart20_2,$ctrl.cephclusterChart20_3,$ctrl.cephclusterChart20_4]" type="'chart'" title="'Stuck PGs'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },
@@ -561,11 +532,9 @@
         </kd-charts>
     </div>
 </div>
-<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" 
-    class="whiteframedemoBasicClassUsage">
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
     <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart21]" type="'chart'" title="'Bytes'"
-            timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart21]" type="'chart'" title="'Bytes'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },
@@ -604,8 +573,7 @@
         </kd-charts>
     </div>
     <div style="width:425px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart22]" type="'chart'" title="'Keys'"
-            timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart22]" type="'chart'" title="'Keys'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },
@@ -644,8 +612,7 @@
         </kd-charts>
     </div>
     <div style="width:426px;height: 300px;" class="chartBox">
-        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart23]" type="'chart'" title="'Objects'"
-            timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
+        <kd-charts class="chartD" chartresource="[$ctrl.cephclusterChart23]" type="'chart'" title="'Objects'" timerange="60" step="60" format="''" reqtimerange="30" option="{ xAxis:{
                     type: 'time',
                     show:true,
                 },

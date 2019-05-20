@@ -167,8 +167,7 @@ export class cephclusterController {
         }
     }
 
-    $onInit() {
-    }
+    $onInit() {}
     $onDestroy() {
 
     }

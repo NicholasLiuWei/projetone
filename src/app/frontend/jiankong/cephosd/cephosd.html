@@ -1,15 +1,286 @@
-<div layout="row" style="width:230px;height: 35px;border-bottom: 1px solid #e4e7ed;"
-    layout-align="space-between center">
+<div layout="row" style="width:230px;height: 35px;border-bottom: 1px solid #e4e7ed;" layout-align="space-between center">
     Pool ：
     <md-input-container>
-
+        <!-- <md-select ng-model="$ctrl.chartUrlOption" class="md-no-underline"> -->
         <md-select ng-model="$ctrl.chartUrlOption" class="md-no-underline" ng-change="$ctrl.changeOpt()">
-            <md-option value="cephfs_data">cephfs_data</md-option>
-            <md-option value="cephfs_metadata">cephfs_metadata</md-option>
-            <md-option value="rbd">rbd</md-option>
+            <md-option value="osd.0">osd.0</md-option>
+            <md-option value="osd.1">osd.1</md-option>
+            <md-option value="osd.2">osd.2</md-option>
+            <md-option value="osd.3">osd.3</md-option>
+            <md-option value="osd.4">osd.4</md-option>
+            <md-option value="osd.5">osd.5</md-option>
         </md-select>
     </md-input-container>
 </div>
 <div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
-   <h1>11121321321321</h1>
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" chartresource="" charturl="[$ctrl.cephosdChart1]" type="'txt'" title="'Status'" timerange="10" step="60" reqtimerange="30" format="'up'" option="{}">
+        </kd-charts>
+    </div>
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" chartresource="" charturl="[$ctrl.cephosdChart2]" type="'txt'" title="'Available'" timerange="10" step="60" reqtimerange="30" format="'in'" option="{}">
+        </kd-charts>
+    </div>
+    <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" chartresource="" charturl="[$ctrl.cephosdChart3]" type="'txt'" title="'Total OSDs'" timerange="10" step="60" reqtimerange="30" format="'text'" option="{}">
+        </kd-charts>
+    </div>
+</div>
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
+    <div style="width:1103px;height: 300px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.cephosdChart4,$ctrl.cephosdChart4_1]" type="'chart'" title="'PGs'" timerange="60" step="60" format="" reqtimerange="30" option="{ xAxis:{
+                type: 'time',
+                show:true,
+            },
+            yAxis: {
+                type: 'value',
+                show:false,
+                axisLabel:{
+                    formatter :'{value}' 
+                }
+            },
+            legend:{
+                type:'scroll',
+                show:true,
+                top:20
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                },
+                formatter:$ctrl.tipFormatK
+            },
+            lineStyle:{width:3},
+            series : [
+                {
+                    name: 'Number of PGs - osd.0',
+                    type: 'line',
+                    areaStyle: {},
+                    data:[
+                    ]
+                },
+                {
+                    name: 'Average Number of PGs in the Cluster',
+                    type: 'line',
+                    areaStyle: {},
+                    data:[
+                    ]
+                }
+            ]}">
+        </kd-charts>
+    </div>
+    <div style="width: 200px;height: 150px;padding-bottom: 158px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.cephosdChart5]" type="'chart'" title="'Utilization'" timerange="60" step="60" format="'dashboard_line'" reqtimerange="30" option="{
+                        series: [
+                            {
+                                name: 'Available Capacity',
+                                type: 'gauge',
+                                detail: {formatter:'{value}%',fontSize: 13},
+                                radius:'85%',
+                                data: [],
+                                title:{
+                                    color:'red',
+                                    fontSize:12
+                                },
+                                axisLabel:{
+                                    fontSize:12
+                                },
+                                axisLine: {           
+                                    lineStyle: {       
+                                        width: 2
+                                    }
+                                },
+                                splitLine: {         
+                                    length:5         
+                                },
+                                axisTick: {         
+                                    length:5,        
+                                    lineStyle: {       
+                                        color: 'auto'
+                                    }
+                                },  
+                                pointer: {
+                                    width:2
+                                },
+                            }
+                        ],
+                    }">
+        </kd-charts>
+        <kd-charts class="chartD chart-line" charturl="[$ctrl.cephosdChart6]" type="'chart'" title="" timerange="60" step="60" format="" reqtimerange="30" option="
+            {
+                xAxis:{
+                    type: 'time',
+                    show:false,
+                },
+                yAxis: {
+                    type: 'value',
+                    show:false,
+                },
+                legend:{
+                    type:'scroll',
+                    show:false,
+                    top:20
+                },
+                grid: {
+                    left: '-5%',
+                    right: '5%',
+                    bottom: '0%',
+                    containLabel: true
+                },
+                lineStyle:{width:3},
+                series : [
+                    {
+                        type: 'line',
+                        areaStyle: {},
+                        data:[
+                        ]
+                    }
+                ]}">
+        </kd-charts>
+    </div>
+
+    <!-- <div style="width: 200px;height: 150px;" class="chartBox">
+        <kd-charts class="chartD" chartresource="[$ctrl.cephosdChart1]" type="'txt'" title="'Status'" timerange="10" step="60" reqtimerange="30" format="'healthy'" option="{}">
+        </kd-charts>
+    </div> -->
+</div>
+<div layout="row" layout-padding="50" layout-wrap="" layout-fill="" class="whiteframedemoBasicClassUsage">
+    <div style="width:426px;height: 300px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.cephosdChart7,$ctrl.cephosdChart7_1]" type="'chart'" title="'Latency'" timerange="60" step="60" format="'latency'" reqtimerange="30" option="{ xAxis:{
+                    type: 'time',
+                    show:true,
+                },
+                yAxis: {
+                    type: 'value',
+                    show:false,
+                    axisLabel:{
+                        formatter :'{value} ms' 
+                    }
+                },
+                legend:{
+                    type:'scroll',
+                    show:true,
+                    top:20
+                },
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    },
+                    formatter:$ctrl.tipFormatKms
+                },
+                lineStyle:{width:3},
+                series : [
+                    {
+                        name: 'Apply Latency (s) - osd.0',
+                        type: 'scatter',
+                        symbolSize: 10,
+                        areaStyle: {},
+                        data:[
+                        ]
+                    },
+                    {
+                        name: 'Commit Latency (s) - osd.0',
+                        type: 'scatter',
+                        symbolSize: 10,
+                        areaStyle: {},
+                        data:[
+                        ]
+                    }
+                ]}">
+        </kd-charts>
+    </div>
+    <div style="width:426px;height: 300px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.cephosdChart8,$ctrl.cephosdChart8_1]" type="'chart'" title="'OSD Storage'" timerange="60" step="60" format="'GB'" reqtimerange="30" option="{ xAxis:{
+                        type: 'time',
+                        show:true,
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show:false,
+                        axisLabel:{
+                            formatter :'{value} ms' 
+                        }
+                    },
+                    legend:{
+                        type:'scroll',
+                        show:true,
+                        top:20
+                    },
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            label: {
+                                backgroundColor: '#6a7985'
+                            }
+                        },
+                        formatter:$ctrl.tipFormatKgb
+                    },
+                    lineStyle:{width:3},
+                    series : [
+                        {
+                            name: 'Available - osd.0',
+                            type: 'line',
+                            areaStyle: {},
+                            data:[
+                            ]
+                        },
+                        {
+                            name: 'Used - osd.0',
+                            type: 'line',
+                            areaStyle: {},
+                            data:[
+                            ]
+                        }
+                    ]}">
+        </kd-charts>
+    </div>
+    <div style="width:426px;height: 300px;" class="chartBox">
+        <kd-charts class="chartD" charturl="[$ctrl.cephosdChart9]" type="'chart'" title="'Utilization Variance'" timerange="60" step="60" format="'utilizationvariance'" reqtimerange="30" option="{ xAxis:{
+                        type: 'time',
+                        show:true,
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show:false,
+                        axisLabel:{
+                            formatter :'{value} ms' 
+                        }
+                    },
+                    legend:{
+                        type:'scroll',
+                        show:true,
+                        top:20
+                    },
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            label: {
+                                backgroundColor: '#6a7985'
+                            }
+                        },
+                        formatter:$ctrl.tipFormatKms
+                    },
+                    lineStyle:{width:3},
+                    series : [
+                        {
+                            name: 'Available - osd.0',
+                            type: 'scatter',
+                            symbolSize: 10,
+                            areaStyle: {},
+                            data:[
+                            ]
+                        }
+                    ]}">
+        </kd-charts>
+    </div>
 </div>

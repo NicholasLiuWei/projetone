@@ -2,132 +2,103 @@ export class dashboardController {
     /**
      * @ngInject
      */
-    constructor($filter, kdCephclusterResource, cephclusterChart1, cephclusterChart2, cephclusterChart3, cephclusterChart4, cephclusterChart5,
-        cephclusterChart6, cephclusterChart7, cephclusterChart8, cephclusterChart9, cephclusterChart10, cephclusterChart11,
-        cephclusterChart12, cephclusterChart13, cephclusterChart14, cephclusterChart15_1, cephclusterChart15_2, cephclusterChart15_3, cephclusterChart16_1, cephclusterChart16_2, cephclusterChart17_2, cephclusterChart17_1,
-        cephclusterChart18_1, cephclusterChart18_2, cephclusterChart18_3, cephclusterChart19_1, cephclusterChart19_2, cephclusterChart19_3, cephclusterChart19_4, cephclusterChart19_5, cephclusterChart19_6,
-        cephclusterChart20_1, cephclusterChart20_2, cephclusterChart20_3, cephclusterChart20_4, cephclusterChart21, cephclusterChart22, cephclusterChart23, cephclusterChart24
-
-    ) {
+    constructor() {
+        /** @export */
+        this.chartUrlOption = "^.*$";
 
         /** @export */
-        this.persistentVolumeListResource = kdCephclusterResource;
+        this.dashboardChart1 = `api/v1/query_range?query=sum%20(rate%20(container_network_receive_bytes_total%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
 
         /** @export */
-        this.cephclusterChart1 = cephclusterChart1;
+        this.dashboardChart1_1 = `api/v1/query_range?query=-%20sum%20(rate%20(container_network_transmit_bytes_total%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
 
         /** @export */
-        this.cephclusterChart2 = cephclusterChart2;
+        this.dashboardChart2 = `api/v1/query_range?query=sum%20(container_memory_working_set_bytes%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})%20%2F%20sum%20(machine_memory_bytes%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}) * 100`;
 
         /** @export */
-        this.cephclusterChart3 = cephclusterChart3;
+        this.dashboardChart2_used = `api/v1/query_range?query=sum%20(container_memory_working_set_bytes%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})`;
 
         /** @export */
-        this.cephclusterChart4 = cephclusterChart4;
+        this.dashboardChart2_total = `api/v1/query_range?query=sum%20(machine_memory_bytes%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"})`;
 
         /** @export */
-        this.cephclusterChart5 = cephclusterChart5;
+        this.dashboardChart2_1 = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
 
         /** @export */
-        this.cephclusterChart6 = cephclusterChart6;
+        this.dashboardChart2_1_used = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
 
         /** @export */
-        this.cephclusterChart7 = cephclusterChart7;
-
-
-        /** @export */
-        this.cephclusterChart8 = cephclusterChart8;
+        this.dashboardChart2_1_total = `api/v1/query_range?query=sum%20(machine_cpu_cores%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"})`;
 
         /** @export */
-        this.cephclusterChart9 = cephclusterChart9;
+        this.dashboardChart2_2 = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))%20%2F%20sum%20(machine_cpu_cores%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}) * 100`;
 
         /** @export */
-        this.cephclusterChart10 = cephclusterChart10;
+        this.dashboardChart2_2_used = `api/v1/query_range?query=sum%20(container_fs_usage_bytes%7Bdevice%3D~%22%5E%2Fdev%2F%5Bsv%5Dd%5Ba-z%5D%5B1-9%5D%24%22%2Cid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})`;
 
         /** @export */
-        this.cephclusterChart11 = cephclusterChart11;
+        this.dashboardChart2_2_total = `api/v1/query_range?query=sum%20(container_fs_limit_bytes%7Bdevice%3D~%22%5E%2Fdev%2F%5Bsv%5Dd%5Ba-z%5D%5B1-9%5D%24%22%2Cid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})`;
 
         /** @export */
-        this.cephclusterChart12 = cephclusterChart12;
+        this.dashboardChart3 = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bimage!%3D%22%22%2Cname%3D~%22%5Ek8s_.*%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))%20by%20(pod_name)`;
 
         /** @export */
-        this.cephclusterChart13 = cephclusterChart13;
+        this.dashboardChart4 = `api/v1/query_range?query=sum%20(container_memory_working_set_bytes%7Bimage!%3D%22%22%2Cname%3D~%22%5Ek8s_.*%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})%20by%20(pod_name)`;
 
-        /** @export */
-        this.cephclusterChart14 = cephclusterChart14;
+        this.changeOpt = function() {
+            this.dashboardChart1 = `api/v1/query_range?query=sum%20(rate%20(container_network_receive_bytes_total%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
+            this.dashboardChart1_1 = `api/v1/query_range?query=-%20sum%20(rate%20(container_network_transmit_bytes_total%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
+            this.dashboardChart2 = `api/v1/query_range?query=sum%20(container_memory_working_set_bytes%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})%20%2F%20sum%20(machine_memory_bytes%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}) * 100`;
+            this.dashboardChart2_used = `api/v1/query_range?query=sum%20(container_memory_working_set_bytes%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})`;
+            this.dashboardChart2_total = `api/v1/query_range?query=sum%20(machine_memory_bytes%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"})`;
+            this.dashboardChart2_1 = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
+            this.dashboardChart2_1_used = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))`;
+            this.dashboardChart2_1_total = `api/v1/query_range?query=sum%20(machine_cpu_cores%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"})`;
+            this.dashboardChart2_2 = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))%20%2F%20sum%20(machine_cpu_cores%7Bkubernetes_io_hostname=~"${this.chartUrlOption}"}) * 100`;
+            this.dashboardChart2_2_used = `api/v1/query_range?query=sum%20(container_fs_usage_bytes%7Bdevice%3D~%22%5E%2Fdev%2F%5Bsv%5Dd%5Ba-z%5D%5B1-9%5D%24%22%2Cid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})`;
+            this.dashboardChart2_2_total = `api/v1/query_range?query=sum%20(container_fs_limit_bytes%7Bdevice%3D~%22%5E%2Fdev%2F%5Bsv%5Dd%5Ba-z%5D%5B1-9%5D%24%22%2Cid%3D%22%2F%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})`;
+            this.dashboardChart3 = `api/v1/query_range?query=sum%20(rate%20(container_cpu_usage_seconds_total%7Bimage!%3D%22%22%2Cname%3D~%22%5Ek8s_.*%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"}[1m]))%20by%20(pod_name)`;
+            this.dashboardChart4 = `api/v1/query_range?query=sum%20(container_memory_working_set_bytes%7Bimage!%3D%22%22%2Cname%3D~%22%5Ek8s_.*%22%2Ckubernetes_io_hostname=~"${this.chartUrlOption}"})%20by%20(pod_name)`;
+        }
 
-        /** @export */
-        this.cephclusterChart15_1 = cephclusterChart15_1;
+        // /** @export */
+        // this.persistentVolumeListResource = kdCephclusterResource;
 
-        /** @export */
-        this.cephclusterChart15_2 = cephclusterChart15_2;
+        // /** @export */
+        // this.cephclusterChart1 = cephclusterChart1;
 
-        /** @export */
-        this.cephclusterChart15_3 = cephclusterChart15_3;
+        // /** @export */
+        // this.cephclusterChart1_1 = cephclusterChart1_1;
 
-        /** @export */
-        this.cephclusterChart16_1 = cephclusterChart16_1;
+        // /** @export */
+        // this.cephclusterChart2 = cephclusterChart2;
 
-        /** @export */
-        this.cephclusterChart16_2 = cephclusterChart16_2;
+        // /** @export */
+        // this.cephclusterChart2_used = cephclusterChart2_used;
 
-        /** @export */
-        this.cephclusterChart17_1 = cephclusterChart17_1;
+        // /** @export */
+        // this.cephclusterChart2_total = cephclusterChart2_total;
 
-        /** @export */
-        this.cephclusterChart17_2 = cephclusterChart17_2;
+        // /** @export */
+        // this.cephclusterChart2_1 = cephclusterChart2_1;
 
-        /** @export */
-        this.cephclusterChart18_1 = cephclusterChart18_1;
+        // /** @export */
+        // this.cephclusterChart2_1_used = cephclusterChart2_1_used;
 
-        /** @export */
-        this.cephclusterChart18_2 = cephclusterChart18_2;
+        // /** @export */
+        // this.cephclusterChart2_1_total = cephclusterChart2_1_total;
 
-        /** @export */
-        this.cephclusterChart18_3 = cephclusterChart18_3;
+        // /** @export */
+        // this.cephclusterChart2_2 = cephclusterChart2_2;
 
-        /** @export */
-        this.cephclusterChart19_1 = cephclusterChart19_1;
+        // /** @export */
+        // this.cephclusterChart2_2_used = cephclusterChart2_2_used;
 
-        /** @export */
-        this.cephclusterChart19_2 = cephclusterChart19_2;
+        // /** @export */
+        // this.cephclusterChart2_2_total = cephclusterChart2_2_total;
 
-        /** @export */
-        this.cephclusterChart19_3 = cephclusterChart19_3;
-
-        /** @export */
-        this.cephclusterChart19_4 = cephclusterChart19_4;
-
-        /** @export */
-        this.cephclusterChart19_5 = cephclusterChart19_5;
-
-        /** @export */
-        this.cephclusterChart19_6 = cephclusterChart19_6;
-
-        /** @export */
-        this.cephclusterChart20_1 = cephclusterChart20_1;
-
-        /** @export */
-        this.cephclusterChart20_2 = cephclusterChart20_2;
-
-        /** @export */
-        this.cephclusterChart20_3 = cephclusterChart20_3;
-
-        /** @export */
-        this.cephclusterChart20_4 = cephclusterChart20_4;
-
-        /** @export */
-        this.cephclusterChart21 = cephclusterChart21;
-
-        /** @export */
-        this.cephclusterChart22 = cephclusterChart22;
-
-        /** @export */
-        this.cephclusterChart23 = cephclusterChart23;
-
-        /** @export */
-        this.cephclusterChart24 = cephclusterChart24;
-
+        // /** @export */
+        // this.cephclusterChart3 = cephclusterChart3;
 
         /** @export */
         this.tipFormatGb = (params) => {
@@ -136,6 +107,18 @@ export class dashboardController {
             html += '<br/>';
             for (let i = 0; i < params.length; i++) {
                 html += params[i]["marker"] + params[i]["seriesName"] + ' : ' + params[i].value[1] + 'GiB';
+                i != params.length ? html += '<br/>' : html += '';
+            }
+            return html;
+        }
+
+        /** @export */
+        this.tipFormatMb = (params) => {
+            let html = '';
+            html += params[0]["axisValueLabel"];
+            html += '<br/>';
+            for (let i = 0; i < params.length; i++) {
+                html += params[i]["marker"] + params[i]["seriesName"] + ' : ' + params[i].value[1] + 'MB/s';
                 i != params.length ? html += '<br/>' : html += '';
             }
             return html;
@@ -155,20 +138,31 @@ export class dashboardController {
         }
 
         /** @export */
-        this.tipFormatK = (params) => {
+        this.tipFormatPodsGb = (params) => {
             let html = '';
             html += params[0]["axisValueLabel"];
             html += '<br/>';
             for (let i = 0; i < params.length; i++) {
-                html += params[i]["marker"] + params[i]["seriesName"] + ' : ' + params[i].value[1] + 'K';
+                html += params[i]["marker"] + params[i]["seriesName"] + ' : ' + params[i].value[1];
+                i != params.length ? html += '<br/>' : html += '';
+            }
+            return html;
+        }
+
+        /** @export */
+        this.tipFormatPodsMb = (params) => {
+            let html = '';
+            html += params[0]["axisValueLabel"];
+            html += '<br/>';
+            for (let i = 0; i < params.length; i++) {
+                html += params[i]["marker"] + params[i]["seriesName"] + ' : ' + params[i].value[1] + 'MB';
                 i != params.length ? html += '<br/>' : html += '';
             }
             return html;
         }
     }
 
-    $onInit() {
-    }
+    $onInit() {}
     $onDestroy() {
 
     }
