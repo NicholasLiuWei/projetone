@@ -35,7 +35,7 @@ import sparklineDirective from './sparkline/sparkline_directive';
 import toggleHiddenTextModule from './togglehiddentext/togglehiddentext_module';
 import warnThresholdDirective from './warnthreshold/warnthreshold_directive';
 import zeroStateModule from './zerostate/zerostate_module';
-// import {chartComponent} from './charts/component';
+import { chartComponent } from './charts/component';
 /**
  * Module containing common components for the application.
  */
@@ -65,5 +65,5 @@ export default angular
     .directive('kdLabels', labelsDirective)
     .directive('kdMiddleEllipsis', middleEllipsisDirective)
     .directive('kdSparkline', sparklineDirective)
-    // .component('kdCharts', chartComponent)
+    .component('kdCharts', chartComponent)
     .directive('kdWarnThreshold', warnThresholdDirective);

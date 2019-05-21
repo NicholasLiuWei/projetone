@@ -70,7 +70,7 @@ import warningModule from './warning/module';
 import storageModule from './storage/module';
 import networkModule from './network/module';
 import rizhiModule from './rizhi/module';
-// import jiankongModule from './jiankong/module';
+import jiankongModule from './jiankong/module';
 
 
 export default angular
@@ -136,7 +136,7 @@ export default angular
             warningModule.name,
             networkModule.name,
             rizhiModule.name,
-            // jiankongModule.name
+            jiankongModule.name
         ])
     .config(indexConfig)
     .config(routeConfig)
